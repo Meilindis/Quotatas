@@ -36,16 +36,6 @@ verbs_active_nsfw = []
 verbs_ing_nsfw = []
   
 
-def import_list(filename, list_name):
-    path = Path(__file__).parent.absolute()
-    location = os.path.join(path, 'word_lists')
-    location = os.path.join(location, filename)
-    infile = open(location,'r')
-    with open(location) as f:
-        list_name = f.read().splitlines()      
-
-    infile.close()
-
 def import_list(filename):
     word_list = []
     path = Path(__file__).parent.absolute()
@@ -57,6 +47,7 @@ def import_list(filename):
 
     infile.close()
     return word_list
+
 
 # Exports the list with the name list_name to the subfolder word_lists of the project alphabetically
 def export_list(list, list_name):
