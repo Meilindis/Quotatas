@@ -1,116 +1,40 @@
 from pathlib import Path
 import os
 
-adjectives_positive = ["great", "cute", "wonderful", "sweet", "creative", "playful", "exciting" ,"inventive", "clever", "brilliant", "amazing", "awesome", "funny", "beautiful", "handsome", "pretty", "smart", "intelligent", "empathetic", "sensible", "practical", "helpful", "talented", "gorgeous", "caring", "delightful", "chique", "outstanding", "stunning"]
-
-adjectives_neutral = ["bright", "rich", "easy", "fierce", "neutral", "high", "low", "slow", "fast", "tricky", "wet", "dry", "practical", "reasonable", "sensitive", "capable", "elaborate", "normal", "strange", "odd", "weird", "eccentric"]
-
-adjectives_negative = ["bad", "difficult", "sour", "salty", "bitter", "ugly", "selfish", "poor", "stupid", "filthy", "dominant", "bossy", "arrogant", "narcissistic", "spiteful", "heartless", "uncaring", "greedy", "ignorant", "terrible", "horrible", "gluttonous", "awful", "boring", "idiotic"]
-
-colours = ["pink", "white", "black", "yellow", "green", "blue", "magenta", "teal", "brown", "orange", "amber", "violet", "purple", "indigo", "red", "turquoise", "peach"]
-
-nouns_sfw_singular = ["dress", "skirt", "pencil", "loom", "sewing machine", "sea", "ocean", "hug", "blindfold", "big splash", "ad blocker",  "wet blanket",  "besom",  "piano", "clown car", "lantern pole", "candy", "chocolate", "chess game", "peanut", "game", "champagne", "wine", "coffee", "tea", "cup", "pet", "petrichor", "rain", "flower", "table", "chair", "vase", "meadow", "rocket", "stone", "alarm clock", "fridge", "freezer", "laundry", "sun", "moon", "star", "planet", "universe", "time machine", "transporter", "holodeck", "galaxy", "TARDIS", "knife", "fork", "spoon", "cutlery", "plate", "earwax", "cassette player", "computers", "android", "gynoid", "robot", "mind", "brain", "adventure", "tavern", "stamp collection", "super soaker", "lego", "hard disk", "phone"]
-
-nouns_sfw_plural = ["dresses", "skirts", "pencils", "looms", "sewing machines", "sea", "ocean", "hugs", "blindfolds", "ad blockers",  "wet blankets",  "besoms",  "pianos", "clown cars", "lantern poles", "sweets", "chocolates", "peanuts", "games", "pets", "cups", "flowers", "tables", "chairs", "vases", "meadows", "rockets", "stones", "alarm clocks", "fridges", "freezers", "suns", "moons", "stars", "planets", "universes", "time machines", "transporters", "holodecks", "galaxies", "knives", "forks", "spoons", "plates", "cassette players", "computers", "androids", "gynoids", "robots", "minds", "brains", "adventures", "taverns", "clothes", "stamp collections", "super soakers", "legos", "hard disks", "phones"]
-
-people_singular = ["whippersnapper", "landlubber", "pirate", "mayor", "peasant", "wife", "husband", "sailor", "gnome", "elf", "coal miner", "time traveller", "baker", "explorer", "astronaut", "singer", "supporter", "accountant", "rocket scientist", "captain", "tinkerer", "painter", "artist", "musician", "CEO", "manager", "HR director", "programmer", "teacher", "doctor", "nurse", "dentist", "leprechaun", "orc", "halfling", "goblin", "witch", "wizard", "sorcerer", "sorceress", "king", "queen", "prince", "princess", "rook", "knight", "bishop", "pawn", "emperor", "empress", "weirdo", "sweetheart"]
-
-people_plural = ["whippersnappers", "landlubbers", "pirates", "mayors", "peasant", "wives", "husbands", "sailors", "gnomes", "elves", "coal miners", "time travellers", "bakers", "explorers", "astronauts", "singers", "supporters", "accountants", "rocket scientists", "captains", "tinkerers", "painters", "artists", "musicians", "CEOs", "managers", "HR people", "programmers", "teachers", "doctors", "nurses", "dentists", "leprechauns", "orcs", "halflings", "goblins", "witches", "wizards", "sorcerers", "sorceresses", "kings", "queens", "princes", "princesses", "rooks", "knights", "bishops", "pawns", "emperors", "empresses", "weirdos", "sweethearts"]
-
-animals_singular = ["frog", "toad", "bee", "wasp", "crocodile", "cat", "dog", "monkey", "cow", "rabbit", "pigeon", "lion", "ape", "giraffe", "capybara", "hamster", "stork", "heron", "guinea pig", "sheep", "goat", "pig", "chicken", "snake", "dragon", "tiger", "elephant"]
-
-animals_plural = ["frogs", "toads", "bees", "wasps", "crocodiles", "cats", "dogs", "monkeys", "cows", "rabbits", "pigeons", "lions", "apes", "giraffes", "capybaras", "hamsters", "storks", "herons", "guinea pigs", "sheep", "goats", "pigs", "chickens", "snakes", "dragons", "tigers", "elephants"]
-
-food_singular = ["cheese", "milk", "egg", "chocolate", "tomato", "potato", "flour", "pepper", "bread", "meat", "parsley", "butter", "schnitzel", "peanut butter", "cookie", "tortilla", "pancake", "hot chocolate", "bubble gum", "chewing gum", "marshmallow", "soup", "lasagna", "pizza", "omelette"]
-
-food_plural = ["eggs", "chocolates", "tomatoes", "potatoes", "peppers", "herbs", "schnitzels", "cookies", "tortillas", "pancakes", "marshmallows", "pizzas", "omelettes"]
-
-verbs_sfw = ["prepare", "eat", "consume", "find", "play", "write", "type", "operate", "weave", "knit", "cut", "try", "make", "program", "work", "sniff", "pet", "stroke", "read", "love", "caress", "touch", "taste", "hear", "see", "understand", "run", "drink", "move", "clean", "rub", "tickle", "impress", "remove", "watch"]
-
-verbs_sfw_intransitive = ["swim", "lie", "stutter", "dive", "fly"] 
-
-verbs_sfw_third_person = ["prepares", "eats", "finds", "consumes", "plays", "writes", "types", "swims", "operates", "weaves", "knits", "cuts", "tries", "makes", "programs", "works", "sniffs", "pets", "strokes", "reads", "undresses", "loves", "caresses", "touches", "tastes", "hears", "sees", "understands", "runs", "drinks", "moves", "cleans", "rubs", "lies", "tickles", "stutters", "impresses", "removes", "watches"]
-
-verbs_sfw_active = ["consumer", "player", "writer", "typer", "swimmer", "operator", "weaver", "knitter", "cutter", "trier", "maker", "programmer", "worker", "sniffer", "petter", "stroker", "reader", "lover", "caresser", "toucher", "taster", "hearer", "seer", "understander", "runner", "drinker", "mover", "cleaner", "rubber", "liar", "tickler", "stutterer", "remover", "watcher"] 
-
-verbs_ing_sfw = ["preparing", "eating", "finding", "playing", "writing", "typing", "operating", "weaving", "knitting", "cutting", "trying", "making", "working", "sniffing", "petting", "stroking", "reading", "loving", "caressing", "touching", "tasting", "hearing", "seeing", "understanding", "running", "drinking", "moving", "cleaning", "rubbing", "tickling", "removing", "watching"]
-
-verbs_mandatory_sfw = ["must", "need to", "are obligated to", "should", ""]
-
-times = ["always", "sometimes", "never", "occasionally", "rarely", "often"]
-
-audiences = ["let the whole world know that ", "tell other people that ", "make sure that everyone knows that ", "tell the entire internet that "]
-
-adverbs = ["wonderfully", "playfully", "deeply", "highly", "miserably", "happily", "terribly", "horribly", "shamefully", "masterfully", "wistfully", "plainly", "ferociously", "interestingly", "inevitably", "inadvertently", "unwittingly", "impressively", "indubitably", "harshly"]
-
-concepts_positive = ["sensitivity", "beauty", "cuteness", "generosity", "usefulness", "reliability", "confidence", "musicality", "talent", "intelligence", "good", "sense"]
-
-concepts_neutral = ["chess", "music", "art", "something", "nothing", "anything", "society", "coffee", "righteousness", "justice", "chaos", "nature", "memory", "alcohol", "rice", "pasta", "cream"]
-
-concepts_negative = ["ugliness", "jealousy", "greed", "laziness", "evil", "harshness", "weakness", "nonsense"]
-
-concepts_nsfw = ["horniness", "sensuality", "sex", "sexiness", "attraction", "penetration", "anal", "oral", "nakedness", "submission", "scum", "sperm", "porn", "fellatio", "cunnilingus"]
-
-nouns_singular_nsfw = ["crap", "cock", "tit", "penis", "bukkake", "cunt", "foreplay", "titty", "boob", "condom", "dildo", "vibrator", "boobie", "boner", "tittyfuck", "creampie", "clit", "domme", "dominatrix", "dom", "seed", "porn movies", "porno", "bosom"]
-
-nouns_plural_nsfw = ["cocks", "tits", "penises", "cunts", "boobs", "titties", "condoms", "dildos", "vibrators", "handcuffs", "boobies", "boners", "pornos"]
-
-adjectives_nsfw = ["fucked up", "sexy", "naked", "moist", "hard", "gay", "horny", "sexual", "drenched", "crappy", "damned", "sadistic", "masochistic", "submissive"]
-
-verbs_nsfw = ["fuck", "blow", "undress", "suck", "pound", "make love to", "suck off", "eat out", "bone"]
-
-verbs_nsfw_intransitive = ["ejaculate", "cum", "masturbate"]
- 
-verbs_third_person_nsfw = ["fucks", "blows", "undresses", "sucks", "masturbates", "pounds", "makes love to", "sucks off", "eats out", "bones"]
-
-verbs_active_nsfw = ["fucker", "blower", "undresser", "sucker", "masturbater", "pounder"]
-
-verbs_ing_nsfw = ["fucking", "blowing", "undressing", "sucking", "pounding", "making love to", "boning"]
-
-nouns_singular = nouns_sfw_singular + people_singular + animals_singular + food_singular + verbs_sfw_active
-nouns_plural = animals_plural + people_plural + food_plural + nouns_sfw_plural
-adjectives = adjectives_positive + adjectives_neutral
-verbs = verbs_sfw
-verbs_third_person = verbs_sfw_third_person
-verbs_ing = verbs_ing_sfw
-verbs_intransitive = verbs_sfw_intransitive
-concepts = concepts_positive + concepts_neutral
-
-def import_word_lists():
-    import_list('adjectives_positive.txt', adjectives_positive)
-    import_list("adjectives_negative.txt", adjectives_negative)
-    import_list("adjectives_neutral.txt", adjectives_neutral)
-    import_list("colours.txt", colours)
-    import_list("nouns_sfw_singular.txt", nouns_sfw_singular)
-    import_list("nouns_sfw_plural.txt", nouns_sfw_plural)
-    import_list("people_singular.txt", people_singular)
-    import_list("people_plural.txt", people_plural)
-    import_list("animals_singular.txt", animals_singular)
-    import_list("animals_plural.txt", animals_plural)
-    import_list("food_singular.txt", food_singular)
-    import_list("food_plural.txt", food_plural)
-    import_list("verbs_sfw.txt", verbs_sfw)
-    import_list("verbs_sfw_intransitive.txt", verbs_sfw_intransitive)
-    import_list("verbs_sfw_third_person.txt", verbs_sfw_third_person)
-    import_list("verbs_sfw_active.txt", verbs_sfw_active)
-    import_list("verbs_ing_sfw.txt", verbs_ing_sfw)
-    import_list("verbs_mandatory_sfw.txt", verbs_mandatory_sfw)
-    import_list("times.txt", times)
-    import_list("audiences.txt", audiences)
-    import_list("adverbs.txt", adverbs)
-    import_list("concepts_positive.txt", concepts_positive)
-    import_list("concepts_neutral.txt", concepts_neutral)
-    import_list("concepts_negative.txt", concepts_negative)
-    import_list("concepts_nsfw.txt", concepts_nsfw)
-    import_list("verbs_sfw_active.txt", verbs_sfw_active)
-    import_list("nouns_singular_nsfw.txt", nouns_singular_nsfw)
-    import_list("nouns_plural_nsfw.txt", nouns_plural_nsfw)
-    import_list("adjectives_nsfw.txt", adjectives_nsfw)
-    import_list("verbs_nsfw.txt", verbs_nsfw)
-    import_list("verbs_nsfw_intransitive.txt", verbs_nsfw_intransitive)
-    import_list("verbs_third_person_nsfw.txt", verbs_third_person_nsfw)
-    import_list("verbs_active_nsfw.txt", verbs_active_nsfw)
-    import_list("verbs_ing_nsfw.txt", verbs_ing_nsfw)
+adjectives_positive = []
+adjectives_neutral = []
+adjectives_negative = []
+colours = []
+nouns_sfw_singular = []
+nouns_sfw_plural = []
+people_singular = []
+people_plural = []
+animals_singular = []
+animals_plural = []
+food_singular = []
+food_plural = []
+verbs_sfw = []
+verbs_sfw_intransitive = []
+verbs_sfw_third_person = []
+verbs_sfw_active = []
+verbs_ing_sfw = []
+verbs_mandatory_sfw = []
+times = []
+audiences = []
+adverbs = []
+concepts_positive = []
+concepts_neutral = []
+concepts_negative = []
+concepts_nsfw = []
+nouns_singular_nsfw = []
+nouns_plural_nsfw = []
+adjectives_nsfw = []
+verbs_nsfw = []
+verbs_nsfw_intransitive = []
+verbs_third_person_nsfw = []
+verbs_active_nsfw = []
+verbs_ing_nsfw = []
+  
 
 def import_list(filename, list_name):
     path = Path(__file__).parent.absolute()
@@ -121,6 +45,18 @@ def import_list(filename, list_name):
         list_name = f.read().splitlines()      
 
     infile.close()
+
+def import_list(filename):
+    word_list = []
+    path = Path(__file__).parent.absolute()
+    location = os.path.join(path, 'word_lists')
+    location = os.path.join(location, filename)
+    infile = open(location,'r')
+    for word in infile:
+        word_list.append(word.rstrip())
+
+    infile.close()
+    return word_list
 
 # Exports the list with the name list_name to the subfolder word_lists of the project alphabetically
 def export_list(list, list_name):

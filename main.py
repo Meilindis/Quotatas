@@ -13,6 +13,42 @@ import function_collection
 from PySide6.QtCore import QSize, Qt
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QTextEdit, QVBoxLayout, QWidget, QLabel, QCheckBox, QHBoxLayout
 
+def import_word_lists():
+    word_collections.adjectives_positive = word_collections.import_list('adjectives_positive.txt')
+    word_collections.adjectives_negative = word_collections.import_list("adjectives_negative.txt")
+    word_collections.adjectives_neutral = word_collections.import_list("adjectives_neutral.txt")
+    word_collections.colours = word_collections.import_list("colours.txt")
+    word_collections.nouns_sfw_singular = word_collections.import_list("nouns_sfw_singular.txt")
+    word_collections.nouns_sfw_plural = word_collections.import_list("nouns_sfw_plural.txt")
+    word_collections.people_singular = word_collections.import_list("people_singular.txt")
+    word_collections.people_plural = word_collections.import_list("people_plural.txt")
+    word_collections.animals_singular = word_collections.import_list("animals_singular.txt")
+    word_collections.animals_plural = word_collections.import_list("animals_plural.txt")
+    word_collections.food_singular = word_collections.import_list("food_singular.txt")
+    word_collections.food_plural = word_collections.import_list("food_plural.txt")
+    word_collections.verbs_sfw = word_collections.import_list("verbs_sfw.txt")
+    word_collections.verbs_sfw_intransitive = word_collections.import_list("verbs_sfw_intransitive.txt")
+    word_collections.verbs_sfw_third_person = word_collections.import_list("verbs_sfw_third_person.txt")
+    word_collections.verbs_sfw_active = word_collections.import_list("verbs_sfw_active.txt")
+    word_collections.verbs_ing_sfw = word_collections.import_list("verbs_ing_sfw.txt")
+    word_collections.verbs_mandatory_sfw = word_collections.import_list("verbs_mandatory_sfw.txt")
+    word_collections.times = word_collections.import_list("times.txt")
+    word_collections.audiences = word_collections.import_list("audiences.txt")
+    word_collections.adverbs = word_collections.import_list("adverbs.txt")
+    word_collections.concepts_positive = word_collections.import_list("concepts_positive.txt")
+    word_collections.concepts_neutral = word_collections.import_list("concepts_neutral.txt")
+    word_collections.concepts_negative = word_collections.import_list("concepts_negative.txt")
+    word_collections.concepts_nsfw = word_collections.import_list("concepts_nsfw.txt")
+    word_collections.verbs_sfw_active = word_collections.import_list("verbs_sfw_active.txt")
+    word_collections.nouns_singular_nsfw = word_collections.import_list("nouns_singular_nsfw.txt")
+    word_collections.nouns_plural_nsfw = word_collections.import_list("nouns_plural_nsfw.txt")
+    word_collections.adjectives_nsfw = word_collections.import_list("adjectives_nsfw.txt")
+    word_collections.verbs_nsfw = word_collections.import_list("verbs_nsfw.txt")
+    word_collections.verbs_nsfw_intransitive = word_collections.import_list("verbs_nsfw_intransitive.txt")
+    word_collections.verbs_third_person_nsfw = word_collections.import_list("verbs_third_person_nsfw.txt")
+    word_collections.verbs_active_nsfw = word_collections.import_list("verbs_active_nsfw.txt")
+    word_collections.verbs_ing_nsfw = word_collections.import_list("verbs_ing_nsfw.txt")
+
 
 if __name__ == "__main__":
     class MainWindow(QMainWindow):
@@ -92,7 +128,8 @@ if __name__ == "__main__":
             self.quote_history = []
             self.selected_quote = 0
 
-            # word_collections.import_word_lists()
+            import_word_lists()
+            self.settings_changed()
 
         # Define what happens when the button is pressed
         def the_button_was_clicked(self):
