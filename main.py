@@ -130,7 +130,7 @@ if __name__ == "__main__":
 
             import_word_lists()
             self.settings_changed()
-            self.export_word_lists()
+            # self.export_word_lists() # Only enable when you have added new words to the lists and want to alphabetise them.
 
         # Define what happens when the button is pressed
         def the_button_was_clicked(self):
