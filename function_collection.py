@@ -126,7 +126,7 @@ def function_results():
 
 # Causation
 def function_causation():
-    return (random.choice(word_collections.verbs_sfw_active) + " can cause " + random.choice(word_collections.adjectives + " " + random.choice(word_collections.nouns_plural + word_collections.concepts)))
+    return (random.choice(word_collections.verbs_ing).capitalize() + " " + random.choice(word_collections.adjectives) + " can cause " + random.choice(word_collections.nouns_plural + word_collections.concepts))
 
 # Two needs
 def function_two_needs():
@@ -145,12 +145,16 @@ def function_family():
     return ("Being part of a family is pretty much like " + random.choice(word_collections.verbs_ing) + " your " + random.choice(word_collections.nouns_singular + word_collections.nouns_plural + word_collections.concepts))
 
 # Truth
-def function_truth():
+def function_true():
     return (random.choice(word_collections.nouns_plural).capitalize() + " are the " + random.choice(word_collections.concepts) + " of all that is " + random.choice(word_collections.adjectives))
 
 # Right
 def function_right():
     return ("Pursue what is " + random.choice(word_collections.adjectives) + " instead of what is " + random.choice(word_collections.verbs_ing) + " you " + random.choice(word_collections.adjectives))
+    
+# Personality
+def function_personality():
+	return ("You are a " + random.choice(word_collections.nouns_singular) + " " + random.choice(word_collections.people_singular))
 
 # List of defined functions (don't forget to add new functions here!)
 function_list = [function_times_three, 
@@ -188,6 +192,7 @@ function_list = [function_times_three,
                  function_maybe,
                  function_orders,
                  function_family,
-                 function_truth,
-                 function_right]
+                 function_true,
+                 function_right,
+                 function_personality]
 
