@@ -168,6 +168,10 @@ def function_the_best():
     selected_word = random.choice(word_collections.nouns_singular)
     return (rule() + "The best " + selected_word + " is a " + random.choice(word_collections.adjectives) + " " + selected_word)
 
+# Just be
+def function_be():
+    return ("Be a " + random.choice(word_collections.nouns_sfw_singular) + "\nBe " + random.choice(word_collections.adjectives) + "\nBe a " + random.choice(word_collections.adjectives) + " " + random.choice(word_collections.nouns_sfw_singular))
+
 # List of defined functions (don't forget to add new functions here!)
 function_list = [function_times_three, 
                  function_three_compliments, 
@@ -207,5 +211,6 @@ function_list = [function_times_three,
                  function_true,
                  function_right,
                  function_personality,
-                 function_the_best]
+                 function_the_best,
+                 function_be]
 

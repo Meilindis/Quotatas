@@ -32,4 +32,5 @@ understand
 watch
 weave
 work
+worship
 write

@@ -1,18 +1,24 @@
 CEOs
 HR people
 accountants
+adults
+angels
 artists
 astronauts
 bakers
 bishops
 captains
+clowns
 coal miners
 dentists
+devils
 doctors
 elves
 emperors
 empresses
 explorers
+foodies
+geeks
 gnomes
 goblins
 halflings
@@ -24,6 +30,7 @@ leprechauns
 managers
 mayors
 musicians
+nerds
 nurses
 orcs
 painters
@@ -45,6 +52,7 @@ sweethearts
 teachers
 time travellers
 tinkerers
+vampires
 weirdos
 whippersnappers
 witches

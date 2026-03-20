@@ -16,6 +16,7 @@ hamsters
 herons
 lions
 monkeys
+owls
 pigeons
 pigs
 rabbits

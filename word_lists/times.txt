@@ -1,4 +1,5 @@
 always
+every now and then
 never
 occasionally
 often

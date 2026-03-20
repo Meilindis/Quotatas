@@ -6,8 +6,10 @@ android
 besom
 big splash
 blindfold
+boy
 brain
 candy
+candle
 cassette player
 chair
 champagne
@@ -26,17 +28,23 @@ freezer
 fridge
 galaxy
 game
+girl
+guru
 gynoid
 hard disk
 holodeck
 hug
 knife
+lady
 lantern pole
 laundry
 lego
 loom
+lord
+man
 meadow
 mind
+monster
 moon
 ocean
 peanut
@@ -68,3 +76,4 @@ universe
 vase
 wet blanket
 wine
+woman

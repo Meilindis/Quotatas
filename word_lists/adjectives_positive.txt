@@ -15,6 +15,7 @@ gorgeous
 great
 handsome
 helpful
+holy
 intelligent
 inventive
 outstanding
@@ -24,6 +25,8 @@ pretty
 sensible
 smart
 stunning
+super
+superb
 sweet
 talented
 wonderful

@@ -4,7 +4,9 @@ alarm clocks
 androids
 besoms
 blindfolds
+boys
 brains
+candles
 cassette players
 chairs
 chocolates
@@ -19,16 +21,22 @@ freezers
 fridges
 galaxies
 games
+girls
+gurus
 gynoids
 hard disks
 holodecks
 hugs
 knives
+ladies
 lantern poles
 legos
 looms
+lords
 meadows
+men
 minds
+monsters
 moons
 ocean
 peanuts
@@ -57,3 +65,4 @@ transporters
 universes
 vases
 wet blankets
+women

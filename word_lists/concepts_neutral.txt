@@ -5,7 +5,9 @@ chaos
 chess
 coffee
 cream
+harmony
 justice
+karma
 memory
 music
 nature

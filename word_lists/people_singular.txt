@@ -1,18 +1,24 @@
 CEO
 HR director
 accountant
+adult
+angel
 artist
 astronaut
 baker
 bishop
 captain
+clown
 coal miner
 dentist
+devil
 doctor
 elf
 emperor
 empress
 explorer
+foodie
+geek
 gnome
 goblin
 halfling
@@ -24,6 +30,7 @@ leprechaun
 manager
 mayor
 musician
+nerd
 nurse
 orc
 painter
@@ -45,6 +52,7 @@ sweetheart
 teacher
 time traveller
 tinkerer
+vampire
 weirdo
 whippersnapper
 wife

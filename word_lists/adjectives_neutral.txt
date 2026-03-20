@@ -1,13 +1,17 @@
 bright
 capable
+domesticated
 dry
 easy
 eccentric
 elaborate
+erratic
 fast
 fierce
 high
+indestructible
 low
+mediocre
 neutral
 normal
 odd
@@ -15,6 +19,7 @@ practical
 reasonable
 rich
 sensitive
+self-contradictory
 slow
 strange
 tricky
