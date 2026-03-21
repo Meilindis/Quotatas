@@ -82,7 +82,7 @@ def template_no_sorry():
 
 # Reasons
 def template_reasons():
-    return ("The fact that you are " + random.choice(word_collections.adjectives) + " makes you " + random.choice(word_collections.adjectives))
+    return ("The fact that you are the " + random.choice(word_collections.adjectives) + " " + random.choice(word_collections.nouns_singular) + " makes you " + random.choice(word_collections.adjectives))
 
 # Deserved
 def template_deserved():
