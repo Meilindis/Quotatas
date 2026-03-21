@@ -184,7 +184,11 @@ def template_watch_out():
 
 # The higher, the fewer
 def template_higher():
-    return ("The " + random.choice(word_collections.comparative) + ", the " + random.choice(word_collections.comparative))
+    return (rule() + "The " + random.choice(word_collections.comparatives) + ", the " + random.choice(word_collections.comparatives))
+
+# More you
+def template_you_superlative():
+    return ("You can be the " + random.choice(word_collections.superlatives) + " " + random.choice(word_collections.nouns_singular))
 
 # List of defined tepmlates (don't forget to add new templates here or they won't be used!)
 template_list = [function_times_three, 
@@ -229,5 +233,6 @@ template_list = [function_times_three,
                  template_be,
                  template_judgement,
                  template_watch_out,
-                 template_higher]
+                 template_higher,
+                 template_you_superlative]
 
