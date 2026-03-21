@@ -128,8 +128,11 @@ if __name__ == "__main__":
             self.quote_history = []
             self.selected_quote = 0
 
+            self.darkmode_toggle.setChecked(True)
+
             import_word_lists()
             self.settings_changed()
+            self.updatestylesheet()
             # self.export_word_lists() # Only enable when you have added new words to the lists and want to alphabetise them.
 
         # Define what happens when the button is pressed
