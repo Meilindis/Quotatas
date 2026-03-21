@@ -34,11 +34,13 @@ verbs_intransitive_nsfw = []
 verbs_third_person_nsfw = []
 verbs_active_nsfw = []
 verbs_ing_nsfw = []
-
+comparative_sfw = []
+comparative_nsfw = []
+ 
 
 nouns_singular = nouns_singular_sfw + animals_singular + verbs_active_sfw + food_singular
 nouns_plural = animals_plural + people_plural + nouns_plural_sfw + food_plural
-adjectives = adjectives_positive + adjectives_neutral
+adjectives = adjectives_positive + adjectives_neutral + comparative_sfw
 verbs = verbs_sfw
 verbs_third_person = verbs_third_person_sfw
 verbs_ing = verbs_ing_sfw

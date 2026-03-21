@@ -4,6 +4,7 @@ alarm clocks
 androids
 besoms
 blindfolds
+books
 boys
 brains
 candles
@@ -29,6 +30,7 @@ holodecks
 hugs
 knives
 ladies
+lakes
 lantern poles
 legos
 looms
@@ -38,6 +40,7 @@ men
 minds
 monsters
 moons
+novels
 ocean
 peanuts
 pencils
@@ -59,6 +62,7 @@ suns
 super soakers
 sweets
 tables
+tablets
 taverns
 time machines
 transporters

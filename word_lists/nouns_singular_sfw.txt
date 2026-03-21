@@ -6,6 +6,7 @@ android
 besom
 big splash
 blindfold
+book
 boy
 brain
 candle
@@ -36,6 +37,7 @@ holodeck
 hug
 knife
 lady
+lake
 lantern pole
 laundry
 lego
@@ -46,6 +48,7 @@ meadow
 mind
 monster
 moon
+novel
 ocean
 peanut
 pencil
@@ -68,6 +71,7 @@ stone
 sun
 super soaker
 table
+tablet
 tavern
 tea
 time machine

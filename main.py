@@ -14,7 +14,7 @@ from PySide6.QtCore import QSize, Qt
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QTextEdit, QVBoxLayout, QWidget, QLabel, QCheckBox, QHBoxLayout
 
 def import_word_lists():
-    word_collections.adjectives_positive = word_collections.import_list('adjectives_positive.txt')
+    word_collections.adjectives_positive = word_collections.import_list("adjectives_positive.txt")
     word_collections.adjectives_negative = word_collections.import_list("adjectives_negative.txt")
     word_collections.adjectives_neutral = word_collections.import_list("adjectives_neutral.txt")
     word_collections.colours = word_collections.import_list("colours.txt")
@@ -48,6 +48,8 @@ def import_word_lists():
     word_collections.verbs_third_person_nsfw = word_collections.import_list("verbs_third_person_nsfw.txt")
     word_collections.verbs_active_nsfw = word_collections.import_list("verbs_active_nsfw.txt")
     word_collections.verbs_ing_nsfw = word_collections.import_list("verbs_ing_nsfw.txt")
+    word_collections.comparative_sfw = word_collections.import_list("comparative_sfw.txt")
+    word_collections.comparative_nsfw = word_collections.import_list("comparative_nsfw.txt")
 
 
 if __name__ == "__main__":
@@ -133,7 +135,7 @@ if __name__ == "__main__":
             import_word_lists()
             self.settings_changed()
             self.updatestylesheet()
-            # self.export_word_lists() # Only enable when you have added new words to the lists and want to alphabetise them.
+            self.export_word_lists() # Only enable when you have added new words to the lists and want to alphabetise them.
 
         # Define what happens when the button is pressed
         def the_button_was_clicked(self):
@@ -156,7 +158,7 @@ if __name__ == "__main__":
             # Set all word collections to neutral
             word_collections.nouns_singular = word_collections.nouns_singular_sfw + word_collections.people_singular + word_collections.animals_singular + word_collections.verbs_active_sfw + word_collections.food_singular
             word_collections.nouns_plural = word_collections.animals_plural + word_collections.people_plural + word_collections.nouns_plural_sfw + word_collections.food_plural
-            word_collections.adjectives = word_collections.adjectives_positive + word_collections.adjectives_neutral
+            word_collections.adjectives = word_collections.adjectives_positive + word_collections.adjectives_neutral + word_collections.comparative_sfw
             word_collections.verbs = word_collections.verbs_sfw
             word_collections.verbs_third_person = word_collections.verbs_third_person_sfw
             word_collections.verbs_ing = word_collections.verbs_ing_sfw
@@ -172,6 +174,7 @@ if __name__ == "__main__":
                 word_collections.verbs_ing = word_collections.verbs_ing + word_collections.verbs_ing_nsfw
                 word_collections.verbs_intransitive = word_collections.verbs_intransitive_sfw + word_collections.verbs_intransitive_nsfw
                 word_collections.concepts = word_collections.concepts + word_collections.concepts_nsfw
+                word_collections.adjectives = word_collections.adjectives + word_collections.comparative_nsfw
             # Add negative stuff
             if self.negative_toggle.isChecked():
                 word_collections.adjectives = word_collections.adjectives + word_collections.adjectives_negative
@@ -251,6 +254,8 @@ if __name__ == "__main__":
             word_collections.export_list(word_collections.verbs_third_person_nsfw, "verbs_third_person_nsfw")
             word_collections.export_list(word_collections.verbs_active_nsfw, "verbs_active_nsfw")
             word_collections.export_list(word_collections.verbs_ing_nsfw, "verbs_ing_nsfw")
+            word_collections.export_list(word_collections.comparative_sfw, "comparative_sfw.txt")
+            word_collections.export_list(word_collections.comparative_nsfw, "comparative_nsfw.txt")
 
     app = QApplication(sys.argv)
 
