@@ -36,6 +36,8 @@ verbs_active_nsfw = []
 verbs_ing_nsfw = []
 comparative_sfw = []
 comparative_nsfw = []
+superlative_sfw = []
+superlative_nsfw = []
  
 
 nouns_singular = nouns_singular_sfw + animals_singular + verbs_active_sfw + food_singular
@@ -46,6 +48,8 @@ verbs_third_person = verbs_third_person_sfw
 verbs_ing = verbs_ing_sfw
 verbs_intransitive = verbs_intransitive_sfw
 concepts = concepts_neutral + concepts_positive
+comparative = comparative_sfw
+superlative = superlative_sfw
   
 
 def import_list(filename):

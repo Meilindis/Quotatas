@@ -48,8 +48,10 @@ def import_word_lists():
     word_collections.verbs_third_person_nsfw = word_collections.import_list("verbs_third_person_nsfw.txt")
     word_collections.verbs_active_nsfw = word_collections.import_list("verbs_active_nsfw.txt")
     word_collections.verbs_ing_nsfw = word_collections.import_list("verbs_ing_nsfw.txt")
-    word_collections.comparative_sfw = word_collections.import_list("comparative_sfw.txt")
-    word_collections.comparative_nsfw = word_collections.import_list("comparative_nsfw.txt")
+    word_collections.comparative_sfw = word_collections.import_list("comparatives_sfw.txt")
+    word_collections.comparative_nsfw = word_collections.import_list("comparatives_nsfw.txt")
+    word_collections.superlative_sfw = word_collections.import_list("superlatives_sfw.txt")
+    word_collections.superlative_nsfw = word_collections.import_list("superlatives_nsfw.txt")
 
 
 if __name__ == "__main__":
@@ -135,7 +137,7 @@ if __name__ == "__main__":
             import_word_lists()
             self.settings_changed()
             self.updatestylesheet()
-            self.export_word_lists() # Only enable when you have added new words to the lists and want to alphabetise them.
+            # self.export_word_lists() # Only enable when you have added new words to the lists and want to alphabetise them.
 
         # Define what happens when the button is pressed
         def the_button_was_clicked(self):
@@ -164,6 +166,8 @@ if __name__ == "__main__":
             word_collections.verbs_ing = word_collections.verbs_ing_sfw
             word_collections.verbs_intransitive = word_collections.verbs_intransitive_sfw
             word_collections.concepts = word_collections.concepts_neutral + word_collections.concepts_positive
+            word_collections.comparative = word_collections.comparative_sfw
+            word_collections.superlative = word_collections.superlative_sfw
             # Add NSFW
             if self.nsfw_toggle.isChecked():
                 word_collections.nouns_singular = word_collections.nouns_singular + word_collections.nouns_singular_nsfw + word_collections.animals_singular + word_collections.verbs_active_sfw + word_collections.verbs_active_nsfw
@@ -175,6 +179,8 @@ if __name__ == "__main__":
                 word_collections.verbs_intransitive = word_collections.verbs_intransitive_sfw + word_collections.verbs_intransitive_nsfw
                 word_collections.concepts = word_collections.concepts + word_collections.concepts_nsfw
                 word_collections.adjectives = word_collections.adjectives + word_collections.comparative_nsfw
+                word_collections.comparative = word_collections.comparative + word_collections.comparative_nsfw
+                word_collections.superlative = word_collections.superlative + word_collections.superlative_nsfw
             # Add negative stuff
             if self.negative_toggle.isChecked():
                 word_collections.adjectives = word_collections.adjectives + word_collections.adjectives_negative
@@ -254,8 +260,11 @@ if __name__ == "__main__":
             word_collections.export_list(word_collections.verbs_third_person_nsfw, "verbs_third_person_nsfw")
             word_collections.export_list(word_collections.verbs_active_nsfw, "verbs_active_nsfw")
             word_collections.export_list(word_collections.verbs_ing_nsfw, "verbs_ing_nsfw")
-            word_collections.export_list(word_collections.comparative_sfw, "comparative_sfw.txt")
-            word_collections.export_list(word_collections.comparative_nsfw, "comparative_nsfw.txt")
+            word_collections.export_list(word_collections.comparative_sfw, "comparatives_sfw")
+            word_collections.export_list(word_collections.comparative_nsfw, "comparatives_nsfw")
+            word_collections.export_list(word_collections.superlative_sfw, "superlatives_sfw")
+            word_collections.export_list(word_collections.superlative_nsfw, "superlatives_nsfw")
+
 
     app = QApplication(sys.argv)
 

@@ -182,6 +182,10 @@ def template_judgement():
 def template_watch_out():
 	return (random.choice(word_collections.nouns_plural).capitalize() + " are coming for you!")
 
+# The higher, the fewer
+def template_higher():
+    return ("The " + random.choice(word_collections.comparative) + ", the " + random.choice(word_collections.comparative))
+
 # List of defined tepmlates (don't forget to add new templates here or they won't be used!)
 template_list = [function_times_three, 
                  template_three_compliments, 
@@ -224,5 +228,6 @@ template_list = [function_times_three,
                  function_the_best,
                  template_be,
                  template_judgement,
-                 template_watch_out]
+                 template_watch_out,
+                 template_higher]
 
