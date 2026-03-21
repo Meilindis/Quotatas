@@ -13,48 +13,6 @@ import function_collection
 from PySide6.QtCore import QSize, Qt
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QTextEdit, QVBoxLayout, QWidget, QLabel, QCheckBox, QHBoxLayout
 
-def import_word_lists():
-    word_collections.adjectives_positive = word_collections.import_list("adjectives_positive.txt")
-    word_collections.adjectives_negative = word_collections.import_list("adjectives_negative.txt")
-    word_collections.adjectives_neutral = word_collections.import_list("adjectives_neutral.txt")
-    word_collections.colours = word_collections.import_list("colours.txt")
-    word_collections.nouns_singular_sfw = word_collections.import_list("nouns_singular_sfw.txt")
-    word_collections.nouns_plural_sfw = word_collections.import_list("nouns_plural_sfw.txt")
-    word_collections.people_singular = word_collections.import_list("people_singular.txt")
-    word_collections.people_plural = word_collections.import_list("people_plural.txt")
-    word_collections.animals_singular = word_collections.import_list("animals_singular.txt")
-    word_collections.animals_plural = word_collections.import_list("animals_plural.txt")
-    word_collections.food_singular = word_collections.import_list("food_singular.txt")
-    word_collections.food_plural = word_collections.import_list("food_plural.txt")
-    word_collections.verbs_sfw = word_collections.import_list("verbs_sfw.txt")
-    word_collections.verbs_intransitive_sfw = word_collections.import_list("verbs_intransitive_sfw.txt")
-    word_collections.verbs_third_person_sfw = word_collections.import_list("verbs_third_person_sfw.txt")
-    word_collections.verbs_active_sfw = word_collections.import_list("verbs_active_sfw.txt")
-    word_collections.verbs_ing_sfw = word_collections.import_list("verbs_ing_sfw.txt")
-    word_collections.verbs_mandatory_sfw = word_collections.import_list("verbs_mandatory_sfw.txt")
-    word_collections.times = word_collections.import_list("times.txt")
-    word_collections.audiences = word_collections.import_list("audiences.txt")
-    word_collections.adverbs = word_collections.import_list("adverbs.txt")
-    word_collections.concepts_positive = word_collections.import_list("concepts_positive.txt")
-    word_collections.concepts_neutral = word_collections.import_list("concepts_neutral.txt")
-    word_collections.concepts_negative = word_collections.import_list("concepts_negative.txt")
-    word_collections.concepts_nsfw = word_collections.import_list("concepts_nsfw.txt")
-    word_collections.verbs_active_sfw = word_collections.import_list("verbs_active_sfw.txt")
-    word_collections.nouns_singular_nsfw = word_collections.import_list("nouns_singular_nsfw.txt")
-    word_collections.nouns_plural_nsfw = word_collections.import_list("nouns_plural_nsfw.txt")
-    word_collections.adjectives_nsfw = word_collections.import_list("adjectives_nsfw.txt")
-    word_collections.verbs_nsfw = word_collections.import_list("verbs_nsfw.txt")
-    word_collections.verbs_intransitive_nsfw = word_collections.import_list("verbs_intransitive_nsfw.txt")
-    word_collections.verbs_third_person_nsfw = word_collections.import_list("verbs_third_person_nsfw.txt")
-    word_collections.verbs_active_nsfw = word_collections.import_list("verbs_active_nsfw.txt")
-    word_collections.verbs_ing_nsfw = word_collections.import_list("verbs_ing_nsfw.txt")
-    word_collections.comparatives_sfw = word_collections.import_list("comparatives_sfw.txt")
-    word_collections.comparatives_nsfw = word_collections.import_list("comparatives_nsfw.txt")
-    word_collections.superlatives_sfw = word_collections.import_list("superlatives_sfw.txt")
-    word_collections.superlatives_nsfw = word_collections.import_list("superlatives_nsfw.txt")
-    word_collections.situations_sfw = word_collections.import_list("situations_sfw.txt")
-    word_collections.situations_nsfw = word_collections.import_list("situations_nsfw.txt")
-
 
 if __name__ == "__main__":
     class MainWindow(QMainWindow):
@@ -136,10 +94,10 @@ if __name__ == "__main__":
 
             self.darkmode_toggle.setChecked(True)
 
-            import_word_lists()
+            self.import_word_lists()
             self.settings_changed()
             self.updatestylesheet()
-            self.export_word_lists() # Only enable when you have added new words to the lists and want to alphabetise them.
+            # self.export_word_lists() # Only enable when you have added new words to the lists and want to alphabetise them.
 
         # Define what happens when the button is pressed
         def the_button_was_clicked(self):
@@ -227,6 +185,48 @@ if __name__ == "__main__":
                     f.write(f"{quote}\n\n---\n\n")
 
             self.button_export_quotes.setText("Exported!")
+        
+        def import_word_lists(self):
+            word_collections.adjectives_positive = word_collections.import_list("adjectives_positive.txt")
+            word_collections.adjectives_negative = word_collections.import_list("adjectives_negative.txt")
+            word_collections.adjectives_neutral = word_collections.import_list("adjectives_neutral.txt")
+            word_collections.colours = word_collections.import_list("colours.txt")
+            word_collections.nouns_singular_sfw = word_collections.import_list("nouns_singular_sfw.txt")
+            word_collections.nouns_plural_sfw = word_collections.import_list("nouns_plural_sfw.txt")
+            word_collections.people_singular = word_collections.import_list("people_singular.txt")
+            word_collections.people_plural = word_collections.import_list("people_plural.txt")
+            word_collections.animals_singular = word_collections.import_list("animals_singular.txt")
+            word_collections.animals_plural = word_collections.import_list("animals_plural.txt")
+            word_collections.food_singular = word_collections.import_list("food_singular.txt")
+            word_collections.food_plural = word_collections.import_list("food_plural.txt")
+            word_collections.verbs_sfw = word_collections.import_list("verbs_sfw.txt")
+            word_collections.verbs_intransitive_sfw = word_collections.import_list("verbs_intransitive_sfw.txt")
+            word_collections.verbs_third_person_sfw = word_collections.import_list("verbs_third_person_sfw.txt")
+            word_collections.verbs_active_sfw = word_collections.import_list("verbs_active_sfw.txt")
+            word_collections.verbs_ing_sfw = word_collections.import_list("verbs_ing_sfw.txt")
+            word_collections.verbs_mandatory_sfw = word_collections.import_list("verbs_mandatory_sfw.txt")
+            word_collections.times = word_collections.import_list("times.txt")
+            word_collections.audiences = word_collections.import_list("audiences.txt")
+            word_collections.adverbs = word_collections.import_list("adverbs.txt")
+            word_collections.concepts_positive = word_collections.import_list("concepts_positive.txt")
+            word_collections.concepts_neutral = word_collections.import_list("concepts_neutral.txt")
+            word_collections.concepts_negative = word_collections.import_list("concepts_negative.txt")
+            word_collections.concepts_nsfw = word_collections.import_list("concepts_nsfw.txt")
+            word_collections.verbs_active_sfw = word_collections.import_list("verbs_active_sfw.txt")
+            word_collections.nouns_singular_nsfw = word_collections.import_list("nouns_singular_nsfw.txt")
+            word_collections.nouns_plural_nsfw = word_collections.import_list("nouns_plural_nsfw.txt")
+            word_collections.adjectives_nsfw = word_collections.import_list("adjectives_nsfw.txt")
+            word_collections.verbs_nsfw = word_collections.import_list("verbs_nsfw.txt")
+            word_collections.verbs_intransitive_nsfw = word_collections.import_list("verbs_intransitive_nsfw.txt")
+            word_collections.verbs_third_person_nsfw = word_collections.import_list("verbs_third_person_nsfw.txt")
+            word_collections.verbs_active_nsfw = word_collections.import_list("verbs_active_nsfw.txt")
+            word_collections.verbs_ing_nsfw = word_collections.import_list("verbs_ing_nsfw.txt")
+            word_collections.comparatives_sfw = word_collections.import_list("comparatives_sfw.txt")
+            word_collections.comparatives_nsfw = word_collections.import_list("comparatives_nsfw.txt")
+            word_collections.superlatives_sfw = word_collections.import_list("superlatives_sfw.txt")
+            word_collections.superlatives_nsfw = word_collections.import_list("superlatives_nsfw.txt")
+            word_collections.situations_sfw = word_collections.import_list("situations_sfw.txt")
+            word_collections.situations_nsfw = word_collections.import_list("situations_nsfw.txt")
 
         def export_word_lists(self):
             # Export every word list and make sure the words are in alphabetical order
