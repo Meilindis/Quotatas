@@ -198,6 +198,18 @@ def template_never():
 def template_need():
     return (random.choice(word_collections.times).capitalize() + " you just need a " + random.choice(word_collections.adjectives) + " " + random.choice(word_collections.nouns_singular))
 
+# You must
+def template_must():
+    return (rule() + "If you are the " + random.choice(word_collections.superlatives) + " at " + random.choice(word_collections.situations) + ", you " + random.choice(word_collections.verbs_mandatory_sfw) + " " + random.choice(word_collections.verbs) + " " + random.choice(word_collections.nouns_plural))
+
+# A good day
+def template_day():
+    return ("Today is a good day to " + random.choice(word_collections.verbs))
+
+# LLAP
+def template_llap():
+    return (rule() + random.choice(word_collections.verbs).capitalize() + " " + random.choice(word_collections.adjectives) + " and " + random.choice(word_collections.verbs + word_collections.verbs_intransitive))
+
 # List of defined tepmlates (don't forget to add new templates here or they won't be used!)
 template_list = [function_times_three, 
                  template_three_compliments, 
@@ -244,5 +256,8 @@ template_list = [function_times_three,
                  template_higher,
                  template_you_superlative,
                  template_never,
-                 template_need]
+                 template_need,
+                 template_must,
+                 template_day,
+                 template_llap]
 

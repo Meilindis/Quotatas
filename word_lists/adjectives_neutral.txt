@@ -17,6 +17,7 @@ golden
 high
 indestructible
 iron
+long
 low
 loud
 mediocre
@@ -35,6 +36,7 @@ rocky
 self-contradictory
 sensible
 sensitive
+short
 silver
 slow
 soft
