@@ -25,6 +25,7 @@ bucket
 candle
 candy
 cappuccino
+cardboard box
 cassette player
 castle
 chair
@@ -41,7 +42,11 @@ computers
 cup
 cutlery
 dress
+dungeon
+fable
+fairy tale
 flower
+flute
 fork
 freezer
 fridge
@@ -59,8 +64,10 @@ lady
 lake
 lantern pole
 laundry
+legend
 leg
 lego
+litter box
 loom
 lord
 man
@@ -68,6 +75,7 @@ meadow
 mind
 monster
 moon
+need
 needle
 novel
 ocean
@@ -75,15 +83,18 @@ pantry
 peanut
 pencil
 pet
+petal
 petrichor
 phone
 piano
 pixie
 planet
 plate
+plushie
 rainbow
 robot
 rocket
+rocking chair
 sea
 sewing machine
 skirt
@@ -107,6 +118,9 @@ truck
 unicorn
 universe
 vase
+violin
+want
+warp nacelle
 wet blanket
 wine
 woman

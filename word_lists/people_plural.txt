@@ -11,8 +11,10 @@ captains
 clowns
 coal miners
 dentists
+detectives
 devils
 doctors
+dragonborns
 elves
 emperors
 empresses
@@ -36,8 +38,12 @@ nurses
 orcs
 painters
 pawns
+people pleasers
 peasants
+pilots
 pirates
+popes
+priests
 princes
 princesses
 programmers
@@ -56,6 +62,7 @@ technicians
 time travellers
 tinkerers
 vampires
+vets
 weirdos
 whippersnappers
 whisperers

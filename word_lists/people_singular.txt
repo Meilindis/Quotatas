@@ -11,8 +11,10 @@ captain
 clown
 coal miner
 dentist
+detective
 devil
 doctor
+dragonborn
 elf
 emperor
 empress
@@ -36,8 +38,12 @@ nurse
 orc
 painter
 pawn
+people pleaser
 peasant
+pilot
 pirate
+pope
+priest
 prince
 princess
 programmer
@@ -56,6 +62,7 @@ technician
 time traveller
 tinkerer
 vampire
+vet
 weirdo
 whippersnapper
 whisperer

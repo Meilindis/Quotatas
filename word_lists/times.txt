@@ -1,7 +1,9 @@
 always
-every now and then
+at times
 never
 occasionally
 often
 rarely
+regularly
+seldom
 sometimes

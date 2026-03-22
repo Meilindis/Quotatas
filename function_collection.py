@@ -218,6 +218,15 @@ def template_why():
 def template_never():
     return (rule() + "Never " + random.choice(word_collections.verbs_intransitive) + " unless you're willing to " + random.choice(word_collections.verbs + word_collections.verbs_intransitive))
 
+# Excuse me
+def template_excuse():
+    return ("Excuse me\n What does a " + random.choice(word_collections.people_singular) + " want with a " + random.choice(word_collections.nouns_singular) + "?")
+
+# Outweigh
+def template_outweigh():
+    selected = random.choice(word_collections.nouns_plural)
+    return (rule() + "The " + selected + " of the many " + random.choice(word_collections.verbs) + " the " + selected + " of the few")
+
 # List of defined tepmlates (don't forget to add new templates here or they won't be used!)
 template_list = [function_times_three, 
                  template_three_compliments, 
@@ -269,5 +278,7 @@ template_list = [function_times_three,
                  template_day,
                  template_llap,
                  template_why,
-                 template_never]
+                 template_never,
+                 template_excuse,
+                 template_outweigh]
 
