@@ -1,6 +1,7 @@
 ape
 badger
 bee
+butterfly
 capybara
 cat
 cheetah
@@ -9,14 +10,18 @@ cow
 crocodile
 dog
 dragon
+dragonfly
+duck
 elephant
 frog
 giraffe
 goat
+goose
 guinea pig
 hamster
 hedgehog
 heron
+hyena
 lion
 lynx
 monkey
@@ -32,3 +37,4 @@ stork
 tiger
 toad
 wasp
+wolf

@@ -1,3 +1,4 @@
+#pylint:disable=W0104
 # This Python file uses the following encoding: utf-8
 import sys
 import os
@@ -7,7 +8,7 @@ from pathlib import Path
 # A file containing lists of words to be used in quotes, sorted by type
 import word_collections
 
-# A file containing the functions that can define different quote structures
+# A file containing the templates that define different quote structures
 import function_collection
 
 from PySide6.QtCore import QSize, Qt
@@ -22,7 +23,7 @@ if __name__ == "__main__":
             # Store the quote here:
             self.quote = ""
 
-            self.setWindowTitle("Dutch Wisdom Bot")
+            self.setWindowTitle("Quotatas")
 
             # Button to generate quotes
             self.button = QPushButton("Give me some wisdom!")
@@ -51,11 +52,7 @@ if __name__ == "__main__":
 
             self.negative_toggle = QCheckBox(text="Include negative stuff (risky!)")
             self.negative_toggle.stateChanged.connect(self.settings_changed)
-            self.negative_toggle.setStyleSheet('background-color: #ffe8a6;')
-
-            self.positive_toggle = QCheckBox(text="Positive only, build me up!")
-            self.positive_toggle.stateChanged.connect(self.settings_changed)
-            self.positive_toggle.setStyleSheet('background-color: #b0ebc3;')
+            self.negative_toggle.setStyleSheet('background-color: #ffe8a6;')            
             
             self.darkmode_toggle = QCheckBox("Dark mode")
             self.darkmode_toggle.stateChanged.connect(self.updatestylesheet)
@@ -77,7 +74,6 @@ if __name__ == "__main__":
             layoutV.addWidget(self.quote_field)
             layoutV.addWidget(self.button)
             layoutV.addWidget(nav_container)
-            layoutV.addWidget(self.positive_toggle)
             layoutV.addWidget(self.negative_toggle)
             layoutV.addWidget(self.nsfw_toggle)
             layoutV.addWidget(self.darkmode_toggle)
@@ -144,16 +140,12 @@ if __name__ == "__main__":
                 word_collections.superlatives = word_collections.superlatives + word_collections.superlatives_nsfw
                 word_collections.situations = word_collections.situations + word_collections.situations_nsfw
             # Add negative stuff
-            if self.negative_toggle.isChecked():
+            if self.negative_toggle.isChecked() == True:
                 word_collections.adjectives = word_collections.adjectives + word_collections.adjectives_negative
                 word_collections.concepts = word_collections.concepts + word_collections.concepts_negative
-                # You cannot select both negative and positive
-                self.positive_toggle.setChecked(False)
             # Remove anything but positive
-            if self.positive_toggle.isChecked():
-                word_collections.adjectives = word_collections.adjectives_positive
-                # You cannot select both negative and positive
-                self.negative_toggle.setChecked(False)
+            if self.negative_toggle.isChecked() == False:
+                word_collections.adjectives = word_collections.adjectives_positive               
 
         def updatestylesheet(self):
     	    if self.darkmode_toggle.isChecked():
@@ -227,6 +219,7 @@ if __name__ == "__main__":
             word_collections.superlatives_nsfw = word_collections.import_list("superlatives_nsfw.txt")
             word_collections.situations_sfw = word_collections.import_list("situations_sfw.txt")
             word_collections.situations_nsfw = word_collections.import_list("situations_nsfw.txt")
+            word_collections.prepositions = word_collections.import_list("prepositions.txt")
 
         def export_word_lists(self):
             # Export every word list and make sure the words are in alphabetical order
@@ -270,6 +263,7 @@ if __name__ == "__main__":
             word_collections.export_list(word_collections.superlatives_nsfw, "superlatives_nsfw")
             word_collections.export_list(word_collections.situations_sfw, "situations_sfw")
             word_collections.export_list(word_collections.situations_nsfw, "situations_nsfw")
+            word_collections.export_list(word_collections.prepositions, "prepositions")
 
 
     app = QApplication(sys.argv)

@@ -2,17 +2,33 @@ ad blockers
 adventures
 alarm clocks
 androids
+arm chairs
+arms
+baskets
+bathrooms
+baths
+beaches
+bedrooms
+beds
 besoms
+blankets
 blindfolds
+blocks
 books
 boys
 brains
+buckets
+bubbles
 candles
-cassette players
+cappucinos
+cassette player
+castles
 chairs
 chocolates
 clothes
+clouds
 clown cars
+comedies
 computers
 cups
 dresses
@@ -33,6 +49,7 @@ ladies
 lakes
 lantern poles
 legos
+legs
 looms
 lords
 meadows
@@ -40,6 +57,7 @@ men
 minds
 monsters
 moons
+needles
 novels
 ocean
 peanuts
@@ -47,10 +65,13 @@ pencils
 pets
 phones
 pianos
+pixies
 planets
 plates
+rainbows
 robots
 rockets
+scissors
 seas
 sewing machines
 skirts
@@ -61,11 +82,14 @@ stones
 suns
 super soakers
 sweets
+swimming pools
 tables
 tablets
 taverns
 time machines
 transporters
+trucks
+unicorns
 universes
 vases
 wet blankets

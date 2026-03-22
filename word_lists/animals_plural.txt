@@ -1,6 +1,7 @@
 apes
 badgers
 bees
+butterflies
 capybaras
 cats
 cheetahs
@@ -8,15 +9,19 @@ chickens
 cows
 crocodiles
 dogs
+dragonflies
 dragons
+ducks
 elephants
 frogs
+geese
 giraffes
 goats
 guinea pigs
 hamsters
 hedgehogs
 herons
+hyenas
 lions
 lynxes
 monkeys
@@ -32,3 +37,4 @@ storks
 tigers
 toads
 wasps
+wolves

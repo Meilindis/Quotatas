@@ -40,6 +40,7 @@ superlatives_sfw = []
 superlatives_nsfw = []
 situations_sfw = []
 situations_nsfw = []
+prepositions = []
  
 
 nouns_singular = nouns_singular_sfw + animals_singular + verbs_active_sfw + food_singular

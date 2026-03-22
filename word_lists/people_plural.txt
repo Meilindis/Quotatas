@@ -16,6 +16,7 @@ doctors
 elves
 emperors
 empresses
+engineers
 explorers
 foodies
 geeks
@@ -35,7 +36,7 @@ nurses
 orcs
 painters
 pawns
-peasant
+peasants
 pirates
 princes
 princesses
@@ -44,17 +45,20 @@ queens
 rocket scientists
 rooks
 sailors
+scammers
 singers
 sorcerers
 sorceresses
 supporters
 sweethearts
 teachers
+technicians
 time travellers
 tinkerers
 vampires
 weirdos
 whippersnappers
+whisperers
 witches
 wives
 wizards

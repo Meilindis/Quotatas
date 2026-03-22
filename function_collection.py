@@ -4,7 +4,7 @@ import word_collections
 
 # Generate a random rule number and whether it applies to the quote or not
 def rule():
-    result = (random.randrange(1, 10, 1))
+    result = (random.randrange(1, 8, 1))
     if result !=1:
         return ""
     else:
@@ -103,7 +103,7 @@ def template_possible():
 
 # Effect
 def template_effect():
-	return ("Through " + random.choice(word_collections.nouns_plural) + ", we " + random.choice(word_collections.verbs) + " " + random.choice(word_collections.nouns_plural) + ".")
+	return (random.choice(word_collections.prepositions).capitalize() + " " + random.choice(word_collections.nouns_plural) + ", we " + random.choice(word_collections.verbs) + " " + random.choice(word_collections.nouns_plural) + ".")
 
 # Encouragement
 def template_encouragement():
@@ -143,7 +143,7 @@ def template_two_needs():
 
 # Maybe?
 def template_maybe():
-    return ("Maybe " + random.choice(word_collections.nouns_plural + word_collections.concepts).capitalize() + " can turn into " + random.choice(word_collections.nouns_plural + word_collections.concepts) + " when you get older?")
+    return ("Maybe " + random.choice(word_collections.nouns_plural + word_collections.concepts) + " can turn into " + random.choice(word_collections.nouns_plural + word_collections.concepts) + " when you get older?")
 
 # Orders
 def template_orders():

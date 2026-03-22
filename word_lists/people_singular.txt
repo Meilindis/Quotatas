@@ -16,6 +16,7 @@ doctor
 elf
 emperor
 empress
+engineer
 explorer
 foodie
 geek
@@ -44,17 +45,20 @@ queen
 rocket scientist
 rook
 sailor
+scammer
 singer
 sorcerer
 sorceress
 supporter
 sweetheart
 teacher
+technician
 time traveller
 tinkerer
 vampire
 weirdo
 whippersnapper
+whisperer
 wife
 witch
 wizard

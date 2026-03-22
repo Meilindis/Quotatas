@@ -3,26 +3,43 @@ ad blocker
 adventure
 alarm clock
 android
+arm
+arm chair
+basket
+bath
+bathroom
+beach
+bed
+bedroom
 besom
+big bang
 big splash
+blanket
 blindfold
+block
 book
 boy
 brain
+bubble
+bucket
 candle
 candy
+cappuccino
 cassette player
+castle
 chair
 champagne
 chess game
+chest
 chocolate
+cloud
 clown car
 coffee
+comedy
 computers
 cup
 cutlery
 dress
-earwax
 flower
 fork
 freezer
@@ -35,11 +52,13 @@ gynoid
 hard disk
 holodeck
 hug
+kitchen
 knife
 lady
 lake
 lantern pole
 laundry
+leg
 lego
 loom
 lord
@@ -48,34 +67,42 @@ meadow
 mind
 monster
 moon
+needle
 novel
 ocean
+pantry
 peanut
 pencil
 pet
 petrichor
 phone
 piano
+pixie
 planet
 plate
-rain
+rainbow
 robot
 rocket
 sea
 sewing machine
 skirt
+slide
 spoon
+staircase
 stamp collection
 star
 stone
 sun
 super soaker
+swimming pool
 table
 tablet
 tavern
 tea
 time machine
 transporter
+truck
+unicorn
 universe
 vase
 wet blanket
