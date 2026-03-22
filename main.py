@@ -1,9 +1,12 @@
-#pylint:disable=W0104
-# This Python file uses the following encoding: utf-8
 import sys
 import os
 import random
 from pathlib import Path
+
+import PIL
+from PIL import ImageFont
+from PIL import Image
+from PIL import ImageDraw
 
 # A file containing lists of words to be used in quotes, sorted by type
 import word_collections
@@ -11,7 +14,11 @@ import word_collections
 # A file containing the templates that define different quote structures
 import function_collection
 
+# Script that helps with putting text on images
+from image_utils import ImageText
+
 from PySide6.QtCore import QSize, Qt
+from PySide6.QtGui import QPixmap, QImage
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QTextEdit, QVBoxLayout, QWidget, QLabel, QCheckBox, QHBoxLayout
 
 
@@ -32,9 +39,9 @@ if __name__ == "__main__":
             self.button.setStyleSheet('height: 80px; background-color: #b0cceb; color: black; text-align: center;')
 
             # Field that displays the generated quote
-            self.quote_field = QTextEdit()
-            self.quote_field.setReadOnly(True)
+            self.quote_field = QLabel()
             self.quote_field.setStyleSheet('background-color: white; color: black;')
+            self.quote_field.resize(500, 500)
 
             # Back and forward buttons
             self.button_back = QPushButton("Previous")
@@ -109,8 +116,66 @@ if __name__ == "__main__":
             self.quote_history.append(self.quote)
             # Set the selected quote index to this new quote's index
             self.selected_quote = len(self.quote_history) - 1
-            # Show the new quote on the screen
-            self.quote_field.setText(self.quote)
+
+            # Prepare the image
+            """ image_path = Path(__file__).parent.absolute()
+            image_path = os.path.join(image_path, 'images')
+            image_path = os.path.join(image_path, 'tegeltje.jpg')
+            image = Image.open(image_path)
+            draw = ImageDraw.Draw(image)
+            font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 36)
+            text = self.quote
+            position = (50, 50)
+            text_color = (65, 75, 139)
+            
+            max_text_length = 0
+            for line in text:
+                text_length = draw.textlength(text, font)
+                if text_length > max_text_length:
+                    max_text_length = text_length
+
+            if max_text_length < image.width:
+                x = (image.width - max_text_length) / 2
+                y = image.height / 2                    
+            else:
+                text = textwrap.wrap(text, width=image.width)
+
+            # Add text to the image
+            draw.text((x, y), text, fill=text_color, font=font)
+
+            image.save("output.jpg") """
+
+            color = (50, 50, 50)
+            text = self.quote
+            font = 'unifont-17.0.04.otf'
+            img = ImageText((800, 600), background=(255, 255, 255, 200)) # 200 = alpha
+
+            #write_text_box will split the text in many lines, based on box_width
+            #`place` can be 'left' (default), 'right', 'center' or 'justify'
+            #write_text_box will return (box_width, box_calculed_height) so you can
+            #know the size of the wrote text
+            img.write_text_box((300, 50), text, box_width=200, font_filename=font,
+                            font_size=15, color=color)
+            img.write_text_box((300, 125), text, box_width=200, font_filename=font,
+                            font_size=15, color=color, place='right')
+            img.write_text_box((300, 200), text, box_width=200, font_filename=font,
+                            font_size=15, color=color, place='center')
+            img.write_text_box((300, 275), text, box_width=200, font_filename=font,
+                            font_size=15, color=color, place='justify')
+
+            #You don't need to specify text size: can specify max_width or max_height
+            # and tell write_text to fill the text in this space, so it'll compute font
+            # size automatically
+            #write_text will return (width, height) of the wrote text
+            img.write_text((100, 350), 'test fill', font_filename=font,
+                        font_size='fill', max_height=150, color=color)
+
+            img.save('sample-imagetext.png')
+
+            # Display the modified image
+            # pixmap = QPixmap(image)
+            # self.quote_field.setPixmap(pixmap)
+
 
         def settings_changed(self):
             # Set all word collections to neutral
