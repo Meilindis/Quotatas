@@ -118,11 +118,10 @@ if __name__ == "__main__":
             self.selected_quote = len(self.quote_history) - 1
 
             # Prepare the image
-            """ image_path = Path(__file__).parent.absolute()
-            image_path = os.path.join(image_path, 'images')
-            image_path = os.path.join(image_path, 'tegeltje.jpg')
+            current_dir = Path(__file__).parent.absolute()
+            image_path = os.path.join(os.path.join(current_dir, 'images'), 'tegeltje.jpg')
             image = Image.open(image_path)
-            draw = ImageDraw.Draw(image)
+            """draw = ImageDraw.Draw(image)
             font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 36)
             text = self.quote
             position = (50, 50)
@@ -145,29 +144,29 @@ if __name__ == "__main__":
 
             image.save("output.jpg") """
 
-            color = (50, 50, 50)
+            color = (65, 75, 139)
             text = self.quote
-            font = 'unifont-17.0.04.otf'
-            img = ImageText((800, 600), background=(255, 255, 255, 200)) # 200 = alpha
+            font = os.path.join(os.path.join(current_dir, 'fonts'), 'unifont-17.0.04.otf')
+            img = ImageText(image, background=(255, 255, 255, 200)) # 200 = alpha
 
             #write_text_box will split the text in many lines, based on box_width
             #`place` can be 'left' (default), 'right', 'center' or 'justify'
             #write_text_box will return (box_width, box_calculed_height) so you can
             #know the size of the wrote text
-            img.write_text_box((300, 50), text, box_width=200, font_filename=font,
+            """img.write_text_box((50, 50), text, box_width=200, font_filename=font,
                             font_size=15, color=color)
-            img.write_text_box((300, 125), text, box_width=200, font_filename=font,
+            img.write_text_box((50, 125), text, box_width=200, font_filename=font,
                             font_size=15, color=color, place='right')
-            img.write_text_box((300, 200), text, box_width=200, font_filename=font,
+            img.write_text_box((50, 200), text, box_width=200, font_filename=font,
                             font_size=15, color=color, place='center')
-            img.write_text_box((300, 275), text, box_width=200, font_filename=font,
-                            font_size=15, color=color, place='justify')
+            img.write_text_box((50, 275), text, box_width=200, font_filename=font,
+                            font_size=15, color=color, place='justify')"""
 
             #You don't need to specify text size: can specify max_width or max_height
             # and tell write_text to fill the text in this space, so it'll compute font
             # size automatically
             #write_text will return (width, height) of the wrote text
-            img.write_text((100, 350), 'test fill', font_filename=font,
+            img.write_text((100, 250), text, font_filename=font,
                         font_size='fill', max_height=150, color=color)
 
             img.save('sample-imagetext.png')
