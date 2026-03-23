@@ -21,7 +21,7 @@ from PySide6.QtCore import QSize, Qt
 from PySide6.QtGui import QPixmap, QImage
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QTextEdit, QVBoxLayout, QWidget, QLabel, QCheckBox, QHBoxLayout
 
-font_collection = ['unifont-17.0.04.otf', 'GalaferaMedium-V4xze.ttf', 'ShadeBlue-2OozX.ttf', 'PlayfulTime-BLBB8.ttf', 'LoveDays-2v7Oe.ttf']
+font_collection = ['unifont-17.0.04.otf', 'GalaferaMedium-V4xze.ttf', 'ShadeBlue-2OozX.ttf', 'LoveDays-2v7Oe.ttf', 'JustBreathe-vO6y.otf', 'CronusRound-KA6y.ttf', 'Quaaykop-DYE1R.ttf', 'Wonderbar-pALD.ttf', 'Typographica-Blp5.ttf']
 
 if __name__ == "__main__":
     class MainWindow(QMainWindow):
@@ -163,7 +163,7 @@ if __name__ == "__main__":
             #`place` can be 'left' (default), 'right', 'center' or 'justify'
             #write_text_box will return (box_width, box_calculed_height) so you can
             #know the size of the wrote text
-            img.write_text_box((65, 200), text, box_width=200, font_filename=font,
+            img.write_text_box((60, 225), text, box_width=200, font_filename=font,
                             font_size=24, color=color, place='justify')
 
             #You don't need to specify text size: can specify max_width or max_height
