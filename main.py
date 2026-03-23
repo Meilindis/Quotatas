@@ -159,19 +159,52 @@ if __name__ == "__main__":
             font = os.path.join(os.path.join(current_dir, 'fonts'), random.choice(font_collection))
             img = ImageText(image, background=(255, 255, 255, 200)) # 200 = alpha
 
-            #write_text_box will split the text in many lines, based on box_width
-            #`place` can be 'left' (default), 'right', 'center' or 'justify'
-            #write_text_box will return (box_width, box_calculed_height) so you can
-            #know the size of the wrote text
-            img.write_text_box((60, 225), text, box_width=200, font_filename=font,
-                            font_size=24, color=color, place='justify')
+            if "\n" not in text:
+                #write_text_box will split the text in many lines, based on box_width
+                #`place` can be 'left' (default), 'right', 'center' or 'justify'
+                #write_text_box will return (box_width, box_calculed_height) so you can
+                #know the size of the wrote text
+                img.write_text_box((60, 225), text, box_width=200, font_filename=font,
+                                font_size=24, color=color, place='justify')
+            else:
+                nr_of_lines = text.count("\n") + 1
+                if nr_of_lines == 2:
+                    lines = text.splitlines()
+                    img.write_text_box((65, 200), lines[0], box_width=200, font_filename=font,
+                                font_size=24, color=color, place='justify')
+                    img.write_text_box((65, 235), lines[1], box_width=200, font_filename=font,
+                                font_size=24, color=color, place='justify')
+                elif nr_of_lines == 3:
+                    lines = text.splitlines()
+                    img.write_text_box((70, 190), lines[0], box_width=200, font_filename=font,
+                                font_size=24, color=color, place='justify')
+                    img.write_text_box((70, 225), lines[1], box_width=200, font_filename=font,
+                                font_size=24, color=color, place='justify')
+                    img.write_text_box((70, 260), lines[2], box_width=200, font_filename=font,
+                                font_size=24, color=color, place='justify')
+                elif nr_of_lines == 4:
+                    lines = text.splitlines()
+                    img.write_text_box((75, 180), lines[0], box_width=200, font_filename=font,
+                                font_size=24, color=color, place='justify')
+                    img.write_text_box((75, 215), lines[1], box_width=200, font_filename=font,
+                                font_size=24, color=color, place='justify')
+                    img.write_text_box((75, 250), lines[2], box_width=200, font_filename=font,
+                                font_size=24, color=color, place='justify')
+                    img.write_text_box((75, 285), lines[3], box_width=200, font_filename=font,
+                                font_size=24, color=color, place='justify')
+                elif nr_of_lines == 5:
+                    lines = text.splitlines()
+                    img.write_text_box((80, 170), lines[0], box_width=200, font_filename=font,
+                                font_size=24, color=color, place='justify')
+                    img.write_text_box((80, 205), lines[1], box_width=200, font_filename=font,
+                                font_size=24, color=color, place='justify')
+                    img.write_text_box((80, 240), lines[2], box_width=200, font_filename=font,
+                                font_size=24, color=color, place='justify')
+                    img.write_text_box((80, 275), lines[3], box_width=200, font_filename=font,
+                                font_size=24, color=color, place='justify')
+                    img.write_text_box((80, 310), lines[4], box_width=200, font_filename=font,
+                                font_size=24, color=color, place='justify')
 
-            #You don't need to specify text size: can specify max_width or max_height
-            # and tell write_text to fill the text in this space, so it'll compute font
-            # size automatically
-            #write_text will return (width, height) of the wrote text
-            """img.write_text((100, 200), text, font_filename=font,
-                        font_size='fill', max_height=150, color=color)"""
 
             img.save('temp.png')
 

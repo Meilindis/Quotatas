@@ -236,7 +236,7 @@ def template_outweigh():
 
 # Today
 def template_today():
-    return (horoscope() + random.choice(word_collections.sometimes) + ", you will encounter " + random.choice(word_collections.nouns_plural + word_collections.concepts))
+    return (horoscope() + random.choice(word_collections.sometimes).capitalize() + ", you will encounter " + random.choice(word_collections.nouns_plural + word_collections.concepts))
 
 # Do it
 def template_do_it():
