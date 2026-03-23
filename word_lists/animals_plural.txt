@@ -11,6 +11,7 @@ crocodiles
 dogs
 dragonflies
 dragons
+ducklings
 ducks
 elephants
 frogs

@@ -12,6 +12,7 @@ dog
 dragon
 dragonfly
 duck
+duckling
 elephant
 frog
 giraffe

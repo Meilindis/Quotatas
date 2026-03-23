@@ -15,7 +15,7 @@ def horoscope():
     if result !=1:
         return ""
     else:
-        return (random.choice(word_collections.zodiac).capitalize() + ":\n")
+        return (random.choice(word_collections.zodiac).capitalize() + ":\n\n")
 
 # Repeat a random verb three times
 def function_times_three():
