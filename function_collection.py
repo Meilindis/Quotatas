@@ -47,7 +47,7 @@ def template_three_characteristics():
 
 # Give one random compliment
 def template_one_compliment():
-    return (horoscope() + random.choice(word_collections.times + word_collections.sometimes).capitalize() + " forget that you are " + random.choice(word_collections.adjectives_positive))
+    return (horoscope() + random.choice(word_collections.times + word_collections.sometimes).capitalize() + " forget that \nyou are " + random.choice(word_collections.adjectives_positive))
 
 # General statement
 def template_general():
@@ -75,7 +75,7 @@ def template_it_does():
 
 # Sharing is caring
 def template_share():
-    return (rule() + random.choice(word_collections.audiences).capitalize() + " you are " + random.choice(word_collections.adjectives) + " and " + random.choice(word_collections.adjectives))
+    return (rule() + random.choice(word_collections.audiences).capitalize() + "\nyou are " + random.choice(word_collections.adjectives) + "\nand " + random.choice(word_collections.adjectives))
 
 # Oh you
 def template_you():
@@ -87,7 +87,7 @@ def template_you_adjective():
 
 # It can be
 def template_can_be():
-    return (random.choice(word_collections.nouns_plural).capitalize() + " can be so " + random.choice(word_collections.adverbs) + " " + random.choice(word_collections.adjectives))
+    return (random.choice(word_collections.nouns_plural).capitalize() + " can be so\n" + random.choice(word_collections.adverbs) + " " + random.choice(word_collections.adjectives))
 
 # No sorry
 def template_no_sorry():
@@ -95,7 +95,7 @@ def template_no_sorry():
 
 # Reasons
 def template_reasons():
-    return ("The fact that you are a " + random.choice(word_collections.adjectives) + " " + random.choice(word_collections.nouns_singular) + " makes you " + random.choice(word_collections.adjectives))
+    return ("The fact that you are\na " + random.choice(word_collections.adjectives) + " " + random.choice(word_collections.nouns_singular) + "\nmakes you " + random.choice(word_collections.adjectives))
 
 # Deserved
 def template_deserved():
@@ -112,11 +112,11 @@ def template_change():
     
 # Possibilities
 def template_possible():
-	return (rule() + "If we can " + random.choice(word_collections.verbs) + " " + random.choice(word_collections.nouns_plural) + ", we can " + random.choice(word_collections.verbs) + " " + random.choice(word_collections.nouns_plural))
+	return (rule() + "If we can " + random.choice(word_collections.verbs) + " " + random.choice(word_collections.nouns_plural) + ",\nwe can " + random.choice(word_collections.verbs) + " " + random.choice(word_collections.nouns_plural))
 
 # Effect
 def template_effect():
-	return (random.choice(word_collections.prepositions).capitalize() + " " + random.choice(word_collections.nouns_plural) + ", we " + random.choice(word_collections.verbs) + " " + random.choice(word_collections.nouns_plural) + ".")
+	return (random.choice(word_collections.prepositions).capitalize() + " " + random.choice(word_collections.nouns_plural) + ",\nwe " + random.choice(word_collections.verbs) + " " + random.choice(word_collections.nouns_plural) + ".")
 
 # Encouragement
 def template_encouragement():
@@ -124,7 +124,7 @@ def template_encouragement():
 
 # Strangely true
 def template_strangely_true():
-    return (rule() + "Just because you're a " + random.choice(word_collections.nouns_singular) + " it doesn't mean you're a " + random.choice(word_collections.nouns_singular))
+    return (rule() + "Just because you're a " + random.choice(word_collections.nouns_singular) + "\nit doesn't mean you're a " + random.choice(word_collections.nouns_singular))
 
 # Really
 def template_really():
@@ -132,11 +132,11 @@ def template_really():
 
 # Explanation
 def template_explanation():
-    return (random.choice(word_collections.nouns_plural).capitalize() + " are not trying to " + random.choice(word_collections.verbs_intransitive) + ", they are just trying to " + random.choice(word_collections.verbs) + " " + random.choice(word_collections.concepts))
+    return (random.choice(word_collections.nouns_plural).capitalize() + " are not trying to " + random.choice(word_collections.verbs_intransitive) + ",\nthey are just trying to " + random.choice(word_collections.verbs) + " " + random.choice(word_collections.concepts))
 
 # No need
 def template_no_need():
-    return (rule() + "You don't need " + random.choice(word_collections.nouns_plural + word_collections.concepts) + " to " + random.choice(word_collections.verbs) + " " + random.choice(word_collections.nouns_plural))
+    return (rule() + "You don't need " + random.choice(word_collections.nouns_plural + word_collections.concepts) + "\nto " + random.choice(word_collections.verbs) + " " + random.choice(word_collections.nouns_plural))
 
 # Potential
 def template_potential():
@@ -152,27 +152,27 @@ def template_causation():
 
 # Two needs
 def template_two_needs():
-    return (horoscope() + "The two things you need in order to live " + random.choice(word_collections.adverbs) + " are " + random.choice(word_collections.nouns_plural + word_collections.concepts) + " and " + random.choice(word_collections.nouns_plural + word_collections.concepts))
+    return (horoscope() + "The two things you need\nin order to live " + random.choice(word_collections.adverbs) + "\nare " + random.choice(word_collections.nouns_plural + word_collections.concepts) + "\nand " + random.choice(word_collections.nouns_plural + word_collections.concepts))
 
 # Maybe?
 def template_maybe():
-    return ("Maybe " + random.choice(word_collections.nouns_plural + word_collections.concepts) + " can turn into " + random.choice(word_collections.nouns_plural + word_collections.concepts) + " when you get older?")
+    return ("Maybe " + random.choice(word_collections.nouns_plural + word_collections.concepts) + "\ncan turn into " + random.choice(word_collections.nouns_plural + word_collections.concepts) + "\nwhen you get older?")
 
 # Orders
 def template_orders():
-    return (rule() + "They can order you to " + random.choice(word_collections.verbs) + " " + random.choice(word_collections.nouns_plural) + ", but they can't order you to " + random.choice(word_collections.verbs) + " " + random.choice(word_collections.nouns_plural))
+    return (rule() + "They can order you to " + random.choice(word_collections.verbs) + " " + random.choice(word_collections.nouns_plural) + ",\nbut they can't order you to " + random.choice(word_collections.verbs) + " " + random.choice(word_collections.nouns_plural))
 
 # Family
 def template_family():
-    return (random.choice(word_collections.situations).capitalize() + " is pretty much like " + random.choice(word_collections.verbs_ing) + " your " + random.choice(word_collections.nouns_singular + word_collections.nouns_plural + word_collections.concepts))
+    return (random.choice(word_collections.situations).capitalize() + " is pretty much like\n" + random.choice(word_collections.verbs_ing) + " your " + random.choice(word_collections.nouns_singular + word_collections.nouns_plural + word_collections.concepts))
 
 # Truth
 def template_true():
-    return (random.choice(word_collections.nouns_plural).capitalize() + " are the " + random.choice(word_collections.concepts) + " of all that is " + random.choice(word_collections.adjectives))
+    return (random.choice(word_collections.nouns_plural).capitalize() + " are the " + random.choice(word_collections.concepts) + "\nof all that is " + random.choice(word_collections.adjectives))
 
 # Right
 def template_right():
-    return (rule() + "Pursue what is " + random.choice(word_collections.adjectives) + " instead of what is making you " + random.choice(word_collections.adjectives))
+    return (rule() + "Pursue what is " + random.choice(word_collections.adjectives) + "\ninstead of what is making you " + random.choice(word_collections.adjectives))
     
 # Personality
 def template_personality():
@@ -213,7 +213,7 @@ def template_need():
 
 # You must
 def template_must():
-    return (rule() + "If you are the " + random.choice(word_collections.superlatives) + " at " + random.choice(word_collections.situations) + ", you " + random.choice(word_collections.verbs_mandatory_sfw) + " " + random.choice(word_collections.verbs) + " " + random.choice(word_collections.nouns_plural))
+    return (rule() + "If you are the " + random.choice(word_collections.superlatives) + " at " + random.choice(word_collections.situations) + ",\nyou " + random.choice(word_collections.verbs_mandatory_sfw) + " " + random.choice(word_collections.verbs) + " " + random.choice(word_collections.nouns_plural))
 
 # A good day
 def template_day():
@@ -228,8 +228,8 @@ def template_why():
     return ("Why stop " + random.choice(word_collections.verbs_ing) + " if you're " + random.choice(word_collections.adjectives) + "?")
 
 # Never
-def template_never_again():
-    return (rule() + "Never " + random.choice(word_collections.verbs_intransitive) + " unless you're willing to " + random.choice(word_collections.verbs + word_collections.verbs_intransitive))
+def template_never():
+    return (rule() + "Never " + random.choice(word_collections.verbs_intransitive) + "\nunless you're willing to " + random.choice(word_collections.verbs + word_collections.verbs_intransitive))
 
 # Excuse me
 def template_excuse():
@@ -238,11 +238,11 @@ def template_excuse():
 # Outweigh
 def template_outweigh():
     selected = random.choice(word_collections.nouns_plural)
-    return (rule() + "The " + selected + " of the " + random.choice(word_collections.nouns_plural) + " " + random.choice(word_collections.verbs) + " the " + selected + " of the " + random.choice(word_collections.nouns_plural))
+    return (rule() + "The " + selected + " of the " + random.choice(word_collections.nouns_plural) + "\n" + random.choice(word_collections.verbs) + " the " + selected + " of the " + random.choice(word_collections.nouns_plural))
 
 # Today
 def template_today():
-    return (horoscope() + capitalize_first_letter_only(random.choice(word_collections.sometimes)) + ", you will encounter " + random.choice(word_collections.nouns_plural + word_collections.concepts))
+    return (horoscope() + capitalize_first_letter_only(random.choice(word_collections.sometimes)) + ",\nyou will encounter " + random.choice(word_collections.nouns_plural + word_collections.concepts))
 
 # Do it
 def template_do_it():
