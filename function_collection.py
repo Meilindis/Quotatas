@@ -158,7 +158,7 @@ def template_orders():
 
 # Family
 def template_family():
-    return (random.choice(word_collections.situations).capitalize() + " is pretty much like\n" + random.choice(word_collections.verbs_ing) + " your " + random.choice(word_collections.nouns_singular + word_collections.nouns_plural + word_collections.concepts))
+    return (random.choice(word_collections.situations).capitalize() + "\ns pretty much like\n" + random.choice(word_collections.verbs_ing) + " your " + random.choice(word_collections.nouns_singular + word_collections.nouns_plural + word_collections.concepts))
 
 # Truth
 def template_true():
@@ -215,7 +215,7 @@ def template_day():
 
 # LLAP
 def template_llap():
-    return (rule() + random.choice(word_collections.verbs).capitalize() + " " + random.choice(word_collections.adjectives) + " and " + random.choice(word_collections.verbs + word_collections.verbs_intransitive))
+    return (rule() + random.choice(word_collections.verbs).capitalize() + " " + random.choice(word_collections.adjectives) + "\nand " + random.choice(word_collections.verbs + word_collections.verbs_intransitive))
 
 # Why?
 def template_why():
