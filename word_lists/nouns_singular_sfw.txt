@@ -84,7 +84,7 @@ peanut
 pencil
 pet
 petal
-petrichor
+phaser
 phone
 piano
 pixie
@@ -114,6 +114,7 @@ tavern
 tea
 time machine
 transporter
+tricorder
 truck
 unicorn
 universe

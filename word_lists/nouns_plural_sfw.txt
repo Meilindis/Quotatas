@@ -73,6 +73,7 @@ peanuts
 pencils
 petals
 pets
+phasers
 phones
 pianos
 pixies
@@ -101,6 +102,7 @@ tablets
 taverns
 time machines
 transporters
+tricorders
 trucks
 unicorns
 universes
