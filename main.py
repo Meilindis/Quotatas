@@ -21,6 +21,7 @@ from PySide6.QtCore import QSize, Qt
 from PySide6.QtGui import QPixmap, QImage
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QTextEdit, QVBoxLayout, QWidget, QLabel, QCheckBox, QHBoxLayout
 
+# Font list to randomly choose from 
 font_collection = ['GalaferaMedium-V4xze.ttf', 
                    'LoveDays-2v7Oe.ttf', 
                    'CronusRound-KA6y.ttf', 
@@ -29,8 +30,12 @@ font_collection = ['GalaferaMedium-V4xze.ttf',
                    'HussarBold-7mRE.otf',
                    'BiotripSerifBold-Jpo3K.ttf',
                    'RomanticAdoreDemoRegular-5yGpj.ttf',
-                   'BazigBold-yYRV5.ttf']
-# Image list: image name, text colour, placement, indent (x), starting height (y)
+                   'BazigBold-yYRV5.ttf',
+                   'ThisAppeal-FreeDemo.ttf',
+                   'HFPoet.ttf',
+                   'Bright Dusty.otf']
+
+# Image list: image name, text colour, placement, indent (x), starting height (y), whether or not extra indentation is necessary for multiline
 image_collection = [['a_fetters_recto_b_several_figures_verso.png', (145, 0, 140), 'justify', 50, 365, 'straight'],
                     ['a_luncheon_party_.png', (255, 245, 185), 'justify', 50, 365, 'straight'],
                     ['angry_lady.jpg', (65, 75, 139), 'justify', 50, 100, 'straight'],
@@ -54,7 +59,7 @@ if __name__ == "__main__":
             # Store the quote here:
             self.quote = ""
 
-            self.setWindowTitle("Quotatas")
+            self.setWindowTitle("Dutch Wisdom Bot")
 
             # Button to generate quotes
             self.button = QPushButton("Give me some wisdom!")
