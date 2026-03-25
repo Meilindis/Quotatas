@@ -35,7 +35,7 @@ def template_three_verbs():
 # Row, row, row your boat
 def template_row():
     current_verb = random.choice(word_collections.verbs)
-    return (capitalize_first_letter_only(current_verb) + ", " + current_verb + ", " + current_verb) + " your " + random.choice(word_collections.nouns_singular + word_collections.nouns_plural)
+    return (capitalize_first_letter_only(current_verb) + ", " + current_verb + ", " + current_verb) + "\nyour " + random.choice(word_collections.nouns_singular + word_collections.nouns_plural)
 
 # Give three random compliments
 def template_three_compliments():
@@ -124,7 +124,7 @@ def template_encouragement():
 
 # Strangely true
 def template_strangely_true():
-    return (rule() + "Just because you're a " + random.choice(word_collections.nouns_singular) + "\nit doesn't mean you're a " + random.choice(word_collections.nouns_singular))
+    return (rule() + "Just because you're\na " + random.choice(word_collections.nouns_singular) + "\nit doesn't mean you're\na " + random.choice(word_collections.nouns_singular))
 
 # Really
 def template_really():
@@ -132,7 +132,7 @@ def template_really():
 
 # Explanation
 def template_explanation():
-    return (capitalize_first_letter_only(random.choice(word_collections.nouns_plural)) + " are not trying to " + random.choice(word_collections.verbs_intransitive) + ",\nthey are just trying to " + random.choice(word_collections.verbs) + " " + random.choice(word_collections.concepts))
+    return (capitalize_first_letter_only(random.choice(word_collections.nouns_plural)) + " are not trying\nto " + random.choice(word_collections.verbs_intransitive) + ",\nthey are just trying\nto " + random.choice(word_collections.verbs) + " " + random.choice(word_collections.concepts))
 
 # No need
 def template_no_need():
@@ -148,11 +148,11 @@ def template_results():
 
 # Causation
 def template_causation():
-    return ("Being " + random.choice(word_collections.adjectives) + " can cause " + random.choice(word_collections.nouns_plural + word_collections.concepts))
+    return ("Being " + random.choice(word_collections.adjectives) + "\ncan cause " + random.choice(word_collections.nouns_plural + word_collections.concepts))
 
 # Two needs
 def template_two_needs():
-    return (horoscope() + "The two things you need\nin order to live " + random.choice(word_collections.adverbs) + "\nare " + random.choice(word_collections.nouns_plural + word_collections.concepts) + "and " + random.choice(word_collections.nouns_plural + word_collections.concepts))
+    return (horoscope() + "The two things you need\nin order to live " + random.choice(word_collections.adverbs) + "\nare " + random.choice(word_collections.nouns_plural + word_collections.concepts) + " and " + random.choice(word_collections.nouns_plural + word_collections.concepts))
 
 # Maybe?
 def template_maybe():
@@ -160,7 +160,7 @@ def template_maybe():
 
 # Orders
 def template_orders():
-    return (rule() + "They can order you\no " + random.choice(word_collections.verbs) + " " + random.choice(word_collections.nouns_plural) + ",\nbut they can't order you\no " + random.choice(word_collections.verbs) + " " + random.choice(word_collections.nouns_plural))
+    return (rule() + "They can order you\nto " + random.choice(word_collections.verbs) + " " + random.choice(word_collections.nouns_plural) + ",\nbut they can't order you\nto " + random.choice(word_collections.verbs) + " " + random.choice(word_collections.nouns_plural))
 
 # Family
 def template_family():
@@ -189,7 +189,7 @@ def template_be():
     
 # Judgement
 def template_judgement():
-	return (horoscope() + capitalize_first_letter_only(random.choice(word_collections.nouns_plural)) + " are " + random.choice(word_collections.times) + " " + random.choice(word_collections.adjectives))
+	return (horoscope() + capitalize_first_letter_only(random.choice(word_collections.nouns_plural)) + " are\n" + random.choice(word_collections.times) + " " + random.choice(word_collections.adjectives))
 
 # Watch out!
 def template_watch_out():
@@ -238,7 +238,7 @@ def template_excuse():
 # Outweigh
 def template_outweigh():
     selected = random.choice(word_collections.nouns_plural)
-    return (rule() + "The " + selected + " of the " + random.choice(word_collections.nouns_plural) + "\n" + random.choice(word_collections.verbs) + " the " + selected + " of the " + random.choice(word_collections.nouns_plural))
+    return (rule() + "The " + selected + " of the " + random.choice(word_collections.nouns_plural) + "\n" + random.choice(word_collections.verbs) + " the " + selected + "\nof the " + random.choice(word_collections.nouns_plural))
 
 # Today
 def template_today():

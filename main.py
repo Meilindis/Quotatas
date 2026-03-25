@@ -1,9 +1,12 @@
-#pylint:disable=W0104
-# This Python file uses the following encoding: utf-8
 import sys
 import os
 import random
 from pathlib import Path
+
+import PIL
+from PIL import ImageFont
+from PIL import Image
+from PIL import ImageDraw
 
 # A file containing lists of words to be used in quotes, sorted by type
 import word_collections
@@ -11,9 +14,37 @@ import word_collections
 # A file containing the templates that define different quote structures
 import function_collection
 
+# Script that helps with putting text on images
+from image_utils import ImageText
+
 from PySide6.QtCore import QSize, Qt
+from PySide6.QtGui import QPixmap, QImage
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QTextEdit, QVBoxLayout, QWidget, QLabel, QCheckBox, QHBoxLayout
 
+font_collection = ['GalaferaMedium-V4xze.ttf', 
+                   'LoveDays-2v7Oe.ttf', 
+                   'CronusRound-KA6y.ttf', 
+                   'Quaaykop-DYE1R.ttf', 
+                   'Wonderbar-pALD.ttf', 
+                   'HussarBold-7mRE.otf',
+                   'BiotripSerifBold-Jpo3K.ttf',
+                   'RomanticAdoreDemoRegular-5yGpj.ttf',
+                   'BazigBold-yYRV5.ttf']
+# Image list: image name, text colour, placement, indent (x), starting height (y)
+image_collection = [['a_fetters_recto_b_several_figures_verso.png', (145, 0, 140), 'justify', 50, 365, 'straight'],
+                    ['a_luncheon_party_.png', (255, 245, 185), 'justify', 50, 365, 'straight'],
+                    ['angry_lady.jpg', (65, 75, 139), 'justify', 50, 100, 'straight'],
+                    ['balloons.jpg', (65, 75, 139), 'justify', 40, 100, 'straight'],
+                    ['building_the_freidrich-strasse_station.png', (65, 75, 139), 'justify', 40, 100, 'straight'],
+                    ['die_komponistin_sonia_friedman.png', (167, 255, 174), 'justify', 30, 305, 'straight'],
+                    ['les_amateurs_d_estampes.png', (207, 220, 255), 'justify', 40, 100, 'straight'],
+                    ['rider.png', (0, 0, 0), 'justify', 30, 370, 'straight'],
+                    ['the_tournament.png', (255, 245, 215), 'justify', 30, 100, 'straight'],
+                    ['the_visit_.png', (142, 255, 221), 'justify', 30, 365, 'straight'],
+                    ['three_girls_in_profile.png', (24, 0, 59), 'justify', 30, 365, 'straight'],
+                    ['twelve_men_.png', (199, 17, 234), 'justify', 30, 100, 'straight'],
+                    ['tegeltje.jpg', (65, 75, 139), 'justify', 60, 225, 'curve']
+                    ]
 
 if __name__ == "__main__":
     class MainWindow(QMainWindow):
@@ -31,10 +62,20 @@ if __name__ == "__main__":
             self.button.clicked.connect(self.the_button_was_clicked)
             self.button.setStyleSheet('height: 80px; background-color: #b0cceb; color: black; text-align: center;')
 
-            # Field that displays the generated quote
+            # Label that displays the generated quote image
+            self.quote_area = QLabel()
+            self.quote_area.setStyleSheet('background-color: black; color: white;')
+            self.quote_area.resize(500, 500)
+            current_dir = Path(__file__).parent.absolute()
+            pixmap = QPixmap(os.path.join(current_dir, os.path.join('images','bot.png')))
+            self.quote_area.resize(pixmap.width(), pixmap.height())
+            self.quote_area.setPixmap(pixmap)
+
+            # Field that displays the generated quote in text only
             self.quote_field = QTextEdit()
-            self.quote_field.setReadOnly(True)
             self.quote_field.setStyleSheet('background-color: white; color: black;')
+            self.quote_field.setReadOnly(True)
+            self.quote_field.resize(pixmap.width(), 350)
 
             # Back and forward buttons
             self.button_back = QPushButton("Previous")
@@ -62,6 +103,7 @@ if __name__ == "__main__":
             self.button_export_quotes.clicked.connect(self.export_quotes)
             self.button_export_quotes.setStyleSheet('background-color: orange; color:black;')
 
+
             # Arrange the back/forward buttons horizontally
             layoutH = QHBoxLayout()
             layoutH.addWidget(self.button_back)
@@ -71,17 +113,32 @@ if __name__ == "__main__":
 
             # Arrange all elements vertically
             layoutV = QVBoxLayout()       
-            layoutV.addWidget(self.quote_field)
-            layoutV.addWidget(self.button)
-            layoutV.addWidget(nav_container)
             layoutV.addWidget(self.negative_toggle)
             layoutV.addWidget(self.nsfw_toggle)
             layoutV.addWidget(self.darkmode_toggle)
             layoutV.addWidget(self.button_export_quotes)
+            layoutV.addWidget(self.quote_field)
+            layoutV.addWidget(self.button)
+            
+
+            vert_container = QWidget()
+            vert_container.setLayout(layoutV)
+
+            quoteLayout = QVBoxLayout()
+            quoteLayout.addWidget(self.quote_area)
+            quoteLayout.addWidget(nav_container)
+
+            quote_container = QWidget()
+            quote_container.setLayout(quoteLayout)
+
+            layoutApp = QHBoxLayout()
+            layoutApp.addWidget(vert_container)
+            layoutApp.addWidget(quote_container)
+
 
             container = QWidget()
             container.setStyleSheet('background-color: #808080; color:black; border: 2px solid black; font-size: 24px; padding: 4px;')
-            container.setLayout(layoutV)
+            container.setLayout(layoutApp)
 
             self.setCentralWidget(container)    
 
@@ -109,8 +166,95 @@ if __name__ == "__main__":
             self.quote_history.append(self.quote)
             # Set the selected quote index to this new quote's index
             self.selected_quote = len(self.quote_history) - 1
-            # Show the new quote on the screen
+
+            self.create_quote_image()
+
             self.quote_field.setText(self.quote)
+
+        def create_quote_image(self):
+            # Prepare the image
+            current_dir = Path(__file__).parent.absolute()
+            selected_image = random.choice(image_collection)
+            image_path = os.path.join(os.path.join(current_dir, 'images'), selected_image[0])
+            image = Image.open(image_path)
+
+            color = selected_image[1]
+            location = selected_image[2]
+            x_val = selected_image[3] # indent to the right from 0 (base is one line)
+            y_val = selected_image[4] # pixels down from zero
+            text = self.quote
+            font = os.path.join(os.path.join(current_dir, 'fonts'), random.choice(font_collection))
+            img = ImageText(image, background=(255, 255, 255, 200)) # 200 = alpha
+
+
+            if "\n" not in text:
+                #write_text_box will split the text in many lines, based on box_width
+                #`place` can be 'left' (default), 'right', 'center' or 'justify'
+                #write_text_box will return (box_width, box_calculed_height) so you can
+                #know the size of the wrote text
+                img.write_text_box((x_val, y_val), text, box_width=200, font_filename=font,
+                                font_size=24, color=color, place=location) # 60,225
+            else:
+                nr_of_lines = text.count("\n") + 1
+                if nr_of_lines == 2:
+                    lines = text.splitlines()
+                    if selected_image[5] == 'curve':
+                        x = x_val + 5
+                    else: x = x_val
+                    y = y_val - 25
+                    for line in lines:
+                        img.write_text_box((x, y), line, box_width=200, font_filename=font,
+                                font_size=26, color=color, place=location)
+                        y += 35
+                elif nr_of_lines == 3:
+                    lines = text.splitlines()
+                    if selected_image[5] == 'curve':
+                        x = x_val + 10
+                    else: x = x_val
+                    y = y_val - 35
+                    for line in lines:
+                        img.write_text_box((x, y), line, box_width=200, font_filename=font,
+                                font_size=26, color=color, place=location)
+                        y += 35
+                elif nr_of_lines == 4:
+                    lines = text.splitlines()
+                    if selected_image[5] == 'curve':
+                        x = x_val + 15
+                    else: x = x_val
+                    y = y_val - 45
+                    for line in lines:
+                        img.write_text_box((x, y), line, box_width=200, font_filename=font,
+                                font_size=26, color=color, place=location)
+                        y += 35
+                elif nr_of_lines == 5:
+                    lines = text.splitlines()
+                    if selected_image[5] == 'curve':
+                        x = x_val + 20
+                    else: x = x_val
+                    y = y_val - 55
+                    for line in lines:
+                        img.write_text_box((x, y), line, box_width=200, font_filename=font,
+                                font_size=26, color=color, place=location)
+                        y += 35
+                elif nr_of_lines == 6:
+                    lines = text.splitlines()
+                    if selected_image[5] == 'curve':
+                        x = x_val + 25
+                    
+                    else: x = x_valy = y_val - 65
+                    for line in lines:
+                        img.write_text_box((x, y), line, box_width=200, font_filename=font,
+                                font_size=26, color=color, place=location)
+                        y += 35
+
+
+            img.save('temp.png')
+
+            # Display the modified image
+            pixmap = QPixmap('temp.png')
+            self.quote_area.resize(pixmap.width(), pixmap.height())
+            self.quote_area.setPixmap(pixmap)
+
 
         def settings_changed(self):
             # Set all word collections to neutral
@@ -163,6 +307,7 @@ if __name__ == "__main__":
                 self.selected_quote = self.selected_quote - 1
                 self.quote = self.quote_history[self.selected_quote]
                 self.quote_field.setText(self.quote)
+                self.create_quote_image()
             else:
                 return
         def next_quote(self):
@@ -171,6 +316,7 @@ if __name__ == "__main__":
                 self.selected_quote = self.selected_quote + 1
                 self.quote = self.quote_history[self.selected_quote]
                 self.quote_field.setText(self.quote)
+                self.create_quote_image()
             else:
                 return
 

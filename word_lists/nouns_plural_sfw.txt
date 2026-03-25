@@ -68,7 +68,7 @@ moons
 needs
 needles
 novels
-ocean
+oceans
 peanuts
 pencils
 petals
