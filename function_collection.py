@@ -228,7 +228,7 @@ def template_why():
     return ("Why stop " + random.choice(word_collections.verbs_ing) + " if you're " + random.choice(word_collections.adjectives) + "?")
 
 # Never
-def template_never():
+def template_never_again():
     return (rule() + "Never " + random.choice(word_collections.verbs_intransitive) + "\nunless you're willing to " + random.choice(word_collections.verbs + word_collections.verbs_intransitive))
 
 # Excuse me
@@ -248,7 +248,11 @@ def template_today():
 def template_do_it():
     return (horoscope() + "Start " + random.choice(word_collections.verbs_ing) + " " + random.choice(word_collections.sometimes))
 
-# List of defined tepmlates (don't forget to add new templates here or they won't be used!)
+# They're gonna
+def template_gonna():
+	return (capitalize_first_letter_only(random.choice(word_collections.nouns_plural)) + " are gonna " + random.choice(word_collections.verbs) + " you!")
+
+# List of defined templates (don't forget to add new templates here or they won't be used!)
 template_list = [function_times_three, 
                  template_three_compliments, 
                  template_three_characteristics,
@@ -299,9 +303,10 @@ template_list = [function_times_three,
                  template_day,
                  template_llap,
                  template_why,
-                 template_never,
+                 template_never_again,
                  template_excuse,
                  template_outweigh,
                  template_today,
-                 template_do_it]
+                 template_do_it,
+                 template_gonna]
 
