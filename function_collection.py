@@ -2,6 +2,8 @@ import random
 import word_collections
 import re
 
+vowels = ['a', 'e', 'i', 'o', 'u']
+
 # Only touch the first letter
 def capitalize_first_letter_only(phrase):
 	return re.sub('([a-zA-Z])', lambda x: x.groups()[0].upper(), phrase, 1)
@@ -22,6 +24,13 @@ def horoscope():
     else:
         horrorscope = random.choice(word_collections.zodiac).split(' ', 1)
         return (horrorscope[0].capitalize() + "\n" + horrorscope[1] + ":\n")
+
+def a_or_an(text):
+    if text[0] in vowels:
+        article = "an "
+    else:
+        article = "a "
+    return article
 
 # Repeat a random verb three times
 def function_times_three():
@@ -95,7 +104,8 @@ def template_no_sorry():
 
 # Reasons
 def template_reasons():
-    return ("The fact that you are\na " + random.choice(word_collections.adjectives) + " " + random.choice(word_collections.nouns_singular) + "\nmakes you " + random.choice(word_collections.adjectives))
+    temp = random.choice(word_collections.adjectives)
+    return ("The fact that you are\n" + a_or_an(temp) + temp + " " + random.choice(word_collections.nouns_singular) + "\nmakes you " + random.choice(word_collections.adjectives))
 
 # Deserved
 def template_deserved():
@@ -108,7 +118,9 @@ def template_truth():
 # Change
 def template_change():
     current_noun = random.choice(word_collections.nouns_singular)
-    return (rule() + "Don't be a " + random.choice(word_collections.adjectives) + " " + current_noun + ".\nBe a " + random.choice(word_collections.adjectives) + " " + current_noun + ".")
+    temp1 = random.choice(word_collections.adjectives)
+    temp2 = random.choice(word_collections.adjectives)
+    return (rule() + "Don't be " + a_or_an(temp1) + temp1 + " " + current_noun + ".\nBe " + a_or_an(temp2) + random.choice(word_collections.adjectives) + " " + current_noun + ".")
     
 # Possibilities
 def template_possible():
@@ -124,7 +136,9 @@ def template_encouragement():
 
 # Strangely true
 def template_strangely_true():
-    return (rule() + "Just because you're\na " + random.choice(word_collections.nouns_singular) + "\nit doesn't mean you're\na " + random.choice(word_collections.nouns_singular))
+    temp1 = random.choice(word_collections.nouns_singular)
+    temp2 = random.choice(word_collections.nouns_singular)
+    return (rule() + "Just because you're\n" + a_or_an(temp1) + temp1 + "\nit doesn't mean you're\n" + a_or_an(temp2) + temp2)
 
 # Really
 def template_really():
@@ -140,7 +154,8 @@ def template_no_need():
 
 # Potential
 def template_potential():
-    return (horoscope() + "You have the potential\nto become a " + random.choice(word_collections.adjectives) + " " + random.choice(word_collections.nouns_singular))
+    temp = random.choice(word_collections.adjectives)
+    return (horoscope() + "You have the potential\nto become " + a_or_an(temp) + " " + random.choice(word_collections.nouns_singular))
 
 # Results
 def template_results():
@@ -176,16 +191,20 @@ def template_right():
     
 # Personality
 def template_personality():
-	return (horoscope() + "You are a " + random.choice(word_collections.nouns_singular) + " " + random.choice(word_collections.people_singular_sfw))
+    temp = random.choice(word_collections.nouns_singular)
+    return (horoscope() + "You are " + a_or_an(temp) + temp + " " + random.choice(word_collections.people_singular_sfw))
 
 # The best
 def function_the_best():
     selected_word = random.choice(word_collections.nouns_singular)
-    return (rule() + "The best " + selected_word + " is a " + random.choice(word_collections.adjectives) + " " + selected_word)
+    temp = random.choice(word_collections.adjectives)
+    return (rule() + "The best " + selected_word + " is " + a_or_an(temp) + temp + " " + selected_word)
 
 # Just be
 def template_be():
-    return ("Be a " + random.choice(word_collections.nouns_singular_sfw) + "\nBe " + random.choice(word_collections.adjectives) + "\nBe a " + random.choice(word_collections.adjectives) + " " + random.choice(word_collections.nouns_singular_sfw))
+    temp1 = random.choice(word_collections.nouns_singular)
+    temp2 = random.choice(word_collections.adjectives)
+    return ("Be " + a_or_an(temp1) + temp1 + "\nBe " + random.choice(word_collections.adjectives) + "\nBe " + a_or_an(temp2) + temp2 + " " + random.choice(word_collections.nouns_singular_sfw))
     
 # Judgement
 def template_judgement():
@@ -201,7 +220,8 @@ def template_higher():
 
 # More you
 def template_you_superlative():
-    return (horoscope() + "You can be the " + random.choice(word_collections.superlatives) + " " + random.choice(word_collections.nouns_singular))
+    temp = random.choice(word_collections.superlatives)
+    return (horoscope() + "You can be " + a_or_an(temp) + temp + " " + random.choice(word_collections.nouns_singular))
 
 # Never
 def template_never():
@@ -209,7 +229,8 @@ def template_never():
 
 # Needs
 def template_need():
-    return (rule() + "You just need a " + random.choice(word_collections.adjectives) + " " + random.choice(word_collections.nouns_singular))
+    temp = random.choice(word_collections.adjectives)
+    return (rule() + "You just need " + a_or_an(temp) + temp + " " + random.choice(word_collections.nouns_singular))
 
 # You must
 def template_must():
@@ -233,7 +254,9 @@ def template_never_again():
 
 # Excuse me
 def template_excuse():
-    return ("Excuse me\nWhat does a " + random.choice(word_collections.people_singular_sfw) + " want\nwith a " + random.choice(word_collections.nouns_singular) + "?")
+    temp1 = random.choice(word_collections.people_singular)
+    temp2 = random.choice(word_collections.nouns_singular)
+    return ("Excuse me\nWhat does "+ a_or_an(temp1) + temp1 + " want\nwith " + a_or_an(temp2) + temp2 + "?")
 
 # Outweigh
 def template_outweigh():
