@@ -76,7 +76,7 @@ def template_call_to_action():
 
 # Spread the word
 def template_spread_the_word():
-    return (horoscope() + capitalize_first_letter_only(random.choice(word_collections.audiences)) + "\nyou are " + random.choice(word_collections.adjectives) + ".\nStay " + random.choice(word_collections.adjectives) + ".")
+    return (horoscope() + capitalize_first_letter_only(random.choice(word_collections.audiences)) + "\nthat you are " + random.choice(word_collections.adjectives) + ".\nStay " + random.choice(word_collections.adjectives) + ".")
 
 # Definition
 def template_it_does():
@@ -84,7 +84,7 @@ def template_it_does():
 
 # Sharing is caring
 def template_share():
-    return (rule() + capitalize_first_letter_only(random.choice(word_collections.audiences)) + "\nyou are " + random.choice(word_collections.adjectives) + "\nand " + random.choice(word_collections.adjectives))
+    return (rule() + capitalize_first_letter_only(random.choice(word_collections.audiences)) + "\nthat you are " + random.choice(word_collections.adjectives) + "\nand " + random.choice(word_collections.adjectives))
 
 # Oh you
 def template_you():
@@ -156,7 +156,8 @@ def template_no_need():
 def template_potential():
     temp1 = random.choice(word_collections.adjectives)
     temp2 = a_or_an(temp1) + temp1
-    return (horoscope() + "You have the potential\nto become " + temp2 + " " + random.choice(word_collections.nouns_singular) + ".\nSeriously. " + capitalize_first_letter_only(temp2) + ".")
+    temp3 = random.choice(word_collections.nouns_singular)
+    return (horoscope() + "You have the potential\nto become " + temp2 + " " + temp3 + ".\nSeriously. " + capitalize_first_letter_only(a_or_an(temp3)) + temp3 + ".")
 
 # Results
 def template_results():
@@ -193,7 +194,7 @@ def template_right():
 # Personality
 def template_personality():
     temp = random.choice(word_collections.nouns_singular)
-    return (horoscope() + "You are " + a_or_an(temp) + temp + " " + random.choice(word_collections.people_singular_sfw))
+    return (horoscope() + "You are\n" + a_or_an(temp) + temp + " " + random.choice(word_collections.people_singular_sfw))
 
 # The best
 def function_the_best():

@@ -21,53 +21,54 @@ from PySide6.QtCore import QSize, Qt
 from PySide6.QtGui import QPixmap, QImage
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QTextEdit, QVBoxLayout, QWidget, QLabel, QCheckBox, QHBoxLayout
 
-# Font list to randomly choose from 
-font_collection = ['GalaferaMedium-V4xze.ttf', 
-                   'LoveDays-2v7Oe.ttf', 
-                   'CronusRound-KA6y.ttf', 
-                   'Quaaykop-DYE1R.ttf', 
-                   'Wonderbar-pALD.ttf', 
-                   'HussarBold-7mRE.otf',
-                   'BiotripSerifBold-Jpo3K.ttf',
-                   'RomanticAdoreDemoRegular-5yGpj.ttf',
-                   'BazigBold-yYRV5.ttf',
-                   'ThisAppeal-FreeDemo.ttf',
-                   'HFPoet.ttf',
-                   'Bright Dusty.otf',
-                   'BeachFlower-Bold.otf',
-                   'Smooch Free Trial.otf']
+# Font list to randomly choose from: font name, font size that mostly fits
+font_collection = [['GalaferaMedium-V4xze.ttf', 26],
+                   ['LoveDays-2v7Oe.ttf', 26],
+                   ['CronusRound-KA6y.ttf', 32],
+                   ['Quaaykop-DYE1R.ttf', 30],
+                   ['Wonderbar-pALD.ttf', 26],
+                   ['HussarBold-7mRE.otf', 26],
+                   ['BiotripSerifBold-Jpo3K.ttf', 24],
+                   ['RomanticAdoreDemoRegular-5yGpj.ttf', 32],
+                   ['BazigBold-yYRV5.ttf', 30],
+                   ['ThisAppeal-FreeDemo.ttf', 32],
+                   ['HFPoet.ttf', 32],
+                   ['Bright Dusty.otf', 32],
+                   ['BeachFlower-Bold.otf', 30],
+                   ['Smooch Free Trial.otf', 32]
+                   ]
 
 # Image list: image name, text colour, placement, indent (x), starting height (y), whether or not extra indentation is necessary for multiline
 image_collection = [['a_fetters_recto_b_several_figures_verso.png', (145, 0, 140), 'justify', 50, 365, 'straight'],
                     ['a_luncheon_party_.png', (255, 245, 185), 'justify', 50, 345, 'straight'],
-                    ['angry_lady.png', (65, 75, 139), 'justify', 30, 100, 'straight'],
-                    ['balloons.png', (65, 75, 139), 'justify', 30, 100, 'straight'],
-                    ['blossoms.png', (65, 75, 139), 'justify', 30, 100, 'straight'],
+                    ['angry_lady.png', (65, 75, 139), 'justify', 20, 100, 'straight'],
+                    ['balloons.png', (65, 75, 139), 'justify', 20, 100, 'straight'],
+                    ['blossoms.png', (65, 75, 139), 'justify', 20, 100, 'straight'],
                     ['cat_snow.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
-                    ['coffee.png', (255, 245, 185), 'justify', 30, 345, 'straight'],
+                    ['coffee.png', (255, 245, 185), 'justify', 20, 345, 'straight'],
                     ['couple_mountains.png', (29, 37, 82), 'justify', 30, 100, 'straight'],
                     ['building_the_freidrich-strasse_station.png', (65, 75, 139), 'justify', 40, 100, 'straight'],
-                    ['desert.png', (29, 37, 82), 'justify', 30, 100, 'straight'],
+                    ['desert.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
                     ['die_komponistin_sonia_friedman.png', (167, 255, 174), 'justify', 30, 305, 'straight'],
-                    ['duck.png', (29, 37, 82), 'justify', 30, 365, 'straight'],
-                    ['giraffe.png', (29, 37, 82), 'justify', 30, 100, 'straight'],
-                    ['heart_cloud.png', (29, 37, 82), 'justify', 30, 100, 'straight'],
-                    ['joy.png', (29, 37, 82), 'justify', 30, 100, 'straight'],
-                    ['ladybug.png', (29, 37, 82), 'justify', 30, 100, 'straight'],
+                    ['duck.png', (29, 37, 82), 'justify', 20, 365, 'straight'],
+                    ['giraffe.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
+                    ['heart_cloud.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
+                    ['joy.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
+                    ['ladybug.png', (29, 37, 82), 'justify', 32, 100, 'straight'],
                     ['les_amateurs_d_estampes.png', (207, 220, 255), 'justify', 40, 100, 'straight'],
-                    ['milky_way.png', (255, 245, 185), 'justify', 30, 100, 'straight'],
-                    ['rain_people.png', (29, 37, 82), 'justify', 30, 365, 'straight'],
-                    ['rider.png', (0, 0, 0), 'justify', 30, 370, 'straight'],
-                    ['silhouettes.png', (65, 75, 139), 'justify', 30, 100, 'straight'],
-                    ['squirrel.png', (255, 245, 185), 'justify', 30, 345, 'straight'],
-                    ['sunset.png', (65, 75, 139), 'justify', 30, 100, 'straight'],
+                    ['milky_way.png', (255, 245, 185), 'justify', 20, 100, 'straight'],
+                    ['rain_people.png', (29, 37, 82), 'justify', 20, 365, 'straight'],
+                    ['rider.png', (0, 0, 0), 'justify', 20, 370, 'straight'],
+                    ['silhouettes.png', (65, 75, 139), 'justify', 20, 100, 'straight'],
+                    ['squirrel.png', (255, 245, 185), 'justify', 20, 345, 'straight'],
+                    ['sunset.png', (65, 75, 139), 'justify', 20, 100, 'straight'],
                     ['the_tournament.png', (255, 245, 215), 'justify', 30, 100, 'straight'],
-                    ['the_visit_.png', (142, 255, 221), 'justify', 30, 365, 'straight'],
+                    ['the_visit_.png', (142, 255, 221), 'justify', 20, 365, 'straight'],
                     ['three_girls_in_profile.png', (24, 0, 59), 'justify', 30, 365, 'straight'],
                     ['twelve_men_.png', (199, 17, 234), 'justify', 30, 100, 'straight'],
                     ['tegeltje.png', (65, 75, 139), 'justify', 60, 225, 'curve'],
                     ['treefrog.png', (255, 245, 185), 'justify', 20, 345, 'straight'],
-                    ['woman.png', (255, 245, 185), 'justify', 30, 100, 'straight'],
+                    ['woman.png', (255, 245, 185), 'justify', 20, 100, 'straight'],
                     ]
 
 if __name__ == "__main__":
@@ -207,7 +208,9 @@ if __name__ == "__main__":
             x_val = selected_image[3] # indent to the right from 0 (base is one line)
             y_val = selected_image[4] # pixels down from zero
             text = self.quote
-            font = os.path.join(os.path.join(current_dir, 'fonts'), random.choice(font_collection))
+            font = random.choice(font_collection)
+            font_name = os.path.join(os.path.join(current_dir, 'fonts'), font[0])
+            font_custom_size = font[1]
             img = ImageText(image, background=(255, 255, 255, 200)) # 200 = alpha
 
 
@@ -216,8 +219,8 @@ if __name__ == "__main__":
                 #`place` can be 'left' (default), 'right', 'center' or 'justify'
                 #write_text_box will return (box_width, box_calculed_height) so you can
                 #know the size of the wrote text
-                img.write_text_box((x_val, y_val), text, box_width=200, font_filename=font,
-                                font_size=24, color=color, place=location) # 60,225
+                img.write_text_box((x_val, y_val), text, box_width=200, font_filename=font_name,
+                                font_size=font_custom_size, color=color, place=location) # 60,225
             else:
                 nr_of_lines = text.count("\n") + 1
                 if nr_of_lines == 2:
@@ -227,8 +230,8 @@ if __name__ == "__main__":
                     else: x = x_val
                     y = y_val - 25
                     for line in lines:
-                        img.write_text_box((x, y), line, box_width=200, font_filename=font,
-                                font_size=26, color=color, place=location)
+                        img.write_text_box((x, y), line, box_width=200, font_filename=font_name,
+                                font_size=font_custom_size, color=color, place=location)
                         y += 35
                 elif nr_of_lines == 3:
                     lines = text.splitlines()
@@ -237,8 +240,8 @@ if __name__ == "__main__":
                     else: x = x_val
                     y = y_val - 35
                     for line in lines:
-                        img.write_text_box((x, y), line, box_width=200, font_filename=font,
-                                font_size=26, color=color, place=location)
+                        img.write_text_box((x, y), line, box_width=200, font_filename=font_name,
+                                font_size=font_custom_size, color=color, place=location)
                         y += 35
                 elif nr_of_lines == 4:
                     lines = text.splitlines()
@@ -247,8 +250,8 @@ if __name__ == "__main__":
                     else: x = x_val
                     y = y_val - 45
                     for line in lines:
-                        img.write_text_box((x, y), line, box_width=200, font_filename=font,
-                                font_size=26, color=color, place=location)
+                        img.write_text_box((x, y), line, box_width=200, font_filename=font_name,
+                                font_size=font_custom_size, color=color, place=location)
                         y += 35
                 elif nr_of_lines == 5:
                     lines = text.splitlines()
@@ -257,8 +260,8 @@ if __name__ == "__main__":
                     else: x = x_val
                     y = y_val - 55
                     for line in lines:
-                        img.write_text_box((x, y), line, box_width=200, font_filename=font,
-                                font_size=26, color=color, place=location)
+                        img.write_text_box((x, y), line, box_width=200, font_filename=font_name,
+                                font_size=font_custom_size, color=color, place=location)
                         y += 35
                 elif nr_of_lines == 6:
                     lines = text.splitlines()
@@ -267,8 +270,8 @@ if __name__ == "__main__":
                     
                     else: x = x_valy = y_val - 65
                     for line in lines:
-                        img.write_text_box((x, y), line, box_width=200, font_filename=font,
-                                font_size=26, color=color, place=location)
+                        img.write_text_box((x, y), line, box_width=200, font_filename=font_name,
+                                font_size=font_custom_size, color=color, place=location)
                         y += 35
 
 

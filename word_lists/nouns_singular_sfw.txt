@@ -26,7 +26,6 @@ candle
 candy
 cappuccino
 cardboard box
-cassette player
 castle
 chair
 champagne
@@ -105,7 +104,7 @@ slide
 spiral
 spoon
 staircase
-stamp collection
+stamp
 star
 stone
 sun
@@ -123,6 +122,7 @@ unicorn
 universe
 vase
 violin
+walkman
 want
 warp nacelle
 wet blanket

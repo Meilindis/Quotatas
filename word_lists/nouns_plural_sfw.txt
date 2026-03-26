@@ -22,7 +22,6 @@ bubbles
 candles
 cappucinos
 cardboard boxes
-cassette players
 castles
 chairs
 chocolates
@@ -93,7 +92,7 @@ sewing machines
 skirts
 spirals
 spoons
-stamp collections
+stamps
 stars
 stones
 suns
@@ -111,6 +110,7 @@ unicorns
 universes
 vases
 violins
+walkmans
 wants
 warp nacelles
 wet blankets
