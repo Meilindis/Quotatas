@@ -43,7 +43,7 @@ image_collection = [['a_fetters_recto_b_several_figures_verso.png', (145, 0, 140
                     ['angry_lady.png', (65, 75, 139), 'justify', 30, 100, 'straight'],
                     ['balloons.png', (65, 75, 139), 'justify', 30, 100, 'straight'],
                     ['blossoms.png', (65, 75, 139), 'justify', 30, 100, 'straight'],
-                    ['cat_snow.png', (29, 37, 82), 'justify', 30, 100, 'straight'],
+                    ['cat_snow.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
                     ['coffee.png', (255, 245, 185), 'justify', 30, 345, 'straight'],
                     ['couple_mountains.png', (29, 37, 82), 'justify', 30, 100, 'straight'],
                     ['building_the_freidrich-strasse_station.png', (65, 75, 139), 'justify', 40, 100, 'straight'],
