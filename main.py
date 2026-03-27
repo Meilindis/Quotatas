@@ -19,7 +19,7 @@ from image_utils import ImageText
 
 from PySide6.QtCore import QSize, Qt
 from PySide6.QtGui import QPixmap, QImage
-from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QTextEdit, QVBoxLayout, QWidget, QLabel, QCheckBox, QHBoxLayout
+from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QTextEdit, QVBoxLayout, QWidget, QLabel, QCheckBox, QHBoxLayout, QFileDialog, QMessageBox
 
 # Font list to randomly choose from: font name, font size that mostly fits
 font_collection = [['GalaferaMedium-V4xze.ttf', 26],
@@ -97,10 +97,10 @@ if __name__ == "__main__":
             self.quote_area.setPixmap(pixmap)
 
             # Field that displays the generated quote in text only
-            self.quote_field = QTextEdit()
-            self.quote_field.setStyleSheet('background-color: white; color: black;')
-            self.quote_field.setReadOnly(True)
-            self.quote_field.resize(pixmap.width(), 350)
+            self.text_field = QTextEdit()
+            self.text_field.setStyleSheet('background-color: white; color: black;')
+            self.text_field.setReadOnly(True)
+            self.text_field.resize(pixmap.width(), 350)
 
             # Back and forward buttons
             self.button_back = QPushButton("Previous")
@@ -110,6 +110,11 @@ if __name__ == "__main__":
             self.button_forward = QPushButton("Next")
             self.button_forward.clicked.connect(self.next_quote)
             self.button_forward.setStyleSheet('background-color: orange; color:black;')
+
+            # Saving and copying
+            self.button_save = QPushButton("Save")
+            self.button_save.clicked.connect(self.save_quote)
+            self.button_save.setStyleSheet('background-color: #a3d3a7;')     
 
             # Settings toggles
             self.nsfw_toggle = QCheckBox(text="Include NSFW words")
@@ -132,6 +137,7 @@ if __name__ == "__main__":
             # Arrange the back/forward buttons horizontally
             layoutH = QHBoxLayout()
             layoutH.addWidget(self.button_back)
+            layoutH.addWidget(self.button_save)
             layoutH.addWidget(self.button_forward)
             nav_container = QWidget()
             nav_container.setLayout(layoutH)
@@ -142,7 +148,7 @@ if __name__ == "__main__":
             layoutV.addWidget(self.nsfw_toggle)
             layoutV.addWidget(self.darkmode_toggle)
             layoutV.addWidget(self.button_export_quotes)
-            layoutV.addWidget(self.quote_field)
+            layoutV.addWidget(self.text_field)
             layoutV.addWidget(self.button)
             
 
@@ -179,6 +185,7 @@ if __name__ == "__main__":
 
         # Define what happens when the button is pressed
         def the_button_was_clicked(self):
+            self.text_field.setText("")
             # Set the selected quote to the last one (in case the user was looking at an earlier quote)
             if len(self.quote_history) > 1:
                 self.selected_quote = len(self.quote_history) - 1
@@ -282,6 +289,34 @@ if __name__ == "__main__":
             self.quote_area.resize(pixmap.width(), pixmap.height())
             self.quote_area.setPixmap(pixmap)
 
+        def save_quote(self):
+            # Check if there's a generated image present
+            try:
+                img = Image.open('temp.png')
+                # Create a dialog in which to select a name and location
+                self.save_dialog = QFileDialog()
+                save_file_name = self.save_dialog.getSaveFileName(self, 'Save quote', '', filter='Image files (.png)', selectedFilter='*.png')
+                save_file = save_file_name[0] + '.png'
+                # Check if the filename already exists
+                if os.path.isfile(save_file):
+                    dlg = QMessageBox(self)
+                    dlg.setWindowTitle("File exists")
+                    dlg.setText("The selected filename is already in use. Save anyway?")
+                    dlg.setStandardButtons(
+                        QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.Cancel
+                    )
+                    dlg.setIcon(QMessageBox.Icon.Question)
+                    selected = dlg.exec()
+
+                    if selected == QMessageBox.StandardButton.Yes:
+                        img.save(save_file)
+                    else:
+                        pass                    
+                else:
+                    img.save(save_file)
+            # If no generated image is present, there's nothing to save
+            except FileNotFoundError:
+                self.text_field.setText("No image available to save.")
 
         def settings_changed(self):
             # Set all word collections to neutral
@@ -324,9 +359,9 @@ if __name__ == "__main__":
 
         def updatestylesheet(self):
     	    if self.darkmode_toggle.isChecked():
-    		    self.quote_field.setStyleSheet('background-color: #2e2e2e; color: #9e9e9e;')
+    		    self.text_field.setStyleSheet('background-color: #2e2e2e; color: #9e9e9e;')
     	    else:
-    		    self.quote_field.setStyleSheet('background-color: white; color: black;')
+    		    self.text_field.setStyleSheet('background-color: white; color: black;')
 
         def previous_quote(self):
             # If there's more than one quote and you're not looking at the first quote, you can go back
