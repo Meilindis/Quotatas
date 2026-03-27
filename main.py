@@ -148,9 +148,7 @@ if __name__ == "__main__":
             layoutV.addWidget(self.nsfw_toggle)
             layoutV.addWidget(self.darkmode_toggle)
             layoutV.addWidget(self.button_export_quotes)
-            layoutV.addWidget(self.text_field)
-            layoutV.addWidget(self.button)
-            
+            layoutV.addWidget(self.text_field)            
 
             vert_container = QWidget()
             vert_container.setLayout(layoutV)
@@ -158,6 +156,7 @@ if __name__ == "__main__":
             quoteLayout = QVBoxLayout()
             quoteLayout.addWidget(self.quote_area)
             quoteLayout.addWidget(nav_container)
+            quoteLayout.addWidget(self.button)
 
             quote_container = QWidget()
             quote_container.setLayout(quoteLayout)
