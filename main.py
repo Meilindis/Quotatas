@@ -142,6 +142,7 @@ if __name__ == "__main__":
             layoutV.addWidget(self.nsfw_toggle)
             layoutV.addWidget(self.darkmode_toggle)
             layoutV.addWidget(self.button_export_quotes)
+            layoutV.addWidget(self.quote_field)
             layoutV.addWidget(self.button)
             
 
@@ -193,7 +194,7 @@ if __name__ == "__main__":
 
             self.create_quote_image()
 
-            self.quote_field.setText(self.quote)
+            # self.quote_field.setText(self.quote)
 
         def create_quote_image(self):
             # Prepare the image
@@ -332,7 +333,7 @@ if __name__ == "__main__":
             if len(self.quote_history) > 1 and self.selected_quote >= 1:
                 self.selected_quote = self.selected_quote - 1
                 self.quote = self.quote_history[self.selected_quote]
-                self.quote_field.setText(self.quote)
+                # self.quote_field.setText(self.quote)
                 self.create_quote_image()
             else:
                 return
@@ -341,7 +342,7 @@ if __name__ == "__main__":
             if self.selected_quote < len(self.quote_history) - 1:
                 self.selected_quote = self.selected_quote + 1
                 self.quote = self.quote_history[self.selected_quote]
-                self.quote_field.setText(self.quote)
+                # self.quote_field.setText(self.quote)
                 self.create_quote_image()
             else:
                 return
