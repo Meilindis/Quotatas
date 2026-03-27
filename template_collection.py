@@ -120,7 +120,7 @@ def template_change():
     current_noun = random.choice(word_collections.nouns_singular)
     temp1 = random.choice(word_collections.adjectives)
     temp2 = random.choice(word_collections.adjectives)
-    return (rule() + "Don't be " + a_or_an(temp1) + temp1 + " " + current_noun + ".\nBe " + a_or_an(temp2) + random.choice(word_collections.adjectives) + " " + current_noun + ".")
+    return (rule() + "Don't be " + a_or_an(temp1) + temp1 + " " + current_noun + ".\nBe " + a_or_an(temp2) + temp2 + " " + current_noun + ".")
     
 # Possibilities
 def template_possible():

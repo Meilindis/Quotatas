@@ -13,7 +13,7 @@ from PIL import ImageDraw
 import word_collections
 
 # A file containing the templates that define different quote structures
-import function_collection
+import template_collection
 
 # Script that helps with putting text on images
 from image_utils import ImageText
@@ -193,7 +193,7 @@ if __name__ == "__main__":
             self.button_export_quotes.setText("Export session quotes")
 
             # Select a random quote function from the list and let it return a quote
-            self.quote = random.choice(function_collection.template_list)()
+            self.quote = random.choice(template_collection.template_list)()
             # Add it to the quote history
             self.quote_history.append(self.quote)
             # Set the selected quote index to this new quote's index
