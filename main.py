@@ -2,6 +2,7 @@ import sys
 import os
 import random
 from pathlib import Path
+import shutil
 
 import PIL
 from PIL import ImageFont
@@ -291,29 +292,31 @@ if __name__ == "__main__":
         def save_quote(self):
             # Check if there's a generated image present
             try:
-                img = Image.open('temp.png')
-                # Create a dialog in which to select a name and location
-                self.save_dialog = QFileDialog()
-                save_file_name = self.save_dialog.getSaveFileName(self, 'Save quote', '', filter='Image files (.png)', selectedFilter='*.png')
-                save_file = save_file_name[0] + '.png'
-                # Check if the filename already exists
-                if os.path.isfile(save_file):
-                    dlg = QMessageBox(self)
-                    dlg.setWindowTitle("File exists")
-                    dlg.setText("The selected filename is already in use. Save anyway?")
-                    dlg.setStandardButtons(
-                        QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.Cancel
-                    )
-                    dlg.setIcon(QMessageBox.Icon.Question)
-                    selected = dlg.exec()
+                if os.path.isfile('temp.png'):
+                    # Create a dialog in which to select a name and location
+                    self.save_dialog = QFileDialog()
+                    save_file_name = self.save_dialog.getSaveFileName(self, 'Save quote', '', filter='Image files (.png)', selectedFilter='*.png')
+                    save_file = save_file_name[0] + '.png'
+                    # Check if the filename already exists
+                    if os.path.isfile(save_file):
+                        dlg = QMessageBox(self)
+                        dlg.setWindowTitle("File exists")
+                        dlg.setText("The selected filename is already in use. Save anyway?")
+                        dlg.setStandardButtons(
+                            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.Cancel
+                        )
+                        dlg.setIcon(QMessageBox.Icon.Question)
+                        selected = dlg.exec()
 
-                    if selected == QMessageBox.StandardButton.Yes:
-                        img.save(save_file)
+                        if selected == QMessageBox.StandardButton.Yes:
+                            shutil.copyfile('temp.png', save_file)
+                        else:
+                            pass                    
                     else:
-                        pass                    
-                else:
-                    img.save(save_file)
+                        shutil.copyfile('temp.png', save_file)
             # If no generated image is present, there's nothing to save
+                else:
+                    self.text_field.setText("No image available to save.")
             except FileNotFoundError:
                 self.text_field.setText("No image available to save.")
 
