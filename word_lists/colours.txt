@@ -1,4 +1,5 @@
 amber
+beige
 black
 blue
 brown

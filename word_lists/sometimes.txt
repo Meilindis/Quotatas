@@ -1,3 +1,9 @@
+at dawn
+at dusk
+at night
+in the afternoon
+in the evening
+in the morning
 next Friday
 next Monday
 next month

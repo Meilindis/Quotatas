@@ -19,6 +19,7 @@ palest
 poorest
 reddest
 richest
+ripest
 sharpest
 shortest
 slowest

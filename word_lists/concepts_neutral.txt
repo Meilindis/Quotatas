@@ -21,6 +21,7 @@ fairness
 fantasy
 fate
 flour
+gardening
 ginger
 glitter
 harmony
@@ -35,6 +36,7 @@ liberty
 literacy
 loneliness
 loot
+magic
 mancala
 memory
 milk
@@ -62,6 +64,7 @@ socialism
 society
 solitude
 something
+sorcery
 spaghetti
 stalemate
 star dust
@@ -73,3 +76,4 @@ yahtzee
 water
 wellness
 wine
+witchcraft
