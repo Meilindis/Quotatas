@@ -33,6 +33,7 @@ juice
 justice
 kale
 karma
+lego
 liberty
 literacy
 loneliness

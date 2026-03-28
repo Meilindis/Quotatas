@@ -255,7 +255,7 @@ def template_why():
 
 # Never
 def template_never_again():
-    return (rule() + "Never " + random.choice(word_collections.verbs_intransitive) + "\nunless you're willing to " + random.choice(word_collections.verbs + word_collections.verbs_intransitive))
+    return (rule() + "Never " + random.choice(word_collections.verbs_intransitive) + "\nunless you're willing\nto " + random.choice(word_collections.verbs + word_collections.verbs_intransitive))
 
 # Excuse me
 def template_excuse():
