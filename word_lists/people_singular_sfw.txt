@@ -7,6 +7,7 @@ artist
 astronaut
 baker
 bishop
+boyfriend
 captain
 clown
 coal miner
@@ -22,14 +23,19 @@ engineer
 explorer
 foodie
 geek
+girlfriend
 gnome
 goblin
 halfling
 husband
 king
 knight
+lady
 landlubber
 leprechaun
+lord
+lurkling
+man
 manager
 mayor
 musician
@@ -37,6 +43,7 @@ nerd
 nurse
 orc
 painter
+paramour
 pawn
 pilot
 pirate
@@ -67,3 +74,4 @@ whisperer
 wife
 witch
 wizard
+woman

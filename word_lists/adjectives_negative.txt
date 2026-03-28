@@ -4,8 +4,10 @@ bad
 bitter
 boring
 bossy
+bumfuzzled
 creepy
 difficult
+dodgy
 dominant
 filthy
 gluttonous
@@ -15,6 +17,7 @@ horrible
 idiotic
 ignorant
 narcissistic
+nefarious
 poor
 salty
 selfish

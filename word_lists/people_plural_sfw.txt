@@ -7,6 +7,7 @@ artists
 astronauts
 bakers
 bishops
+boyfriends
 captains
 clowns
 coal miners
@@ -22,21 +23,27 @@ engineers
 explorers
 foodies
 geeks
+girlfriends
 gnomes
 goblins
 halflings
 husbands
 kings
 knights
+ladies
 landlubbers
 leprechauns
+lords
+lurklings
 managers
 mayors
+men
 musicians
 nerds
 nurses
 orcs
 painters
+paramours
 pawns
 pilots
 pirates
@@ -67,3 +74,4 @@ whisperers
 witches
 wives
 wizards
+women

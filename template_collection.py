@@ -15,15 +15,14 @@ def rule():
     if result !=1:
         return ""
     else:
-        return ("Rule " + str(random.randrange(1, 13, 1)) + ":\n")
+        return ("New rule!\n\n")
 
 def horoscope():
     result = (random.randrange(1, 8, 1))
     if result !=1:
         return ""
     else:
-        horrorscope = random.choice(word_collections.zodiac).split(' ', 1)
-        return (horrorscope[0].capitalize() + "\n" + horrorscope[1] + ":\n")
+        return ("Today's horoscope - " + capitalize_first_letter_only(random.choice(word_collections.zodiac)) + ":\n\n")
 
 def a_or_an(text):
     if text[0] in vowels:
@@ -154,16 +153,15 @@ def template_no_need():
 
 # Potential
 def template_potential():
-    temp1 = random.choice(word_collections.adjectives)
-    temp2 = a_or_an(temp1) + temp1
-    temp3 = random.choice(word_collections.nouns_singular)
+    adj = random.choice(word_collections.adjectives)
+    noun = random.choice(word_collections.nouns_singular)
     choice = random.randrange(0, 1, 1)
     phrase = ""
     if choice == 0:
-        phrase = "\nSeriously. " + capitalize_first_letter_only(a_or_an(temp3)) + " " + temp3 + "."
+        phrase = "\nSeriously.\n" + capitalize_first_letter_only(a_or_an(adj)) + adj + " " + noun + "."
     else:
         phrase =  ""
-    return (horoscope() + "You have the potential\nto become " + temp2 + " " + temp3 + "." + phrase)
+    return (horoscope() + "You have the potential\nto become " + a_or_an(noun) + " " + noun + "." + phrase)
 
 # Results
 def template_results():
@@ -276,7 +274,7 @@ def template_today():
 
 # Do it
 def template_do_it():
-    return (horoscope() + "Start " + random.choice(word_collections.verbs_ing) + " " + random.choice(word_collections.sometimes))
+    return (horoscope() + "Start " + random.choice(word_collections.verbs_ing) + "\n" + random.choice(word_collections.sometimes))
 
 # They're gonna
 def template_gonna():
@@ -292,6 +290,10 @@ def template_coffee():
 	else:
 		item =  random.choice(word_collections.concepts)
 	return ("There's " + item + "\nin that " + random.choice(word_collections.nouns_singular))
+
+# Mum's the word
+def template_silent():
+    return ("You are " + random.choice(word_collections.adjectives) + "?\n...\nMum's the word.")
 
 # List of defined templates (don't forget to add new templates here or they won't be used!)
 template_list = [function_times_three, 
@@ -350,5 +352,6 @@ template_list = [function_times_three,
                  template_today,
                  template_do_it,
                  template_gonna,
-                 template_coffee]
+                 template_coffee,
+                 template_silent]
 

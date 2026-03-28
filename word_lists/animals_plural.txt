@@ -1,5 +1,6 @@
 apes
 badgers
+bats
 bees
 butterflies
 capybaras
@@ -14,6 +15,7 @@ dragons
 ducklings
 ducks
 elephants
+flies
 frogs
 geese
 giraffes
@@ -27,6 +29,7 @@ kittens
 lions
 lynxes
 monkeys
+mosquitoes
 owls
 parrots
 pigeons

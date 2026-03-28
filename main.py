@@ -40,22 +40,23 @@ font_collection = [['GalaferaMedium-V4xze.ttf', 26],
                    ]
 
 # Image list: image name, text colour, placement, indent (x), starting height (y), whether or not extra indentation is necessary for multiline
-image_collection = [['a_fetters_recto_b_several_figures_verso.png', (145, 0, 140), 'justify', 50, 365, 'straight'],
+image_collection = [['a_fetters_recto_b_several_figures_verso.png', (145, 0, 140), 'justify', 20, 365, 'straight'],
                     ['a_luncheon_party_.png', (255, 245, 185), 'justify', 50, 345, 'straight'],
                     ['angry_lady.png', (65, 75, 139), 'justify', 20, 100, 'straight'],
                     ['balloons.png', (65, 75, 139), 'justify', 20, 100, 'straight'],
                     ['blossoms.png', (65, 75, 139), 'justify', 20, 100, 'straight'],
                     ['cat_snow.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
                     ['coffee.png', (255, 245, 185), 'justify', 20, 345, 'straight'],
-                    ['couple_mountains.png', (29, 37, 82), 'justify', 30, 100, 'straight'],
+                    ['couple_mountains.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
                     ['building_the_freidrich-strasse_station.png', (65, 75, 139), 'justify', 40, 100, 'straight'],
                     ['desert.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
                     ['die_komponistin_sonia_friedman.png', (167, 255, 174), 'justify', 30, 305, 'straight'],
                     ['duck.png', (29, 37, 82), 'justify', 20, 365, 'straight'],
+                    ['flysex.png', (255, 245, 185), 'justify', 20, 100, 'straight'],
                     ['giraffe.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
                     ['heart_cloud.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
                     ['joy.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
-                    ['ladybug.png', (29, 37, 82), 'justify', 32, 100, 'straight'],
+                    ['ladybug.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
                     ['les_amateurs_d_estampes.png', (207, 220, 255), 'justify', 40, 100, 'straight'],
                     ['milky_way.png', (255, 245, 185), 'justify', 20, 100, 'straight'],
                     ['rain_people.png', (29, 37, 82), 'justify', 20, 365, 'straight'],
@@ -63,12 +64,13 @@ image_collection = [['a_fetters_recto_b_several_figures_verso.png', (145, 0, 140
                     ['silhouettes.png', (65, 75, 139), 'justify', 20, 100, 'straight'],
                     ['squirrel.png', (255, 245, 185), 'justify', 20, 345, 'straight'],
                     ['sunset.png', (65, 75, 139), 'justify', 20, 100, 'straight'],
-                    ['the_tournament.png', (255, 245, 215), 'justify', 30, 100, 'straight'],
+                    ['the_tournament.png', (255, 245, 215), 'justify', 20, 100, 'straight'],
                     ['the_visit_.png', (142, 255, 221), 'justify', 20, 365, 'straight'],
-                    ['three_girls_in_profile.png', (24, 0, 59), 'justify', 30, 365, 'straight'],
+                    ['three_girls_in_profile.png', (24, 0, 59), 'justify', 20, 365, 'straight'],
                     ['twelve_men_.png', (199, 17, 234), 'justify', 30, 100, 'straight'],
                     ['tegeltje.png', (65, 75, 139), 'justify', 60, 225, 'curve'],
                     ['treefrog.png', (255, 245, 185), 'justify', 20, 345, 'straight'],
+                    ['vase.png', (29, 37, 82), 'justify', 20, 345, 'straight'],
                     ['woman.png', (255, 245, 185), 'justify', 20, 100, 'straight'],
                     ]
 
@@ -143,7 +145,7 @@ if __name__ == "__main__":
             nav_container = QWidget()
             nav_container.setLayout(layoutH)
 
-            # Arrange all elements vertically
+            # Arrange all settings elements vertically
             layoutV = QVBoxLayout()       
             layoutV.addWidget(self.negative_toggle)
             layoutV.addWidget(self.nsfw_toggle)
@@ -154,6 +156,7 @@ if __name__ == "__main__":
             vert_container = QWidget()
             vert_container.setLayout(layoutV)
 
+            # Add quotes and navigation to their own container
             quoteLayout = QVBoxLayout()
             quoteLayout.addWidget(self.quote_area)
             quoteLayout.addWidget(nav_container)
@@ -162,6 +165,7 @@ if __name__ == "__main__":
             quote_container = QWidget()
             quote_container.setLayout(quoteLayout)
 
+            # Combine everything into one layout
             layoutApp = QHBoxLayout()
             layoutApp.addWidget(vert_container)
             layoutApp.addWidget(quote_container)
@@ -275,7 +279,8 @@ if __name__ == "__main__":
                     if selected_image[5] == 'curve':
                         x = x_val + 25
                     
-                    else: x = x_valy = y_val - 65
+                    else: x = x_val
+                    y = y_val - 65
                     for line in lines:
                         img.write_text_box((x, y), line, box_width=200, font_filename=font_name,
                                 font_size=font_custom_size, color=color, place=location)

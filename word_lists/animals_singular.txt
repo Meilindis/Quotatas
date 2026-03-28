@@ -1,5 +1,6 @@
 ape
 badger
+bat
 bee
 butterfly
 capybara
@@ -14,6 +15,7 @@ dragonfly
 duck
 duckling
 elephant
+fly
 frog
 giraffe
 goat
@@ -27,6 +29,7 @@ kitten
 lion
 lynx
 monkey
+mosquito
 owl
 parrot
 pig

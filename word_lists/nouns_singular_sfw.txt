@@ -43,6 +43,8 @@ cutlery
 dress
 dungeon
 easter egg
+elixir
+event horizon
 fable
 fairy tale
 flower
