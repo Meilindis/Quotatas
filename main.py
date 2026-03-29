@@ -24,20 +24,20 @@ from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QTextEdit,
 
 # Font list to randomly choose from: font name, font size that mostly fits
 font_collection = [
-                   #['SuperJoyful-lxwPq.ttf', 30], # Free for commercial use
-                   #['SuperChiby-BL62V.ttf', 30],
-                   #['MouldyCheeseRegular-WyMWG.ttf', 30],
-                   #['SparkyStonesRegular-BW6ld.ttf', 30],
-                   #['SuperLarky-nALLR.ttf', 28],
-                   #['Martius-LV9L4.ttf', 32],
-                   #['BorderWall-OG55o.otf', 30],
-                   #['SuperSalad-qZgvV.ttf', 30],
-                   #['MangabeyRegular-rgqVO.otf', 32],
-                   #['SuperChips-5yBYL.ttf', 30],
-                   #['AmberyGardenRegular-PKjGd.ttf', 30],
-                   #['Wiltype-9MA1y.ttf', 32],
-                   #['Excludeditalic-jEr99.ttf', 26],
-                   #['Playball-q6o1.ttf', 30],
+                   ['SuperJoyful-lxwPq.ttf', 30], # Free for commercial use
+                   ['SuperChiby-BL62V.ttf', 30],
+                   ['MouldyCheeseRegular-WyMWG.ttf', 30],
+                   ['SparkyStonesRegular-BW6ld.ttf', 30],
+                   ['SuperLarky-nALLR.ttf', 28],
+                   ['Martius-LV9L4.ttf', 32],
+                   ['BorderWall-OG55o.otf', 30],
+                   ['SuperSalad-qZgvV.ttf', 30],
+                   ['MangabeyRegular-rgqVO.otf', 32],
+                   ['SuperChips-5yBYL.ttf', 30],
+                   ['AmberyGardenRegular-PKjGd.ttf', 30],
+                   ['Wiltype-9MA1y.ttf', 32],
+                   ['Excludeditalic-jEr99.ttf', 26],
+                   ['Playball-q6o1.ttf', 30],
                    ['SandanaRegular-JR5q7.ttf', 30]
                    ]
 
