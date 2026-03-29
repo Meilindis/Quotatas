@@ -338,6 +338,18 @@ def template_behind():
 def template_somebody():
     return ("Somebody has to " + random.choice(word_collections.verbs + word_collections.verbs_intransitive) + ".\nBe that somebody.")
 
+# You can
+def template_you_can():
+    temp = random.choice(word_collections.verbs)
+    return (rule() + "You can " + temp + "\nwho you want to " + temp + ".\n" + capitalize_first_letter_only(random.choice(word_collections.people_plural)) + " love you.")
+
+# It be like that
+def template_like():
+    noun1 = random.choice(word_collections.nouns_singular)
+    noun2 = random.choice(word_collections.nouns_singular)
+    end = random.choice([capitalize_first_letter_only(a_or_an(noun2) + noun2), capitalize_first_letter_only(random.choice(word_collections.concepts))])
+    return (capitalize_first_letter_only(random.choice(word_collections.concepts)) + " is often\nlike " + a_or_an(noun1) + noun1 + ".\n" + end + ".")
+
 # List of defined templates (don't forget to add new templates here or they won't be used!)
 template_list = [template_times_three, 
                  template_three_compliments, 
@@ -407,5 +419,7 @@ template_list = [template_times_three,
                  template_avoid,
                  template_behind,
                  template_somebody,
+                 template_you_can,
+                 template_like,
                  ]
 
