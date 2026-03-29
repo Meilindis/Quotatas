@@ -235,7 +235,7 @@ def template_never():
 # Needs
 def template_need():
     temp = random.choice(word_collections.adjectives)
-    return (rule() + "You just need " + a_or_an(temp) + temp + " " + random.choice(word_collections.nouns_singular))
+    return (rule() + "You just need\n" + a_or_an(temp) + temp + " " + random.choice(word_collections.nouns_singular))
 
 # You must
 def template_must():
@@ -243,11 +243,11 @@ def template_must():
 
 # A good day
 def template_day():
-    return ("Today is a good day to " + random.choice(word_collections.verbs))
+    return ("Today is a good day\nto " + random.choice(word_collections.verbs))
 
 # LLAP
 def template_llap():
-    return (rule() + capitalize_first_letter_only(random.choice(word_collections.verbs)) + " " + random.choice(word_collections.adjectives) + "\nand " + random.choice(word_collections.verbs + word_collections.verbs_intransitive))
+    return (rule() + capitalize_first_letter_only(random.choice(word_collections.verbs)) + " " + random.choice(word_collections.adverbs) + "\nand " + random.choice(word_collections.verbs + word_collections.verbs_intransitive))
 
 # Why?
 def template_why():
@@ -278,7 +278,7 @@ def template_do_it():
 
 # They're gonna
 def template_gonna():
-	return (capitalize_first_letter_only(random.choice(word_collections.nouns_plural)) + " are gonna " + random.choice(word_collections.verbs) + " you!")
+	return (horoscope() + capitalize_first_letter_only(random.choice(word_collections.nouns_plural)) + " are gonna " + random.choice(word_collections.verbs) + " you!")
 
 # There's coffee...
 def template_coffee():
@@ -291,9 +291,14 @@ def template_coffee():
 		item =  random.choice(word_collections.concepts)
 	return ("There's " + item + "\nin that " + random.choice(word_collections.nouns_singular))
 
-# Mum's the word
-def template_silent():
-    return ("You are " + random.choice(word_collections.adjectives) + "?\n...\nMum's the word.")
+# The world
+def template_world():
+    return (horoscope() + capitalize_first_letter_only(random.choice(word_collections.adjectives)) + " " + random.choice(word_collections.nouns_plural) + " are going\nto rule the world.")
+    
+# Taskmaster
+def template_taskmaster():
+	adj = random.choice(word_collections.adjectives)
+	return (capitalize_first_letter_only(random.choice(word_collections.verbs)) + " " + a_or_an(adj) + adj + " " + random.choice(word_collections.nouns_singular) + ".\nYou have " + str(random.randrange(2, 30, 1)) + " " + random.choice(["seconds", "minutes", "hours", "days"]) + ".\nYour time starts now.")
 
 # List of defined templates (don't forget to add new templates here or they won't be used!)
 template_list = [function_times_three, 
@@ -353,5 +358,6 @@ template_list = [function_times_three,
                  template_do_it,
                  template_gonna,
                  template_coffee,
-                 template_silent]
+                 template_world,
+                 template_taskmaster]
 

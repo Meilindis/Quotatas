@@ -49,6 +49,7 @@ sensible
 sensitive
 short
 silver
+slick
 slow
 smooth
 soft

@@ -6,6 +6,7 @@ angel
 artist
 astronaut
 baker
+best friend
 bishop
 boyfriend
 captain
