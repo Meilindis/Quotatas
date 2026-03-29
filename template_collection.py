@@ -265,8 +265,7 @@ def template_excuse():
 
 # Outweigh
 def template_outweigh():
-    selected = random.choice(word_collections.nouns_plural)
-    return (rule() + "The " + selected + "\nof the " + random.choice(word_collections.nouns_plural) + "\n" + random.choice(word_collections.verbs) + " the " + selected + "\nof the " + random.choice(word_collections.nouns_plural))
+    return (rule() + "The " + random.choice(word_collections.nouns_plural) + "\nof the " + random.choice(word_collections.nouns_plural) + "\noutweigh the " + random.choice(word_collections.nouns_plural) + "\nof the " + random.choice(word_collections.nouns_plural))
 
 # Today
 def template_today():
