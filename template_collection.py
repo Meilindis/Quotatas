@@ -315,7 +315,7 @@ def template_diff_people():
 
 # Our part
 def template_our_part():
-    return ("If we all do our part\nwe can make " + random.choice(word_collections.nouns_plural + word_collections.people_plural) + " " + random.choice(word_collections.verbs))
+    return ("If we all do our part\nwe can make " + random.choice(word_collections.adjectives) + " " + random.choice(word_collections.nouns_plural + word_collections.people_plural) + " " + random.choice(word_collections.verbs))
 
 # How to
 def template_how_to():
