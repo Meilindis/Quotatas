@@ -300,6 +300,24 @@ def template_taskmaster():
 	adj = random.choice(word_collections.adjectives)
 	return (capitalize_first_letter_only(random.choice(word_collections.verbs)) + " " + a_or_an(adj) + adj + " " + random.choice(word_collections.nouns_singular) + ".\nYou have " + str(random.randrange(2, 30, 1)) + " " + random.choice(["seconds", "minutes", "hours", "days"]) + ".\nYour time starts now.")
 
+# Eufemism
+def template_eufemism():
+    return ("\"" + capitalize_first_letter_only(random.choice(word_collections.nouns_singular)) + "\"\nis just a eufemism for\n\"" + random.choice(word_collections.nouns_singular) + "\"")
+
+# Embrace
+def template_embrace():
+    temp = random.choice(word_collections.nouns_singular)
+    return ("Embrace " + a_or_an(temp) + temp + "\nNot " + random.choice(word_collections.concepts))
+
+# Different people
+def template_diff_people():
+    people = random.choice(word_collections.people_plural)
+    return (capitalize_first_letter_only(random.choice(word_collections.adjectives)) + " " + people + " " + random.choice(word_collections.verbs) + ",\n" + capitalize_first_letter_only(random.choice(word_collections.adjectives)) + " " + people + " " + random.choice(word_collections.verbs))
+
+# Our part
+def template_our_part():
+    return ("If we all do our part\nwe can make " + random.choice(word_collections.nouns_plural + word_collections.people_plural) + " " + random.choice(word_collections.verbs))
+
 # List of defined templates (don't forget to add new templates here or they won't be used!)
 template_list = [function_times_three, 
                  template_three_compliments, 
@@ -359,5 +377,9 @@ template_list = [function_times_three,
                  template_gonna,
                  template_coffee,
                  template_world,
-                 template_taskmaster]
+                 template_taskmaster,
+                 template_eufemism,
+                 template_embrace,
+                 template_diff_people,
+                 template_our_part]
 

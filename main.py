@@ -41,7 +41,7 @@ font_collection = [['GalaferaMedium-V4xze.ttf', 26],
 
 # Image list: image name, text colour, placement, indent (x), starting height (y), whether or not extra indentation is necessary for multiline
 image_collection = [['a_fetters_recto_b_several_figures_verso.png', (145, 0, 140), 'justify', 20, 345, 'straight'],
-                    ['a_luncheon_party_.png', (255, 245, 185), 'justify', 50, 345, 'straight'],
+                    ['a_luncheon_party_.png', (255, 245, 185), 'justify', 20, 345, 'straight'],
                     ['angry_lady.png', (65, 75, 139), 'justify', 20, 100, 'straight'],
                     ['balloons.png', (65, 75, 139), 'justify', 20, 100, 'straight'],
                     ['bat.png', (65, 75, 139), 'justify', 20, 345, 'straight'],
