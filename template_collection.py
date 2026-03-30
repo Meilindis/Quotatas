@@ -350,6 +350,12 @@ def template_like():
     end = random.choice([capitalize_first_letter_only(a_or_an(noun2) + noun2), capitalize_first_letter_only(random.choice(word_collections.concepts))])
     return (capitalize_first_letter_only(random.choice(word_collections.concepts)) + " is often\nlike " + a_or_an(noun1) + noun1 + ".\n" + end + ".")
 
+# Effect
+def template_effect():
+    noun = random.choice(word_collections.nouns_singular)
+    end = random.choice([a_or_an(noun) + noun, random.choice(word_collections.concepts)])
+    return (capitalize_first_letter_only(random.choice(word_collections.concepts)) + "\nis usually followed\nby " + end)
+
 # List of defined templates (don't forget to add new templates here or they won't be used!)
 template_list = [template_times_three, 
                  template_three_compliments, 
@@ -421,5 +427,6 @@ template_list = [template_times_three,
                  template_somebody,
                  template_you_can,
                  template_like,
+                 template_effect,
                  ]
 
