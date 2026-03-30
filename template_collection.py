@@ -59,7 +59,7 @@ def template_one_compliment():
 
 # General statement
 def template_general():
-    return (rule() + "Being " + random.choice(word_collections.adjectives) + " is " + random.choice(word_collections.adjectives))
+    return (rule() + "Being " + random.choice(word_collections.adjectives) + "\nis " + random.choice(word_collections.adjectives))
 
 # Surprise
 def template_surprise_singular():
@@ -119,7 +119,7 @@ def template_change():
     current_noun = random.choice(word_collections.nouns_singular)
     temp1 = random.choice(word_collections.adjectives)
     temp2 = random.choice(word_collections.adjectives)
-    return (rule() + "Don't be " + a_or_an(temp1) + temp1 + " " + current_noun + ".\nBe " + a_or_an(temp2) + temp2 + " " + current_noun + ".")
+    return (rule() + "Don't be " + a_or_an(temp1) + "\n" + temp1 + " " + current_noun + ".\nBe " + a_or_an(temp2) + "\n" +  temp2 + " " + current_noun + ".")
     
 # Possibilities
 def template_possible():
@@ -141,7 +141,7 @@ def template_strangely_true():
 
 # Really
 def template_really():
-    return (rule() + capitalize_first_letter_only(random.choice(word_collections.nouns_plural + word_collections.concepts)) + "\nActually good for " + random.choice(word_collections.nouns_plural + word_collections.concepts))
+    return (rule() + capitalize_first_letter_only(random.choice(word_collections.nouns_plural + word_collections.concepts)) + "\nActually good\nfor " + random.choice(word_collections.nouns_plural + word_collections.concepts))
 
 # Explanation
 def template_explanation():
