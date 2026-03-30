@@ -1,5 +1,0 @@
-[project]
-name = "PySide QtQuick Project"
-
-[tool.pyside6-project]
-files = ["DutchWisdomBot/Main.qml", "DutchWisdomBot/qmldir", "main.py", "word_collections.py"]

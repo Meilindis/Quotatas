@@ -95,7 +95,7 @@ if __name__ == "__main__":
             # Store the quote here:
             self.quote = ""
 
-            self.setWindowTitle("Dutch Wisdom Bot")
+            self.setWindowTitle("Quotatas")
 
             # Button to generate quotes
             self.button = QPushButton("Give me some wisdom!")
