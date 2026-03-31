@@ -26,9 +26,9 @@ from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QTextEdit,
 font_collection = [
                    ['SuperJoyful-lxwPq.ttf', 30], # Free for commercial use
                    ['SuperChiby-BL62V.ttf', 30],
-                   ['MouldyCheeseRegular-WyMWG.ttf', 30],
-                   ['SparkyStonesRegular-BW6ld.ttf', 30],
-                   ['SuperLarky-nALLR.ttf', 28],
+                   ['MouldyCheeseRegular-WyMWG.ttf', 28],
+                   ['SparkyStonesRegular-BW6ld.ttf', 28],
+                   ['SuperLarky-nALLR.ttf', 26],
                    ['Martius-LV9L4.ttf', 32],
                    ['BorderWall-OG55o.otf', 30],
                    ['SuperSalad-qZgvV.ttf', 30],
@@ -36,7 +36,7 @@ font_collection = [
                    ['SuperChips-5yBYL.ttf', 30],
                    ['AmberyGardenRegular-PKjGd.ttf', 30],
                    ['Wiltype-9MA1y.ttf', 32],
-                   ['Excludeditalic-jEr99.ttf', 26],
+                   ['Excludeditalic-jEr99.ttf', 24],
                    ['Playball-q6o1.ttf', 30],
                    ['SandanaRegular-JR5q7.ttf', 30]
                    ]
@@ -88,7 +88,6 @@ image_collection = [['a_fetters_recto_b_several_figures_verso.png', (145, 0, 140
                     ['treefrog.png', (199, 17, 234), 'justify', 20, 345, 'straight'],
                     ['tulips.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
                     ['twelve_men_.png', (199, 17, 234), 'justify', 30, 100, 'straight'],
-                    ['vase.png', (29, 37, 82), 'justify', 20, 345, 'straight'],
                     ['woman.png', (255, 245, 185), 'justify', 20, 100, 'straight'],
                     ['woman_flowers.png', (29, 37, 82), 'justify', 20, 100, 'straight']
                     ]
@@ -302,6 +301,17 @@ if __name__ == "__main__":
                     
                     else: x = x_val
                     y = y_val - 65
+                    for line in lines:
+                        img.write_text_box((x, y), line, box_width=200, font_filename=font_name,
+                                font_size=font_custom_size, color=color, place=location)
+                        y += 35
+                elif nr_of_lines == 7:
+                    lines = text.splitlines()
+                    if selected_image[5] == 'curve':
+                        x = x_val + 30
+                    
+                    else: x = x_val
+                    y = y_val - 75
                     for line in lines:
                         img.write_text_box((x, y), line, box_width=200, font_filename=font_name,
                                 font_size=font_custom_size, color=color, place=location)
