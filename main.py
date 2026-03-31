@@ -42,6 +42,7 @@ font_collection = [
                    ]
 
 # Image list: image name, text colour, placement, indent (x), starting height (y), whether or not extra indentation is necessary for multiline
+# TODO: setup differently: include top/centre/bottom and indent, and update the text placement function.
 image_collection = [['a_fetters_recto_b_several_figures_verso.png', (145, 0, 140), 'justify', 20, 345, 'straight'],
                     ['a_luncheon_party_.png', (255, 245, 185), 'justify', 20, 345, 'straight'],
                     ['angry_lady.png', (65, 75, 139), 'justify', 20, 100, 'straight'],
@@ -96,9 +97,6 @@ if __name__ == "__main__":
     class MainWindow(QMainWindow):
         def __init__(self):
             super().__init__()
-
-            # Store the quote here:
-            self.quote = ""
 
             self.setWindowTitle("Quotatas")
 
@@ -195,8 +193,11 @@ if __name__ == "__main__":
 
             self.setCentralWidget(container)    
 
+            self.quote = ""
             self.quote_history = []
             self.full_history = []
+            self.font = None
+            self.image = None
             self.selected_quote = 0
 
             self.darkmode_toggle.setChecked(True)
@@ -226,10 +227,13 @@ if __name__ == "__main__":
 
             # self.quote_field.setText(self.quote)
 
+        # Split up. Create a function that selects quote, image, font, and that calls the other function
+        # to create the final image. That way, you can call that function with a historic set as well.
         def create_quote_image(self):
             # Prepare the image
             current_dir = Path(__file__).parent.absolute()
             selected_image = random.choice(image_collection)
+            self.image = selected_image
             image_path = os.path.join(os.path.join(current_dir, 'images'), selected_image[0])
             image = Image.open(image_path)
 
@@ -238,13 +242,13 @@ if __name__ == "__main__":
             x_val = selected_image[3] # indent to the right from 0 (base is one line)
             y_val = selected_image[4] # pixels down from zero
             text = self.quote
-            font = random.choice(font_collection)
-            font_name = os.path.join(os.path.join(current_dir, 'fonts'), font[0])
-            font_custom_size = font[1]
+            self.font = random.choice(font_collection)
+            font_name = os.path.join(os.path.join(current_dir, 'fonts'), self.font[0])
+            font_custom_size = self.font[1]
             img = ImageText(image, background=(255, 255, 255, 200)) # 200 = alpha
             self.full_history.append([self.quote, selected_image, font])
 
-
+            # TODO: Adapt so that top placement starts at top, bottom placement is relative to lowest line, and centre is like it's now.
             if "\n" not in text:
                 #write_text_box will split the text in many lines, based on box_width
                 #`place` can be 'left' (default), 'right', 'center' or 'justify'
