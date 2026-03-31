@@ -46,11 +46,13 @@ image_collection = [['a_fetters_recto_b_several_figures_verso.png', (145, 0, 140
                     ['a_luncheon_party_.png', (255, 245, 185), 'justify', 20, 345, 'straight'],
                     ['angry_lady.png', (65, 75, 139), 'justify', 20, 100, 'straight'],
                     ['balloons.png', (65, 75, 139), 'justify', 20, 100, 'straight'],
-                    ['bat.png', (29, 37, 82), 'justify', 20, 345, 'straight'],
+                    ['bananas.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
+                    ['bat.png', (255, 245, 185), 'justify', 20, 345, 'straight'],
                     ['bigsplash.png', (199, 17, 234), 'justify', 20, 100, 'straight'],
                     ['blossoms.png', (65, 75, 139), 'justify', 20, 100, 'straight'],
                     ['cat_snow.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
                     ['clown.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
+                    ['chocolate.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
                     ['coffee.png', (255, 245, 185), 'justify', 20, 345, 'straight'],
                     ['couple_mountains.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
                     ['building_the_freidrich-strasse_station.png', (65, 75, 139), 'justify', 20, 100, 'straight'],
@@ -64,9 +66,11 @@ image_collection = [['a_fetters_recto_b_several_figures_verso.png', (145, 0, 140
                     ['joy.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
                     ['ladybug.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
                     ['les_amateurs_d_estampes.png', (207, 220, 255), 'justify', 40, 100, 'straight'],
+                    ['lonelybot.png', (255, 255, 255), 'justify', 20, 100, 'curve'],
                     ['megaphone.png', (29, 37, 82), 'justify', 60, 100, 'curve'],
                     ['milky_way.png', (255, 245, 185), 'justify', 20, 100, 'straight'],
                     ['monkey.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
+                    ['puffin.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
                     ['rabbit.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
                     ['rain_people.png', (29, 37, 82), 'justify', 20, 365, 'straight'],
                     ['reading.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
@@ -76,6 +80,7 @@ image_collection = [['a_fetters_recto_b_several_figures_verso.png', (145, 0, 140
                     ['silhouettes.png', (65, 75, 139), 'justify', 20, 100, 'straight'],
                     ['squirrel.png', (255, 255, 255), 'justify', 20, 345, 'straight'],
                     ['sunset.png', (65, 75, 139), 'justify', 20, 100, 'straight'],
+                    ['tea.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
                     ['the_tournament.png', (255, 245, 215), 'justify', 20, 100, 'straight'],
                     ['the_visit_.png', (142, 255, 221), 'justify', 20, 345, 'straight'],
                     ['three_girls_in_profile.png', (24, 0, 59), 'justify', 20, 345, 'straight'],
@@ -85,6 +90,7 @@ image_collection = [['a_fetters_recto_b_several_figures_verso.png', (145, 0, 140
                     ['twelve_men_.png', (199, 17, 234), 'justify', 30, 100, 'straight'],
                     ['vase.png', (29, 37, 82), 'justify', 20, 345, 'straight'],
                     ['woman.png', (255, 245, 185), 'justify', 20, 100, 'straight'],
+                    ['woman_flowers.png', (29, 37, 82), 'justify', 20, 100, 'straight']
                     ]
 
 if __name__ == "__main__":

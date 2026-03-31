@@ -15,7 +15,7 @@ def rule():
     if result !=1:
         return ""
     else:
-        return ("New rule!\n\n")
+        return ("Rule " + str(random.randrange(1, 12, 1)) + ":\n\n")
 
 def horoscope():
     result = (random.randrange(1, 8, 1))
