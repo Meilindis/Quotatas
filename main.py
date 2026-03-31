@@ -246,7 +246,7 @@ if __name__ == "__main__":
             font_name = os.path.join(os.path.join(current_dir, 'fonts'), self.font[0])
             font_custom_size = self.font[1]
             img = ImageText(image, background=(255, 255, 255, 200)) # 200 = alpha
-            self.full_history.append([self.quote, selected_image, font])
+            self.full_history.append([self.quote, selected_image, self.font])
 
             # TODO: Adapt so that top placement starts at top, bottom placement is relative to lowest line, and centre is like it's now.
             if "\n" not in text:
