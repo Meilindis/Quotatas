@@ -24,35 +24,35 @@ from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QTextEdit,
 
 # Font list to randomly choose from: font name, font size that mostly fits
 font_collection = [
-                   ['SuperJoyful-lxwPq.ttf', 30], # Free for commercial use
+                   ['SuperJoyful-lxwPq.ttf', 26], # Free for commercial use
                    ['SuperChiby-BL62V.ttf', 30],
-                   ['MouldyCheeseRegular-WyMWG.ttf', 28],
-                   ['SparkyStonesRegular-BW6ld.ttf', 28],
-                   ['SuperLarky-nALLR.ttf', 26],
+                   ['MouldyCheeseRegular-WyMWG.ttf', 26],
+                   ['SparkyStonesRegular-BW6ld.ttf', 30],
+                   ['SuperLarky-nALLR.ttf', 20],
                    ['Martius-LV9L4.ttf', 32],
-                   ['BorderWall-OG55o.otf', 30],
+                   ['BorderWall-OG55o.otf', 26],
                    ['SuperSalad-qZgvV.ttf', 30],
                    ['MangabeyRegular-rgqVO.otf', 30],
-                   ['SuperChips-5yBYL.ttf', 30],
-                   ['AmberyGardenRegular-PKjGd.ttf', 30],
+                   ['SuperChips-5yBYL.ttf', 26],
+                   ['AmberyGardenRegular-PKjGd.ttf', 26],
                    ['Wiltype-9MA1y.ttf', 32],
-                   ['Excludeditalic-jEr99.ttf', 24],
+                   ['Excludeditalic-jEr99.ttf', 20],
                    ['Playball-q6o1.ttf', 30],
-                   ['SandanaRegular-JR5q7.ttf', 30]
+                   ['SandanaRegular-JR5q7.ttf', 24]
                    ]
 
 # Image list: image name, text colour, placement, indent (x), starting height (y), whether or not extra indentation is necessary for multiline
-# TODO: setup differently: include top/centre/bottom and indent, and update the text placement function.
 image_collection = [['a_fetters_recto_b_several_figures_verso.png', (145, 0, 140), 'justify', 20, 345, 'straight'],
                     ['a_luncheon_party_.png', (255, 245, 185), 'justify', 20, 345, 'straight'],
                     ['angry_lady.png', (65, 75, 139), 'justify', 20, 100, 'straight'],
                     ['balloons.png', (65, 75, 139), 'justify', 20, 100, 'straight'],
                     ['bananas.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
                     ['bat.png', (255, 245, 185), 'justify', 20, 345, 'straight'],
-                    ['bigsplash.png', (199, 17, 234), 'justify', 20, 100, 'straight'],
+                    ['bigsplash.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
                     ['blossoms.png', (65, 75, 139), 'justify', 20, 100, 'straight'],
                     ['cat_snow.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
                     ['clown.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
+                    ['chess.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
                     ['chocolate.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
                     ['coffee.png', (255, 245, 185), 'justify', 20, 345, 'straight'],
                     ['couple_mountains.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
@@ -62,7 +62,9 @@ image_collection = [['a_fetters_recto_b_several_figures_verso.png', (145, 0, 140
                     ['dog.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
                     ['duck.png', (29, 37, 82), 'justify', 20, 345, 'straight'],
                     ['flysex.png', (255, 245, 185), 'justify', 20, 100, 'straight'],
+                    ['galaxy.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
                     ['giraffe.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
+                    ['gnome.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
                     ['heart_cloud.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
                     ['joy.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
                     ['ladybug.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
@@ -74,6 +76,7 @@ image_collection = [['a_fetters_recto_b_several_figures_verso.png', (145, 0, 140
                     ['puffin.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
                     ['rabbit.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
                     ['rain_people.png', (29, 37, 82), 'justify', 20, 365, 'straight'],
+                    ['rainbow.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
                     ['reading.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
                     ['rider.png', (0, 0, 0), 'justify', 20, 345, 'straight'],
                     ['robot.png', (199, 17, 234), 'justify', 20, 100, 'straight'],
@@ -97,6 +100,9 @@ if __name__ == "__main__":
     class MainWindow(QMainWindow):
         def __init__(self):
             super().__init__()
+
+            # Store the quote here:
+            self.quote = ""
 
             self.setWindowTitle("Quotatas")
 
@@ -173,7 +179,7 @@ if __name__ == "__main__":
             vert_container.setLayout(layoutV)
 
             # Add quotes and navigation to their own container
-            quoteLayout = QVBoxLayout()
+            quoteLayout = QHBoxLayout()
             quoteLayout.addWidget(self.quote_area)
             quoteLayout.addWidget(nav_container)
             quoteLayout.addWidget(self.button)
@@ -182,7 +188,7 @@ if __name__ == "__main__":
             quote_container.setLayout(quoteLayout)
 
             # Combine everything into one layout
-            layoutApp = QHBoxLayout()
+            layoutApp = QVBoxLayout()
             layoutApp.addWidget(vert_container)
             layoutApp.addWidget(quote_container)
 
@@ -193,11 +199,8 @@ if __name__ == "__main__":
 
             self.setCentralWidget(container)    
 
-            self.quote = ""
             self.quote_history = []
             self.full_history = []
-            self.font = None
-            self.image = None
             self.selected_quote = 0
 
             self.darkmode_toggle.setChecked(True)
@@ -227,13 +230,10 @@ if __name__ == "__main__":
 
             # self.quote_field.setText(self.quote)
 
-        # Split up. Create a function that selects quote, image, font, and that calls the other function
-        # to create the final image. That way, you can call that function with a historic set as well.
         def create_quote_image(self):
             # Prepare the image
             current_dir = Path(__file__).parent.absolute()
             selected_image = random.choice(image_collection)
-            self.image = selected_image
             image_path = os.path.join(os.path.join(current_dir, 'images'), selected_image[0])
             image = Image.open(image_path)
 
@@ -242,13 +242,13 @@ if __name__ == "__main__":
             x_val = selected_image[3] # indent to the right from 0 (base is one line)
             y_val = selected_image[4] # pixels down from zero
             text = self.quote
-            self.font = random.choice(font_collection)
-            font_name = os.path.join(os.path.join(current_dir, 'fonts'), self.font[0])
-            font_custom_size = self.font[1]
+            font = random.choice(font_collection)
+            font_name = os.path.join(os.path.join(current_dir, 'fonts'), font[0])
+            font_custom_size = font[1]
             img = ImageText(image, background=(255, 255, 255, 200)) # 200 = alpha
-            self.full_history.append([self.quote, selected_image, self.font])
+            self.full_history.append([self.quote, selected_image, font])
 
-            # TODO: Adapt so that top placement starts at top, bottom placement is relative to lowest line, and centre is like it's now.
+
             if "\n" not in text:
                 #write_text_box will split the text in many lines, based on box_width
                 #`place` can be 'left' (default), 'right', 'center' or 'justify'
@@ -305,17 +305,6 @@ if __name__ == "__main__":
                     
                     else: x = x_val
                     y = y_val - 65
-                    for line in lines:
-                        img.write_text_box((x, y), line, box_width=200, font_filename=font_name,
-                                font_size=font_custom_size, color=color, place=location)
-                        y += 35
-                elif nr_of_lines == 7:
-                    lines = text.splitlines()
-                    if selected_image[5] == 'curve':
-                        x = x_val + 30
-                    
-                    else: x = x_val
-                    y = y_val - 75
                     for line in lines:
                         img.write_text_box((x, y), line, box_width=200, font_filename=font_name,
                                 font_size=font_custom_size, color=color, place=location)

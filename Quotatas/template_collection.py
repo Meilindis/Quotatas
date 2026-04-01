@@ -165,7 +165,7 @@ def template_potential():
 
 # Results
 def template_results():
-    return (capitalize_first_letter_only(random.choice(word_collections.concepts)) + " can end in " + random.choice(word_collections.concepts))
+    return (capitalize_first_letter_only(random.choice(word_collections.concepts)) + "\ncan end in " + random.choice(word_collections.concepts))
 
 # Causation
 def template_causation():
@@ -193,7 +193,7 @@ def template_true():
 
 # Right
 def template_right():
-    return (rule() + "Pursue what is " + random.choice(word_collections.adjectives) + "\ninstead of\nwhat is making you " + random.choice(word_collections.adjectives))
+    return (rule() + "Pursue what is " + random.choice(word_collections.adjectives) + "\ninstead of what is\nmaking you " + random.choice(word_collections.adjectives))
     
 # Personality
 def template_personality():
@@ -218,7 +218,7 @@ def template_judgement():
 
 # Watch out!
 def template_watch_out():
-	return (horoscope() + capitalize_first_letter_only(random.choice(word_collections.nouns_plural)) + " are coming for you!")
+	return (horoscope() + capitalize_first_letter_only(random.choice(word_collections.nouns_plural)) + "\nare coming for you!")
 
 # The higher, the fewer
 def template_higher():
@@ -226,7 +226,7 @@ def template_higher():
 
 # More you
 def template_you_superlative():
-    return (horoscope() + "You can be the " + random.choice(word_collections.superlatives) + " " + random.choice(word_collections.nouns_singular))
+    return (horoscope() + "You can be\nthe " + random.choice(word_collections.superlatives) + " " + random.choice(word_collections.nouns_singular))
 
 # Never
 def template_never():
@@ -239,7 +239,7 @@ def template_need():
 
 # You must
 def template_must():
-    return (rule() + "If you are the " + random.choice(word_collections.superlatives) + " at\n" + random.choice(word_collections.situations) + ",\nyou " + random.choice(word_collections.verbs_mandatory_sfw) + " " + random.choice(word_collections.verbs) + " " + random.choice(word_collections.nouns_plural))
+    return (rule() + "If you are the " + random.choice(word_collections.superlatives) + " at\n" + random.choice(word_collections.situations) + ",\nyou " + random.choice(word_collections.verbs_mandatory_sfw) + "\n" + random.choice(word_collections.verbs) + " " + random.choice(word_collections.nouns_plural))
 
 # A good day
 def template_day():
@@ -277,7 +277,7 @@ def template_do_it():
 
 # They're gonna
 def template_gonna():
-	return (horoscope() + capitalize_first_letter_only(random.choice(word_collections.nouns_plural)) + " are gonna " + random.choice(word_collections.verbs) + " you!")
+	return (horoscope() + capitalize_first_letter_only(random.choice(word_collections.nouns_plural)) + " are gonna\n" + random.choice(word_collections.verbs) + " you!")
 
 # There's coffee...
 def template_coffee():
@@ -315,7 +315,7 @@ def template_diff_people():
 
 # Our part
 def template_our_part():
-    return ("If we all do our part\nwe can make " + random.choice(word_collections.adjectives) + " " + random.choice(word_collections.nouns_plural + word_collections.people_plural) + " " + random.choice(word_collections.verbs))
+    return ("If we all do our part\nwe can\nmake " + random.choice(word_collections.adjectives) + " " + random.choice(word_collections.nouns_plural + word_collections.people_plural) + "\n" + random.choice(word_collections.verbs))
 
 # How to
 def template_how_to():
@@ -323,7 +323,7 @@ def template_how_to():
 
 # You know it
 def template_you_know():
-    return ("If you know how to " + random.choice(word_collections.verbs) + " it,\nyou know how to " + random.choice(word_collections.verbs) + " it.")
+    return ("If you know how to\n" + random.choice(word_collections.verbs) + " it,\nyou know how to\n" + random.choice(word_collections.verbs) + " it.")
 
 # Don't avoid
 def template_avoid():
@@ -341,17 +341,17 @@ def template_somebody():
 # You can
 def template_you_can():
     temp = random.choice(word_collections.verbs)
-    return (rule() + "You can " + temp + "\nwho you want to " + temp + ".\n" + capitalize_first_letter_only(random.choice(word_collections.people_plural)) + " love you.")
+    return (rule() + "You can " + temp + "\nwhom you want to " + temp + ".\n" + capitalize_first_letter_only(random.choice(word_collections.people_plural)) + " love you.")
 
 # It be like that
 def template_like():
     noun1 = random.choice(word_collections.nouns_singular)
     noun2 = random.choice(word_collections.nouns_singular)
     end = random.choice([capitalize_first_letter_only(a_or_an(noun2) + noun2), capitalize_first_letter_only(random.choice(word_collections.concepts))])
-    return (capitalize_first_letter_only(random.choice(word_collections.concepts)) + " is often\nlike " + a_or_an(noun1) + noun1 + ".\n" + end + ".")
+    return (capitalize_first_letter_only(random.choice(word_collections.concepts)) + " is often\nlike " + a_or_an(noun1) + noun1 + ":\n" + end + ".")
 
 # Effect
-def template_effect():
+def template_effect_again():
     noun = random.choice(word_collections.nouns_singular)
     end = random.choice([a_or_an(noun) + noun, random.choice(word_collections.concepts)])
     return (capitalize_first_letter_only(random.choice(word_collections.concepts)) + "\nis usually followed\nby " + end)
@@ -427,6 +427,6 @@ template_list = [template_times_three,
                  template_somebody,
                  template_you_can,
                  template_like,
-                 template_effect,
+                 template_effect_again,
                  ]
 
