@@ -18,6 +18,7 @@ hear
 hug
 impress
 knit
+lie
 lift
 love
 make

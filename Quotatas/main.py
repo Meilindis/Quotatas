@@ -66,7 +66,7 @@ image_collection = [['a_fetters_recto_b_several_figures_verso.png', (145, 0, 140
                     ['giraffe.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
                     ['glitter.png', (255, 245, 185), 'justify', 20, 100, 'straight'],
                     ['gnome.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
-                    ['heart_cloud.png', (29, 37, 82), 'justify', 20, 100, 'straight']
+                    ['heart_cloud.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
                     ['jellyfish.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
                     ['joy.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
                     ['kale.png', (255, 245, 185), 'justify', 20, 100, 'straight'],
@@ -192,7 +192,7 @@ if __name__ == "__main__":
             quote_container.setLayout(quoteLayout)
 
             # Combine everything into one layout
-            layoutApp = QVBoxLayout()
+            layoutApp = QHBoxLayout()
             layoutApp.addWidget(vert_container)
             layoutApp.addWidget(quote_container)
 

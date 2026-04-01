@@ -8,8 +8,10 @@ dive
 dream
 fly
 fold origami
+frown
 get dressed
 get drunk
+grin
 laugh
 leg it
 lick subway poles
@@ -23,6 +25,7 @@ rain
 rest
 retreat
 sleep
+smile
 snow
 struggle
 stutter
