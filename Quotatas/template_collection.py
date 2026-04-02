@@ -379,7 +379,11 @@ def template_answer():
 
 # Cliches
 def template_cliches():
-    return ("\"" + capitalize_first_letter_only(random.choice(word_collections.cliches_sfw)) + "\"\nis just another way to say\n\"" + capitalize_first_letter_only(random.choice(word_collections.cliches_sfw)) + "\".")
+    return ("\"" + capitalize_first_letter_only(random.choice(word_collections.cliches)) + "\"\nis just another way to say\n\"" + capitalize_first_letter_only(random.choice(word_collections.cliches)) + "\".")
+
+# Just say it
+def template_sayit():
+    return ("Sometimes,\nit just needs to be said:\n" + capitalize_first_letter_only(random.choice(word_collections.cliches)))
 
 # List of defined templates (don't forget to add new templates here or they won't be used!)
 template_list = [template_times_three, 
@@ -459,5 +463,6 @@ template_list = [template_times_three,
                  template_almost,
                  template_answer,
                  template_cliches,
+                 template_sayit,
                  ]
 
