@@ -20,7 +20,6 @@ hug
 impress
 increase
 knit
-lie
 lift
 love
 make
