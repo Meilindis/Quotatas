@@ -1,6 +1,7 @@
 against
 at
 before
+behind
 beside
 for
 in
@@ -9,4 +10,5 @@ out of
 on
 opposite
 through
+under
 with

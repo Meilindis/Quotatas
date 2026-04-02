@@ -3,6 +3,7 @@ agency
 alcohol
 anything
 art
+breakfast
 bronze
 brouhaha
 chaos
@@ -14,6 +15,7 @@ communism
 copper
 cream
 darkness
+dinner
 earl grey
 earwax
 education
@@ -36,9 +38,11 @@ karma
 laundry
 lego
 liberty
+liquorice
 literacy
 loneliness
 loot
+lunch
 magic
 mancala
 memory
@@ -60,6 +64,7 @@ righteousness
 rosemary
 sage
 salsa
+sauerkraut
 science fiction
 serendipity
 silence
@@ -73,8 +78,10 @@ stalemate
 star dust
 sugar
 sunshine
+supper
 tea
 thyme
+toast
 yahtzee
 water
 wellness

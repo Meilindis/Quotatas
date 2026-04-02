@@ -17,31 +17,39 @@ detective
 devil
 doctor
 dragonborn
+dryad
 elf
 emperor
 empress
 engineer
 explorer
+farmer
 foodie
 geek
 girlfriend
 gnome
 goblin
+god
+goddess
 halfling
 husband
+judge
 king
 knight
 lady
 landlubber
 leprechaun
 lord
+lover
 lurkling
 man
 manager
 mayor
 musician
+nemesis
 nerd
 nurse
+oracle
 orc
 painter
 paramour
@@ -57,6 +65,7 @@ queen
 rocket scientist
 rook
 sailor
+satyr
 scammer
 singer
 sorcerer
@@ -65,6 +74,7 @@ supporter
 sweetheart
 teacher
 technician
+therapist
 time traveller
 tinkerer
 vampire

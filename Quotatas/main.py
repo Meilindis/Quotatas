@@ -127,7 +127,7 @@ if __name__ == "__main__":
 
             # Field that displays the generated quote in text only
             self.text_field = QTextEdit()
-            self.text_field.setStyleSheet('background-color: white; color: black;')
+            self.text_field.setStyleSheet('background-color: #2e2e2e; color: #9e9e9e;')
             self.text_field.setReadOnly(True)
             self.text_field.resize(pixmap.width(), 350)
 
@@ -154,10 +154,6 @@ if __name__ == "__main__":
             self.negative_toggle.stateChanged.connect(self.settings_changed)
             self.negative_toggle.setStyleSheet('background-color: #ffe8a6;')            
             
-            self.darkmode_toggle = QCheckBox("Dark mode")
-            self.darkmode_toggle.stateChanged.connect(self.updatestylesheet)
-            self.darkmode_toggle.setStyleSheet('background-color: #2e2e2e; color: #9e9e9e;')
-
             self.button_export_quotes = QPushButton("Export session quotes")
             self.button_export_quotes.clicked.connect(self.export_quotes)
             self.button_export_quotes.setStyleSheet('background-color: orange; color:black;')
@@ -175,7 +171,6 @@ if __name__ == "__main__":
             layoutV = QVBoxLayout()       
             layoutV.addWidget(self.negative_toggle)
             layoutV.addWidget(self.nsfw_toggle)
-            layoutV.addWidget(self.darkmode_toggle)
             layoutV.addWidget(self.button_export_quotes)
             layoutV.addWidget(self.text_field)            
 
@@ -183,7 +178,7 @@ if __name__ == "__main__":
             vert_container.setLayout(layoutV)
 
             # Add quotes and navigation to their own container
-            quoteLayout = QHBoxLayout()
+            quoteLayout = QVBoxLayout()
             quoteLayout.addWidget(self.quote_area)
             quoteLayout.addWidget(nav_container)
             quoteLayout.addWidget(self.button)
@@ -207,11 +202,8 @@ if __name__ == "__main__":
             self.full_history = []
             self.selected_quote = 0
 
-            self.darkmode_toggle.setChecked(True)
-
             self.import_word_lists()
             self.settings_changed()
-            self.updatestylesheet()
             # self.export_word_lists() # Only enable when you have added new words to the lists and want to alphabetise them.
 
         # Define what happens when the button is pressed
@@ -391,12 +383,6 @@ if __name__ == "__main__":
             # Remove anything but positive
             if self.negative_toggle.isChecked() == False:
                 word_collections.adjectives = word_collections.adjectives_positive               
-
-        def updatestylesheet(self):
-    	    if self.darkmode_toggle.isChecked():
-    		    self.text_field.setStyleSheet('background-color: #2e2e2e; color: #9e9e9e;')
-    	    else:
-    		    self.text_field.setStyleSheet('background-color: white; color: black;')
 
         def previous_quote(self):
             # If there's more than one quote and you're not looking at the first quote, you can go back

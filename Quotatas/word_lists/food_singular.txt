@@ -1,5 +1,6 @@
 apple
 aubergine
+banana
 bean
 bread
 broccoli
@@ -16,14 +17,19 @@ chewing gum
 chilli
 chocolate
 cocktail
+coconut
 cookie
 cucumber
 drink
 egg
 eggplant
 fry
+fry up
+hazelnut
 hot chocolate
+kiwi
 lasagna
+leek
 marshmallow
 meat
 mint
@@ -33,6 +39,7 @@ orange
 pancake
 peach
 peanut butter
+pear
 pepper
 pie
 pineapple

@@ -3,6 +3,7 @@ biggest
 blackest
 bluest
 boldest
+brightest
 coldest
 fastest
 fewest

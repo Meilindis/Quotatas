@@ -10,6 +10,7 @@ comfort
 connect
 consume
 count
+decrease
 draw
 drink
 eat
@@ -17,6 +18,7 @@ find
 hear
 hug
 impress
+increase
 knit
 lie
 lift

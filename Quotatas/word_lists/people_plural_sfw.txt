@@ -17,31 +17,39 @@ detectives
 devils
 doctors
 dragonborns
+dryads
 elves
 emperors
 empresses
 engineers
 explorers
+farmers
 foodies
 geeks
 girlfriends
 gnomes
 goblins
+gods
+goddesses
 halflings
 husbands
+judges
 kings
 knights
 ladies
 landlubbers
 leprechauns
 lords
+lovers
 lurklings
 managers
 mayors
 men
 musicians
+nemeses
 nerds
 nurses
+oracles
 orcs
 painters
 paramours
@@ -57,6 +65,7 @@ queens
 rocket scientists
 rooks
 sailors
+satyrs
 scammers
 singers
 sorcerers
@@ -65,6 +74,7 @@ supporters
 sweethearts
 teachers
 technicians
+therapists
 time travellers
 tinkerers
 vampires

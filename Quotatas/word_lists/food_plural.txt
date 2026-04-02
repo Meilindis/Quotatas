@@ -1,5 +1,6 @@
 apples
 aubergines
+bananas
 beans
 burgers
 burritos
@@ -9,19 +10,26 @@ cherries
 chips
 chocolates
 cocktails
+coconuts
 cookies
 cucumbers
 drinks
 eggplants
 eggs
 fries
+fry ups
+hazelnuts
 herbs
+kiwis
+leeks
 marshmallows
 mints
 mushrooms
 omelettes
 oranges
 pancakes
+peaches
+pears
 peppers
 pies
 pineapples

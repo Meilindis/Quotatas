@@ -10,6 +10,7 @@ comforting
 connecting
 consuming
 counting
+decreasing
 drawing
 drinking
 eating
@@ -17,6 +18,7 @@ finding
 hearing
 hugginh
 impressing
+increasing
 knitting
 lifting
 lying

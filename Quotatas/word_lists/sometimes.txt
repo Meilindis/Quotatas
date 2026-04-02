@@ -1,8 +1,12 @@
 at dawn
 at dusk
 at night
+in a minute
+in an hour
+in a second
 in the afternoon
 in the evening
+in the future
 in the morning
 next Friday
 next Monday
