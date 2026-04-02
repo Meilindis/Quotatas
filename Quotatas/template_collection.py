@@ -367,10 +367,92 @@ def template_yes():
 
 # Less and more
 def template_less_more():
-    return ("The less " + random.choice(word_collections.adjectives) + ", the more " + random.choice(word_collections.adjectives) + ".")
+    return (rule() + "The less " + random.choice(word_collections.adjectives) + ",\nthe more " + random.choice(word_collections.adjectives) + ".")
+
+# Almost the same
+def template_almost():
+    return (capitalize_first_letter_only(random.choice(word_collections.situations)) + "\ncan be quite similar to\n" + random.choice(word_collections.situations))
+
+# Answer
+def template_answer():
+    return ("The answer to\n" + random.choice(word_collections.situations) + "\nis " + random.choice(word_collections.concepts))
 
 # List of defined templates (don't forget to add new templates here or they won't be used!)
-template_list = [
+template_list = [template_times_three, 
+                 template_three_compliments, 
+                 template_three_characteristics,
+                 template_one_compliment, 
+                 template_three_verbs, 
+                 template_row,
+                 template_general, 
+                 template_surprise_singular,
+                 template_surprise_plural, 
+                 template_call_to_action, 
+                 template_spread_the_word,
+                 template_it_does,
+                 template_share,
+                 template_you,
+                 template_you_adjective,
+                 template_can_be,
+                 template_no_sorry,
+                 template_reasons,
+                 template_deserved, 
+                 template_truth,
+                 template_change,
+                 template_possible,
+                 template_effect,
+                 template_encouragement,
+                 template_strangely_true,
+                 template_really,
+                 template_explanation,
+                 template_no_need,
+                 template_potential,
+                 template_results,
+                 template_causation,
+                 template_two_needs,
+                 template_maybe,
+                 template_orders,
+                 template_family,
+                 template_true,
+                 template_right,
+                 template_personality,
+                 function_the_best,
+                 template_be,
+                 template_judgement,
+                 template_watch_out,
+                 template_higher,
+                 template_you_superlative,
+                 template_never,
+                 template_need,
+                 template_must,
+                 template_day,
+                 template_llap,
+                 template_why,
+                 template_never_again,
+                 template_excuse,
+                 template_outweigh,
+                 template_today,
+                 template_do_it,
+                 template_gonna,
+                 template_coffee,
+                 template_world,
+                 template_taskmaster,
+                 template_eufemism,
+                 template_embrace,
+                 template_diff_people,
+                 template_our_part,
+                 template_how_to,
+                 template_you_know,
+                 template_avoid,
+                 template_behind,
+                 template_somebody,
+                 template_you_can,
+                 template_like,
+                 template_effect_again,
+                 template_common,
+                 template_yes,
                  template_less_more,
+                 template_almost,
+                 template_answer,
                  ]
 
