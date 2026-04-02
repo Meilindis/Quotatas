@@ -107,6 +107,8 @@ if __name__ == "__main__":
 
             # Store the quote here:
             self.quote = ""
+            self.image = []
+            self.font = []
 
             self.setWindowTitle("Quotatas")
 
@@ -198,8 +200,7 @@ if __name__ == "__main__":
 
             self.setCentralWidget(container)    
 
-            self.quote_history = []
-            self.full_history = []
+            self.full_history = [] # quote - image - font
             self.selected_quote = 0
 
             self.import_word_lists()
@@ -210,39 +211,46 @@ if __name__ == "__main__":
         def the_button_was_clicked(self):
             self.text_field.setText("")
             # Set the selected quote to the last one (in case the user was looking at an earlier quote)
-            if len(self.quote_history) > 1:
-                self.selected_quote = len(self.quote_history) - 1
+            if len(self.full_history) > 1:
+                self.selected_quote = len(self.full_history) - 1
             # Adding new quote, so exporting makes sense again
             self.button_export_quotes.setText("Export session quotes")
-
-            # Select a random quote function from the list and let it return a quote
-            self.quote = random.choice(template_collection.template_list)()
-            # Add it to the quote history
-            self.quote_history.append(self.quote)
-            # Set the selected quote index to this new quote's index
-            self.selected_quote = len(self.quote_history) - 1
-
+            # Select the random parameters
+            self.set_parameters()
+            # Create the image
             self.create_quote_image()
 
             # self.quote_field.setText(self.quote)
 
+        def set_parameters(self):
+            # Select the random parameters of the quote
+            self.image = random.choice(image_collection)
+            self.font = random.choice(font_collection)
+            self.quote = random.choice(template_collection.template_list)()
+
+            # Add and set the selected quote index to this new quote's index
+            self.full_history.append([self.quote, self.image, self.font])
+            self.selected_quote = len(self.full_history) - 1
+
         def create_quote_image(self):
+            # Can't create an image without parameters
+            if self.image == [] or self.font == [] or self.selected_quote == -1:
+                return
+
             # Prepare the image
-            current_dir = Path(__file__).parent.absolute()
-            selected_image = random.choice(image_collection)
-            image_path = os.path.join(os.path.join(current_dir, 'images'), selected_image[0])
+            current_dir = Path(__file__).parent.absolute()            
+            image_path = os.path.join(os.path.join(current_dir, 'images'), self.image[0])
             image = Image.open(image_path)
 
-            color = selected_image[1]
-            location = selected_image[2]
-            x_val = selected_image[3] # indent to the right from 0 (base is one line)
-            y_val = selected_image[4] # pixels down from zero
+            color = self.image[1]
+            location = self.image[2]
+            x_val = self.image[3] # indent to the right from 0 (base is one line)
+            y_val = self.image[4] # pixels down from zero
             text = self.quote
-            font = random.choice(font_collection)
-            font_name = os.path.join(os.path.join(current_dir, 'fonts'), font[0])
-            font_custom_size = font[1]
+            font_name = os.path.join(os.path.join(current_dir, 'fonts'), self.font[0])
+            font_custom_size = self.font[1]
             img = ImageText(image, background=(255, 255, 255, 200)) # 200 = alpha
-            self.full_history.append([self.quote, selected_image, font])
+            
 
 
             if "\n" not in text:
@@ -256,7 +264,7 @@ if __name__ == "__main__":
                 nr_of_lines = text.count("\n") + 1
                 if nr_of_lines == 2:
                     lines = text.splitlines()
-                    if selected_image[5] == 'curve':
+                    if self.image[5] == 'curve':
                         x = x_val + 5
                     else: x = x_val
                     y = y_val - 25
@@ -266,7 +274,7 @@ if __name__ == "__main__":
                         y += 35
                 elif nr_of_lines == 3:
                     lines = text.splitlines()
-                    if selected_image[5] == 'curve':
+                    if self.image[5] == 'curve':
                         x = x_val + 10
                     else: x = x_val
                     y = y_val - 35
@@ -276,7 +284,7 @@ if __name__ == "__main__":
                         y += 35
                 elif nr_of_lines == 4:
                     lines = text.splitlines()
-                    if selected_image[5] == 'curve':
+                    if self.image[5] == 'curve':
                         x = x_val + 15
                     else: x = x_val
                     y = y_val - 45
@@ -286,7 +294,7 @@ if __name__ == "__main__":
                         y += 35
                 elif nr_of_lines == 5:
                     lines = text.splitlines()
-                    if selected_image[5] == 'curve':
+                    if self.image[5] == 'curve':
                         x = x_val + 20
                     else: x = x_val
                     y = y_val - 55
@@ -296,7 +304,7 @@ if __name__ == "__main__":
                         y += 35
                 elif nr_of_lines == 6:
                     lines = text.splitlines()
-                    if selected_image[5] == 'curve':
+                    if self.image[5] == 'curve':
                         x = x_val + 25
                     
                     else: x = x_val
@@ -386,19 +394,23 @@ if __name__ == "__main__":
 
         def previous_quote(self):
             # If there's more than one quote and you're not looking at the first quote, you can go back
-            if len(self.quote_history) > 1 and self.selected_quote >= 1:
+            if len(self.full_history) > 1 and self.selected_quote >= 1:
                 self.selected_quote = self.selected_quote - 1
-                self.quote = self.quote_history[self.selected_quote]
-                # self.quote_field.setText(self.quote)
+                self.quote = self.full_history[self.selected_quote][0]
+                self.image = self.full_history[self.selected_quote][1]
+                self.font = self.full_history[self.selected_quote][2]
+                
                 self.create_quote_image()
             else:
                 return
         def next_quote(self):
             # If you are not looking at the most recent quote, you can go forward
-            if self.selected_quote < len(self.quote_history) - 1:
+            if self.selected_quote < len(self.full_history) - 1:
                 self.selected_quote = self.selected_quote + 1
-                self.quote = self.quote_history[self.selected_quote]
-                # self.quote_field.setText(self.quote)
+                self.quote = self.full_history[self.selected_quote][0]
+                self.image = self.full_history[self.selected_quote][1]
+                self.font = self.full_history[self.selected_quote][2]
+                
                 self.create_quote_image()
             else:
                 return
@@ -406,8 +418,8 @@ if __name__ == "__main__":
         def export_quotes(self):
             # Export the quote history to a txt file in the current directory - will overwrite without warning!
             with open('dutch_wisdom_quote_collection.txt', 'w') as f:
-                for quote in self.quote_history:
-                    f.write(f"{quote}\n\n---\n\n")
+                for quote in self.full_history:
+                    f.write(f"{quote[0]}\n\n---\n\n")
 
             self.button_export_quotes.setText("Exported!")
         
