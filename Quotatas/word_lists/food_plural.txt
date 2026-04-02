@@ -6,6 +6,7 @@ burgers
 burritos
 cakes
 carrots
+cheeseritos
 cherries
 chips
 chocolates
@@ -40,6 +41,7 @@ salads
 sausage rolls
 sausages
 schnitzels
+tacos
 tomatoes
 tortillas
 turnips

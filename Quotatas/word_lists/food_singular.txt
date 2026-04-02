@@ -11,7 +11,7 @@ cabbage
 cake
 carrot
 cauliflower
-cheese
+cheeserito
 cherry
 chewing gum
 chilli
@@ -51,6 +51,7 @@ sausage
 sausage roll
 schnitzel
 soup
+taco
 toad-in-a-hole
 tomato
 tortilla
