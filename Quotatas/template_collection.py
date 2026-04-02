@@ -356,6 +356,15 @@ def template_effect_again():
     end = random.choice([a_or_an(noun) + noun, random.choice(word_collections.concepts)])
     return (capitalize_first_letter_only(random.choice(word_collections.concepts)) + "\nis usually followed\nby " + end)
 
+# Common
+def template_common():
+    temp = random.choice(word_collections.nouns_singular)
+    return ("What do " + random.choice(word_collections.concepts) + ", " + a_or_an(temp) + " " + temp + ",\nand " + random.choice(word_collections.nouns_plural) + " have in common?\n" + capitalize_first_letter_only(random.choice(word_collections.concepts)) + ".")
+
+# Yes
+def template_yes():
+    return ("Yes. You are " + random.choice(word_collections.adjectives) + ".")
+
 # List of defined templates (don't forget to add new templates here or they won't be used!)
 template_list = [template_times_three, 
                  template_three_compliments, 
@@ -428,5 +437,7 @@ template_list = [template_times_three,
                  template_you_can,
                  template_like,
                  template_effect_again,
+                 template_common,
+                 template_yes,
                  ]
 

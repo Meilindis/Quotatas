@@ -171,8 +171,8 @@ if __name__ == "__main__":
             layoutV = QVBoxLayout()       
             layoutV.addWidget(self.negative_toggle)
             layoutV.addWidget(self.nsfw_toggle)
-            layoutV.addWidget(self.button_export_quotes)
-            layoutV.addWidget(self.text_field)            
+            layoutV.addWidget(self.text_field)    
+            layoutV.addWidget(self.button_export_quotes)       
 
             vert_container = QWidget()
             vert_container.setLayout(layoutV)

@@ -42,6 +42,7 @@ run
 scratch
 see
 sniff
+stimulate
 stroke
 taste
 tease
