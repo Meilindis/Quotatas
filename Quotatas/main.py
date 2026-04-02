@@ -360,6 +360,7 @@ if __name__ == "__main__":
             word_collections.situations = word_collections.situations_sfw
             word_collections.people_singular = word_collections.people_singular_sfw
             word_collections.people_plural = word_collections.people_plural_sfw
+            word_collections.cliches = word_collections.cliches_sfw
             # Add NSFW
             if self.nsfw_toggle.isChecked():
                 word_collections.nouns_singular = word_collections.nouns_singular + word_collections.nouns_singular_nsfw + word_collections.animals_singular + word_collections.verbs_active_sfw + word_collections.verbs_active_nsfw
@@ -374,6 +375,7 @@ if __name__ == "__main__":
                 word_collections.comparatives = word_collections.comparatives + word_collections.comparatives_nsfw
                 word_collections.superlatives = word_collections.superlatives + word_collections.superlatives_nsfw
                 word_collections.situations = word_collections.situations + word_collections.situations_nsfw
+                word_collections.cliches = word_collections.cliches + word_collections.cliches_nsfw
             # Add negative stuff
             if self.negative_toggle.isChecked() == True:
                 word_collections.adjectives = word_collections.adjectives + word_collections.adjectives_negative
