@@ -46,6 +46,7 @@ prepositions = []
 zodiac = []
 sometimes = []
 cliches_sfw = []
+cliches_nsfw = []
  
 
 # Aggregate lists

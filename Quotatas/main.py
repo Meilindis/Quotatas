@@ -472,6 +472,7 @@ if __name__ == "__main__":
             word_collections.zodiac = word_collections.import_list("zodiac.txt")
             word_collections.sometimes = word_collections.import_list("sometimes.txt")
             word_collections.cliches_sfw = word_collections.import_list("cliches_sfw.txt")
+            word_collections.cliches_nsfw = word_collections.import_list("cliches_nsfw.txt")
 
         def export_word_lists(self):
             # Export every word list and make sure the words are in alphabetical order
@@ -521,6 +522,7 @@ if __name__ == "__main__":
             word_collections.export_list(word_collections.zodiac, "zodiac")
             word_collections.export_list(word_collections.sometimes, "sometimes")
             word_collections.export_list(word_collections.cliches_sfw, "cliches_sfw")
+            word_collections.export_list(word_collections.cliches_nsfw, "cliches_nsfw")
 
 
     app = QApplication(sys.argv)
