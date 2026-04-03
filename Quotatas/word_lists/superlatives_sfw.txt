@@ -6,7 +6,6 @@ boldest
 brightest
 coldest
 fastest
-fewest
 greatest
 greenest
 hairiest
