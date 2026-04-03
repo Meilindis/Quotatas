@@ -385,6 +385,36 @@ def template_cliches():
 def template_sayit():
     return ("Sometimes,\nit just needs to be said:\n" + capitalize_first_letter_only(random.choice(word_collections.cliches)))
 
+# It's hard
+def template_hard():
+    temp = random.choice(word_collections.nouns_singular)
+    return (capitalize_first_letter_only(random.choice(word_collections.concepts)) + " is hard,\n" + random.choice([random.choice(word_collections.concepts), a_or_an(temp) + temp]) + " makes it better.")
+
+# Percent
+def template_percent():
+    return (capitalize_first_letter_only(random.choice(word_collections.nouns_plural)) + " are\n" + str(random.randrange(1, 200, 1)) + " percent " + random.choice(word_collections.concepts))
+
+# Becoming
+def template_become():
+    return ("Make " + random.choice([random.choice(word_collections.concepts), random.choice(word_collections.nouns_plural)]) + " become " + random.choice([random.choice(word_collections.concepts), random.choice(word_collections.nouns_plural)]))
+
+# Not just
+def template_not_just():
+    temp1 = random.choice(word_collections.nouns_singular)
+    temp1 = a_or_an(temp1) + temp1
+    temp2 = random.choice(word_collections.nouns_singular)
+    temp2 = a_or_an(temp2) + temp2
+    return (capitalize_first_letter_only(temp1) + " is never\njust " + temp1 + ".\n" + capitalize_first_letter_only(temp2) + " is never\njust " + temp2 + ".")
+
+# Involvement
+def template_involvement():
+    temp = random.choice(word_collections.verbs_ing)
+    return (capitalize_first_letter_only(temp) + " each other\ninvolves\n" + temp + " ourselves.")
+
+# Forms
+def template_form():
+    return (capitalize_first_letter_only(random.choice(word_collections.concepts)) + " can be\na form of " + random.choice(word_collections.concepts) + ".")
+
 # List of defined templates (don't forget to add new templates here or they won't be used!)
 template_list = [template_times_three, 
                  template_three_compliments, 
@@ -464,5 +494,11 @@ template_list = [template_times_three,
                  template_answer,
                  template_cliches,
                  template_sayit,
+                 template_hard,
+                 template_percent,
+                 template_become,
+                 template_not_just,
+                 template_involvement,
+                 template_form,
                  ]
 

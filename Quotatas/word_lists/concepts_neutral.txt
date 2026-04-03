@@ -15,12 +15,15 @@ coffee
 communism
 copper
 cream
+dancing
 darkness
 dinner
+drawing
 earl grey
 earwax
 education
 equality
+existence
 fairness
 fantasy
 fate
@@ -39,10 +42,12 @@ karma
 laundry
 lego
 liberty
+life
 liquorice
 literacy
 loneliness
 loot
+love
 lunch
 magic
 mancala
@@ -53,6 +58,7 @@ moonlight
 music
 nature
 nothing
+painting
 parsley
 pasta
 poker
