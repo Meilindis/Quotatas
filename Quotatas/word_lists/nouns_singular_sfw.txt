@@ -22,6 +22,7 @@ boy
 brain
 bubble
 bucket
+camera
 candle
 candy
 cappuccino
@@ -72,11 +73,13 @@ lantern pole
 legend
 leg
 lego brick
+lens
 litter box
 loom
 lord
 man
 meadow
+microscope
 mind
 monster
 moon
@@ -84,6 +87,7 @@ nebula
 need
 needle
 novel
+objective
 ocean
 pantry
 peanut
@@ -93,6 +97,7 @@ petal
 phaser
 phone
 piano
+pillow
 pixie
 planet
 plate
@@ -105,6 +110,7 @@ sea
 sewing machine
 skirt
 slide
+spaceship
 spiral
 spoon
 staircase
@@ -118,6 +124,7 @@ table
 tablet
 tavern
 tea
+telescope
 time machine
 transporter
 tricorder
@@ -127,6 +134,7 @@ universe
 vase
 violin
 walkman
+wand
 want
 warp nacelle
 wet blanket

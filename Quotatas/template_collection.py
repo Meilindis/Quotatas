@@ -315,7 +315,7 @@ def template_diff_people():
 
 # Our part
 def template_our_part():
-    return ("If we all do our part\nwe can\nmake " + random.choice(word_collections.adjectives) + " " + random.choice(word_collections.nouns_plural + word_collections.people_plural) + "\n" + random.choice(word_collections.verbs))
+    return ("If we all do our part\nwe can make\n" + random.choice(word_collections.adjectives) + " " + random.choice(word_collections.nouns_plural + word_collections.people_plural) + " " + random.choice(word_collections.verbs))
 
 # How to
 def template_how_to():
@@ -396,7 +396,7 @@ def template_percent():
 
 # Becoming
 def template_become():
-    return ("Make " + random.choice([random.choice(word_collections.concepts), random.choice(word_collections.nouns_plural)]) + " become " + random.choice([random.choice(word_collections.concepts), random.choice(word_collections.nouns_plural)]))
+    return (horoscope() + "Make " + random.choice([random.choice(word_collections.concepts), random.choice(word_collections.nouns_plural)]) + "\nbecome " + random.choice([random.choice(word_collections.concepts), random.choice(word_collections.nouns_plural)]))
 
 # Not just
 def template_not_just():

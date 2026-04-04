@@ -28,6 +28,7 @@ moves
 operates
 outweighs
 paints
+pampers
 pets
 plays
 pleasures
@@ -48,6 +49,7 @@ teases
 tickles
 topples
 touches
+treats
 tries
 turns
 understands

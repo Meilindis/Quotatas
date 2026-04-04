@@ -28,6 +28,7 @@ move
 operate
 outweigh
 paint
+pamper
 pet
 play
 pleasure
@@ -48,6 +49,7 @@ tease
 tickle
 topple
 touch
+treat
 try
 turn
 understand

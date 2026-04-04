@@ -19,6 +19,7 @@ boys
 brains
 buckets
 bubbles
+cameras
 candles
 cappucinos
 cardboard boxes
@@ -63,9 +64,11 @@ lantern poles
 legends
 lego bricks
 legs
+lenses
 litter boxes
 looms
 meadows
+microscopes
 minds
 monsters
 moons
@@ -73,6 +76,7 @@ nebulas
 needs
 needles
 novels
+objectives
 oceans
 peanuts
 pencils
@@ -81,6 +85,7 @@ pets
 phasers
 phones
 pianos
+pillows
 pixies
 planets
 plates
@@ -93,6 +98,7 @@ scissors
 seas
 sewing machines
 skirts
+spaceships
 spirals
 spoons
 stamps
@@ -105,6 +111,7 @@ swimming pools
 tables
 tablets
 taverns
+telescopes
 time machines
 transporters
 tricorders
@@ -114,6 +121,7 @@ universes
 vases
 violins
 walkmans
+wands
 wants
 warp nacelles
 wet blankets

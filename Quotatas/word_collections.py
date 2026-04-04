@@ -79,8 +79,8 @@ def import_list(filename):
 
 
 # Exports the list with the name list_name to the subfolder word_lists of the project alphabetically
-def export_list(list, list_name):
-    sorted_list = sorted(list)
+def export_list(selectedlist, list_name):
+    sorted_list = sorted(selectedlist)
     path = Path(__file__).parent.absolute()
     filename = list_name + '.txt'
     location = os.path.join(path, 'word_lists')

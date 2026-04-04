@@ -6,12 +6,14 @@ boring
 bossy
 bumfuzzled
 creepy
+cynical
 difficult
 dodgy
 dominant
 filthy
 gluttonous
 greedy
+guilty
 heartless
 horrible
 idiotic
@@ -20,6 +22,7 @@ narcissistic
 nefarious
 poor
 salty
+sarcastic
 selfish
 sour
 spiteful

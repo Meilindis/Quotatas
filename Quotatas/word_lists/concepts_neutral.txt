@@ -15,6 +15,7 @@ coffee
 communism
 copper
 cream
+cybernetics
 dancing
 darkness
 dinner
@@ -29,8 +30,10 @@ fantasy
 fate
 flour
 gardening
+genetics
 ginger
 glitter
+gratitude
 harmony
 honey
 iron
@@ -43,6 +46,7 @@ laundry
 lego
 liberty
 life
+lightness
 liquorice
 literacy
 loneliness
@@ -61,6 +65,8 @@ nothing
 painting
 parsley
 pasta
+peace
+photography
 poker
 prune juice
 rain
@@ -80,6 +86,7 @@ society
 solitude
 something
 sorcery
+space
 spaghetti
 stalemate
 star dust
@@ -87,6 +94,8 @@ sugar
 sunshine
 supper
 tea
+technology
+time
 thyme
 toast
 yahtzee
