@@ -415,6 +415,14 @@ def template_involvement():
 def template_form():
     return (capitalize_first_letter_only(random.choice(word_collections.concepts)) + " can be\na form of " + random.choice(word_collections.concepts) + ".")
 
+# Right
+def template_right_time():
+    return ("Is there ever a right time to say\n\"" + capitalize_first_letter_only(random.choice(word_collections.cliches)) + "?\"")
+
+# Be honest
+def template_honest():
+    return ("Don't say \n\"" + capitalize_first_letter_only(random.choice(word_collections.cliches)) + "\"\nif you mean\n\"" + capitalize_first_letter_only(random.choice(word_collections.cliches)) + "\"!")
+
 # List of defined templates (don't forget to add new templates here or they won't be used!)
 template_list = [template_times_three, 
                  template_three_compliments, 
@@ -500,5 +508,7 @@ template_list = [template_times_three,
                  template_not_just,
                  template_involvement,
                  template_form,
+                 template_right_time,
+                 template_honest,
                  ]
 

@@ -13,6 +13,7 @@ cooking a lasagna
 coughing and sneezing
 creating the universe
 dancing in the dark
+digging a hole
 doing the dishes
 drawing a cartoon
 drinking a cup of tea
@@ -46,6 +47,7 @@ painting a portrait
 petting a kitten
 picking up a chicken
 piloting a shuttlecraft
+planting a tree
 playing a game
 playing a sonata
 polishing shoes
@@ -59,7 +61,9 @@ sharpening a pencil
 shaving your head
 shooting stars
 simulating intelligence
+singing a song
 switching energy providers
+taking a photograph
 taking a walk
 taking daily showers
 travelling at warp speed

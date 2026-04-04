@@ -1,10 +1,12 @@
 TARDIS
 ad blocker
 adventure
+aeroplane
 alarm clock
 android
 arm
 arm chair
+bag
 basket
 bath
 bathroom
@@ -17,6 +19,7 @@ big splash
 blanket
 blindfold
 block
+boat
 book
 boy
 brain
@@ -108,11 +111,14 @@ rocket
 rocking chair
 sea
 sewing machine
+ship
 skirt
 slide
 spaceship
+sparkle
 spiral
 spoon
+sprinkle
 staircase
 stamp
 star
@@ -126,6 +132,7 @@ tavern
 tea
 telescope
 time machine
+train
 transporter
 tricorder
 truck

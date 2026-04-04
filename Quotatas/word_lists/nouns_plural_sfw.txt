@@ -1,9 +1,11 @@
 ad blockers
 adventures
+aeroplanes
 alarm clocks
 androids
 arm chairs
 arms
+bags
 baskets
 bathrooms
 baths
@@ -14,6 +16,7 @@ besoms
 blankets
 blindfolds
 blocks
+boats
 books
 boys
 brains
@@ -97,10 +100,13 @@ rocking chairs
 scissors
 seas
 sewing machines
+ships
 skirts
 spaceships
+sparkles
 spirals
 spoons
+sprinkles
 stamps
 stars
 stones
@@ -113,6 +119,7 @@ tablets
 taverns
 telescopes
 time machines
+trains
 transporters
 tricorders
 trucks
