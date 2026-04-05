@@ -2,6 +2,7 @@ apples
 aubergines
 bananas
 beans
+bell peppers
 burgers
 burritos
 cakes
@@ -15,6 +16,7 @@ coconuts
 cookies
 cucumbers
 drinks
+dumplings
 eggplants
 eggs
 fries
@@ -23,24 +25,34 @@ hazelnuts
 herbs
 kiwis
 leeks
+lemons
+limes
 marshmallows
 mints
 mushrooms
+olives
 omelettes
 oranges
 pancakes
 peaches
+peanuts
 pears
 peppers
 pies
 pineapples
+pistachios
 pizzas
 potatoes
 prunes
+raisins
 salads
+sandwiches
+satsumas
 sausage rolls
 sausages
 schnitzels
+scones
+snacks
 tacos
 tomatoes
 tortillas
@@ -48,3 +60,4 @@ turnips
 vegetables
 veggies
 walnuts
+zucchinis

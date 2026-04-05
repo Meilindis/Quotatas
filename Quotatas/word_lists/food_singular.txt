@@ -2,18 +2,16 @@ apple
 aubergine
 banana
 bean
+bell pepper
 bread
 broccoli
-bubble gum
 burger
-butter
 cabbage
 cake
 carrot
 cauliflower
 cheeserito
 cherry
-chewing gum
 chilli
 chocolate
 cocktail
@@ -21,6 +19,7 @@ coconut
 cookie
 cucumber
 drink
+dumpling
 egg
 eggplant
 fry
@@ -30,32 +29,39 @@ hot chocolate
 kiwi
 lasagna
 leek
+lemon
+lime
 marshmallow
 meat
 mint
 mushroom
+olive
 omelette
 orange
 pancake
 peach
-peanut butter
+peanut
 pear
-pepper
 pie
 pineapple
+pistachio
 pizza
 potato
 prune
+raisin
 salad
+sandwich
+satsuma
 sausage
 sausage roll
 schnitzel
-soup
+scone
+snack
 taco
-toad-in-a-hole
 tomato
 tortilla
 turnip
 vegetable
 veggie
 walnut
+zucchini

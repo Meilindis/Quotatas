@@ -41,6 +41,7 @@ rub
 run
 scratch
 see
+serve
 sniff
 stimulate
 stroke

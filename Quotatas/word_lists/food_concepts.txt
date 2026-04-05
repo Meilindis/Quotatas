@@ -1,0 +1,53 @@
+alcohol
+baba ganoush
+beer
+bread
+brie
+broccoli
+bubble gum
+butter
+candy
+cheese
+chewing gum
+chips
+chocolate
+cider
+cinnamon
+coffee
+cream
+earl grey
+fish
+flour
+ginger
+ham
+honey
+ice cream
+jam
+juice
+kale
+liquorice
+milk
+olive oil
+parsley
+pasta
+peanut butter
+pepper
+prune juice
+quiche
+quinoa
+rice
+rosemary
+sage
+salsa
+salt
+sauerkraut
+soup
+spaghetti
+sugar
+sushi
+tea
+thyme
+toad-in-a-hole
+toast
+water
+wine

@@ -15,6 +15,7 @@ animals_singular = []
 animals_plural = []
 food_singular = []
 food_plural = []
+food_concepts = []
 verbs_sfw = []
 verbs_intransitive_sfw = []
 verbs_third_person_sfw = []
@@ -46,8 +47,7 @@ prepositions = []
 zodiac = []
 sometimes = []
 cliches_sfw = []
-cliches_nsfw = []
- 
+cliches_nsfw = [] 
 
 # Aggregate lists
 nouns_singular = []

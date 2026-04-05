@@ -80,7 +80,7 @@ image_collection = [['a_fetters_recto_b_several_figures_verso.png', (145, 0, 140
                     ['ladybug.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
                     ['les_amateurs_d_estampes.png', (207, 220, 255), 'justify', 40, 100, 'straight'],
                     ['lonelybot.png', (255, 255, 255), 'justify', 20, 100, 'curve'],
-                    ['mannekenpis.png', (199, 17, 234), 'justify', 20, 345, 'straight'],
+                    ['mannekenpis.png', (167, 255, 174), 'justify', 20, 345, 'straight'],
                     ['megaphone.png', (29, 37, 82), 'justify', 60, 100, 'curve'],
                     ['milky_way.png', (255, 245, 185), 'justify', 20, 100, 'straight'],
                     ['monkey.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
@@ -375,7 +375,7 @@ if __name__ == "__main__":
             word_collections.verbs_third_person = word_collections.verbs_third_person_sfw
             word_collections.verbs_ing = word_collections.verbs_ing_sfw
             word_collections.verbs_intransitive = word_collections.verbs_intransitive_sfw
-            word_collections.concepts = word_collections.concepts_neutral + word_collections.concepts_positive
+            word_collections.concepts = word_collections.concepts_neutral + word_collections.concepts_positive + word_collections.food_concepts
             word_collections.comparatives = word_collections.comparatives_sfw
             word_collections.superlatives = word_collections.superlatives_sfw
             word_collections.situations = word_collections.situations_sfw
@@ -486,6 +486,7 @@ if __name__ == "__main__":
             word_collections.sometimes = word_collections.import_list("sometimes.txt")
             word_collections.cliches_sfw = word_collections.import_list("cliches_sfw.txt")
             word_collections.cliches_nsfw = word_collections.import_list("cliches_nsfw.txt")
+            word_collections.food_concepts = word_collections.import_list("food_concepts.txt")
 
         def export_word_lists(self):
             # Export every word list and make sure the words are in alphabetical order
@@ -536,6 +537,7 @@ if __name__ == "__main__":
             word_collections.export_list(word_collections.sometimes, "sometimes")
             word_collections.export_list(word_collections.cliches_sfw, "cliches_sfw")
             word_collections.export_list(word_collections.cliches_nsfw, "cliches_nsfw")
+            word_collections.export_list(word_collections.food_concepts, "food_concepts.txt")
 
 
     app = QApplication(sys.argv)

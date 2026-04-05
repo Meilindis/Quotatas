@@ -141,7 +141,7 @@ def template_strangely_true():
 
 # Really
 def template_really():
-    return (rule() + capitalize_first_letter_only(random.choice(word_collections.nouns_plural + word_collections.concepts)) + "\nActually good\nfor " + random.choice(word_collections.nouns_plural + word_collections.concepts))
+    return (rule() + capitalize_first_letter_only(random.choice(word_collections.nouns_plural + word_collections.concepts)) + ".\nActually good\nfor " + random.choice(word_collections.nouns_plural + word_collections.concepts) + ".")
 
 # Explanation
 def template_explanation():
@@ -414,14 +414,11 @@ def template_involvement():
 # Forms
 def template_form():
     return (capitalize_first_letter_only(random.choice(word_collections.concepts)) + " can be\na form of " + random.choice(word_collections.concepts) + ".")
-
-# Right
-def template_right_time():
-    return ("Is there ever a right time to say\n\"" + capitalize_first_letter_only(random.choice(word_collections.cliches)) + "?\"")
-
-# Be honest
-def template_honest():
-    return ("Don't say \n\"" + capitalize_first_letter_only(random.choice(word_collections.cliches)) + "\"\nif you mean\n\"" + capitalize_first_letter_only(random.choice(word_collections.cliches)) + "\"!")
+    
+# Recipe
+def template_recipe():
+	food = random.choice(word_collections.food_singular)
+	return ("Mix " + random.choice(word_collections.food_plural) + ", " + random.choice(word_collections.food_singular) + " slices,\nand " + random.choice(word_collections.food_concepts) + " with " + a_or_an(food) + food + "\nfor a delicious " + random.choice(["breakfast", "lunch", "dinner", "supper", "tea", "high tea", "brunch", "snack"]))
 
 # List of defined templates (don't forget to add new templates here or they won't be used!)
 template_list = [template_times_three, 
@@ -508,7 +505,6 @@ template_list = [template_times_three,
                  template_not_just,
                  template_involvement,
                  template_form,
-                 template_right_time,
-                 template_honest,
+                 template_recipe,
                  ]
 
