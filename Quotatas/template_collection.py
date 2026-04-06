@@ -419,6 +419,10 @@ def template_form():
 def template_recipe():
 	food = random.choice(word_collections.food_singular)
 	return ("Mix " + random.choice(word_collections.food_plural) + ", " + random.choice(word_collections.food_singular) + " slices,\nand " + random.choice(word_collections.food_concepts) + " with " + a_or_an(food) + food + "\nfor a delicious " + random.choice(["breakfast", "lunch", "dinner", "supper", "tea", "high tea", "brunch", "snack"]))
+	
+# Ingredients
+def template_ingredients():
+	return (capitalize_first_letter_only(random.choice(word_collections.food_concepts)) + " is\n" + str(random.randrange(1, 110, 1)) + "%  " + random.choice(word_collections.food_plural) + "\nand " + str(random.randrange(1, 110, 1)) + "% " + random.choice(word_collections.food_singular) + ".") 
 
 # List of defined templates (don't forget to add new templates here or they won't be used!)
 template_list = [template_times_three, 
@@ -506,5 +510,6 @@ template_list = [template_times_three,
                  template_involvement,
                  template_form,
                  template_recipe,
+                 template_ingredients,
                  ]
 

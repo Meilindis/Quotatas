@@ -108,6 +108,7 @@ image_collection = [['a_fetters_recto_b_several_figures_verso.png', (145, 0, 140
                     ['treefrog.png', (199, 17, 234), 'justify', 20, 345, 'straight'],
                     ['tulips.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
                     ['twelve_men_.png', (199, 17, 234), 'justify', 30, 100, 'straight'],
+                    ['vampire.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
                     ['woman.png', (255, 245, 185), 'justify', 20, 100, 'straight'],
                     ['woman_flowers.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
                     ['yarn.png', (29, 37, 82), 'justify', 20, 100, 'straight']
