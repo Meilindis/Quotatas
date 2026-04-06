@@ -55,7 +55,6 @@ image_collection = [['a_fetters_recto_b_several_figures_verso.png', (145, 0, 140
                     ['bat.png', (255, 245, 185), 'justify', 20, 345, 'straight'],
                     ['bigsplash.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
                     ['blossoms.png', (65, 75, 139), 'justify', 20, 100, 'straight'],
-                    ['candle.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
                     ['cat_snow.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
                     ['clown.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
                     ['chess.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
@@ -67,13 +66,17 @@ image_collection = [['a_fetters_recto_b_several_figures_verso.png', (145, 0, 140
                     ['die_komponistin_sonia_friedman.png', (167, 255, 174), 'justify', 30, 305, 'straight'],
                     ['dog.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
                     ['duck.png', (29, 37, 82), 'justify', 20, 345, 'straight'],
+                    ['ducklings.png', (255, 255, 255), 'justify', 20, 300, 'straight'],
+                    ['earth.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
                     ['flysex.png', (255, 245, 185), 'justify', 20, 100, 'straight'],
+                    ['frogs.png', (255, 255, 255), 'justify', 20, 300, 'straight'],
                     ['galaxy.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
                     ['giraffe.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
                     ['glitter.png', (255, 245, 185), 'justify', 20, 100, 'straight'],
-                    ['angry_lady.png', (65, 75, 139), 'justify', 20, 100, 'straight'],
-                    ['heart_cloud.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
+                    ['goats.png', (255, 245, 185), 'justify', 20, 100, 'straight'],
                     ['hare.png', (255, 255, 255), 'justify', 20, 225, 'straight'],
+                    ['heart_cloud.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
+                    ['hearts.png', (29, 37, 82), 'justify', 20, 50, 'straight'],
                     ['horse.png', (29, 37, 82), 'justify', 60, 225, 'curve'],
                     ['jellyfish.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
                     ['joy.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
@@ -81,22 +84,28 @@ image_collection = [['a_fetters_recto_b_several_figures_verso.png', (145, 0, 140
                     ['ladybug.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
                     ['les_amateurs_d_estampes.png', (207, 220, 255), 'justify', 40, 100, 'straight'],
                     ['lonelybot.png', (255, 255, 255), 'justify', 20, 100, 'curve'],
+                    ['manager.png', (255, 255, 255), 'justify', 20, 345, 'curve'],
                     ['mannekenpis.png', (167, 255, 174), 'justify', 20, 345, 'straight'],
                     ['megaphone.png', (29, 37, 82), 'justify', 60, 100, 'curve'],
                     ['milky_way.png', (255, 245, 185), 'justify', 20, 100, 'straight'],
                     ['monkey.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
+                    ['monster.png', (255, 255, 255), 'justify', 20, 100, 'curve'],
+                    ['pancakes.png', (255, 255, 255), 'justify', 20, 100, 'curve'],
                     ['pear.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
+                    ['pepper.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
+                    ['problem.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
                     ['puffin.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
                     ['rabbit.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
                     ['rain_people.png', (29, 37, 82), 'justify', 20, 365, 'straight'],
                     ['rainbow.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
                     ['reading.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
                     ['reflection.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
-                    ['rider.png', (0, 0, 0), 'justify', 20, 345, 'straight'],
+                    ['rider.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
                     ['robot.png', (199, 17, 234), 'justify', 20, 100, 'straight'],
                     ['rubberducks.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
                     ['silhouettes.png', (65, 75, 139), 'justify', 20, 100, 'straight'],
                     ['socks.png', (255, 255, 255), 'justify', 20, 225, 'straight'],
+                    ['spices.png', (255, 255, 255), 'justify', 20, 300, 'straight'],
                     ['squirrel.png', (255, 255, 255), 'justify', 20, 345, 'straight'],
                     ['stop.png', (65, 75, 139), 'justify', 20, 100, 'straight'],
                     ['sunset.png', (65, 75, 139), 'justify', 20, 100, 'straight'],
@@ -381,6 +390,7 @@ if __name__ == "__main__":
             word_collections.comparatives = word_collections.comparatives_sfw
             word_collections.superlatives = word_collections.superlatives_sfw
             word_collections.situations = word_collections.situations_sfw
+            word_collections.situations_active = word_collections.situations_active_sfw
             word_collections.people_singular = word_collections.people_singular_sfw
             word_collections.people_plural = word_collections.people_plural_sfw
             word_collections.cliches = word_collections.cliches_sfw
@@ -398,6 +408,7 @@ if __name__ == "__main__":
                 word_collections.comparatives = word_collections.comparatives + word_collections.comparatives_nsfw
                 word_collections.superlatives = word_collections.superlatives + word_collections.superlatives_nsfw
                 word_collections.situations = word_collections.situations + word_collections.situations_nsfw
+                word_collections.situations_active = word_collections.situations_active + word_collections.situations_active_nsfw
                 word_collections.cliches = word_collections.cliches + word_collections.cliches_nsfw
             # Add negative stuff
             if self.negative_toggle.isChecked() == True:
@@ -481,6 +492,8 @@ if __name__ == "__main__":
             word_collections.superlatives_nsfw = word_collections.import_list("superlatives_nsfw.txt")
             word_collections.situations_sfw = word_collections.import_list("situations_sfw.txt")
             word_collections.situations_nsfw = word_collections.import_list("situations_nsfw.txt")
+            word_collections.situations_active_sfw = word_collections.import_list("situations_active_sfw.txt")
+            word_collections.situations_active_nsfw = word_collections.import_list("situations_active_nsfw.txt")
             word_collections.prepositions = word_collections.import_list("prepositions.txt")
             word_collections.people_singular_neg = word_collections.import_list("people_singular_neg.txt")
             word_collections.people_plural_neg = word_collections.import_list("people_plural_neg.txt")
@@ -532,6 +545,8 @@ if __name__ == "__main__":
             word_collections.export_list(word_collections.superlatives_nsfw, "superlatives_nsfw")
             word_collections.export_list(word_collections.situations_sfw, "situations_sfw")
             word_collections.export_list(word_collections.situations_nsfw, "situations_nsfw")
+            word_collections.export_list(word_collections.situations_active_sfw, "situations_active_sfw")
+            word_collections.export_list(word_collections.situations_active_nsfw, "situations_active_nsfw")
             word_collections.export_list(word_collections.prepositions, "prepositions")
             word_collections.export_list(word_collections.people_singular_neg, "people_singular_neg")
             word_collections.export_list(word_collections.people_plural_neg, "people_plural_neg")

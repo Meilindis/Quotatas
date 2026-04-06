@@ -296,8 +296,7 @@ def template_world():
     
 # Taskmaster
 def template_taskmaster():
-	adj = random.choice(word_collections.adjectives)
-	return (capitalize_first_letter_only(random.choice(word_collections.verbs)) + " " + a_or_an(adj) + adj + " " + random.choice(word_collections.nouns_singular) + ".\nYou have " + str(random.randrange(2, 30, 1)) + " " + random.choice(["seconds", "minutes", "hours", "days"]) + ".\nYour time starts now.")
+	return (capitalize_first_letter_only(random.choice(word_collections.situations_active)) + ".\nYou have " + str(random.randrange(2, 30, 1)) + " " + random.choice(["seconds", "minutes", "hours", "days"]) + ".\nYour time starts now.")
 
 # Eufemism
 def template_eufemism():
@@ -315,7 +314,7 @@ def template_diff_people():
 
 # Our part
 def template_our_part():
-    return ("If we all do our part\nwe can make\n" + random.choice(word_collections.adjectives) + " " + random.choice(word_collections.nouns_plural + word_collections.people_plural) + " " + random.choice(word_collections.verbs))
+    return ("If we all do our part\nwe can make\n" + random.choice(word_collections.adjectives) + " " + random.choice(word_collections.nouns_plural + word_collections.people_plural) + " " + random.choice(word_collections.verbs_intransitive))
 
 # How to
 def template_how_to():
@@ -419,15 +418,24 @@ def template_form():
 def template_recipe():
 	food = random.choice(word_collections.food_singular)
 	return ("Mix " + random.choice(word_collections.food_plural) + ", " + random.choice(word_collections.food_singular) + " slices,\nand " + random.choice(word_collections.food_concepts) + " with " + a_or_an(food) + food + "\nfor a delicious " + random.choice(["breakfast", "lunch", "dinner", "supper", "tea", "high tea", "brunch", "snack"]))
-
+	
 # Contents
 def template_contents():
     food = random.choice(word_collections.food_singular)
     return (capitalize_first_letter_only(random.choice(word_collections.concepts)) + "?\nThat's just " + random.choice(word_collections.food_concepts) + ",\n" + a_or_an(food) + "tiny bit of " + food + "\nand some " + random.choice(word_collections.food_concepts) + ".")
-
+	
 # Ingredients
 def template_ingredients():
 	return (capitalize_first_letter_only(random.choice(word_collections.food_concepts)) + " is\n" + str(random.randrange(1, 110, 1)) + "%  " + random.choice(word_collections.food_plural) + "\nand " + str(random.randrange(1, 110, 1)) + "% " + random.choice(word_collections.food_singular) + ".") 
+	
+# Necessity
+def template_necessity():
+	temp = random.choice(word_collections.nouns_singular)
+	return (rule() + "You need " + random.choice([random.choice(word_collections.nouns_plural), a_or_an(temp) + temp]) + "\nto " + random.choice(word_collections.situations_active) + ".")
+	
+# Peanuts
+def template_peanuts():
+	return ("Any " + random.choice([random.choice(word_collections.people_singular), random.choice(word_collections.nouns_singular)]) + "\ncan " + random.choice(word_collections.situations_active) )
 
 # List of defined templates (don't forget to add new templates here or they won't be used!)
 template_list = [template_times_three, 
@@ -517,5 +525,7 @@ template_list = [template_times_three,
                  template_recipe,
                  template_contents,
                  template_ingredients,
+                 template_necessity,
+                 template_peanuts,
                  ]
 
