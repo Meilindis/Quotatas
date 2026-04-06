@@ -55,6 +55,7 @@ image_collection = [['a_fetters_recto_b_several_figures_verso.png', (145, 0, 140
                     ['bat.png', (255, 245, 185), 'justify', 20, 345, 'straight'],
                     ['bigsplash.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
                     ['blossoms.png', (65, 75, 139), 'justify', 20, 100, 'straight'],
+                    ['candle.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
                     ['cat_snow.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
                     ['clown.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
                     ['chess.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
