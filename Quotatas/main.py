@@ -44,7 +44,7 @@ font_collection = [
                    ['SandanaRegular-JR5q7.ttf', 24]
                    ]
 
-# Image list: image name, text colour, placement, position, extra indentation x, y
+# Image list: image name, text colour, placement, position, extra indentation for x, y (can be negative)
 # Default positions:
 # Top: 20, 30
 # Middle: 20, 225
@@ -254,6 +254,9 @@ if __name__ == "__main__":
             # Update the selected words based on the UI settings
             self.settings_changed()
             # self.export_word_lists() # Only enable when you have added new words to the lists and want to alphabetise them.
+
+        # -----------------------------------------------------------------------------------------------------------------------------
+        # MEMBER FUNCTIONS
 
         # Define what happens when the button is pressed
         def the_button_was_clicked(self):

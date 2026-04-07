@@ -12,6 +12,7 @@ boyfriend
 captain
 clown
 coal miner
+cutie
 dentist
 detective
 devil
@@ -25,6 +26,7 @@ engineer
 explorer
 farmer
 foodie
+friend
 geek
 girlfriend
 gnome
