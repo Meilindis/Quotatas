@@ -119,7 +119,6 @@ image_collection = [['a_fetters_recto_b_several_figures_verso.png', (145, 0, 140
                     ['stop.png', (65, 75, 139), 'justify', 20, 100, 'straight'],
                     ['sunset.png', (65, 75, 139), 'justify', 20, 100, 'straight'],
                     ['tea.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
-                    ['tegeltje.png', (65, 75, 139), 'justify', 60, 225, 'curve'],
                     ['the_tournament.png', (255, 245, 215), 'justify', 20, 100, 'straight'],
                     ['the_visit_.png', (142, 255, 221), 'justify', 20, 345, 'straight'],
                     ['three_girls_in_profile.png', (24, 0, 59), 'justify', 20, 345, 'straight'],
