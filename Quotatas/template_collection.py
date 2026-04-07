@@ -4,7 +4,7 @@ import re
 
 # COMPONENT FUNCTIONS
 
-# Define common components to simplify the templates and save typing time
+# Define short names for common components to simplify the templates and save typing time
 def noun_singular():
     return random.choice(word_collections.nouns_singular)
 

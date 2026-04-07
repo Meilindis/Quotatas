@@ -22,7 +22,10 @@ from PySide6.QtCore import QSize, Qt
 from PySide6.QtGui import QPixmap, QImage
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QTextEdit, QVBoxLayout, QWidget, QLabel, QCheckBox, QHBoxLayout, QFileDialog, QMessageBox
 
-# Font list to randomly choose from: font name, font size that mostly fits
+# ---------------------------------------------------------------------------------------------------------------------------------------------
+# RESOURCES
+
+# Font list: font name, font size that usually fits
 font_collection = [
                    ['SuperJoyful-lxwPq.ttf', 26], # Free for commercial use
                    ['SuperChiby-BL62V.ttf', 30],
@@ -131,6 +134,9 @@ image_collection = [['a_fetters_recto_b_several_figures_verso.png', (145, 0, 140
                     ['woman_flowers.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
                     ['yarn.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
                     ]
+
+# ----------------------------------------------------------------------------------------------------------------------
+# MAIN PROGRAM
 
 if __name__ == "__main__":
     class MainWindow(QMainWindow):
