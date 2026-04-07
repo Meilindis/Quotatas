@@ -143,13 +143,11 @@ if __name__ == "__main__":
         def __init__(self):
             super().__init__()
 
-            # Store the quote here:
-            self.quote = ""
-            self.image = []
-            self.font = []
+            # SET UP THE USER INTERFACE
 
             self.setWindowTitle("Quotatas")
 
+            # CREATE UI COMPONENTS
             # Button to generate quotes
             self.button = QPushButton("Give me some wisdom!")
             self.button.setCheckable(True)
@@ -198,7 +196,7 @@ if __name__ == "__main__":
             self.button_export_quotes.clicked.connect(self.export_quotes)
             self.button_export_quotes.setStyleSheet('background-color: orange; color:black;')
 
-
+            # CREATE LAYOUTS TO ARRANGE THE UI COMPONENTS
             # Arrange the back/forward buttons horizontally
             layoutH = QHBoxLayout()
             layoutH.addWidget(self.button_back)
@@ -238,10 +236,18 @@ if __name__ == "__main__":
 
             self.setCentralWidget(container)    
 
+            # CONTAINERS TO STORE THE SELECTED QUOTES, IMAGES, AND FONTS
+            # Store the quote here later:
+            self.quote = ""
+            self.image = []
+            self.font = []
             self.full_history = [] # list of lists, containing [quote, image, font]
             self.selected_quote = 0
-
+            
+            # Import the .txt files containing the words that are used
             self.import_word_lists()
+            
+            # Update the selected words based on the UI settings
             self.settings_changed()
             # self.export_word_lists() # Only enable when you have added new words to the lists and want to alphabetise them.
 
