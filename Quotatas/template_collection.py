@@ -358,7 +358,7 @@ def template_effect_again():
 # Common
 def template_common():
     temp = random.choice(word_collections.nouns_singular)
-    return ("What do " + random.choice(word_collections.concepts) + ", " + a_or_an(temp) + " " + temp + ",\nand " + random.choice(word_collections.nouns_plural) + " have in common?\n" + capitalize_first_letter_only(random.choice(word_collections.concepts)) + ".")
+    return ("What do " + random.choice(word_collections.concepts) + ",\n" + a_or_an(temp) + " " + temp + ", and " + random.choice(word_collections.nouns_plural) + "\nhave in common?\n" + capitalize_first_letter_only(random.choice(word_collections.concepts)) + ".")
 
 # Yes
 def template_yes():
@@ -391,7 +391,7 @@ def template_hard():
 
 # Percent
 def template_percent():
-    return (capitalize_first_letter_only(random.choice(word_collections.nouns_plural)) + " are\n" + str(random.randrange(1, 200, 1)) + " percent " + random.choice(word_collections.concepts))
+    return (capitalize_first_letter_only(random.choice(word_collections.nouns_plural)) + " are\n" + str(random.randrange(1, 200, 1)) + "% " + random.choice(word_collections.concepts))
 
 # Becoming
 def template_become():
