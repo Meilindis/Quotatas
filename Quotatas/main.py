@@ -44,95 +44,99 @@ font_collection = [
                    ['SandanaRegular-JR5q7.ttf', 24]
                    ]
 
-# Image list: image name, text colour, placement, indent (x), starting height (y), whether or not extra indentation is necessary for multiline
-image_collection = [['a_fetters_recto_b_several_figures_verso.png', (145, 0, 140), 'justify', 20, 345, 'straight'],
-                    ['a_luncheon_party_.png', (255, 245, 185), 'justify', 20, 345, 'straight'],
-                    ['angel.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
-                    ['annoyed.png', (65, 75, 139), 'justify', 20, 100, 'straight'],
-                    ['angry_lady.png', (65, 75, 139), 'justify', 20, 100, 'straight'],
-                    ['angry.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
-                    ['ascent.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
-                    ['babushka.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
-                    ['balloons.png', (65, 75, 139), 'justify', 20, 100, 'straight'],
-                    ['bananas.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
-                    ['bat.png', (255, 245, 185), 'justify', 20, 320, 'straight'],
-                    ['bicycle.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
-                    ['bigsplash.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
-                    ['blossoms.png', (65, 75, 139), 'justify', 20, 100, 'straight'],
-                    ['candle.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
-                    ['cat_snow.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
-                    ['clown.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
-                    ['chess.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
-                    ['chocolate.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
-                    ['coffee.png', (255, 245, 185), 'justify', 20, 345, 'straight'],
-                    ['couple_mountains.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
-                    ['building_the_freidrich-strasse_station.png', (65, 75, 139), 'justify', 20, 100, 'straight'],
-                    ['dancer.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
-                    ['desert.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
-                    ['die_komponistin_sonia_friedman.png', (167, 255, 174), 'justify', 30, 305, 'straight'],
-                    ['dog.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
-                    ['dogbubbles.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
-                    ['dogtrick.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
-                    ['duck.png', (29, 37, 82), 'justify', 20, 345, 'straight'],
-                    ['ducklings.png', (255, 255, 255), 'justify', 20, 300, 'straight'],
-                    ['earth.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
-                    ['flysex.png', (255, 245, 185), 'justify', 20, 100, 'straight'],
-                    ['frogs.png', (255, 255, 255), 'justify', 20, 300, 'straight'],
-                    ['galaxy.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
-                    ['giraffe.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
-                    ['ghosts.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
-                    ['glitter.png', (255, 245, 185), 'justify', 20, 100, 'straight'],
-                    ['goats.png', (255, 245, 185), 'justify', 20, 100, 'straight'],
-                    ['hare.png', (255, 255, 255), 'justify', 20, 225, 'straight'],
-                    ['heart_cloud.png', (29, 37, 82), 'justify', 20, 50, 'straight'],
-                    ['hearts.png', (29, 37, 82), 'justify', 20, 50, 'straight'],
-                    ['horse.png', (29, 37, 82), 'justify', 60, 225, 'curve'],
-                    ['jellyfish.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
-                    ['joy.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
-                    ['juggler.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
-                    ['kale.png', (255, 245, 185), 'justify', 20, 100, 'straight'],
-                    ['ladybug.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
-                    ['les_amateurs_d_estampes.png', (207, 220, 255), 'justify', 40, 100, 'straight'],
-                    ['lonelybot.png', (255, 255, 255), 'justify', 20, 100, 'curve'],
-                    ['manager.png', (255, 255, 255), 'justify', 20, 345, 'curve'],
-                    ['mannekenpis.png', (167, 255, 174), 'justify', 20, 345, 'straight'],
-                    ['marx.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
-                    ['megaphone.png', (29, 37, 82), 'justify', 60, 100, 'curve'],
-                    ['milky_way.png', (255, 245, 185), 'justify', 20, 100, 'straight'],
-                    ['monkey.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
-                    ['monster.png', (255, 255, 255), 'justify', 10, 70, 'curve'],
-                    ['pancakes.png', (255, 255, 255), 'justify', 20, 100, 'curve'],
-                    ['pear.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
-                    ['pepper.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
-                    ['problem.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
-                    ['puffin.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
-                    ['rabbit.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
-                    ['rain_people.png', (29, 37, 82), 'justify', 20, 365, 'straight'],
-                    ['rainbow.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
-                    ['reading.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
-                    ['reflection.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
-                    ['rider.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
-                    ['robot.png', (199, 17, 234), 'justify', 20, 100, 'straight'],
-                    ['rubberducks.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
-                    ['silhouettes.png', (65, 75, 139), 'justify', 20, 100, 'straight'],
-                    ['socks.png', (255, 255, 255), 'justify', 20, 225, 'straight'],
-                    ['spices.png', (255, 255, 255), 'justify', 20, 300, 'straight'],
-                    ['squirrel.png', (255, 255, 255), 'justify', 20, 345, 'straight'],
-                    ['staircase.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
-                    ['stop.png', (65, 75, 139), 'justify', 20, 100, 'straight'],
-                    ['sunset.png', (65, 75, 139), 'justify', 20, 100, 'straight'],
-                    ['tea.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
-                    ['the_tournament.png', (255, 245, 215), 'justify', 20, 100, 'straight'],
-                    ['the_visit_.png', (142, 255, 221), 'justify', 20, 345, 'straight'],
-                    ['three_girls_in_profile.png', (24, 0, 59), 'justify', 20, 345, 'straight'],
-                    ['top.png', (65, 75, 139), 'justify', 20, 100, 'straight'],
-                    ['treefrog.png', (199, 17, 234), 'justify', 20, 345, 'straight'],
-                    ['tulips.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
-                    ['twelve_men_.png', (199, 17, 234), 'justify', 30, 100, 'straight'],
-                    ['vampire.png', (255, 255, 255), 'justify', 20, 100, 'straight'],
-                    ['woman.png', (255, 245, 185), 'justify', 20, 100, 'straight'],
-                    ['woman_flowers.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
-                    ['yarn.png', (29, 37, 82), 'justify', 20, 100, 'straight'],
+# Image list: image name, text colour, placement, position, extra indentation x, y
+# Default positions:
+# Top: 20, 30
+# Middle: 20, 225
+# Bottom: 20, 450
+image_collection = [['a_fetters_recto_b_several_figures_verso.png', (145, 0, 140), 'justify', 'bottom', 0, 0],
+                    ['a_luncheon_party_.png', (255, 245, 185), 'justify', 'bottom', 0, 0],
+                    ['angel.png', (255, 255, 255), 'justify', 'top', 0, 0],
+                    ['annoyed.png', (65, 75, 139), 'justify', 'top', 0, 0],
+                    ['angry_lady.png', (65, 75, 139), 'justify', 'top', 0, 0],
+                    ['angry.png', (255, 255, 255), 'justify', 'top', 0, 0],
+                    ['ascent.png', (255, 255, 255), 'justify', 'top', 0, 0],
+                    ['babushka.png', (255, 255, 255), 'justify', 'top', 0, 0],
+                    ['balloons.png', (65, 75, 139), 'justify', 'top', 0, 0],
+                    ['bananas.png', (255, 255, 255), 'justify', 'top', 0, 0],
+                    ['bat.png', (255, 245, 185), 'justify', 'bottom', 0, -20],
+                    ['bicycle.png', (29, 37, 82), 'justify', 'top', 0, 0],
+                    ['bigsplash.png', (255, 255, 255), 'justify', 'top', 0, 0],
+                    ['blossoms.png', (65, 75, 139), 'justify', 'top', 0, 0],
+                    ['candle.png', (29, 37, 82), 'justify', 'top', 0, 0],
+                    ['cat_snow.png', (29, 37, 82), 'justify', 'top', 0, 0],
+                    ['clown.png', (255, 255, 255), 'justify', 'top', 0, 0],
+                    ['chess.png', (255, 255, 255), 'justify', 'top', 0, 0],
+                    ['chocolate.png', (255, 255, 255), 'justify', 'top', 0, 0],
+                    ['coffee.png', (255, 245, 185), 'justify', 'bottom', 0, 0],
+                    ['couple_mountains.png', (29, 37, 82), 'justify', 'top', 0, 0],
+                    ['building_the_freidrich-strasse_station.png', (65, 75, 139), 'justify', 'top', 0, 0],
+                    ['dancer.png', (255, 255, 255), 'justify', 'top', 0, 0],
+                    ['desert.png', (29, 37, 82), 'justify', 'top', 0, 0],
+                    ['die_komponistin_sonia_friedman.png', (167, 255, 174), 'justify', 'bottom', 10, -40],
+                    ['dog.png', (29, 37, 82), 'justify', 'top', 0, 0],
+                    ['dogbubbles.png', (255, 255, 255), 'justify', 'top', 0, 0],
+                    ['dogtrick.png', (255, 255, 255), 'justify', 'top', 0, 0],
+                    ['duck.png', (29, 37, 82), 'justify', 'bottom', 0, 0],
+                    ['ducklings.png', (255, 255, 255), 'justify', 'bottom', 0, -45],
+                    ['earth.png', (255, 255, 255), 'justify', 'top', 0, 0],
+                    ['flysex.png', (255, 245, 185), 'justify', 'top', 0, 0],
+                    ['frogs.png', (255, 255, 255), 'justify', 'bottom', 0, -45],
+                    ['galaxy.png', (255, 255, 255), 'justify', 'top', 0, 0],
+                    ['giraffe.png', (29, 37, 82), 'justify', 'top', 0, 0],
+                    ['ghosts.png', (29, 37, 82), 'justify', 'top', 0, 0],
+                    ['glitter.png', (255, 245, 185), 'justify', 'top', 0, 0],
+                    ['goats.png', (255, 245, 185), 'justify', 'top', 0, 0],
+                    ['hare.png', (255, 255, 255), 'justify', 'bottom', 0, 0],
+                    ['heart_cloud.png', (29, 37, 82), 'justify', 'top', 0, -50],
+                    ['hearts.png', (29, 37, 82), 'justify', 'top', 0, -50],
+                    ['horse.png', (29, 37, 82), 'justify', 'middle', 40, 0],
+                    ['jellyfish.png', (255, 255, 255), 'justify', 'top', 0, 0],
+                    ['joy.png', (29, 37, 82), 'justify', 'top', 0, 0],
+                    ['juggler.png', (29, 37, 82), 'justify', 'top', 0, 0],
+                    ['kale.png', (255, 245, 185), 'justify', 'top', 0, 0],
+                    ['ladybug.png', (29, 37, 82), 'justify', 'top', 0, 0],
+                    ['les_amateurs_d_estampes.png', (207, 220, 255), 'justify', 'top', 20, 0],
+                    ['lonelybot.png', (255, 255, 255), 'justify', 'top', 0, 0],
+                    ['manager.png', (255, 255, 255), 'justify', 'bottom', 0, 0],
+                    ['mannekenpis.png', (167, 255, 174), 'justify', 'bottom', 0, 0],
+                    ['marx.png', (255, 255, 255), 'justify', 'top', 0, 0],
+                    ['megaphone.png', (29, 37, 82), 'justify', 'top', 40, 0],
+                    ['milky_way.png', (255, 245, 185), 'justify', 'top', 0, 0],
+                    ['monkey.png', (255, 255, 255), 'justify', 'top', 0, 0],
+                    ['monster.png', (255, 255, 255), 'justify', 10, 70],
+                    ['pancakes.png', (255, 255, 255), 'justify', 'top', 0, 0],
+                    ['pear.png', (255, 255, 255), 'justify', 'top', 0, 0],
+                    ['pepper.png', (255, 255, 255), 'justify', 'top', 0, 0],
+                    ['problem.png', (29, 37, 82), 'justify', 'top', 0, 0],
+                    ['puffin.png', (255, 255, 255), 'justify', 'top', 0, 0],
+                    ['rabbit.png', (29, 37, 82), 'justify', 'top', 0, 0],
+                    ['rain_people.png', (29, 37, 82), 'justify', 'bottom', 0, 20],
+                    ['rainbow.png', (29, 37, 82), 'justify', 'top', 0, 0],
+                    ['reading.png', (29, 37, 82), 'justify', 'top', 0, 0],
+                    ['reflection.png', (255, 255, 255), 'justify', 'top', 0, 0],
+                    ['rider.png', (255, 255, 255), 'justify', 'top', 0, 0],
+                    ['robot.png', (199, 17, 234), 'justify', 'top', 0, 0],
+                    ['rubberducks.png', (29, 37, 82), 'justify', 'top', 0, 0],
+                    ['silhouettes.png', (65, 75, 139), 'justify', 'top', 0, 0],
+                    ['socks.png', (255, 255, 255), 'justify', 'middle', 0, 0],
+                    ['spices.png', (255, 255, 255), 'justify', 'bottom', 0, -45],
+                    ['squirrel.png', (255, 255, 255), 'justify', 'bottom', 0, 0],
+                    ['staircase.png', (255, 255, 255), 'justify', 'top', 0, 0],
+                    ['stop.png', (65, 75, 139), 'justify', 'top', 0, 0],
+                    ['sunset.png', (65, 75, 139), 'justify', 'top', 0, 0],
+                    ['tea.png', (255, 255, 255), 'justify', 'top', 0, 0],
+                    ['the_tournament.png', (255, 245, 215), 'justify', 'top', 0, 0],
+                    ['the_visit_.png', (142, 255, 221), 'justify', 'bottom', 0, 0],
+                    ['three_girls_in_profile.png', (24, 0, 59), 'justify', 'bottom', 0, 0],
+                    ['top.png', (65, 75, 139), 'justify', 'top', 0, 0],
+                    ['treefrog.png', (199, 17, 234), 'justify', 'bottom', 0, 0],
+                    ['tulips.png', (255, 255, 255), 'justify', 'top', 0, 0],
+                    ['twelve_men_.png', (199, 17, 234), 'justify', 'top', 10, 0],
+                    ['vampire.png', (255, 255, 255), 'justify', 'top', 0, 0],
+                    ['woman.png', (255, 245, 185), 'justify', 'top', 0, 0],
+                    ['woman_flowers.png', (29, 37, 82), 'justify', 'top', 0, 0],
+                    ['yarn.png', (29, 37, 82), 'justify', 'top', 0, 0],
                     ]
 
 # ----------------------------------------------------------------------------------------------------------------------
@@ -246,7 +250,7 @@ if __name__ == "__main__":
             
             # Import the .txt files containing the words that are used
             self.import_word_lists()
-            
+
             # Update the selected words based on the UI settings
             self.settings_changed()
             # self.export_word_lists() # Only enable when you have added new words to the lists and want to alphabetise them.
@@ -288,77 +292,45 @@ if __name__ == "__main__":
 
             color = self.image[1]
             location = self.image[2]
-            x_val = self.image[3] # indent to the right from 0 (base is one line)
-            y_val = self.image[4] # pixels down from zero
+
             text = self.quote
             font_name = os.path.join(os.path.join(current_dir, 'fonts'), self.font[0])
             font_custom_size = self.font[1]
             img = ImageText(image, background=(255, 255, 255, 200)) # 200 = alpha
             
+            # Determine number of lines
+            nr_of_lines = text.count("\n") + 1
+            # Add the separate lines to a list
+            lines = text.splitlines()
+            x_val = 20 # default indentation
+            y_val = 0
 
-
-            if "\n" not in text:
-                #write_text_box will split the text in many lines, based on box_width
-                #`place` can be 'left' (default), 'right', 'center' or 'justify'
-                #write_text_box will return (box_width, box_calculed_height) so you can
-                #know the size of the wrote text
-                img.write_text_box((x_val, y_val), text, box_width=200, font_filename=font_name,
-                                font_size=font_custom_size, color=color, place=location) # 60,225
+            if self.image[3] == 'top':
+                x_val += self.image[4]
+                y_val = 30 + self.image[5]                
+            elif self.image[3] == 'middle':
+                x_val += self.image[4]
+                y_val = 225 + self.image[5]
+                # Make sure the text is centered around the given y value
+                y_val -= (nr_of_lines * 35)/2
+            elif self.image[3] == 'bottom':
+                x_val += self.image[4]
+                y_val = 450 + self.image[5]
+                # Make sure the text starts high enough
+                y_val -= (nr_of_lines * 35)
             else:
-                nr_of_lines = text.count("\n") + 1
-                if nr_of_lines == 2:
-                    lines = text.splitlines()
-                    if self.image[5] == 'curve':
-                        x = x_val + 5
-                    else: x = x_val
-                    y = y_val - 25
-                    for line in lines:
-                        img.write_text_box((x, y), line, box_width=200, font_filename=font_name,
-                                font_size=font_custom_size, color=color, place=location)
-                        y += 35
-                elif nr_of_lines == 3:
-                    lines = text.splitlines()
-                    if self.image[5] == 'curve':
-                        x = x_val + 10
-                    else: x = x_val
-                    y = y_val - 35
-                    for line in lines:
-                        img.write_text_box((x, y), line, box_width=200, font_filename=font_name,
-                                font_size=font_custom_size, color=color, place=location)
-                        y += 35
-                elif nr_of_lines == 4:
-                    lines = text.splitlines()
-                    if self.image[5] == 'curve':
-                        x = x_val + 15
-                    else: x = x_val
-                    y = y_val - 45
-                    for line in lines:
-                        img.write_text_box((x, y), line, box_width=200, font_filename=font_name,
-                                font_size=font_custom_size, color=color, place=location)
-                        y += 35
-                elif nr_of_lines == 5:
-                    lines = text.splitlines()
-                    if self.image[5] == 'curve':
-                        x = x_val + 20
-                    else: x = x_val
-                    y = y_val - 55
-                    for line in lines:
-                        img.write_text_box((x, y), line, box_width=200, font_filename=font_name,
-                                font_size=font_custom_size, color=color, place=location)
-                        y += 35
-                elif nr_of_lines == 6:
-                    lines = text.splitlines()
-                    if self.image[5] == 'curve':
-                        x = x_val + 25
-                    
-                    else: x = x_val
-                    y = y_val - 65
-                    for line in lines:
-                        img.write_text_box((x, y), line, box_width=200, font_filename=font_name,
-                                font_size=font_custom_size, color=color, place=location)
-                        y += 35
+                return
+            # Assign the resulting x/y value to x/y
+            x = x_val
+            y = y_val
 
+            # Now draw each line onto the image
+            for line in lines:
+                img.write_text_box((x, y), line, box_width=200, font_filename=font_name,
+                        font_size=font_custom_size, color=color, place=location)
+                y += 35
 
+            # Save in temporary location
             img.save('temp.png')
 
             # Display the modified image
