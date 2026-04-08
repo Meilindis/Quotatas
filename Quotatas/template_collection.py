@@ -523,6 +523,19 @@ def template_necessity():
 def template_peanuts():
 	return ("Any " + random.choice([people_singular(), noun_singular()]) + "\ncan " + situation_active())
 
+# Ready
+def template_ready():
+    return ("Get ready for " + random.choice([concept(), noun_plural()]) + "!")
+
+# They do
+def template_they_do():
+    persons = people_plural()
+    return (capitalize_first_letter(adjective()) + " " + persons + " " + verb() + "\nwhat " + adjective() + " " + persons + " " + verb())
+
+# Do both
+def template_do_both():
+    return (capitalize_first_letter(random.choice([verb(), verb_intransitive()])) + " and " + random.choice([verb(), verb_intransitive()]))
+
 # List of defined templates (don't forget to add new templates here or they won't be used!)
 template_list = [template_times_three, 
                  template_three_compliments, 
@@ -613,5 +626,8 @@ template_list = [template_times_three,
                  template_ingredients,
                  template_necessity,
                  template_peanuts,
+                 template_ready,
+                 template_they_do,
+                 template_do_both,
                  ]
 
