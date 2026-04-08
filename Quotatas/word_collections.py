@@ -71,8 +71,7 @@ people_plural = []
 def import_list(filename):
     word_list = []
     path = Path(__file__).parent.absolute()
-    location = os.path.join(path, 'word_lists')
-    location = os.path.join(location, filename)
+    location = os.path.join(path, 'word_lists', filename)
     infile = open(location,'r')
     for word in infile:
         word_list.append(word.rstrip())
@@ -86,8 +85,7 @@ def export_list(selectedlist, list_name):
     sorted_list = sorted(selectedlist)
     path = Path(__file__).parent.absolute()
     filename = list_name + '.txt'
-    location = os.path.join(path, 'word_lists')
-    location = os.path.join(location, filename)
+    location = os.path.join(path, 'word_lists', filename)
     with open(location, 'w') as f:
         for item in sorted_list:
             f.write(f"{item}\n")

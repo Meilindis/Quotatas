@@ -4,6 +4,7 @@ import random
 from pathlib import Path
 import shutil
 import csv
+from ast import literal_eval
 
 import PIL
 from PIL import ImageFont
@@ -42,6 +43,15 @@ colours = {'white':      (255, 255, 255),
 
 # Store current path for convenience
 current_path = Path(__file__).parent.absolute()
+
+# Helper function to check expression type
+def evaluate(expression):
+    try:
+        return literal_eval(expression)
+    except ValueError:
+        return str(expression)
+    except SyntaxError:
+        return str(expression)
 
 # ----------------------------------------------------------------------------------------------------------------------
 # MAIN PROGRAM
@@ -159,6 +169,9 @@ if __name__ == "__main__":
             self.import_font_collection()
             self.import_image_collection()
 
+            # self.export_font_collection()
+            # self.export_image_collection()
+
             # Update the selected words based on the UI settings
             self.settings_changed()
             # self.export_word_lists() # Only enable when you have added new words to the lists and want to alphabetise them.
@@ -168,20 +181,20 @@ if __name__ == "__main__":
 
         # Read font info from file
         def import_font_collection(self):
-            font_location = os.path.join(current_path, 'resources')
-            font_location = os.path.join(font_location, 'font_collection.csv')
+            font_location = os.path.join(current_path, 'resources', 'font_collection.csv')
             with open(font_location, newline='') as csvfile:
-                fontreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
-                for row in fontreader:
+                fontreader = csv.reader(csvfile, delimiter=',', quotechar='|')
+                parsed = (list(evaluate(field) for field in row) for row in fontreader)
+                for row in parsed:
                     self.font_collection.append(row)
 
          # Read image info from file
         def import_image_collection(self):
-            image_location = os.path.join(current_path, 'resources')
-            image_location = os.path.join(image_location, 'image_collection.csv')
+            image_location = os.path.join(current_path, 'resources', 'image_collection.csv')
             with open(image_location, newline='') as csvfile:
-                imagereader = csv.reader(csvfile, delimiter=' ', quotechar='|')
-                for row in imagereader:
+                imagereader = csv.reader(csvfile, delimiter=',', quotechar='|')
+                parsed = (list(evaluate(field) for field in row) for row in imagereader)
+                for row in parsed:
                     self.image_collection.append(row)
 
         # Define what happens when the button is pressed
@@ -222,7 +235,7 @@ if __name__ == "__main__":
 
             text = self.quote
             font_name = os.path.join(os.path.join(current_dir, 'fonts'), self.font[0])
-            font_custom_size = int(self.font[1])
+            font_custom_size = self.font[1]
             img = ImageText(image, background=(255, 255, 255, 200)) # 200 = alpha
             
             # Determine number of lines
@@ -233,16 +246,16 @@ if __name__ == "__main__":
             y_val = 0
 
             if self.image[3] == 'top':
-                x_val += int(self.image[4])
-                y_val = 30 + int(self.image[5])                
+                x_val += self.image[4]
+                y_val = 30 + self.image[5]                
             elif self.image[3] == 'middle':
-                x_val += int(self.image[4])
-                y_val = 225 + int(self.image[5])
+                x_val += self.image[4]
+                y_val = 225 + self.image[5]
                 # Make sure the text is centered around the given y value
                 y_val -= (nr_of_lines * 35)/2
             elif self.image[3] == 'bottom':
-                x_val += int(self.image[4])
-                y_val = 450 + int(self.image[5])
+                x_val += self.image[4]
+                y_val = 450 + self.image[5]
                 # Make sure the text starts high enough
                 y_val -= (nr_of_lines * 35)
             else:
@@ -481,6 +494,23 @@ if __name__ == "__main__":
             word_collections.export_list(word_collections.cliches_nsfw, "cliches_nsfw")
             word_collections.export_list(word_collections.food_concepts, "food_concepts.txt")
 
+        def export_font_collection(self):
+            font_location = os.path.join(current_path, 'resources')
+            font_location = os.path.join(font_location, 'font_collection.csv')
+            with open(font_location, 'w', newline='') as csvfile:
+                fontwriter = csv.writer(csvfile, delimiter=',',
+                                        quotechar='|', quoting=csv.QUOTE_MINIMAL)
+                for line in self.font_collection:
+                    fontwriter.writerow(line)
+
+        def export_image_collection(self):
+            image_location = os.path.join(current_path, 'resources')
+            image_location = os.path.join(image_location, 'image_collection.csv')
+            with open(image_location, 'w', newline='') as csvfile:
+                imagewriter = csv.writer(csvfile, delimiter=',',
+                                        quotechar='|', quoting=csv.QUOTE_MINIMAL)
+                for line in self.image_collection:
+                    imagewriter.writerow(line)
 
     app = QApplication(sys.argv)
 
