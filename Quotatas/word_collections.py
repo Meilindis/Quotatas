@@ -91,3 +91,4 @@ def export_list(selectedlist, list_name):
     with open(location, 'w') as f:
         for item in sorted_list:
             f.write(f"{item}\n")
+

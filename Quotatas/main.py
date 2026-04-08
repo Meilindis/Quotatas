@@ -3,6 +3,7 @@ import os
 import random
 from pathlib import Path
 import shutil
+import csv
 
 import PIL
 from PIL import ImageFont
@@ -24,120 +25,23 @@ from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QTextEdit,
 
 # ---------------------------------------------------------------------------------------------------------------------------------------------
 # RESOURCES
+# Library of colours (readable names vs RGB value)
+colours = {'white':      (255, 255, 255),
+           'black':      (0, 0, 0),
+           'magenta':    (199, 17, 234),
+           'darkblue':   (29, 37, 82),
+           'cyan':       (142, 255, 221),
+           'peach':      (255, 245, 185),
+           'periwinkle': (65, 75, 139),
+           'mint':       (167, 255, 174),
+           'fuchsia':    (145, 0, 140),
+           'iceblue':    (207, 220, 255),
+           'beige':      (255, 245, 215),
+           'eggplant':   (24, 0, 59),
+           }
 
-# Font list: font name, font size that usually fits
-font_collection = [
-                   ['SuperJoyful-lxwPq.ttf', 26], # Free for commercial use
-                   ['SuperChiby-BL62V.ttf', 30],
-                   ['MouldyCheeseRegular-WyMWG.ttf', 26],
-                   ['SparkyStonesRegular-BW6ld.ttf', 30],
-                   ['SuperLarky-nALLR.ttf', 20],
-                   ['Martius-LV9L4.ttf', 32],
-                   ['BorderWall-OG55o.otf', 26],
-                   ['SuperSalad-qZgvV.ttf', 30],
-                   ['MangabeyRegular-rgqVO.otf', 30],
-                   ['SuperChips-5yBYL.ttf', 26],
-                   ['AmberyGardenRegular-PKjGd.ttf', 26],
-                   ['Wiltype-9MA1y.ttf', 32],
-                   ['Excludeditalic-jEr99.ttf', 20],
-                   ['Playball-q6o1.ttf', 30],
-                   ['SandanaRegular-JR5q7.ttf', 24]
-                   ]
-
-# Image list: image name, text colour, placement, position, extra indentation for x, y (can be negative)
-# Default positions:
-# Top: 20, 30
-# Middle: 20, 225
-# Bottom: 20, 450
-image_collection = [['a_fetters_recto_b_several_figures_verso.png', (145, 0, 140), 'justify', 'bottom', 0, 0],
-                    ['a_luncheon_party_.png', (255, 245, 185), 'justify', 'bottom', 0, 0],
-                    ['angel.png', (255, 255, 255), 'justify', 'top', 0, 0],
-                    ['annoyed.png', (65, 75, 139), 'justify', 'top', 0, 0],
-                    ['angry_lady.png', (65, 75, 139), 'justify', 'top', 0, 0],
-                    ['angry.png', (255, 255, 255), 'justify', 'top', 0, 0],
-                    ['ascent.png', (255, 255, 255), 'justify', 'top', 0, 0],
-                    ['babushka.png', (255, 255, 255), 'justify', 'top', 0, 0],
-                    ['balloons.png', (65, 75, 139), 'justify', 'top', 0, 0],
-                    ['bananas.png', (255, 255, 255), 'justify', 'top', 0, 0],
-                    ['bat.png', (255, 245, 185), 'justify', 'bottom', 0, -20],
-                    ['bicycle.png', (29, 37, 82), 'justify', 'top', 0, 0],
-                    ['bigsplash.png', (255, 255, 255), 'justify', 'top', 0, 0],
-                    ['blossoms.png', (65, 75, 139), 'justify', 'top', 0, 0],
-                    ['candle.png', (29, 37, 82), 'justify', 'top', 0, 0],
-                    ['cat_snow.png', (29, 37, 82), 'justify', 'top', 0, 0],
-                    ['clown.png', (255, 255, 255), 'justify', 'top', 0, 0],
-                    ['chess.png', (255, 255, 255), 'justify', 'top', 0, 0],
-                    ['chocolate.png', (255, 255, 255), 'justify', 'top', 0, 0],
-                    ['coffee.png', (255, 245, 185), 'justify', 'bottom', 0, 0],
-                    ['couple_mountains.png', (29, 37, 82), 'justify', 'top', 0, 0],
-                    ['building_the_freidrich-strasse_station.png', (65, 75, 139), 'justify', 'top', 0, 0],
-                    ['dancer.png', (255, 255, 255), 'justify', 'top', 0, 0],
-                    ['desert.png', (29, 37, 82), 'justify', 'top', 0, 0],
-                    ['die_komponistin_sonia_friedman.png', (167, 255, 174), 'justify', 'bottom', 10, -40],
-                    ['dog.png', (29, 37, 82), 'justify', 'top', 0, 0],
-                    ['dogbubbles.png', (255, 255, 255), 'justify', 'top', 0, 0],
-                    ['dogtrick.png', (255, 255, 255), 'justify', 'top', 0, 0],
-                    ['duck.png', (29, 37, 82), 'justify', 'bottom', 0, 0],
-                    ['ducklings.png', (255, 255, 255), 'justify', 'bottom', 0, -45],
-                    ['earth.png', (255, 255, 255), 'justify', 'top', 0, 0],
-                    ['flysex.png', (255, 245, 185), 'justify', 'top', 0, 0],
-                    ['frogs.png', (255, 255, 255), 'justify', 'bottom', 0, -45],
-                    ['galaxy.png', (255, 255, 255), 'justify', 'top', 0, 0],
-                    ['giraffe.png', (29, 37, 82), 'justify', 'top', 0, 0],
-                    ['ghosts.png', (29, 37, 82), 'justify', 'top', 0, 0],
-                    ['glitter.png', (255, 245, 185), 'justify', 'top', 0, 0],
-                    ['goats.png', (255, 245, 185), 'justify', 'top', 0, 0],
-                    ['hare.png', (255, 255, 255), 'justify', 'bottom', 0, 0],
-                    ['heart_cloud.png', (29, 37, 82), 'justify', 'top', 0, -50],
-                    ['hearts.png', (29, 37, 82), 'justify', 'top', 0, -50],
-                    ['horse.png', (29, 37, 82), 'justify', 'middle', 40, 0],
-                    ['jellyfish.png', (255, 255, 255), 'justify', 'top', 0, 0],
-                    ['joy.png', (29, 37, 82), 'justify', 'top', 0, 0],
-                    ['juggler.png', (29, 37, 82), 'justify', 'top', 0, 0],
-                    ['kale.png', (255, 245, 185), 'justify', 'top', 0, 0],
-                    ['ladybug.png', (29, 37, 82), 'justify', 'top', 0, 0],
-                    ['les_amateurs_d_estampes.png', (207, 220, 255), 'justify', 'top', 20, 0],
-                    ['lonelybot.png', (255, 255, 255), 'justify', 'top', 0, 0],
-                    ['manager.png', (255, 255, 255), 'justify', 'bottom', 0, 0],
-                    ['mannekenpis.png', (167, 255, 174), 'justify', 'bottom', 0, 0],
-                    ['marx.png', (255, 255, 255), 'justify', 'top', 0, 0],
-                    ['megaphone.png', (29, 37, 82), 'justify', 'top', 40, 0],
-                    ['milky_way.png', (255, 245, 185), 'justify', 'top', 0, 0],
-                    ['monkey.png', (255, 255, 255), 'justify', 'top', 0, 0],
-                    ['monster.png', (255, 255, 255), 'justify', 10, 70],
-                    ['pancakes.png', (255, 255, 255), 'justify', 'top', 0, 0],
-                    ['pear.png', (255, 255, 255), 'justify', 'top', 0, 0],
-                    ['pepper.png', (255, 255, 255), 'justify', 'top', 0, 0],
-                    ['problem.png', (29, 37, 82), 'justify', 'top', 0, 0],
-                    ['puffin.png', (255, 255, 255), 'justify', 'top', 0, 0],
-                    ['rabbit.png', (29, 37, 82), 'justify', 'top', 0, 0],
-                    ['rain_people.png', (29, 37, 82), 'justify', 'bottom', 0, 20],
-                    ['rainbow.png', (29, 37, 82), 'justify', 'top', 0, 0],
-                    ['reading.png', (29, 37, 82), 'justify', 'top', 0, 0],
-                    ['reflection.png', (255, 255, 255), 'justify', 'top', 0, 0],
-                    ['rider.png', (255, 255, 255), 'justify', 'top', 0, 0],
-                    ['robot.png', (199, 17, 234), 'justify', 'top', 0, 0],
-                    ['rubberducks.png', (29, 37, 82), 'justify', 'top', 0, 0],
-                    ['silhouettes.png', (65, 75, 139), 'justify', 'top', 0, 0],
-                    ['socks.png', (255, 255, 255), 'justify', 'middle', 0, 0],
-                    ['spices.png', (255, 255, 255), 'justify', 'bottom', 0, -45],
-                    ['squirrel.png', (255, 255, 255), 'justify', 'bottom', 0, 0],
-                    ['staircase.png', (255, 255, 255), 'justify', 'top', 0, 0],
-                    ['stop.png', (65, 75, 139), 'justify', 'top', 0, 0],
-                    ['sunset.png', (65, 75, 139), 'justify', 'top', 0, 0],
-                    ['tea.png', (255, 255, 255), 'justify', 'top', 0, 0],
-                    ['the_tournament.png', (255, 245, 215), 'justify', 'top', 0, 0],
-                    ['the_visit_.png', (142, 255, 221), 'justify', 'bottom', 0, 0],
-                    ['three_girls_in_profile.png', (24, 0, 59), 'justify', 'bottom', 0, 0],
-                    ['top.png', (65, 75, 139), 'justify', 'top', 0, 0],
-                    ['treefrog.png', (199, 17, 234), 'justify', 'bottom', 0, 0],
-                    ['tulips.png', (255, 255, 255), 'justify', 'top', 0, 0],
-                    ['twelve_men_.png', (199, 17, 234), 'justify', 'top', 10, 0],
-                    ['vampire.png', (255, 255, 255), 'justify', 'top', 0, 0],
-                    ['woman.png', (255, 245, 185), 'justify', 'top', 0, 0],
-                    ['woman_flowers.png', (29, 37, 82), 'justify', 'top', 0, 0],
-                    ['yarn.png', (29, 37, 82), 'justify', 'top', 0, 0],
-                    ]
+# Store current path for convenience
+current_path = Path(__file__).parent.absolute()
 
 # ----------------------------------------------------------------------------------------------------------------------
 # MAIN PROGRAM
@@ -240,16 +144,20 @@ if __name__ == "__main__":
 
             self.setCentralWidget(container)    
 
-            # CONTAINERS TO STORE THE SELECTED QUOTES, IMAGES, AND FONTS
+            # CREATE CONTAINERS TO STORE THE SELECTED QUOTES, IMAGES, AND FONTS
             # Store the quote here later:
             self.quote = ""
             self.image = []
             self.font = []
             self.full_history = [] # list of lists, containing [quote, image, font]
             self.selected_quote = 0
+            self.font_collection = []
+            self.image_collection = []
             
-            # Import the .txt files containing the words that are used
+            # Import the files containing the words, fonts, and images that are used
             self.import_word_lists()
+            self.import_font_collection()
+            self.import_image_collection()
 
             # Update the selected words based on the UI settings
             self.settings_changed()
@@ -257,6 +165,24 @@ if __name__ == "__main__":
 
         # -----------------------------------------------------------------------------------------------------------------------------
         # MEMBER FUNCTIONS
+
+        # Read font info from file
+        def import_font_collection(self):
+            font_location = os.path.join(current_path, 'resources')
+            font_location = os.path.join(font_location, 'font_collection.csv')
+            with open(font_location, newline='') as csvfile:
+                fontreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
+                for row in fontreader:
+                    self.font_collection.append(row)
+
+         # Read image info from file
+        def import_image_collection(self):
+            image_location = os.path.join(current_path, 'resources')
+            image_location = os.path.join(image_location, 'image_collection.csv')
+            with open(image_location, newline='') as csvfile:
+                imagereader = csv.reader(csvfile, delimiter=' ', quotechar='|')
+                for row in imagereader:
+                    self.image_collection.append(row)
 
         # Define what happens when the button is pressed
         def the_button_was_clicked(self):
@@ -271,12 +197,10 @@ if __name__ == "__main__":
             # Create the image
             self.create_quote_image()
 
-            # self.quote_field.setText(self.quote)
-
         def set_parameters(self):
             # Select the random parameters of the quote
-            self.image = random.choice(image_collection)
-            self.font = random.choice(font_collection)
+            self.image = random.choice(self.image_collection)
+            self.font = random.choice(self.font_collection)
             self.quote = random.choice(template_collection.template_list)()
 
             # Add and set the selected quote index to this new quote's index
@@ -293,12 +217,12 @@ if __name__ == "__main__":
             image_path = os.path.join(os.path.join(current_dir, 'images'), self.image[0])
             image = Image.open(image_path)
 
-            color = self.image[1]
+            color = colours[self.image[1]]
             location = self.image[2]
 
             text = self.quote
             font_name = os.path.join(os.path.join(current_dir, 'fonts'), self.font[0])
-            font_custom_size = self.font[1]
+            font_custom_size = int(self.font[1])
             img = ImageText(image, background=(255, 255, 255, 200)) # 200 = alpha
             
             # Determine number of lines
@@ -309,16 +233,16 @@ if __name__ == "__main__":
             y_val = 0
 
             if self.image[3] == 'top':
-                x_val += self.image[4]
-                y_val = 30 + self.image[5]                
+                x_val += int(self.image[4])
+                y_val = 30 + int(self.image[5])                
             elif self.image[3] == 'middle':
-                x_val += self.image[4]
-                y_val = 225 + self.image[5]
+                x_val += int(self.image[4])
+                y_val = 225 + int(self.image[5])
                 # Make sure the text is centered around the given y value
                 y_val -= (nr_of_lines * 35)/2
             elif self.image[3] == 'bottom':
-                x_val += self.image[4]
-                y_val = 450 + self.image[5]
+                x_val += int(self.image[4])
+                y_val = 450 + int(self.image[5])
                 # Make sure the text starts high enough
                 y_val -= (nr_of_lines * 35)
             else:
@@ -372,6 +296,41 @@ if __name__ == "__main__":
             except FileNotFoundError:
                 self.text_field.setText("No image available to save.")
 
+        # What happens when the "Previous" button is clicked
+        def previous_quote(self):
+            # If there's more than one quote and you're not looking at the first quote, you can go back
+            if len(self.full_history) > 1 and self.selected_quote >= 1:
+                self.selected_quote = self.selected_quote - 1
+                self.quote = self.full_history[self.selected_quote][0]
+                self.image = self.full_history[self.selected_quote][1]
+                self.font = self.full_history[self.selected_quote][2]
+                
+                self.create_quote_image()
+            else:
+                return
+
+        # What happens when the "Next" button is clicked
+        def next_quote(self):
+            # If you are not looking at the most recent quote, you can go forward
+            if self.selected_quote < len(self.full_history) - 1:
+                self.selected_quote = self.selected_quote + 1
+                self.quote = self.full_history[self.selected_quote][0]
+                self.image = self.full_history[self.selected_quote][1]
+                self.font = self.full_history[self.selected_quote][2]
+                
+                self.create_quote_image()
+            else:
+                return
+
+        # Export the quote history to a txt file in the current directory - will overwrite without warning!
+        def export_quotes(self):
+            with open('dutch_wisdom_quote_collection.txt', 'w') as f:
+                for quote in self.full_history:
+                    f.write(f"{quote[0]}\n\n---\n\n")
+
+            self.button_export_quotes.setText("Exported!")
+
+        # Determine the available word collection depending on the toggles (NSFW/negative on or off)
         def settings_changed(self):
             # Set all word collections to neutral
             word_collections.nouns_singular = word_collections.nouns_singular_sfw + word_collections.people_singular + word_collections.animals_singular + word_collections.verbs_active_sfw + word_collections.food_singular
@@ -414,38 +373,8 @@ if __name__ == "__main__":
             # Remove anything but positive
             if self.negative_toggle.isChecked() == False:
                 word_collections.adjectives = word_collections.adjectives_positive               
-
-        def previous_quote(self):
-            # If there's more than one quote and you're not looking at the first quote, you can go back
-            if len(self.full_history) > 1 and self.selected_quote >= 1:
-                self.selected_quote = self.selected_quote - 1
-                self.quote = self.full_history[self.selected_quote][0]
-                self.image = self.full_history[self.selected_quote][1]
-                self.font = self.full_history[self.selected_quote][2]
-                
-                self.create_quote_image()
-            else:
-                return
-        def next_quote(self):
-            # If you are not looking at the most recent quote, you can go forward
-            if self.selected_quote < len(self.full_history) - 1:
-                self.selected_quote = self.selected_quote + 1
-                self.quote = self.full_history[self.selected_quote][0]
-                self.image = self.full_history[self.selected_quote][1]
-                self.font = self.full_history[self.selected_quote][2]
-                
-                self.create_quote_image()
-            else:
-                return
-
-        def export_quotes(self):
-            # Export the quote history to a txt file in the current directory - will overwrite without warning!
-            with open('dutch_wisdom_quote_collection.txt', 'w') as f:
-                for quote in self.full_history:
-                    f.write(f"{quote[0]}\n\n---\n\n")
-
-            self.button_export_quotes.setText("Exported!")
         
+        # Import the word collection from the files in the folder word_collections
         def import_word_lists(self):
             word_collections.adjectives_positive = word_collections.import_list("adjectives_positive.txt")
             word_collections.adjectives_negative = word_collections.import_list("adjectives_negative.txt")
@@ -498,8 +427,9 @@ if __name__ == "__main__":
             word_collections.cliches_nsfw = word_collections.import_list("cliches_nsfw.txt")
             word_collections.food_concepts = word_collections.import_list("food_concepts.txt")
 
+        # Export every word list and make sure the words are in alphabetical order.
+        # This function is not used by default and is only there as a convenience.
         def export_word_lists(self):
-            # Export every word list and make sure the words are in alphabetical order
             word_collections.export_list(word_collections.adjectives_positive, "adjectives_positive")
             word_collections.export_list(word_collections.adjectives_negative, "adjectives_negative")
             word_collections.export_list(word_collections.adjectives_neutral, "adjectives_neutral")
