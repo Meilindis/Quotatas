@@ -59,7 +59,7 @@ if __name__ == "__main__":
             # Button to generate quotes
             self.button = QPushButton("Give me some wisdom!")
             self.button.setCheckable(True)
-            self.button.clicked.connect(self.the_button_was_clicked)
+            self.button.clicked.connect(self.generate_quote)
             self.button.setStyleSheet('height: 80px; background-color: #b0cceb; color: black; text-align: center;')
 
             # Label that displays the generated quote image
@@ -149,10 +149,10 @@ if __name__ == "__main__":
             self.quote = ""
             self.image = []
             self.font = []
-            self.full_history = [] # list of lists, containing [quote, image, font]
+            self.full_history = [] # QUOTE - IMAGE - FONT
             self.selected_quote = 0
-            self.font_collection = []
-            self.image_collection = []
+            self.font_collection = [] # FONT NAME - FONT SIZE
+            self.image_collection = [] # IMAGE NAME - TEXT COLOUR - ALIGNMENT - POSITION - X OFFSET - Y OFFSET
             
             # Import the files containing the words, fonts, and images that are used
             self.import_word_lists()
@@ -185,7 +185,7 @@ if __name__ == "__main__":
                     self.image_collection.append(row)
 
         # Define what happens when the button is pressed
-        def the_button_was_clicked(self):
+        def generate_quote(self):
             self.text_field.setText("")
             # Set the selected quote to the last one (in case the user was looking at an earlier quote)
             if len(self.full_history) > 1:

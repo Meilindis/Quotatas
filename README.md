@@ -9,7 +9,7 @@ You need Pyside6 and Pillow to be installed on your machine to make Quotatas wor
 
 If you'd like to customise Quotatas:
 * Add your own words to the files in word_lists. One item per line. 
-* Add images and fonts to their respective folders, and you need to add their names and settings to the `font_collection` and `image_collection` lists in `main.py`. Images should be .png, 500x500 pixels. Fonts should include numbers, ':', '!', and '-'.
+* Add images and fonts to their respective folders, and you need to add their names and settings to the `font_collection` and `image_collection` CSV files in the `resources` folder. Images should be .png, 500x500 pixels. Fonts should include numbers, ':', '!', '%', and '-'.
 * Add your own templates to `template_collection.py`.
 
 ![Screenshot of Quotatas](screenshot.png)
