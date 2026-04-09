@@ -22,7 +22,7 @@ from image_utils import ImageText
 
 from PySide6.QtCore import QSize, Qt
 from PySide6.QtGui import QPixmap, QImage
-from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QTextEdit, QVBoxLayout, QWidget, QLabel, QCheckBox, QHBoxLayout, QFileDialog, QMessageBox
+from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QTextEdit, QVBoxLayout, QWidget, QLabel, QCheckBox, QHBoxLayout, QFileDialog, QMessageBox, QComboBox
 
 # ---------------------------------------------------------------------------------------------------------------------------------------------
 # RESOURCES
@@ -60,6 +60,25 @@ if __name__ == "__main__":
     class MainWindow(QMainWindow):
         def __init__(self):
             super().__init__()
+
+            # CREATE CONTAINERS TO STORE THE SELECTED QUOTES, IMAGES, AND FONTS
+
+            # Store the quote here later:
+            self.quote = ""
+            self.image = []
+            self.font = []
+            self.full_history = [] # QUOTE - IMAGE - FONT
+            self.selected_quote = 0
+            self.font_collection = [] # FONT NAME - FONT SIZE
+            self.image_collection = [] # IMAGE NAME - TEXT COLOUR - ALIGNMENT - POSITION - X OFFSET - Y OFFSET
+            
+            # Import the files containing the words, fonts, and images that are used
+            self.import_word_lists()
+            self.import_font_collection()
+            self.import_image_collection()
+
+            # self.export_font_collection()
+            # self.export_image_collection()
 
             # SET UP THE USER INTERFACE
 
@@ -109,6 +128,21 @@ if __name__ == "__main__":
             self.negative_toggle = QCheckBox(text="Include negative stuff (risky!)")
             self.negative_toggle.stateChanged.connect(self.settings_changed)
             self.negative_toggle.setStyleSheet('background-color: #ffe8a6;')            
+
+            self.change_font_label = QLabel("Change font")
+            self.change_font_label.setStyleSheet('border: 0px solid black;')
+            self.change_font = QComboBox()
+            self.change_font.currentTextChanged.connect(self.change_selected_font)
+            for font in self.font_collection:
+                self.change_font.addItem(font[0])
+
+            self.change_colour_label = QLabel("Change font colour")
+            self.change_colour_label.setStyleSheet('border: 0px solid black;')
+            self.change_colour = QComboBox()
+            self.change_colour.currentTextChanged.connect(self.change_selected_colour)
+            for colour in colours:
+                self.change_colour.addItem(colour)
+
             
             self.button_export_quotes = QPushButton("Export session quotes")
             self.button_export_quotes.clicked.connect(self.export_quotes)
@@ -123,11 +157,27 @@ if __name__ == "__main__":
             nav_container = QWidget()
             nav_container.setLayout(layoutH)
 
+            layoutFont = QHBoxLayout()
+            layoutFont.addWidget(self.change_font_label)
+            layoutFont.addWidget(self.change_font)
+            font_container = QWidget()
+            font_container.setLayout(layoutFont)
+            font_container.setStyleSheet('background-color: #b9f4fd;')
+
+            layoutColour = QHBoxLayout()
+            layoutColour.addWidget(self.change_colour_label)
+            layoutColour.addWidget(self.change_colour)
+            colour_container = QWidget()
+            colour_container.setLayout(layoutColour)
+            colour_container.setStyleSheet('background-color: #b9f4fd;')
+
             # Arrange all settings elements vertically
             layoutV = QVBoxLayout()       
             layoutV.addWidget(self.negative_toggle)
             layoutV.addWidget(self.nsfw_toggle)
-            layoutV.addWidget(self.text_field)    
+            layoutV.addWidget(self.text_field)  
+            layoutV.addWidget(font_container) 
+            layoutV.addWidget(colour_container) 
             layoutV.addWidget(self.button_export_quotes)       
 
             vert_container = QWidget()
@@ -154,23 +204,6 @@ if __name__ == "__main__":
 
             self.setCentralWidget(container)    
 
-            # CREATE CONTAINERS TO STORE THE SELECTED QUOTES, IMAGES, AND FONTS
-            # Store the quote here later:
-            self.quote = ""
-            self.image = []
-            self.font = []
-            self.full_history = [] # QUOTE - IMAGE - FONT
-            self.selected_quote = 0
-            self.font_collection = [] # FONT NAME - FONT SIZE
-            self.image_collection = [] # IMAGE NAME - TEXT COLOUR - ALIGNMENT - POSITION - X OFFSET - Y OFFSET
-            
-            # Import the files containing the words, fonts, and images that are used
-            self.import_word_lists()
-            self.import_font_collection()
-            self.import_image_collection()
-
-            # self.export_font_collection()
-            # self.export_image_collection()
 
             # Update the selected words based on the UI settings
             self.settings_changed()
@@ -214,6 +247,9 @@ if __name__ == "__main__":
             # Select the random parameters of the quote
             self.image = random.choice(self.image_collection)
             self.font = random.choice(self.font_collection)
+            index = self.change_font.findText(self.font[0])
+            if index >= 0:
+                self.change_font.setCurrentIndex(index)
             self.quote = random.choice(template_collection.template_list)()
 
             # Add and set the selected quote index to this new quote's index
@@ -277,6 +313,18 @@ if __name__ == "__main__":
             pixmap = QPixmap('temp.png')
             self.quote_area.resize(pixmap.width(), pixmap.height())
             self.quote_area.setPixmap(pixmap)
+
+        def change_selected_font(self):
+            # A new font has been selected, so pick up the selected item's text
+            new_font = self.change_font.currentText()
+            # Find this font in the collection
+            for font in self.font_collection:
+                if font[0] == new_font:
+                    self.font = font
+            self.create_quote_image()
+
+        def change_selected_colour(self):
+            return
 
         def save_quote(self):
             # Check if there's a generated image present
