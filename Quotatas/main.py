@@ -10,6 +10,7 @@ import PIL
 from PIL import ImageFont
 from PIL import Image
 from PIL import ImageDraw
+from PIL import ImageColor
 
 # A file containing lists of words to be used in quotes, sorted by type
 import word_collections
@@ -20,25 +21,27 @@ import template_collection
 # Script that helps with putting text on images
 from image_utils import ImageText
 
-from PySide6.QtCore import QSize, Qt
+from colorbutton import ColorButton
+
+from PySide6.QtCore import QSize, Qt, Signal
 from PySide6.QtGui import QPixmap, QImage
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QTextEdit, QVBoxLayout, QWidget, QLabel, QCheckBox, QHBoxLayout, QFileDialog, QMessageBox, QComboBox
 
 # ---------------------------------------------------------------------------------------------------------------------------------------------
 # RESOURCES
 # Library of colours (readable names vs RGB value)
-colours = {'white':      (255, 255, 255),
-           'black':      (0, 0, 0),
-           'magenta':    (199, 17, 234),
-           'darkblue':   (29, 37, 82),
-           'cyan':       (142, 255, 221),
-           'peach':      (255, 245, 185),
-           'periwinkle': (65, 75, 139),
-           'mint':       (167, 255, 174),
-           'fuchsia':    (145, 0, 140),
-           'iceblue':    (207, 220, 255),
-           'beige':      (255, 245, 215),
-           'eggplant':   (24, 0, 59),
+colours = {'White':      (255, 255, 255),
+           'Black':      (0, 0, 0),
+           'Magenta':    (199, 17, 234),
+           'Dark blue':  (29, 37, 82),
+           'Cyan':       (142, 255, 221),
+           'Peach':      (255, 245, 185),
+           'Periwinkle': (65, 75, 139),
+           'Mint':       (167, 255, 174),
+           'Fuchsia':    (145, 0, 140),
+           'Ice blue':   (207, 220, 255),
+           'Beige':      (255, 245, 215),
+           'Eggplant':   (24, 0, 59),
            }
 
 # Store current path for convenience
@@ -52,6 +55,12 @@ def evaluate(expression):
         return str(expression)
     except SyntaxError:
         return str(expression)
+
+def hexify(num):
+    return f"{num:02x}"
+
+def hexify_tuple(tup):
+    return ''.join(hexify(value) for value in tup)
 
 # ----------------------------------------------------------------------------------------------------------------------
 # MAIN PROGRAM
@@ -70,7 +79,7 @@ if __name__ == "__main__":
             self.full_history = [] # QUOTE - IMAGE - FONT
             self.selected_quote = 0
             self.font_collection = [] # FONT NAME - FONT SIZE
-            self.image_collection = [] # IMAGE NAME - TEXT COLOUR - ALIGNMENT - POSITION - X OFFSET - Y OFFSET
+            self.image_collection = [] # IMAGE NAME - TEXT COLOUR (RGB) - ALIGNMENT - POSITION - X OFFSET - Y OFFSET
             
             # Import the files containing the words, fonts, and images that are used
             self.import_word_lists()
@@ -78,7 +87,7 @@ if __name__ == "__main__":
             self.import_image_collection()
 
             # self.export_font_collection()
-            # self.export_image_collection()
+            self.export_image_collection()
 
             # SET UP THE USER INTERFACE
 
@@ -129,20 +138,17 @@ if __name__ == "__main__":
             self.negative_toggle.stateChanged.connect(self.settings_changed)
             self.negative_toggle.setStyleSheet('background-color: #ffe8a6;')            
 
-            self.change_font_label = QLabel("Change font")
+            self.change_font_label = QLabel("Change font:")
             self.change_font_label.setStyleSheet('border: 0px solid black;')
             self.change_font = QComboBox()
             self.change_font.currentTextChanged.connect(self.change_selected_font)
             for font in self.font_collection:
                 self.change_font.addItem(font[0])
 
-            self.change_colour_label = QLabel("Change font colour")
+            self.change_colour_label = QLabel("Change font colour:")
             self.change_colour_label.setStyleSheet('border: 0px solid black;')
-            self.change_colour = QComboBox()
-            self.change_colour.currentTextChanged.connect(self.change_selected_colour)
-            for colour in colours:
-                self.change_colour.addItem(colour)
-
+            self.change_colour = ColorButton(color="#fff") 
+            self.change_colour.colorChanged.connect(self.change_selected_colour)
             
             self.button_export_quotes = QPushButton("Export session quotes")
             self.button_export_quotes.clicked.connect(self.export_quotes)
@@ -216,7 +222,7 @@ if __name__ == "__main__":
         def import_font_collection(self):
             font_location = os.path.join(current_path, 'resources', 'font_collection.csv')
             with open(font_location, newline='') as csvfile:
-                fontreader = csv.reader(csvfile, delimiter=',', quotechar='|')
+                fontreader = csv.reader(csvfile, delimiter=';', quotechar='|')
                 parsed = (list(evaluate(field) for field in row) for row in fontreader)
                 for row in parsed:
                     self.font_collection.append(row)
@@ -225,7 +231,7 @@ if __name__ == "__main__":
         def import_image_collection(self):
             image_location = os.path.join(current_path, 'resources', 'image_collection.csv')
             with open(image_location, newline='') as csvfile:
-                imagereader = csv.reader(csvfile, delimiter=',', quotechar='|')
+                imagereader = csv.reader(csvfile, delimiter=';', quotechar='|')
                 parsed = (list(evaluate(field) for field in row) for row in imagereader)
                 for row in parsed:
                     self.image_collection.append(row)
@@ -246,10 +252,14 @@ if __name__ == "__main__":
         def set_parameters(self):
             # Select the random parameters of the quote
             self.image = random.choice(self.image_collection)
+
+            self.change_colour.setColor('#' + hexify_tuple(self.image[1]))
+
             self.font = random.choice(self.font_collection)
-            index = self.change_font.findText(self.font[0])
-            if index >= 0:
-                self.change_font.setCurrentIndex(index)
+            index_font = self.change_font.findText(self.font[0])
+            if index_font >= 0:
+                self.change_font.setCurrentIndex(index_font)
+            
             self.quote = random.choice(template_collection.template_list)()
 
             # Add and set the selected quote index to this new quote's index
@@ -266,7 +276,7 @@ if __name__ == "__main__":
             image_path = os.path.join(current_dir, 'images', self.image[0])
             image = Image.open(image_path)
 
-            color = colours[self.image[1]]
+            color = self.image[1]
             location = self.image[2]
 
             text = self.quote
@@ -321,10 +331,15 @@ if __name__ == "__main__":
             for font in self.font_collection:
                 if font[0] == new_font:
                     self.font = font
+            # Re-create the image with the new font setting
             self.create_quote_image()
 
         def change_selected_colour(self):
-            return
+            # A new colour has been selected, so get the new colour name and save it
+            # Convert to RGB and store 
+            self.image[1] = ImageColor.getcolor(self.change_colour.color(), "RGB")
+            # Re-create the image
+            self.create_quote_image()
 
         def save_quote(self):
             # Check if there's a generated image present
@@ -546,7 +561,7 @@ if __name__ == "__main__":
             font_location = os.path.join(current_path, 'resources')
             font_location = os.path.join(font_location, 'font_collection.csv')
             with open(font_location, 'w', newline='') as csvfile:
-                fontwriter = csv.writer(csvfile, delimiter=',',
+                fontwriter = csv.writer(csvfile, delimiter=';',
                                         quotechar='|', quoting=csv.QUOTE_MINIMAL)
                 for line in self.font_collection:
                     fontwriter.writerow(line)
@@ -555,7 +570,7 @@ if __name__ == "__main__":
             image_location = os.path.join(current_path, 'resources')
             image_location = os.path.join(image_location, 'image_collection.csv')
             with open(image_location, 'w', newline='') as csvfile:
-                imagewriter = csv.writer(csvfile, delimiter=',',
+                imagewriter = csv.writer(csvfile, delimiter=';',
                                         quotechar='|', quoting=csv.QUOTE_MINIMAL)
                 for line in self.image_collection:
                     imagewriter.writerow(line)
