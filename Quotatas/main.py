@@ -227,14 +227,14 @@ if __name__ == "__main__":
 
             # Prepare the image
             current_dir = Path(__file__).parent.absolute()            
-            image_path = os.path.join(os.path.join(current_dir, 'images'), self.image[0])
+            image_path = os.path.join(current_dir, 'images', self.image[0])
             image = Image.open(image_path)
 
             color = colours[self.image[1]]
             location = self.image[2]
 
             text = self.quote
-            font_name = os.path.join(os.path.join(current_dir, 'fonts'), self.font[0])
+            font_name = os.path.join(current_dir, 'fonts', self.font[0])
             font_custom_size = self.font[1]
             img = ImageText(image, background=(255, 255, 255, 200)) # 200 = alpha
             
@@ -260,7 +260,7 @@ if __name__ == "__main__":
                 y_val -= (nr_of_lines * 35)
             else:
                 return
-            # Assign the resulting x/y value to x/y
+            # Assign the resulting offset to x/y
             x = x_val
             y = y_val
 
