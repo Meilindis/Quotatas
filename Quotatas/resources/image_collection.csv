@@ -36,7 +36,7 @@ giraffe.png,darkblue,justify,top,0,0
 ghosts.png,darkblue,justify,top,0,0
 glitter.png,peach,justify,top,0,0
 goats.png,peach,justify,top,0,0
-hare.png,darkblue,justify,bottom,0,0
+hare.png,white,justify,bottom,0,0
 heart_cloud.png,darkblue,justify,top,0,0
 hearts.png,darkblue,justify,top,0,0
 horse.png,darkblue,justify,middle,40,0
@@ -46,6 +46,7 @@ juggler.png,darkblue,justify,top,0,0
 kale.png,peach,justify,top,0,0
 ladybug.png,darkblue,justify,top,0,0
 les_amateurs_d_estampes.png,iceblue,justify,top,20,0
+lightning.png,white,justify,bottom,0,0
 lonelybot.png,white,justify,top,0,0
 manager.png,white,justify,bottom,0,0
 mannekenpis.png,mint,justify,bottom,0,0
@@ -67,6 +68,7 @@ reflection.png,white,justify,top,0,0
 rider.png,white,justify,top,0,0
 robot.png,magenta,justify,top,0,0
 rubberducks.png,darkblue,justify,top,0,0
+shocked.png,darkblue,justify,top,0,0
 silhouettes.png,periwinkle,justify,top,0,0
 socks.png,white,justify,middle,0,0
 spices.png,white,justify,bottom,0,-45
@@ -74,6 +76,7 @@ squirrel.png,white,justify,bottom,0,0
 staircase.png,white,justify,top,0,0
 stop.png,periwinkle,justify,top,0,0
 sunset.png,periwinkle,justify,top,0,0
+surprised.png,darkblue,justify,top,0,0
 tea.png,white,justify,top,0,0
 the_tournament.png,beige,justify,top,0,0
 the_visit_.png,cyan,justify,bottom,0,0
@@ -85,4 +88,5 @@ twelve_men_.png,magenta,justify,top,10,0
 vampire.png,white,justify,top,0,0
 woman.png,peach,justify,top,0,0
 woman_flowers.png,darkblue,justify,top,0,0
+world.png,darkblue,justify,top,0,0
 yarn.png,darkblue,justify,top,0,0

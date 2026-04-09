@@ -1,7 +1,11 @@
 ape
 badger
 bat
+bear
 bee
+blackbird
+blue tit
+bumblebee
 butterfly
 capybara
 cat
@@ -10,6 +14,7 @@ chicken
 cow
 crocodile
 dog
+dolphin
 dragon
 dragonfly
 duck
@@ -17,30 +22,42 @@ duckling
 elephant
 fly
 frog
+gerbil
 giraffe
 goat
 goose
+great tit
 guinea pig
 hamster
 hedgehog
 heron
+hummingbird
 hyena
+kangaroo
 kitten
+koala
+leopard
 lion
 lynx
 monkey
 mosquito
 owl
+panther
 parrot
+penguin
 pig
 pigeon
 puppy
+python
 rabbit
+robin
 sheep
 snake
+sparrow
 squirrel
 stork
 tiger
 toad
 wasp
+whale
 wolf
