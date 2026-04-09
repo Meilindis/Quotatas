@@ -29,20 +29,6 @@ from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QTextEdit,
 
 # ---------------------------------------------------------------------------------------------------------------------------------------------
 # RESOURCES
-# Library of colours (readable names vs RGB value)
-colours = {'White':      (255, 255, 255),
-           'Black':      (0, 0, 0),
-           'Magenta':    (199, 17, 234),
-           'Dark blue':  (29, 37, 82),
-           'Cyan':       (142, 255, 221),
-           'Peach':      (255, 245, 185),
-           'Periwinkle': (65, 75, 139),
-           'Mint':       (167, 255, 174),
-           'Fuchsia':    (145, 0, 140),
-           'Ice blue':   (207, 220, 255),
-           'Beige':      (255, 245, 215),
-           'Eggplant':   (24, 0, 59),
-           }
 
 # Store current path for convenience
 current_path = Path(__file__).parent.absolute()
