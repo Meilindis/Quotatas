@@ -24,8 +24,8 @@ from image_utils import ImageText
 from colorbutton import ColorButton
 
 from PySide6.QtCore import QSize, Qt, Signal
-from PySide6.QtGui import QPixmap, QImage
-from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QTextEdit, QVBoxLayout, QWidget, QLabel, QCheckBox, QHBoxLayout, QFileDialog, QMessageBox, QComboBox
+from PySide6.QtGui import QPixmap, QImage, QColor
+from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QTextEdit, QVBoxLayout, QWidget, QLabel, QCheckBox, QHBoxLayout, QFileDialog, QMessageBox, QComboBox, QGridLayout
 
 # ---------------------------------------------------------------------------------------------------------------------------------------------
 # RESOURCES
@@ -149,27 +149,22 @@ if __name__ == "__main__":
             nav_container = QWidget()
             nav_container.setLayout(layoutH)
 
-            layoutFont = QHBoxLayout()
-            layoutFont.addWidget(self.change_font_label)
-            layoutFont.addWidget(self.change_font)
-            font_container = QWidget()
-            font_container.setLayout(layoutFont)
-            font_container.setStyleSheet('background-color: #b9f4fd;')
-
-            layoutColour = QHBoxLayout()
-            layoutColour.addWidget(self.change_colour_label)
-            layoutColour.addWidget(self.change_colour)
-            colour_container = QWidget()
-            colour_container.setLayout(layoutColour)
-            colour_container.setStyleSheet('background-color: #b9f4fd;')
+            # Line out the settings in a grid
+            settingsLayout = QGridLayout()
+            settingsLayout.addWidget(self.change_font_label, 0, 0)
+            settingsLayout.addWidget(self.change_font, 0, 1)
+            settingsLayout.addWidget(self.change_colour_label, 1, 0)
+            settingsLayout.addWidget(self.change_colour, 1, 1)
+            settingsContainer = QWidget()
+            settingsContainer.setStyleSheet('background-color: #b1b1b1;')
+            settingsContainer.setLayout(settingsLayout)
 
             # Arrange all settings elements vertically
             layoutV = QVBoxLayout()       
             layoutV.addWidget(self.negative_toggle)
             layoutV.addWidget(self.nsfw_toggle)
             layoutV.addWidget(self.text_field)  
-            layoutV.addWidget(font_container) 
-            layoutV.addWidget(colour_container) 
+            layoutV.addWidget(settingsContainer) 
             layoutV.addWidget(self.button_export_quotes)       
 
             vert_container = QWidget()

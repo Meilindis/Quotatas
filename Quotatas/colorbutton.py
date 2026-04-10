@@ -1,5 +1,21 @@
 from PySide6 import QtCore, QtGui, QtWidgets
 from PySide6.QtCore import Qt, Signal
+from PySide6.QtGui import QColor
+
+custom_colors = [
+        QColor(255, 255, 255),    # White
+        QColor(0, 0, 0),          # Black
+        QColor(199, 17, 234),     # Magenta
+        QColor(29, 37, 82),       # Dark blue
+        QColor(142, 255, 221),    # Cyan
+        QColor(255, 245, 185),    # Peach
+        QColor(65, 75, 139),      # Periwinkle
+        QColor(167, 255, 174),    # Mint
+        QColor(145, 0, 140),      # Fuchsia
+        QColor(207, 220, 255),    # Ice blue
+        QColor(255, 245, 215),    # Beige
+        QColor(24, 0, 59),        # Eggplant
+    ]
 
 class ColorButton(QtWidgets.QPushButton):
     '''
@@ -42,6 +58,14 @@ class ColorButton(QtWidgets.QPushButton):
 
         '''
         dlg = QtWidgets.QColorDialog(self)
+
+        # Use the Qt dialog instead of the native one
+        # dlg.setOption(QtWidgets.QColorDialog.DontUseNativeDialog, True)
+
+        # Include all the default colours
+        for i, color in enumerate(custom_colors):
+            dlg.setCustomColor(i, color.rgb())
+
         if self._color:
             dlg.setCurrentColor(QtGui.QColor(self._color))
 
