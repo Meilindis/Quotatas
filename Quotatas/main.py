@@ -156,7 +156,7 @@ if __name__ == "__main__":
             settingsLayout.addWidget(self.change_colour_label, 1, 0)
             settingsLayout.addWidget(self.change_colour, 1, 1)
             settingsContainer = QWidget()
-            settingsContainer.setStyleSheet('background-color: #b1b1b1;')
+            settingsContainer.setStyleSheet('background-color: #b1b1b1')
             settingsContainer.setLayout(settingsLayout)
 
             # Arrange all settings elements vertically
@@ -333,6 +333,7 @@ if __name__ == "__main__":
                     # Check if the filename already exists
                     if os.path.isfile(save_file):
                         dlg = QMessageBox(self)
+                        dlg.setStyleSheet('background-color: #b1b1b1; border:1px solid black;')
                         dlg.setWindowTitle("File exists")
                         dlg.setText("The selected filename is already in use. Save anyway?")
                         dlg.setStandardButtons(

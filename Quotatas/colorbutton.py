@@ -61,6 +61,8 @@ class ColorButton(QtWidgets.QPushButton):
 
         # Use the Qt dialog instead of the native one
         # dlg.setOption(QtWidgets.QColorDialog.DontUseNativeDialog, True)
+        # dlg.setOption(QtWidgets.QColorDialog.NoEyeDropperButton, True)
+        dlg.setStyleSheet('background-color: #b1b1b1; border:1px solid black;')
 
         # Include all the default colours
         for i, color in enumerate(custom_colors):
