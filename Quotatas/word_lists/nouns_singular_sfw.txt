@@ -20,14 +20,17 @@ block
 book
 boy
 brain
+bricks
 bubble
 bucket
 camera
 candle
 candy
+canoe
 cappuccino
 cardboard box
 castle
+cello
 chair
 champagne
 chess game
@@ -37,6 +40,7 @@ cloud
 clown car
 coat
 coffee
+colander
 comedy
 computer
 cup
@@ -54,13 +58,16 @@ footstool
 fork
 freezer
 fridge
+funnel
 galaxy
 game
+gherkin
 girl
 goosebump
 guitar
 guru
 gynoid
+handbag
 hard disk
 holodeck
 hug
@@ -79,8 +86,6 @@ lego brick
 lens
 litter box
 loom
-lord
-man
 meadow
 microscope
 mind
@@ -90,6 +95,7 @@ nebula
 need
 needle
 novel
+numpty
 objective
 ocean
 pantry
@@ -116,6 +122,8 @@ shuttle
 skirt
 slide
 spaceship
+spanner
+spatula
 spiral
 spoon
 staircase
@@ -147,5 +155,4 @@ want
 warp nacelle
 wet blanket
 whisk
-wine
-woman
+womble

@@ -69,9 +69,9 @@ people_plural = []
 
 # Small custom lists
 royalty = ["god", "goddess", "king", "queen", "prince", "princess", "lord", "lady", "master", "mistress", "emperor", "empress"]
-irish_superlative = ["absolute", "right", "total", "proper", "utter"]  
+irish_superlative = ["absolute", "right", "total", "proper", "utter", "complete"]  
 meals = ["breakfast", "lunch", "dinner", "supper", "tea", "high tea", "brunch", "snack"]
-time_units = ["seconds", "minutes", "hours", "days"]
+time_units = ["seconds", "minutes", "hours", "days", "weeks", "months", "years", "decades", "centuries", "millennia", "fortnights"]
 
 
 def import_list(filename):

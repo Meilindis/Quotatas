@@ -17,19 +17,23 @@ blocks
 books
 boys
 brains
+bricks
 buckets
 bubbles
 cameras
 candles
+canoes
 cappucinos
 cardboard boxes
 castles
+cellos
 chairs
 chocolates
 clothes
 clouds
 clown cars
 coats
+colanders
 comedies
 computers
 cups
@@ -46,13 +50,16 @@ footstools
 forks
 freezers
 fridges
+funnels
 galaxies
 games
+gherkins
 girls
 goosebumps
 guitars
 gurus
 gynoids
+handbags
 hard disks
 holodecks
 hugs
@@ -79,6 +86,7 @@ nebulas
 needs
 needles
 novels
+numpties
 objectives
 oceans
 peanuts
@@ -104,6 +112,8 @@ sewing machines
 shuttles
 skirts
 spaceships
+spanners
+spatulas
 spirals
 spoons
 stamps
@@ -134,3 +144,4 @@ wants
 warp nacelles
 wet blankets
 whisks
+wombles
