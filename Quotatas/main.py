@@ -130,6 +130,8 @@ if __name__ == "__main__":
             self.change_font.currentTextChanged.connect(self.change_selected_font)
             for font in self.font_collection:
                 self.change_font.addItem(font[0])
+            self.change_font.addItem("")
+            self.change_font.setCurrentIndex(self.change_font.findText(""))
 
             self.change_colour_label = QLabel("Change font colour:")
             self.change_colour_label.setStyleSheet('border: 0px solid black;')
@@ -233,7 +235,7 @@ if __name__ == "__main__":
         def set_parameters(self):
             # Select the random parameters of the quote
             self.image = random.choice(self.image_collection)
-
+            
             self.change_colour.setColor('#' + hexify_tuple(self.image[1]))
 
             self.font = random.choice(self.font_collection)
@@ -317,10 +319,11 @@ if __name__ == "__main__":
 
         def change_selected_colour(self):
             # A new colour has been selected, so get the new colour name and save it
-            # Convert to RGB and store 
-            self.image[1] = ImageColor.getcolor(self.change_colour.color(), "RGB")
-            # Re-create the image
-            self.create_quote_image()
+            if self.image != None:
+                # Convert to RGB and store 
+                self.image[1] = ImageColor.getcolor(self.change_colour.color(), "RGB")
+                # Re-create the image
+                self.create_quote_image()
 
         def save_quote(self):
             # Check if there's a generated image present
