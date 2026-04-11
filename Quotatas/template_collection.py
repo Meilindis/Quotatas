@@ -77,6 +77,18 @@ def food_concept():
 def cliche():
     return random.choice(word_collections.cliches)
 
+def irish_superlative():
+    return random.choice(word_collections.irish_superlative)
+
+def royalty():
+    return random.choice(word_collections.royalty)
+
+def meal():
+    return random.choice(word_collections.meals)
+
+def time_unit():
+    return random.choice(word_collections.time_units)
+
 # -------------------------------------------------------------------------------------------------------------------
 
 # HELPER FUNCTIONS
@@ -100,9 +112,6 @@ def horoscope():
         return ""
     else:
         return ("Today's horoscope - " + capitalize_first_letter(random.choice(word_collections.zodiac)) + ":\n\n")
-
-meals = ["breakfast", "lunch", "dinner", "supper", "tea", "high tea", "brunch", "snack"]
-time_units = ["seconds", "minutes", "hours", "days"]
 
 vowels = ['a', 'e', 'i', 'o', 'u']
 
@@ -382,7 +391,7 @@ def template_world():
     
 # Taskmaster
 def template_taskmaster():
-	return (capitalize_first_letter(situation_active()) + ".\nYou have " + str(random.randrange(2, 30, 1)) + " " + random.choice(time_units) + ".\nYour time starts now.")
+	return (capitalize_first_letter(situation_active()) + ".\nYou have " + str(random.randrange(2, 30, 1)) + " " + random.choice(time_unit()) + ".\nYour time starts now.")
 
 # Eufemism
 def template_eufemism():
@@ -503,7 +512,7 @@ def template_form():
 # Recipe
 def template_recipe():
 	food = food_singular()
-	return ("Mix " + food_plural() + ", " + food_singular() + " slices,\nand " + food_concept() + " with " + a_or_an(food) + food + "\nfor a delicious " + random.choice(meals))
+	return ("Mix " + food_plural() + ", " + food_singular() + " slices,\nand " + food_concept() + " with " + a_or_an(food) + food + "\nfor a delicious " + random.choice(meal()))
 	
 # Contents
 def template_contents():
@@ -538,7 +547,7 @@ def template_do_both():
 
 # Irish insult
 def template_irish_insult():
-    return ("You " + random.choice(["absolute", "right", "total", "proper", "utter"]) + " " + noun_singular() + "!")
+    return ("You " + irish_superlative() + " " + noun_singular() + "!")
 
 # Weirdness
 def template_weird():
@@ -547,7 +556,11 @@ def template_weird():
 
 # Ornate
 def template_ornate():
-    return ("You are the " + random.choice(["god", "goddess", "king", "queen", "prince", "princess", "lord", "lady", "master", "mistress", "emperor", "empress"]) + "\nof " + concept() + "\nand " + noun_plural())
+    return ("You are the " + royalty() + "\nof " + concept() + "\nand " + noun_plural())
+
+# Utter
+def template_utter():
+    return (capitalize_first_letter(concept()) + " is\n" + irish_superlative() + " " + concept())
 
 # List of defined templates (don't forget to add new templates here or they won't be used!)
 template_list = [template_times_three, 
@@ -644,5 +657,6 @@ template_list = [template_times_three,
                  template_do_both,
                  template_irish_insult,
                  template_weird,
+                 template_utter,
                  ]
 

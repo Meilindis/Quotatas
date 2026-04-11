@@ -66,7 +66,13 @@ situations = []
 situations_active =[]
 people_singular = []
 people_plural = []
-  
+
+# Small custom lists
+royalty = ["god", "goddess", "king", "queen", "prince", "princess", "lord", "lady", "master", "mistress", "emperor", "empress"]
+irish_superlative = ["absolute", "right", "total", "proper", "utter"]  
+meals = ["breakfast", "lunch", "dinner", "supper", "tea", "high tea", "brunch", "snack"]
+time_units = ["seconds", "minutes", "hours", "days"]
+
 
 def import_list(filename):
     word_list = []

@@ -188,7 +188,7 @@ if __name__ == "__main__":
 
             # Add the layout to an overall widget
             container = QWidget()
-            container.setStyleSheet('background-color: #808080; color:black; border: 2px solid black; font-size: 24px; padding: 4px;')
+            container.setStyleSheet('background-color: #808080; color:black; border: 2px solid black; font-size: 20px; padding: 4px;')
             container.setLayout(layoutApp)
 
             self.setCentralWidget(container)    
