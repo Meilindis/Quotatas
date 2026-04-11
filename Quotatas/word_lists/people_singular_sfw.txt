@@ -2,6 +2,7 @@ CEO
 HR director
 accountant
 adult
+alchemist
 angel
 artist
 astronaut
@@ -10,12 +11,15 @@ best friend
 bishop
 boyfriend
 captain
+changeling
 clown
 coal miner
+cockmaster
 cutie
 dentist
 detective
 devil
+diviner
 doctor
 dragonborn
 dryad
@@ -23,6 +27,7 @@ elf
 emperor
 empress
 engineer
+expert
 explorer
 farmer
 foodie
@@ -33,6 +38,7 @@ gnome
 goblin
 god
 goddess
+guru
 halfling
 husband
 judge
@@ -46,6 +52,7 @@ lover
 lurkling
 man
 manager
+marionette
 mayor
 musician
 nemesis
@@ -54,6 +61,7 @@ nurse
 oracle
 orc
 painter
+pal
 paramour
 pawn
 philanthropist
@@ -63,13 +71,16 @@ pope
 priest
 prince
 princess
+psychic
 programmer
 queen
 rocket scientist
 rook
 sailor
+saint
 satyr
 scammer
+shape shifter
 singer
 sorcerer
 sorceress

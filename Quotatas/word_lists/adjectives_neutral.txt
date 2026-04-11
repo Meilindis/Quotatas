@@ -3,6 +3,7 @@ bland
 bright
 bumpy
 capable
+certified
 cheeky
 delicate
 direct
@@ -15,6 +16,7 @@ ephemeral
 erratic
 fast
 fierce
+floppy
 fluent
 fluffy
 fragile
@@ -36,6 +38,7 @@ neutral
 normal
 odd
 old
+potential
 practical
 quaint
 quick

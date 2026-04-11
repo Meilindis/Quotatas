@@ -37,6 +37,7 @@ lego
 liberty
 life
 lightness
+lightning
 literacy
 loneliness
 loot
@@ -75,6 +76,7 @@ sunshine
 supper
 technology
 the singularity
+thunder
 time
 victory
 wellness

@@ -2,6 +2,7 @@ CEOs
 HR people
 accountants
 adults
+alchemists
 angels
 artists
 astronauts
@@ -10,12 +11,15 @@ best friends
 bishops
 boyfriends
 captains
+changelings
 clowns
 coal miners
+cockmasters
 cuties
 dentists
 detectives
 devils
+diviners
 doctors
 dragonborns
 dryads
@@ -23,6 +27,7 @@ elves
 emperors
 empresses
 engineers
+experts
 explorers
 farmers
 foodies
@@ -33,6 +38,7 @@ gnomes
 goblins
 gods
 goddesses
+gurus
 halflings
 husbands
 judges
@@ -45,6 +51,7 @@ lords
 lovers
 lurklings
 managers
+marionettes
 mayors
 men
 musicians
@@ -54,6 +61,7 @@ nurses
 oracles
 orcs
 painters
+pals
 paramours
 pawns
 philanthropists
@@ -64,12 +72,15 @@ priests
 princes
 princesses
 programmers
+psychics
 queens
 rocket scientists
 rooks
 sailors
+saints
 satyrs
 scammers
+shape shifters
 singers
 sorcerers
 sorceresses

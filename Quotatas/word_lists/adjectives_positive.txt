@@ -1,4 +1,5 @@
 amazing
+au-some
 awesome
 beautiful
 brilliant
@@ -9,6 +10,7 @@ colourful
 creative
 cute
 delightful
+desirable
 empathetic
 exciting
 friendly
@@ -25,7 +27,6 @@ inventive
 kind
 lithe
 lyrical
-mellifluous
 miraculous
 multi-faceted
 outstanding
@@ -37,12 +38,14 @@ sensible
 shiny
 smart
 sparkly
+spicy
 splendid
 stunning
 super
 superb
 sweet
 talented
+trendy
 useful
 whimsical
 witty

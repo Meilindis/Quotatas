@@ -29,6 +29,7 @@ masterfully
 mildly
 miserably
 nobly
+officially
 orderly
 plainly
 playfully
@@ -40,6 +41,7 @@ shamefully
 silently
 skillfully
 terribly
+unpredictably
 unwittingly
 wholly
 wistfully

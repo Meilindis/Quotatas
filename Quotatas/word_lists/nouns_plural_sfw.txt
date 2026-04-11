@@ -42,6 +42,7 @@ fables
 fairy tales
 flowers
 flutes
+footstools
 forks
 freezers
 fridges
@@ -55,6 +56,8 @@ gynoids
 hard disks
 holodecks
 hugs
+icebergs
+kettles
 keyboards
 knives
 labyrinths
@@ -90,6 +93,7 @@ pixies
 planets
 plates
 plushies
+pringles
 rainbows
 robots
 rockets
@@ -97,6 +101,7 @@ rocking chairs
 scissors
 seas
 sewing machines
+shuttles
 skirts
 spaceships
 spirals
@@ -108,11 +113,14 @@ suns
 super soakers
 sweets
 swimming pools
+table legs
 tables
 tablets
 taverns
 telescopes
+thunderstorms
 time machines
+traffic cones
 transporters
 tricorders
 trucks
@@ -125,3 +133,4 @@ wands
 wants
 warp nacelles
 wet blankets
+whisks

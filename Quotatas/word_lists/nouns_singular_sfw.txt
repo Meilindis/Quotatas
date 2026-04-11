@@ -50,6 +50,7 @@ fable
 fairy tale
 flower
 flute
+footstool
 fork
 freezer
 fridge
@@ -63,6 +64,8 @@ gynoid
 hard disk
 holodeck
 hug
+iceberg
+kettle
 keyboard
 kitchen
 knife
@@ -102,12 +105,14 @@ pixie
 planet
 plate
 plushie
+pringle
 rainbow
 robot
 rocket
 rocking chair
 sea
 sewing machine
+shuttle
 skirt
 slide
 spaceship
@@ -121,11 +126,14 @@ sun
 super soaker
 swimming pool
 table
+table leg
 tablet
 tavern
 tea
 telescope
+thunderstorm
 time machine
+traffic cone
 transporter
 tricorder
 truck
@@ -138,5 +146,6 @@ wand
 want
 warp nacelle
 wet blanket
+whisk
 wine
 woman

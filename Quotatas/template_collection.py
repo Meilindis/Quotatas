@@ -508,7 +508,7 @@ def template_recipe():
 # Contents
 def template_contents():
     food = food_singular()
-    return (capitalize_first_letter(concept()) + "?\nThat's just " + food_concept() + ",\n" + a_or_an(food) + "tiny bit of " + food + "\nand some " + food_concept() + ".")
+    return (capitalize_first_letter(concept()) + "?\nThat's just " + food_concept() + ",\na " + "tiny bit of " + food + "\nand some " + food_concept() + ".")
 	
 # Ingredients
 def template_ingredients():
@@ -535,6 +535,19 @@ def template_they_do():
 # Do both
 def template_do_both():
     return (capitalize_first_letter(random.choice([verb(), verb_intransitive()])) + " and " + random.choice([verb(), verb_intransitive()]))
+
+# Irish insult
+def template_irish_insult():
+    return ("You " + random.choice(["absolute", "right", "total", "proper", "utter"]) + " " + noun_singular() + "!")
+
+# Weirdness
+def template_weird():
+    noun = noun_singular()
+    return ("You are " + a_or_an(noun) + noun + "-" + verb_ing() + "\n" + noun_singular() + " " + people_singular() + "!")
+
+# Ornate
+def template_ornate():
+    return ("You are the " + random.choice(["god", "goddess", "king", "queen", "prince", "princess", "lord", "lady", "master", "mistress", "emperor", "empress"]) + "\nof " + concept() + "\nand " + noun_plural())
 
 # List of defined templates (don't forget to add new templates here or they won't be used!)
 template_list = [template_times_three, 
@@ -629,5 +642,7 @@ template_list = [template_times_three,
                  template_ready,
                  template_they_do,
                  template_do_both,
+                 template_irish_insult,
+                 template_weird,
                  ]
 

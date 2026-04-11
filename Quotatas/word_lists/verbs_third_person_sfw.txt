@@ -34,6 +34,7 @@ plays
 pleasures
 prepares
 programs
+promotes
 purchases
 reads
 removes
