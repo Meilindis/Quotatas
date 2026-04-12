@@ -129,7 +129,7 @@ if __name__ == "__main__":
             self.change_font = QComboBox()
             self.change_font.currentTextChanged.connect(self.change_selected_font)
             for font in self.font_collection:
-                self.change_font.addItem(font[0])
+                self.change_font.addItem(font[2])
             self.change_font.addItem("")
             self.change_font.setCurrentIndex(self.change_font.findText(""))
 
@@ -239,7 +239,7 @@ if __name__ == "__main__":
             self.change_colour.setColor('#' + hexify_tuple(self.image[1]))
 
             self.font = random.choice(self.font_collection)
-            index_font = self.change_font.findText(self.font[0])
+            index_font = self.change_font.findText(self.font[2])
             if index_font >= 0:
                 self.change_font.setCurrentIndex(index_font)
             
@@ -312,7 +312,7 @@ if __name__ == "__main__":
             new_font = self.change_font.currentText()
             # Find this font in the collection
             for font in self.font_collection:
-                if font[0] == new_font:
+                if font[2] == new_font:
                     self.font = font
             # Re-create the image with the new font setting
             self.create_quote_image()
