@@ -391,7 +391,7 @@ def template_world():
     
 # Taskmaster
 def template_taskmaster():
-	return (capitalize_first_letter(situation_active()) + ".\nYou have " + str(random.randrange(2, 30, 1)) + " " + random.choice(time_unit()) + ".\nYour time starts now.")
+	return (capitalize_first_letter(situation_active()) + ".\nYou have " + str(random.randrange(2, 30, 1)) + " " + time_unit() + ".\nYour time starts now.")
 
 # Eufemism
 def template_eufemism():
@@ -512,12 +512,12 @@ def template_form():
 # Recipe
 def template_recipe():
 	food = food_singular()
-	return ("Mix " + food_plural() + ", " + food_singular() + " slices,\nand " + food_concept() + " with " + a_or_an(food) + food + "\nfor a delicious " + random.choice(meal()))
+	return ("Mix " + food_plural() + ", " + food_singular() + " slices,\nand " + food_concept() + " with " + a_or_an(food) + food + "\nfor a delicious " + meal())
 	
 # Contents
 def template_contents():
     food = food_singular()
-    return (capitalize_first_letter(concept()) + "?\nThat's just " + food_concept() + ",\na " + "tiny bit of " + food + "\nand some " + food_concept() + ".")
+    return (capitalize_first_letter(concept()) + "?\nThat's just " + food_concept() + ",\na " + "tiny bit of " + random.choice([food_singular(), concept()]) + "\nand some " + food_concept() + ".")
 	
 # Ingredients
 def template_ingredients():

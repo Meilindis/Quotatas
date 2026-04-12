@@ -95,7 +95,6 @@ nebula
 need
 needle
 novel
-numpty
 objective
 ocean
 pantry
@@ -155,4 +154,3 @@ want
 warp nacelle
 wet blanket
 whisk
-womble
