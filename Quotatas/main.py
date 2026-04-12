@@ -365,6 +365,7 @@ if __name__ == "__main__":
                 self.quote = self.full_history[self.selected_quote][0]
                 self.image = self.full_history[self.selected_quote][1]
                 self.font = self.full_history[self.selected_quote][2]
+                self.change_colour.setColor('#' + hexify_tuple(self.image[1]))
                 
                 self.create_quote_image()
             else:
@@ -378,7 +379,8 @@ if __name__ == "__main__":
                 self.quote = self.full_history[self.selected_quote][0]
                 self.image = self.full_history[self.selected_quote][1]
                 self.font = self.full_history[self.selected_quote][2]
-                
+                self.change_colour.setColor('#' + hexify_tuple(self.image[1]))
+
                 self.create_quote_image()
             else:
                 return

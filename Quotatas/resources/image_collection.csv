@@ -8,7 +8,7 @@ ascent.png;(255, 255, 255);justify;top;0;0
 babushka.png;(255, 255, 255);justify;top;0;0
 balloons.png;(65, 75, 139);justify;top;0;0
 bananas.png;(255, 255, 255);justify;top;0;0
-batflying;(255, 255, 255);justify;top;0;0
+batflying.png;(255, 255, 255);justify;top;0;0
 bathanging.png;(255, 245, 185);justify;bottom;0;-20
 bicycle.png;(29, 37, 82);justify;top;0;0
 bigsplash.png;(255, 255, 255);justify;top;0;0
@@ -60,7 +60,7 @@ lightning.png;(255, 255, 255);justify;bottom;0;0
 lonelybot.png;(255, 255, 255);justify;top;0;0
 manager.png;(255, 255, 255);justify;bottom;0;0
 mannekenpis.png;(167, 255, 174);justify;bottom;0;0
-mantis.png;(29, 37, 82);justify;top;0;0
+mantis.png;(255, 255, 255);justify;top;0;0
 marionette.png;(255, 255, 255);justify;top;0;0
 marx.png;(255, 255, 255);justify;bottom;0;0
 mechanic.png;(255, 255, 255);justify;bottom;0;0
@@ -106,7 +106,7 @@ treefrog.png;(199, 17, 234);justify;bottom;0;0
 tulips.png;(255, 255, 255);justify;top;0;0
 twelve_men_.png;(199, 17, 234);justify;top;10;0
 typewriter.png;(255, 255, 255);justify;bottom;0;0
-vampire.png;(255, 255, 255);justify;top;0;0
+vampire.png;(225, 0, 0);justify;top;0;0
 witch.png;(236 210 255);justify;bottom;0;0
 woman.png;(255, 245, 185);justify;top;0;0
 woman_flowers.png;(29, 37, 82);justify;top;0;0
