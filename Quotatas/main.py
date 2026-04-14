@@ -1,3 +1,5 @@
+__version__ = "1.0.0"
+
 import sys
 import os
 import random

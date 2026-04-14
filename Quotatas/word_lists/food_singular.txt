@@ -23,7 +23,7 @@ dumpling
 egg
 eggplant
 fry
-fry up
+fry-up
 hazelnut
 hot chocolate
 kiwi
