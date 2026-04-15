@@ -20,6 +20,7 @@ dragons
 ducklings
 ducks
 elephants
+fledgelings
 flies
 frogs
 geese
@@ -36,6 +37,7 @@ hyenas
 kangaroos
 kittens
 koalas
+lambs
 leopards
 lions
 lynxes

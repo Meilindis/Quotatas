@@ -20,6 +20,7 @@ dragonfly
 duck
 duckling
 elephant
+fledgeling
 fly
 frog
 gerbil
@@ -36,6 +37,7 @@ hyena
 kangaroo
 kitten
 koala
+lamb
 leopard
 lion
 lynx

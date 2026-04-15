@@ -1,9 +1,11 @@
 a_fetters_recto_b_several_figures_verso.png;(145, 0, 140);justify;bottom;0;0
 a_luncheon_party_.png;(255, 245, 185);justify;bottom;0;0
+amsterdam.png;(255, 255, 255);justify;top;0;0
 angel.png;(255, 255, 255);justify;top;0;0
 annoyed.png;(65, 75, 139);justify;top;0;0
 angry_lady.png;(65, 75, 139);justify;top;0;0
 angry.png;(255, 255, 255);justify;top;0;0
+argument.png;(29, 37, 82);justify;top;0;0
 ascent.png;(255, 255, 255);justify;top;0;0
 babushka.png;(255, 255, 255);justify;top;0;0
 balloons.png;(65, 75, 139);justify;top;0;0
@@ -20,7 +22,9 @@ candle.png;(29, 37, 82);justify;top;0;0
 cat_snow.png;(29, 37, 82);justify;top;0;0
 charge.png;(255, 255, 255);justify;top;0;0
 chess.png;(255, 255, 255);justify;top;0;0
+chicken.png;(255, 255, 255);justify;top;0;0
 chocolate.png;(255, 255, 255);justify;top;0;0
+clogs.png;(255, 255, 255);justify;top;0;0
 clown.png;(255, 255, 255);justify;top;0;0
 coffee.png;(255, 245, 185);justify;bottom;0;0
 couple_mountains.png;(29, 37, 82);justify;top;0;0
@@ -29,6 +33,7 @@ building_the_freidrich-strasse_station.png;(65, 75, 139);justify;top;0;0
 dancer.png;(255, 255, 255);justify;top;0;0
 desert.png;(29, 37, 82);justify;top;0;0
 die_komponistin_sonia_friedman.png;(167, 255, 174);justify;bottom;10;-40
+distracted.png;(29, 37, 82);justify;top;0;0
 dog.png;(29, 37, 82);justify;top;0;0
 dogbubbles.png;(255, 255, 255);justify;top;0;0
 dogtrick.png;(255, 255, 255);justify;top;0;0
@@ -39,6 +44,7 @@ flysex.png;(255, 245, 185);justify;top;0;0
 fountain.png;(0, 0, 0);justify;bottom;0;0
 frogheart.png;(199, 17, 234);justify;bottom;0;0
 frogs.png;(255, 255, 255);justify;bottom;0;-45
+frog.png;(255, 255, 255);justify;top;0;0
 galaxy.png;(255, 255, 255);justify;top;0;0
 giraffe.png;(29, 37, 82);justify;top;0;0
 glitter.png;(255, 245, 185);justify;top;0;0
@@ -57,6 +63,8 @@ ladybug.png;(29, 37, 82);justify;top;0;0
 legs.png;(29, 37, 82);justify;top;0;0
 les_amateurs_d_estampes.png;(207, 220, 255);justify;top;20;0
 lightning.png;(255, 255, 255);justify;bottom;0;0
+lindisfarne.png;(255, 255, 255);justify;top;0;0
+llama.png;(255, 255, 255);justify;top;0;0
 lonelybot.png;(255, 255, 255);justify;top;0;0
 manager.png;(255, 255, 255);justify;bottom;0;0
 mannekenpis.png;(167, 255, 174);justify;bottom;0;0
@@ -69,6 +77,7 @@ milky_way.png;(255, 245, 185);justify;top;0;0
 mime.png;(255, 255, 255);justify;top;0;0
 monkey.png;(255, 255, 255);justify;top;0;0
 monster.png;(255, 255, 255);justify;top;10;20
+newspaper.png;(199, 17, 234);justify;bottom;0;0
 pancakes.png;(255, 255, 255);justify;top;0;0
 pear.png;(255, 255, 255);justify;top;0;0
 pepper.png;(255, 255, 255);justify;top;0;0
@@ -100,6 +109,7 @@ tea.png;(255, 255, 255);justify;top;0;0
 the_tournament.png;(255, 245, 215);justify;top;0;0
 the_visit_.png;(142, 255, 221);justify;bottom;0;0
 three_girls_in_profile.png;(24, 0, 59);justify;bottom;0;0
+tiles.png;(255, 255, 255);justify;top;0;0
 tits.png;(255, 245, 185);justify;top;0;0
 top.png;(65, 75, 139);justify;top;0;0
 treefrog.png;(199, 17, 234);justify;bottom;0;0
@@ -107,7 +117,8 @@ tulips.png;(255, 255, 255);justify;top;0;0
 twelve_men_.png;(199, 17, 234);justify;top;10;0
 typewriter.png;(255, 255, 255);justify;bottom;0;0
 vampire.png;(225, 0, 0);justify;top;0;0
-witch.png;(236 210 255);justify;bottom;0;0
+windmills.png;(29, 37, 82);justify;top;0;0
+witch.png;(236, 210, 255);justify;bottom;0;0
 woman.png;(255, 245, 185);justify;top;0;0
 woman_flowers.png;(29, 37, 82);justify;top;0;0
 world.png;(29, 37, 82);justify;top;0;0

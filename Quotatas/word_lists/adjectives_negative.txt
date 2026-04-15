@@ -9,10 +9,13 @@ creepy
 cynical
 daft
 difficult
+ditzy
 dodgy
 dominant
+draining
 dumb
 filthy
+flaky
 gluttonous
 greedy
 guilty
@@ -20,6 +23,7 @@ heartless
 horrible
 idiotic
 ignorant
+lazy
 narcissistic
 nefarious
 poor
