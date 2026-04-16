@@ -130,6 +130,7 @@ if __name__ == "__main__":
             self.negative_toggle.stateChanged.connect(self.settings_changed)
             self.negative_toggle.setStyleSheet('background-color: #ffe8a6;')            
 
+            # Font settings - name
             self.change_font_label = QLabel("Change font:")
             self.change_font_label.setStyleSheet('border: 0px solid black;')
             self.change_font = QComboBox()
@@ -138,8 +139,16 @@ if __name__ == "__main__":
                 self.change_font.addItem(font[2])
             self.change_font.addItem("")
             self.change_font.setCurrentIndex(self.change_font.findText(""))
+            # Font settings - colour
             self.change_colour = ColorButton(color="#fff") 
             self.change_colour.colorChanged.connect(self.change_selected_colour)
+            # Font settings - size
+            self.change_font_size = QComboBox()
+            self.change_font_size.currentTextChanged.connect(self.change_selected_font_size)
+            for i in (range(16, 42, 2)):
+                self.change_font_size.addItem(str(i))
+            self.change_font_size.addItem("")
+            self.change_font_size.setCurrentIndex(self.change_font_size.findText(""))
             
             self.button_export_quotes = QPushButton("Export session quotes")
             self.button_export_quotes.clicked.connect(self.export_quotes)
@@ -159,6 +168,7 @@ if __name__ == "__main__":
             settingsLayout.addWidget(self.change_font_label)
             settingsLayout.addWidget(self.change_font)
             settingsLayout.addWidget(self.change_colour)
+            settingsLayout.addWidget(self.change_font_size)
             settingsContainer = QWidget()
             settingsContainer.setStyleSheet('background-color: #b1b1b1')
             settingsContainer.setLayout(settingsLayout)
@@ -168,8 +178,8 @@ if __name__ == "__main__":
             layoutV.addWidget(self.negative_toggle)
             layoutV.addWidget(self.nsfw_toggle) 
             layoutV.addWidget(self.text_field)
-            layoutV.addWidget(settingsContainer) 
-            layoutV.addWidget(self.button_export_quotes)       
+            layoutV.addWidget(self.button_export_quotes)   
+            layoutV.addWidget(settingsContainer)     
 
             vert_container = QWidget()
             vert_container.setLayout(layoutV)
@@ -244,6 +254,7 @@ if __name__ == "__main__":
             index_font = self.change_font.findText(self.font[2])
             if index_font >= 0:
                 self.change_font.setCurrentIndex(index_font)
+                self.change_font_size.setCurrentIndex(self.change_font_size.findText(str(self.font[1])))
             
             self.quote = random.choice(template_collection.template_list)()
 
@@ -312,11 +323,21 @@ if __name__ == "__main__":
         def change_selected_font(self):
             # A new font has been selected, so pick up the selected item's text
             new_font = self.change_font.currentText()
+            # If somehow no font is selected
+            if new_font == "":
+                return
             # Find this font in the collection
             for font in self.font_collection:
                 if font[2] == new_font:
                     self.font = font
             # Re-create the image with the new font setting
+            self.create_quote_image()
+
+        def change_selected_font_size(self):
+            new_size = self.change_font_size.currentText()
+            if new_size == "":
+                return
+            self.font[1] = int(new_size)
             self.create_quote_image()
 
         def change_selected_colour(self):

@@ -562,6 +562,34 @@ def template_ornate():
 def template_utter():
     return (capitalize_first_letter(concept()) + " is\n" + amplifier() + " " + concept())
 
+# What do you get
+def template_what():
+    return ("What do you get\nwhen you combine\n" + concept() + " and " + random.choice([concept(), noun_plural()]) + "?\n" +  capitalize_first_letter(concept()) + ".")
+
+# The same
+def template_same():
+    people = people_plural()
+    verbplural = verb()
+    return("The " + people + " who\n" + verbplural + " " + noun_plural() + "\nare the same " + people + "\nwho " + verbplural + " " + noun_plural())
+
+# Meaningless
+def template_meaning():
+    return (capitalize_first_letter(concept()) + " without " + random.choice([concept(), noun_plural()]) + "\nis meaningless.")
+
+# Lingo
+def template_lingo():
+    return ("\"" + capitalize_first_letter(people_singular()) + "\" comes from\nbusiness lingo and\nmeans \"" + people_singular() + "\".")
+
+# No I
+def template_noi():
+    return ("There's no \"I\"\nin \"" + random.choice([concept(), noun_singular()]) + "\".")
+
+# Or don't
+def template_dont():
+    passive = verb()
+    active = verb() + " " + noun_plural()
+    return (capitalize_first_letter(random.choice([passive, active])) + ".\n\nOr don't.")
+
 # List of defined templates (don't forget to add new templates here or they won't be used!)
 template_list = [template_times_three, 
                  template_three_compliments, 
@@ -658,5 +686,11 @@ template_list = [template_times_three,
                  template_irish_insult,
                  template_weird,
                  template_utter,
+                 template_what,
+                 template_same,
+                 template_meaning,
+                 template_lingo,
+                 template_noi,
+                 template_dont,
                  ]
 
