@@ -77,8 +77,8 @@ def food_concept():
 def cliche():
     return random.choice(word_collections.cliches)
 
-def irish_superlative():
-    return random.choice(word_collections.irish_superlative)
+def amplifier():
+    return random.choice(word_collections.amplifiers)
 
 def royalty():
     return random.choice(word_collections.royalty)
@@ -547,7 +547,7 @@ def template_do_both():
 
 # Irish insult
 def template_irish_insult():
-    return ("You " + irish_superlative() + " " + noun_singular() + "!")
+    return ("You " + amplifier() + " " + noun_singular() + "!")
 
 # Weirdness
 def template_weird():
@@ -560,7 +560,7 @@ def template_ornate():
 
 # Utter
 def template_utter():
-    return (capitalize_first_letter(concept()) + " is\n" + irish_superlative() + " " + concept())
+    return (capitalize_first_letter(concept()) + " is\n" + amplifier() + " " + concept())
 
 # List of defined templates (don't forget to add new templates here or they won't be used!)
 template_list = [template_times_three, 

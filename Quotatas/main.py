@@ -8,6 +8,7 @@ import shutil
 import csv
 from ast import literal_eval
 
+# Pillow, a library for editing images. Needed to draw the quote texts on top of images.
 import PIL
 from PIL import ImageFont
 from PIL import Image
@@ -23,11 +24,13 @@ import template_collection
 # Script that helps with putting text on images
 from image_utils import ImageText
 
+# Script that adds a button with a colour picker for the font colour
 from colorbutton import ColorButton
 
+# Generic Qt elements needed for the UI
 from PySide6.QtCore import QSize, Qt, Signal
 from PySide6.QtGui import QPixmap, QImage, QColor
-from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QTextEdit, QVBoxLayout, QWidget, QLabel, QCheckBox, QHBoxLayout, QFileDialog, QMessageBox, QComboBox, QGridLayout
+from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QTextEdit, QVBoxLayout, QWidget, QLabel, QCheckBox, QHBoxLayout, QFileDialog, QMessageBox, QComboBox, QGridLayout, QSpacerItem, QSizePolicy
 
 # ---------------------------------------------------------------------------------------------------------------------------------------------
 # RESOURCES
@@ -44,6 +47,7 @@ def evaluate(expression):
     except SyntaxError:
         return str(expression)
 
+# Helper function to convert RGB colours to hex colours
 def hexify(num):
     return f"{num:02x}"
 
@@ -101,7 +105,7 @@ if __name__ == "__main__":
             self.text_field = QTextEdit()
             self.text_field.setStyleSheet('background-color: #2e2e2e; color: #9e9e9e;')
             self.text_field.setReadOnly(True)
-            self.text_field.resize(pixmap.width(), 350)
+            # self.text_field.resize(pixmap.width(), 350)
 
             # Back and forward buttons
             self.button_back = QPushButton("Previous")
@@ -134,9 +138,6 @@ if __name__ == "__main__":
                 self.change_font.addItem(font[2])
             self.change_font.addItem("")
             self.change_font.setCurrentIndex(self.change_font.findText(""))
-
-            self.change_colour_label = QLabel("Change font colour:")
-            self.change_colour_label.setStyleSheet('border: 0px solid black;')
             self.change_colour = ColorButton(color="#fff") 
             self.change_colour.colorChanged.connect(self.change_selected_colour)
             
@@ -154,11 +155,10 @@ if __name__ == "__main__":
             nav_container.setLayout(layoutH)
 
             # Line out the settings in a grid
-            settingsLayout = QGridLayout()
-            settingsLayout.addWidget(self.change_font_label, 0, 0)
-            settingsLayout.addWidget(self.change_font, 0, 1)
-            settingsLayout.addWidget(self.change_colour_label, 1, 0)
-            settingsLayout.addWidget(self.change_colour, 1, 1)
+            settingsLayout = QHBoxLayout()
+            settingsLayout.addWidget(self.change_font_label)
+            settingsLayout.addWidget(self.change_font)
+            settingsLayout.addWidget(self.change_colour)
             settingsContainer = QWidget()
             settingsContainer.setStyleSheet('background-color: #b1b1b1')
             settingsContainer.setLayout(settingsLayout)
@@ -166,8 +166,8 @@ if __name__ == "__main__":
             # Arrange all settings elements vertically
             layoutV = QVBoxLayout()       
             layoutV.addWidget(self.negative_toggle)
-            layoutV.addWidget(self.nsfw_toggle)
-            layoutV.addWidget(self.text_field)  
+            layoutV.addWidget(self.nsfw_toggle) 
+            layoutV.addWidget(self.text_field)
             layoutV.addWidget(settingsContainer) 
             layoutV.addWidget(self.button_export_quotes)       
 
@@ -184,7 +184,7 @@ if __name__ == "__main__":
             quote_container.setLayout(quoteLayout)
 
             # Combine everything into one layout
-            layoutApp = QHBoxLayout()
+            layoutApp = QVBoxLayout()
             layoutApp.addWidget(vert_container)
             layoutApp.addWidget(quote_container)
 
