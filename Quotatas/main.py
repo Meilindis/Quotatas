@@ -79,7 +79,7 @@ if __name__ == "__main__":
             self.import_image_collection()
 
             # self.export_font_collection()
-            self.export_image_collection()
+            # self.export_image_collection()
 
             # SET UP THE USER INTERFACE
 
@@ -135,20 +135,21 @@ if __name__ == "__main__":
             self.change_font_label.setStyleSheet('border: 0px solid black;')
             self.change_font = QComboBox()
             self.change_font.currentTextChanged.connect(self.change_selected_font)
-            for font in self.font_collection:
-                self.change_font.addItem(font[2])
             self.change_font.addItem("")
             self.change_font.setCurrentIndex(self.change_font.findText(""))
+            for font in self.font_collection:
+                self.change_font.addItem(font[2])
+            
             # Font settings - colour
             self.change_colour = ColorButton(color="#fff") 
             self.change_colour.colorChanged.connect(self.change_selected_colour)
             # Font settings - size
             self.change_font_size = QComboBox()
             self.change_font_size.currentTextChanged.connect(self.change_selected_font_size)
-            for i in (range(16, 42, 2)):
-                self.change_font_size.addItem(str(i))
             self.change_font_size.addItem("")
             self.change_font_size.setCurrentIndex(self.change_font_size.findText(""))
+            for i in (range(16, 42, 2)):
+                self.change_font_size.addItem(str(i))
             
             self.button_export_quotes = QPushButton("Export session quotes")
             self.button_export_quotes.clicked.connect(self.export_quotes)
@@ -334,11 +335,12 @@ if __name__ == "__main__":
             self.create_quote_image()
 
         def change_selected_font_size(self):
-            new_size = self.change_font_size.currentText()
-            if new_size == "":
-                return
-            self.font[1] = int(new_size)
-            self.create_quote_image()
+            if self.font != []:
+                new_size = self.change_font_size.currentText()
+                if new_size == "":
+                    return
+                self.font[1] = int(new_size)
+                self.create_quote_image()
 
         def change_selected_colour(self):
             # A new colour has been selected, so get the new colour name and save it
