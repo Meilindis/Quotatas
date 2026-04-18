@@ -30,7 +30,7 @@ from colorbutton import ColorButton
 # Generic Qt elements needed for the UI
 from PySide6.QtCore import QSize, Qt, Signal
 from PySide6.QtGui import QPixmap, QImage, QColor, QIcon
-from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QTextEdit, QVBoxLayout, QWidget, QLabel, QCheckBox, QHBoxLayout, QFileDialog, QMessageBox, QComboBox, QGridLayout, QSpacerItem, QSizePolicy
+from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QTextEdit, QVBoxLayout, QWidget, QLabel, QCheckBox, QHBoxLayout, QFileDialog, QMessageBox, QComboBox, QGridLayout, QSpacerItem, QSizePolicy, QListWidget
 
 # ---------------------------------------------------------------------------------------------------------------------------------------------
 # RESOURCES
@@ -71,8 +71,10 @@ if __name__ == "__main__":
             self.full_history = [] # QUOTE - IMAGE - FONT
             self.selected_quote = 0
             self.font_collection = [] # FONT NAME - FONT SIZE
-            self.image_collection = [] # IMAGE NAME - TEXT COLOUR (RGB) - ALIGNMENT - POSITION - X OFFSET - Y OFFSET
-            
+            self.image_collection = [] # IMAGE NAME - TEXT COLOUR (RGB) - ALIGNMENT - POSITION - X OFFSET - Y OFFSET            
+            self.log = []
+ 
+            self.log.append("Importing files...")
             # Import the files containing the words, fonts, and images that are used
             self.import_word_lists()
             self.import_font_collection()
@@ -94,7 +96,9 @@ if __name__ == "__main__":
             my_icon = QIcon()
             my_icon.addFile(os.path.join(current_path, os.path.join('images','meilindis.png')))
             self.setWindowIcon(my_icon)
+            self.log.append("Added window icon...")
 
+            self.log.append("Setting up UI...")
             # CREATE UI COMPONENTS
             # Button to generate quotes
             self.button = QPushButton("Give me some wisdom!")
@@ -140,8 +144,7 @@ if __name__ == "__main__":
             self.change_font_label.setStyleSheet('border: 0px solid black;')
             self.change_font = QComboBox()
             self.change_font.currentTextChanged.connect(self.change_selected_font)
-            self.change_font.addItem("")
-            self.change_font.setCurrentIndex(self.change_font.findText(""))
+            self.change_font.setStyleSheet('background-color: #dfdfdf;')
             for font in self.font_collection:
                 self.change_font.addItem(font[2])
             
@@ -151,8 +154,7 @@ if __name__ == "__main__":
             # Font settings - size
             self.change_font_size = QComboBox()
             self.change_font_size.currentTextChanged.connect(self.change_selected_font_size)
-            self.change_font_size.addItem("")
-            self.change_font_size.setCurrentIndex(self.change_font_size.findText(""))
+            self.change_font_size.setStyleSheet('background-color: #dfdfdf;')
             for i in (range(16, 42, 2)):
                 self.change_font_size.addItem(str(i))
             
@@ -160,7 +162,15 @@ if __name__ == "__main__":
             self.button_export_quotes = QPushButton("Export session quotes")
             self.button_export_quotes.clicked.connect(self.export_quotes)
             self.button_export_quotes.setStyleSheet('background-color: orange; color:black;')
+
+            # Export the log file
+            self.button_export_log = QPushButton("Export log")
+            self.button_export_log.clicked.connect(self.export_log)   
+            self.button_export_log.setStyleSheet('background-color: #d8b6ec; color:black;')         
+
+            self.log.append("Generated UI components...")
             
+            self.log.append("Setting up splash screen...")
             # Set up the splash image with a different greeting every time the app is opened
             splash_image = os.path.join(current_path, os.path.join('images','bot.png'))
             self.image = [splash_image, (255, 255, 255), 'center', 'bottom', 0, 0]
@@ -174,6 +184,7 @@ if __name__ == "__main__":
             self.quote_area.setPixmap(pixmap)
 
         def arrange_layouts(self):
+            self.log.append("Setting up UI layout...")
             # Arrange the back/forward buttons horizontally
             layoutH = QHBoxLayout()
             layoutH.addWidget(self.button_back)
@@ -192,19 +203,19 @@ if __name__ == "__main__":
             settingsContainer.setStyleSheet('background-color: #b1b1b1')
             settingsContainer.setLayout(settingsLayout)
 
-            # Arrange all settings elements vertically
-            layoutV = QVBoxLayout()       
-            layoutV.addWidget(self.negative_toggle)
-            layoutV.addWidget(self.nsfw_toggle) 
-            layoutV.addWidget(self.text_field)
-            layoutV.addWidget(self.button_export_quotes)   
-            layoutV.addWidget(settingsContainer)     
+            # Arrange all settings elements in a grid
+            layoutGrid = QGridLayout()       
+            layoutGrid.addWidget(self.negative_toggle, 0, 0)
+            layoutGrid.addWidget(self.nsfw_toggle, 1, 0) 
+            layoutGrid.addWidget(self.button_export_log, 1, 1)
+            layoutGrid.addWidget(self.button_export_quotes, 0, 1)      
 
             vert_container = QWidget()
-            vert_container.setLayout(layoutV)
+            vert_container.setLayout(layoutGrid)
 
             # Add quotes and navigation to their own container
             quoteLayout = QVBoxLayout()
+            quoteLayout.addWidget(settingsContainer)  
             quoteLayout.addWidget(self.quote_area)
             quoteLayout.addWidget(nav_container)
             quoteLayout.addWidget(self.button)
@@ -213,7 +224,7 @@ if __name__ == "__main__":
             quote_container.setLayout(quoteLayout)
 
             # Combine everything into one layout
-            layoutApp = QHBoxLayout()
+            layoutApp = QVBoxLayout()
             layoutApp.addWidget(vert_container)
             layoutApp.addWidget(quote_container)
 
@@ -223,27 +234,33 @@ if __name__ == "__main__":
             container.setLayout(layoutApp)
 
             self.setCentralWidget(container) 
+            self.log.append("UI up and running!")
 
         # Read font info from file
         def import_font_collection(self):
+            self.log.append("Importing font collection...")
             font_location = os.path.join(current_path, 'resources', 'font_collection.csv')
             with open(font_location, newline='') as csvfile:
                 fontreader = csv.reader(csvfile, delimiter=';', quotechar='|')
                 parsed = (list(evaluate(field) for field in row) for row in fontreader)
                 for row in parsed:
                     self.font_collection.append(row)
+            self.log.append("Font collection imported!")
 
          # Read image info from file
         def import_image_collection(self):
+            self.log.append("Importing image collection...")
             image_location = os.path.join(current_path, 'resources', 'image_collection.csv')
             with open(image_location, newline='') as csvfile:
                 imagereader = csv.reader(csvfile, delimiter=';', quotechar='|')
                 parsed = (list(evaluate(field) for field in row) for row in imagereader)
                 for row in parsed:
                     self.image_collection.append(row)
+            self.log.append("Image collection imported!")
 
         # Define what happens when the button is pressed
         def generate_quote(self):
+            self.log.append("Generating quote...")
             self.text_field.setText("")
             # Set the selected quote to the last one (in case the user was looking at an earlier quote)
             if len(self.full_history) > 1:
@@ -258,29 +275,41 @@ if __name__ == "__main__":
             
         def create_basics(self):
         	# Select the random parameters of the quote
+            self.log.append("Selecting image...")
             self.image = random.choice(self.image_collection)
+            self.log.append("Image selected!")
+            self.log.append("Selecting font...")
             self.font = random.choice(self.font_collection)
+            self.log.append("Font selected!")
+            self.log.append("Generating quote text...")
             self.quote = random.choice(template_collection.template_list)()
+            self.log.append("Quote text generated!")
 
-            # Add and set the selected parameters to the list of quotes
+            # Add and set the selected parameters to the list of 
+            self.log.append("Adding quote to history...")
             self.full_history.append([self.quote, self.image, self.font])
             self.selected_quote = len(self.full_history) - 1
 
         def update_ui_elements(self):      
-            # Update other variables and UI elements                  
+            # Update other variables and UI elements 
+            self.log.append("Updating the font colour...")                 
             self.change_colour.setColor('#' + hexify_tuple(self.image[1]))
-            
+            self.log.append("Updated font colour to RGB" + str(self.image[1]) + ".")
             index_font = self.change_font.findText(self.font[2])
             if index_font >= 0:
+                self.log.append("Updating the font selector...")
                 self.change_font.setCurrentIndex(index_font)
                 self.change_font_size.setCurrentIndex(self.change_font_size.findText(str(self.font[1])))
+                self.log.append("Font selected.")
 
         def create_quote_image(self):
             # Can't create an image without parameters
             if self.image == [] or self.font == [] or self.selected_quote == -1:
+                self.log.append("Error. Could not generate quote, insufficient paramenters.")
                 return
 
             # Prepare the image
+            self.log.append("Drawing text on image...")
             current_dir = Path(__file__).parent.absolute()            
             image_path = os.path.join(current_dir, 'images', self.image[0])
             image = Image.open(image_path)
@@ -430,6 +459,12 @@ if __name__ == "__main__":
                     f.write(f"{quote[0]}\n\n---\n\n")
 
             self.button_export_quotes.setText("Exported!")
+
+        # Export the log to log.txt (will overwrite without warning)
+        def export_log(self):
+            with open('log.txt', 'w') as f:
+                for line in self.log:
+                    f.write(f"{line}\n")
 
         # Determine the available word collection depending on the toggles (NSFW/negative on or off)
         def settings_changed(self):
