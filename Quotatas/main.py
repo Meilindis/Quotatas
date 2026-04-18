@@ -83,14 +83,6 @@ if __name__ == "__main__":
             # Create layouts to arrange the UI components
             self.arrange_layouts()
                         
-            # Add the layout to an overall widget and add to main window
-            container = QWidget()
-            container.setStyleSheet('background-color: #808080; color:black; border: 2px solid black; font-size: 20px; padding: 4px;')
-            container.setLayout(layoutApp)
-
-            self.setCentralWidget(container)    
-
-
             # Update the selected words based on the UI settings
             self.settings_changed()
 
@@ -171,8 +163,9 @@ if __name__ == "__main__":
             
             # Set up the splash image with a different greeting every time the app is opened
             splash_image = os.path.join(current_path, os.path.join('images','bot.png'))
-            self.image = [splash_image, (255, 255, 255), 'justify', 'top', 0, 0]
+            self.image = [splash_image, (255, 255, 255), 'center', 'bottom', 0, 0]
             self.font = random.choice(self.font_collection)
+            self.font[1] = 34
             self.quote = random.choice(word_collections.greetings)
             self.update_ui_elements()
             self.create_quote_image()
@@ -180,7 +173,7 @@ if __name__ == "__main__":
             self.quote_area.resize(pixmap.width(), pixmap.height())
             self.quote_area.setPixmap(pixmap)
 
-        def arrange_layouts():
+        def arrange_layouts(self):
             # Arrange the back/forward buttons horizontally
             layoutH = QHBoxLayout()
             layoutH.addWidget(self.button_back)
@@ -223,6 +216,13 @@ if __name__ == "__main__":
             layoutApp = QVBoxLayout()
             layoutApp.addWidget(vert_container)
             layoutApp.addWidget(quote_container)
+
+            # Add the layout to an overall widget and add to main window
+            container = QWidget()
+            container.setStyleSheet('background-color: #808080; color:black; border: 2px solid black; font-size: 20px; padding: 4px;')
+            container.setLayout(layoutApp)
+
+            self.setCentralWidget(container) 
 
         # Read font info from file
         def import_font_collection(self):
@@ -321,7 +321,7 @@ if __name__ == "__main__":
 
             # Now draw each line onto the image
             for line in lines:
-                img.write_text_box((x, y), line, box_width=200, font_filename=font_name,
+                img.write_text_box((x, y), line, box_width=180, font_filename=font_name,
                         font_size=font_custom_size, color=color, place=location)
                 y += 35
 
