@@ -213,7 +213,7 @@ if __name__ == "__main__":
             quote_container.setLayout(quoteLayout)
 
             # Combine everything into one layout
-            layoutApp = QVBoxLayout()
+            layoutApp = QHBoxLayout()
             layoutApp.addWidget(vert_container)
             layoutApp.addWidget(quote_container)
 
@@ -291,6 +291,7 @@ if __name__ == "__main__":
             text = self.quote
             font_name = os.path.join(current_dir, 'fonts', self.font[0])
             font_custom_size = self.font[1]
+            line_height = font_custom_size + 8
             img = ImageText(image, background=(255, 255, 255, 200)) # 200 = alpha
             
             # Determine number of lines
@@ -323,7 +324,7 @@ if __name__ == "__main__":
             for line in lines:
                 img.write_text_box((x, y), line, box_width=180, font_filename=font_name,
                         font_size=font_custom_size, color=color, place=location)
-                y += 35
+                y += line_height
 
             # Save in temporary location
             img.save('temp.png')
