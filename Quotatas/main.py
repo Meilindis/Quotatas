@@ -81,12 +81,16 @@ if __name__ == "__main__":
             self.import_image_collection()
 
             # Create the UI components
+            self.log.append("Creating UI components...")
             self.create_ui_components()
             # Create layouts to arrange the UI components
+            self.log.append("Setting up UI layout...")
             self.arrange_layouts()
                         
             # Update the selected words based on the UI settings
+            self.log.append("Updating initial settings...")
             self.settings_changed()
+            self.log.append("UI is up and running!")
 
         # -----------------------------------------------------------------------------------------------------------------------------
         # MEMBER FUNCTIONS
@@ -96,9 +100,8 @@ if __name__ == "__main__":
             my_icon = QIcon()
             my_icon.addFile(os.path.join(current_path, os.path.join('images','meilindis.png')))
             self.setWindowIcon(my_icon)
-            self.log.append("Added window icon...")
+            self.log.append("Added window icon.")
 
-            self.log.append("Setting up UI...")
             # CREATE UI COMPONENTS
             # Button to generate quotes
             self.button = QPushButton("Give me some wisdom!")
@@ -168,7 +171,7 @@ if __name__ == "__main__":
             self.button_export_log.clicked.connect(self.export_log)   
             self.button_export_log.setStyleSheet('background-color: #d8b6ec; color:black;')         
 
-            self.log.append("Generated UI components...")
+            self.log.append("Generated UI components!")
             
             self.log.append("Setting up splash screen...")
             # Set up the splash image with a different greeting every time the app is opened
@@ -182,6 +185,7 @@ if __name__ == "__main__":
             pixmap = QPixmap('temp.png')
             self.quote_area.resize(pixmap.width(), pixmap.height())
             self.quote_area.setPixmap(pixmap)
+            self.log.append("Splash screen created.")
 
         def arrange_layouts(self):
             self.log.append("Setting up UI layout...")
@@ -234,7 +238,6 @@ if __name__ == "__main__":
             container.setLayout(layoutApp)
 
             self.setCentralWidget(container) 
-            self.log.append("UI up and running!")
 
         # Read font info from file
         def import_font_collection(self):
@@ -426,6 +429,7 @@ if __name__ == "__main__":
 
         # What happens when the "Previous" button is clicked
         def previous_quote(self):
+            self.log.append("Selecting previous quote...")
             # If there's more than one quote and you're not looking at the first quote, you can go back
             if len(self.full_history) > 1 and self.selected_quote >= 1:
                 self.selected_quote = self.selected_quote - 1
@@ -435,11 +439,14 @@ if __name__ == "__main__":
                 self.change_colour.setColor('#' + hexify_tuple(self.image[1]))
                 
                 self.create_quote_image()
+                self.log.append("Previous quote selected.")
             else:
+                self.log.append("No previous quote available.")
                 return
 
         # What happens when the "Next" button is clicked
         def next_quote(self):
+            self.log.append("Selecting next quote...")
             # If you are not looking at the most recent quote, you can go forward
             if self.selected_quote < len(self.full_history) - 1:
                 self.selected_quote = self.selected_quote + 1
@@ -449,25 +456,32 @@ if __name__ == "__main__":
                 self.change_colour.setColor('#' + hexify_tuple(self.image[1]))
 
                 self.create_quote_image()
+                self.log.append("Next quote selected.")
             else:
+                self.log.append("No next quote available.")
                 return
 
         # Export the quote history to a txt file in the current directory - will overwrite without warning!
         def export_quotes(self):
+            self.log.append("Exporting quote history...")
             with open('dutch_wisdom_quote_collection.txt', 'w') as f:
                 for quote in self.full_history:
                     f.write(f"{quote[0]}\n\n---\n\n")
 
             self.button_export_quotes.setText("Exported!")
+            self.log.append("Quote history exported to file.")
 
         # Export the log to log.txt (will overwrite without warning)
         def export_log(self):
+            self.log.append("Exporting log.")
             with open('log.txt', 'w') as f:
                 for line in self.log:
                     f.write(f"{line}\n")
+            self.log.append("Log exported to file.")
 
         # Determine the available word collection depending on the toggles (NSFW/negative on or off)
         def settings_changed(self):
+            self.log.append("Updating used word collection...")
             # Set all word collections to neutral
             word_collections.nouns_singular = word_collections.nouns_singular_sfw + word_collections.people_singular + word_collections.animals_singular + word_collections.verbs_active_sfw + word_collections.food_singular
             word_collections.nouns_plural = word_collections.animals_plural + word_collections.people_plural + word_collections.nouns_plural_sfw + word_collections.food_plural
@@ -486,6 +500,7 @@ if __name__ == "__main__":
             word_collections.cliches = word_collections.cliches_sfw
             # Add NSFW
             if self.nsfw_toggle.isChecked():
+                self.log.append("Adding NSFW words...")
                 word_collections.nouns_singular = word_collections.nouns_singular + word_collections.nouns_singular_nsfw + word_collections.animals_singular + word_collections.verbs_active_sfw + word_collections.verbs_active_nsfw
                 word_collections.nouns_plural = word_collections.nouns_plural + word_collections.nouns_plural_nsfw
                 word_collections.adjectives = word_collections.adjectives + word_collections.adjectives_nsfw
@@ -502,16 +517,20 @@ if __name__ == "__main__":
                 word_collections.cliches = word_collections.cliches + word_collections.cliches_nsfw
             # Add negative stuff
             if self.negative_toggle.isChecked() == True:
+                self.log.append("Adding negative words...")
                 word_collections.adjectives = word_collections.adjectives + word_collections.adjectives_negative
                 word_collections.concepts = word_collections.concepts + word_collections.concepts_negative
                 word_collections.people_singular = word_collections.people_singular + word_collections.people_singular_neg
                 word_collections.people_plural = word_collections.people_plural + word_collections.people_plural_neg
             # Remove anything but positive
             if self.negative_toggle.isChecked() == False:
-                word_collections.adjectives = word_collections.adjectives_positive               
+                self.log.append("Restricting to positive words only...")
+                word_collections.adjectives = word_collections.adjectives_positive  
+            self.log.append("Word collection updated.")             
         
         # Import the word collection from the files in the folder word_collections
         def import_word_lists(self):
+            self.log.append("Importing word lists...")
             word_collections.adjectives_positive = word_collections.import_list("adjectives_positive.txt")
             word_collections.adjectives_negative = word_collections.import_list("adjectives_negative.txt")
             word_collections.adjectives_neutral = word_collections.import_list("adjectives_neutral.txt")
@@ -562,10 +581,12 @@ if __name__ == "__main__":
             word_collections.cliches_sfw = word_collections.import_list("cliches_sfw.txt")
             word_collections.cliches_nsfw = word_collections.import_list("cliches_nsfw.txt")
             word_collections.food_concepts = word_collections.import_list("food_concepts.txt")
+            self.log.append("Word lists imported!")
 
         # Export every word list and make sure the words are in alphabetical order.
         # This function is not used by default and is only there as a convenience.
         def export_word_lists(self):
+            self.log.append("Exporting word lists...")
             word_collections.export_list(word_collections.adjectives_positive, "adjectives_positive")
             word_collections.export_list(word_collections.adjectives_negative, "adjectives_negative")
             word_collections.export_list(word_collections.adjectives_neutral, "adjectives_neutral")
@@ -616,8 +637,10 @@ if __name__ == "__main__":
             word_collections.export_list(word_collections.cliches_sfw, "cliches_sfw")
             word_collections.export_list(word_collections.cliches_nsfw, "cliches_nsfw")
             word_collections.export_list(word_collections.food_concepts, "food_concepts.txt")
+            self.log.append("Word lists exported!")
 
         def export_font_collection(self):
+            self.log.append("Exporting font collection...")
             font_location = os.path.join(current_path, 'resources')
             font_location = os.path.join(font_location, 'font_collection.csv')
             with open(font_location, 'w', newline='') as csvfile:
@@ -625,8 +648,10 @@ if __name__ == "__main__":
                                         quotechar='|', quoting=csv.QUOTE_MINIMAL)
                 for line in self.font_collection:
                     fontwriter.writerow(line)
+            self.log.append("Fonts exported.")
 
         def export_image_collection(self):
+            self.log.append("Exporting image collection...")
             image_location = os.path.join(current_path, 'resources')
             image_location = os.path.join(image_location, 'image_collection.csv')
             with open(image_location, 'w', newline='') as csvfile:
@@ -634,6 +659,7 @@ if __name__ == "__main__":
                                         quotechar='|', quoting=csv.QUOTE_MINIMAL)
                 for line in self.image_collection:
                     imagewriter.writerow(line)
+            self.log.append("Image collection exported.")
 
     app = QApplication(sys.argv)
 
