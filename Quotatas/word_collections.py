@@ -67,11 +67,12 @@ situations_active =[]
 people_singular = []
 people_plural = []
 
-# Small custom lists
+# Small custom lists (might add to separate files later)
 royalty = ["god", "goddess", "king", "queen", "prince", "princess", "lord", "lady", "master", "mistress", "emperor", "empress"]
 amplifiers = ["absolute", "right", "total", "proper", "utter", "complete"]  
 meals = ["breakfast", "lunch", "dinner", "supper", "tea", "high tea", "brunch", "snack"]
 time_units = ["seconds", "minutes", "hours", "days", "weeks", "months", "years", "decades", "centuries", "millennia", "fortnights"]
+greetings = ["What ho!", "Hello, stranger!", "Greetings, human!", "Welcome, my friend!", "Good day, mate!", "It is agreeable\nto see you!", "Peace and long life!", "Howdy, brave earthling!"]
 
 
 def import_list(filename):

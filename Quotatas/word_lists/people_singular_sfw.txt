@@ -91,6 +91,7 @@ technician
 therapist
 time traveller
 tinkerer
+toilet inspector
 vampire
 vet
 weirdo

@@ -29,7 +29,7 @@ from colorbutton import ColorButton
 
 # Generic Qt elements needed for the UI
 from PySide6.QtCore import QSize, Qt, Signal
-from PySide6.QtGui import QPixmap, QImage, QColor
+from PySide6.QtGui import QPixmap, QImage, QColor, QIcon
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QTextEdit, QVBoxLayout, QWidget, QLabel, QCheckBox, QHBoxLayout, QFileDialog, QMessageBox, QComboBox, QGridLayout, QSpacerItem, QSizePolicy
 
 # ---------------------------------------------------------------------------------------------------------------------------------------------
@@ -78,34 +78,47 @@ if __name__ == "__main__":
             self.import_font_collection()
             self.import_image_collection()
 
-            # self.export_font_collection()
-            # self.export_image_collection()
+            # Create the UI components
+            self.create_ui_components()
+            # Create layouts to arrange the UI components
+            self.arrange_layouts()
+                        
+            # Add the layout to an overall widget and add to main window
+            container = QWidget()
+            container.setStyleSheet('background-color: #808080; color:black; border: 2px solid black; font-size: 20px; padding: 4px;')
+            container.setLayout(layoutApp)
 
-            # SET UP THE USER INTERFACE
+            self.setCentralWidget(container)    
 
+
+            # Update the selected words based on the UI settings
+            self.settings_changed()
+
+        # -----------------------------------------------------------------------------------------------------------------------------
+        # MEMBER FUNCTIONS
+
+        def create_ui_components(self):
             self.setWindowTitle("Quotatas")
+            my_icon = QIcon()
+            my_icon.addFile(os.path.join(current_path, os.path.join('images','meilindis.png')))
+            self.setWindowIcon(my_icon)
 
             # CREATE UI COMPONENTS
             # Button to generate quotes
             self.button = QPushButton("Give me some wisdom!")
             self.button.setCheckable(True)
             self.button.clicked.connect(self.generate_quote)
-            self.button.setStyleSheet('height: 80px; background-color: #b0cceb; color: black; text-align: center;')
+            self.button.setStyleSheet('height: 100px; background-color: #b0cceb; color: black; text-align: center;')
 
             # Label that displays the generated quote image
             self.quote_area = QLabel()
             self.quote_area.setStyleSheet('background-color: black; color: white;')
-            self.quote_area.resize(500, 500)
-            current_dir = Path(__file__).parent.absolute()
-            pixmap = QPixmap(os.path.join(current_dir, os.path.join('images','bot.png')))
-            self.quote_area.resize(pixmap.width(), pixmap.height())
-            self.quote_area.setPixmap(pixmap)
+            self.quote_area.resize(500, 500)            
 
             # Field that displays the generated quote in text only
             self.text_field = QTextEdit()
             self.text_field.setStyleSheet('background-color: #2e2e2e; color: #9e9e9e;')
             self.text_field.setReadOnly(True)
-            # self.text_field.resize(pixmap.width(), 350)
 
             # Back and forward buttons
             self.button_back = QPushButton("Previous")
@@ -151,11 +164,23 @@ if __name__ == "__main__":
             for i in (range(16, 42, 2)):
                 self.change_font_size.addItem(str(i))
             
+            # Export the created quotes so far (text only)
             self.button_export_quotes = QPushButton("Export session quotes")
             self.button_export_quotes.clicked.connect(self.export_quotes)
             self.button_export_quotes.setStyleSheet('background-color: orange; color:black;')
+            
+            # Set up the splash image with a different greeting every time the app is opened
+            splash_image = os.path.join(current_path, os.path.join('images','bot.png'))
+            self.image = [splash_image, (255, 255, 255), 'justify', 'top', 0, 0]
+            self.font = random.choice(self.font_collection)
+            self.quote = random.choice(word_collections.greetings)
+            self.update_ui_elements()
+            self.create_quote_image()
+            pixmap = QPixmap('temp.png')
+            self.quote_area.resize(pixmap.width(), pixmap.height())
+            self.quote_area.setPixmap(pixmap)
 
-            # CREATE LAYOUTS TO ARRANGE THE UI COMPONENTS
+        def arrange_layouts():
             # Arrange the back/forward buttons horizontally
             layoutH = QHBoxLayout()
             layoutH.addWidget(self.button_back)
@@ -199,21 +224,6 @@ if __name__ == "__main__":
             layoutApp.addWidget(vert_container)
             layoutApp.addWidget(quote_container)
 
-            # Add the layout to an overall widget
-            container = QWidget()
-            container.setStyleSheet('background-color: #808080; color:black; border: 2px solid black; font-size: 20px; padding: 4px;')
-            container.setLayout(layoutApp)
-
-            self.setCentralWidget(container)    
-
-
-            # Update the selected words based on the UI settings
-            self.settings_changed()
-            # self.export_word_lists() # Only enable when you have added new words to the lists and want to alphabetise them.
-
-        # -----------------------------------------------------------------------------------------------------------------------------
-        # MEMBER FUNCTIONS
-
         # Read font info from file
         def import_font_collection(self):
             font_location = os.path.join(current_path, 'resources', 'font_collection.csv')
@@ -241,27 +251,29 @@ if __name__ == "__main__":
             # Adding new quote, so exporting makes sense again
             self.button_export_quotes.setText("Export session quotes")
             # Select the random parameters
-            self.set_parameters()
+            self.create_basics()
+            self.update_ui_elements()
             # Create the image
             self.create_quote_image()
-
-        def set_parameters(self):
-            # Select the random parameters of the quote
-            self.image = random.choice(self.image_collection)
             
-            self.change_colour.setColor('#' + hexify_tuple(self.image[1]))
-
+        def create_basics(self):
+        	# Select the random parameters of the quote
+            self.image = random.choice(self.image_collection)
             self.font = random.choice(self.font_collection)
+            self.quote = random.choice(template_collection.template_list)()
+
+            # Add and set the selected parameters to the list of quotes
+            self.full_history.append([self.quote, self.image, self.font])
+            self.selected_quote = len(self.full_history) - 1
+
+        def update_ui_elements(self):      
+            # Update other variables and UI elements                  
+            self.change_colour.setColor('#' + hexify_tuple(self.image[1]))
+            
             index_font = self.change_font.findText(self.font[2])
             if index_font >= 0:
                 self.change_font.setCurrentIndex(index_font)
                 self.change_font_size.setCurrentIndex(self.change_font_size.findText(str(self.font[1])))
-            
-            self.quote = random.choice(template_collection.template_list)()
-
-            # Add and set the selected quote index to this new quote's index
-            self.full_history.append([self.quote, self.image, self.font])
-            self.selected_quote = len(self.full_history) - 1
 
         def create_quote_image(self):
             # Can't create an image without parameters
