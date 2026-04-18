@@ -138,7 +138,7 @@ if __name__ == "__main__":
             self.nsfw_toggle.stateChanged.connect(self.settings_changed)
             self.nsfw_toggle.setStyleSheet('background-color: #ffbcf1;')
 
-            self.negative_toggle = QCheckBox(text="Include negative stuff (risky!)")
+            self.negative_toggle = QCheckBox(text="Include negative stuff")
             self.negative_toggle.stateChanged.connect(self.settings_changed)
             self.negative_toggle.setStyleSheet('background-color: #ffe8a6;')            
 
