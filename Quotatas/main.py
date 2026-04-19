@@ -283,7 +283,7 @@ if __name__ == "__main__":
 
             button_next_action = QAction(QIcon(os.path.join(icon_path, 'arrow.png')), "Go to the next quote", self)
             button_next_action.setStatusTip("Go to the next quote")
-            button_next_action.triggered.connect(self.previous_quote)
+            button_next_action.triggered.connect(self.next_quote)
             toolbar.addAction(button_next_action)
 
             button_save_quote_action = QAction(QIcon(os.path.join(icon_path, 'disk.png')), "Save quote", self)
