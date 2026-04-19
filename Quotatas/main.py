@@ -92,9 +92,9 @@ if __name__ == "__main__":
             # Update the selected words based on the UI settings
             self.log.append("Updating initial settings...")
             self.settings_changed()
-            self.log.append("UI is up and running!\n------------------------")
+            self.log.append("UI is up and running.\n------------------------")
             
-            self.text_field.setText("Starting UI... Loading wisdom nuggets... done! Press the button and I will share some wisdom with you!\n\nIf a quote is hard to read, you can use the font settings to improve it.\nSelect whether I should play nice and whether I should unleash my naughtiness with the toggles.\n\nEnjoy my infinite wisdom that has been maturing ever since the Big Splash!")
+            self.text_field.setText("Starting UI... Loading wisdom nuggets... done! Press the button and I will share some wisdom with you.\n\nIf a quote is hard to read, you can use the font settings to improve it.\nSelect whether I should play nice and whether I should unleash my naughtiness with the toggles.\n\nEnjoy my infinite wisdom that has been maturing ever since the Big Splash!")
 
         # -----------------------------------------------------------------------------------------------------------------------------
         # MEMBER FUNCTIONS
@@ -108,7 +108,7 @@ if __name__ == "__main__":
 
             # CREATE UI COMPONENTS
             # Button to generate quotes
-            self.button = QPushButton("Give me some wisdom!")
+            self.button = QPushButton("Give me some wisdom.")
             self.button.setCheckable(True)
             self.button.clicked.connect(self.generate_quote)
             self.button.setStyleSheet('height: 100px; background-color: #b0cceb; color: black; text-align: center;')
@@ -183,7 +183,7 @@ if __name__ == "__main__":
             self.button_export_log.clicked.connect(self.export_log)   
             self.button_export_log.setStyleSheet('background-color: #d8b6ec; color:black;')         
 
-            self.log.append("Generated UI components!")
+            self.log.append("Generated UI components.")
             
             self.log.append("Setting up splash screen...")
             # Set up the splash image with a different greeting every time the app is opened
@@ -267,7 +267,7 @@ if __name__ == "__main__":
                 parsed = (list(evaluate(field) for field in row) for row in fontreader)
                 for row in parsed:
                     self.font_collection.append(row)
-            self.log.append("Font collection imported!")
+            self.log.append("Font collection imported.")
 
          # Read image info from file
         def import_image_collection(self):
@@ -278,7 +278,7 @@ if __name__ == "__main__":
                 parsed = (list(evaluate(field) for field in row) for row in imagereader)
                 for row in parsed:
                     self.image_collection.append(row)
-            self.log.append("Image collection imported!")
+            self.log.append("Image collection imported.")
 
         # Define what happens when the button is pressed
         def generate_quote(self):
@@ -304,13 +304,13 @@ if __name__ == "__main__":
         	# Select the random parameters of the quote
             self.log.append("\tSelecting image...")
             self.image = random.choice(self.image_collection)
-            self.log.append("\tImage selected!")
+            self.log.append("\tImage selected: " + self.image[0] + ".")
             self.log.append("\tSelecting font...")
             self.font = random.choice(self.font_collection)
-            self.log.append("\tFont selected!")
+            self.log.append("\tFont selected: " + self.font[2] + ".")
             self.log.append("\tGenerating quote text...")
             self.quote = random.choice(template_collection.template_list)()
-            self.log.append("\tQuote text generated!")
+            self.log.append("\tQuote text generated:\n\t\t" + self.quote)
 
             # Add and set the selected parameters to the list of quotes
             self.log.append("\tAdding quote to history...")
@@ -324,10 +324,10 @@ if __name__ == "__main__":
             self.log.append("\tUpdated font colour to RGB" + str(self.image[1]) + ".")
             index_font = self.change_font.findText(self.font[2])
             if index_font >= 0:
-                self.log.append("\tUpdating the font selector...")
+                self.log.append("\tUpdating the font name and size...")
                 self.change_font.setCurrentIndex(index_font)
                 self.change_font_size.setCurrentIndex(self.change_font_size.findText(str(self.font[1])))
-                self.log.append("\tFont selected.")
+                self.log.append("\tFont name and size updated.")
 
         def create_quote_image(self):
             # Can't create an image without parameters
@@ -336,7 +336,7 @@ if __name__ == "__main__":
                 return
 
             # Prepare the image
-            self.log.append("\tDrawing text on image...")         
+            self.log.append("\tOpening image...")         
             image_path = os.path.join(current_path, 'images', self.image[0])
             image = Image.open(image_path)
 
@@ -377,7 +377,7 @@ if __name__ == "__main__":
             x = x_val
             y = y_val
 
-            self.log.append("\tDrawing...")
+            self.log.append("\tDrawing quote text...")
             # Now draw each line onto the image
             for line in lines:
                 img.write_text_box((x, y), line, box_width=180, font_filename=font_name,
@@ -409,29 +409,29 @@ if __name__ == "__main__":
             # Re-create the image with the new font setting
             if not self.generate:
                 self.create_quote_image()
-            self.log.append("New font applied.")
+            self.log.append("New font applied: " + new_font + ".")
 
         def change_selected_font_size(self):
             self.log.append("Changing selected font size...")
-            if self.font != []:
+            if self.font == []:
                 new_size = self.change_font_size.currentText()
                 if new_size == "":
                     return
                 self.font[1] = int(new_size)
                 if not self.generate:
                     self.create_quote_image()
-                self.log.append("New font size applied.")
+                self.log.append("New font size applied: " + str(new_size) + ".")
 
         def change_selected_colour(self):
             self.log.append("Changing selected font colour...")
             # A new colour has been selected, so get the new colour name and save it
-            if self.image != None:
+            if self.image == None:
                 # Convert to RGB and store 
                 self.image[1] = ImageColor.getcolor(self.change_colour.color(), "RGB")
                 # Re-create the image
                 if not self.generate:
                     self.create_quote_image()
-                self.log.append("New font colour applied.")
+                self.log.append("New font colour applied: RGB" + str(self.image[1]) + ".")
 
         def save_quote(self):
             # Check if there's a generated image present
@@ -508,14 +508,14 @@ if __name__ == "__main__":
                 self.log.append("No next quote available.")
                 return
 
-        # Export the quote history to a txt file in the current directory - will overwrite without warning!
+        # Export the quote history to a txt file in the current directory - will overwrite without warning.
         def export_quotes(self):
             self.log.append("Exporting quote history...")
             with open('dutch_wisdom_quote_collection.txt', 'w') as f:
                 for quote in self.full_history:
                     f.write(f"{quote[0]}\n\n---\n\n")
 
-            self.button_export_quotes.setText("Exported!")
+            self.button_export_quotes.setText("Exported.")
             self.log.append("Quote history exported to file.")
 
         # Export the log to log.txt (will overwrite without warning)
@@ -628,7 +628,7 @@ if __name__ == "__main__":
             word_collections.cliches_sfw = word_collections.import_list("cliches_sfw.txt")
             word_collections.cliches_nsfw = word_collections.import_list("cliches_nsfw.txt")
             word_collections.food_concepts = word_collections.import_list("food_concepts.txt")
-            self.log.append("Word lists imported!")
+            self.log.append("Word lists imported.")
 
         # Export every word list and make sure the words are in alphabetical order.
         # This function is not used by default and is only there as a convenience.
@@ -684,7 +684,7 @@ if __name__ == "__main__":
             word_collections.export_list(word_collections.cliches_sfw, "cliches_sfw")
             word_collections.export_list(word_collections.cliches_nsfw, "cliches_nsfw")
             word_collections.export_list(word_collections.food_concepts, "food_concepts.txt")
-            self.log.append("Word lists exported!")
+            self.log.append("Word lists exported.")
 
         def export_font_collection(self):
             self.log.append("Exporting font collection...")
