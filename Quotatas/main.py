@@ -83,6 +83,7 @@ if __name__ == "__main__":
             # Create the UI components
             self.log.append("Creating UI components...")
             self.create_ui_components()
+            
             # Create layouts to arrange the UI components
             self.log.append("Setting up UI layout...")
             self.arrange_layouts()
@@ -91,6 +92,8 @@ if __name__ == "__main__":
             self.log.append("Updating initial settings...")
             self.settings_changed()
             self.log.append("UI is up and running!")
+            
+            self.text_field.setText("Starting UI... Loading wisdom nuggets... done! Press the button and I will share some wisdom with you!\n\nIf a quote is hard to read, you can use the font settings to improve it.\nSelect whether I should play nice and whether I should unleash my naughtiness with the toggles.\n\nEnjoy my infinite wisdom that has been maturing ever since the Big Splash!")
 
         # -----------------------------------------------------------------------------------------------------------------------------
         # MEMBER FUNCTIONS
@@ -128,7 +131,7 @@ if __name__ == "__main__":
             self.button_forward.clicked.connect(self.next_quote)
             self.button_forward.setStyleSheet('background-color: orange; color:black;')
 
-            # Saving and copying
+            # Saving quotes
             self.button_save = QPushButton("Save")
             self.button_save.clicked.connect(self.save_quote)
             self.button_save.setStyleSheet('background-color: #a3d3a7;')     
@@ -148,6 +151,10 @@ if __name__ == "__main__":
             self.change_font = QComboBox()
             self.change_font.currentTextChanged.connect(self.change_selected_font)
             self.change_font.setStyleSheet('background-color: #dfdfdf;')
+            # Temporarily add empty item until first font name is selected 
+            self.change_font.addItem("")
+            self.change_font.setCurrentIndex(self.change_font.findText(""))
+            # Add the font names
             for font in self.font_collection:
                 self.change_font.addItem(font[2])
             
@@ -158,6 +165,10 @@ if __name__ == "__main__":
             self.change_font_size = QComboBox()
             self.change_font_size.currentTextChanged.connect(self.change_selected_font_size)
             self.change_font_size.setStyleSheet('background-color: #dfdfdf;')
+            # Temporarily add empty item until first font size is selected
+            self.change_font_size.addItem("")
+            self.change_font_size.setCurrentIndex(self.change_font_size.findText(""))
+            # Add the font sizes
             for i in (range(16, 42, 2)):
                 self.change_font_size.addItem(str(i))
             
@@ -176,7 +187,7 @@ if __name__ == "__main__":
             self.log.append("Setting up splash screen...")
             # Set up the splash image with a different greeting every time the app is opened
             splash_image = os.path.join(current_path, os.path.join('images','bot.png'))
-            self.image = [splash_image, (255, 255, 255), 'center', 'bottom', 0, 0]
+            self.image = [splash_image, (255, 255, 255), 'center', 'bottom', -40, 0]
             self.font = random.choice(self.font_collection)
             self.font[1] = 34
             self.quote = random.choice(word_collections.greetings)
@@ -186,6 +197,10 @@ if __name__ == "__main__":
             self.quote_area.resize(pixmap.width(), pixmap.height())
             self.quote_area.setPixmap(pixmap)
             self.log.append("Splash screen created.")
+            
+            # Remove empty entries that are now redundant
+            self.change_font.removeItem(self.change_font.findText(""))
+            self.change_font_size.removeItem(self.change_font_size.findText(""))
 
         def arrange_layouts(self):
             self.log.append("Setting up UI layout...")
@@ -212,7 +227,8 @@ if __name__ == "__main__":
             layoutGrid.addWidget(self.negative_toggle, 0, 0)
             layoutGrid.addWidget(self.nsfw_toggle, 1, 0) 
             layoutGrid.addWidget(self.button_export_log, 1, 1)
-            layoutGrid.addWidget(self.button_export_quotes, 0, 1)      
+            layoutGrid.addWidget(self.button_export_quotes, 0, 1)
+            layoutGrid.addWidget(self.text_field, 2, 0, 1, 2)
 
             vert_container = QWidget()
             vert_container.setLayout(layoutGrid)
@@ -288,7 +304,7 @@ if __name__ == "__main__":
             self.quote = random.choice(template_collection.template_list)()
             self.log.append("Quote text generated!")
 
-            # Add and set the selected parameters to the list of 
+            # Add and set the selected parameters to the list of quotes
             self.log.append("Adding quote to history...")
             self.full_history.append([self.quote, self.image, self.font])
             self.selected_quote = len(self.full_history) - 1
@@ -312,16 +328,15 @@ if __name__ == "__main__":
                 return
 
             # Prepare the image
-            self.log.append("Drawing text on image...")
-            current_dir = Path(__file__).parent.absolute()            
-            image_path = os.path.join(current_dir, 'images', self.image[0])
+            self.log.append("Drawing text on image...")         
+            image_path = os.path.join(current_path, 'images', self.image[0])
             image = Image.open(image_path)
 
             color = self.image[1]
             location = self.image[2]
 
             text = self.quote
-            font_name = os.path.join(current_dir, 'fonts', self.font[0])
+            font_name = os.path.join(current_path, 'fonts', self.font[0])
             font_custom_size = self.font[1]
             line_height = font_custom_size + 8
             img = ImageText(image, background=(255, 255, 255, 200)) # 200 = alpha
