@@ -29,14 +29,15 @@ from colorbutton import ColorButton
 
 # Generic Qt elements needed for the UI
 from PySide6.QtCore import QSize, Qt, Signal
-from PySide6.QtGui import QPixmap, QImage, QColor, QIcon
-from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QTextEdit, QVBoxLayout, QWidget, QLabel, QCheckBox, QHBoxLayout, QFileDialog, QMessageBox, QComboBox, QGridLayout, QSpacerItem, QSizePolicy, QListWidget
+from PySide6.QtGui import QPixmap, QImage, QColor, QIcon, QAction, QIcon, QKeySequence
+from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QTextEdit, QVBoxLayout, QWidget, QLabel, QCheckBox, QHBoxLayout, QFileDialog, QMessageBox, QComboBox, QGridLayout, QSpacerItem, QSizePolicy, QListWidget, QStatusBar, QToolBar
 
 # ---------------------------------------------------------------------------------------------------------------------------------------------
 # RESOURCES
 
 # Store current path for convenience
 current_path = Path(__file__).parent.absolute()
+icon_path = os.path.join(current_path, 'icons')
 
 # Helper function to check expression type
 def evaluate(expression):
@@ -88,6 +89,7 @@ if __name__ == "__main__":
             # Create layouts to arrange the UI components
             self.log.append("Setting up UI layout...")
             self.arrange_layouts()
+            self.add_toolbar()
                         
             # Update the selected words based on the UI settings
             self.log.append("Updating initial settings...")
@@ -107,6 +109,7 @@ if __name__ == "__main__":
             self.log.append("Added window icon.")
 
             # CREATE UI COMPONENTS
+            self.log.append("Creating UI components...")
             # Button to generate quotes
             self.button_generate_quote = QPushButton("Give me some wisdom.")
             self.button_generate_quote.setCheckable(True)
@@ -183,12 +186,12 @@ if __name__ == "__main__":
             self.button_export_log.clicked.connect(self.export_log)   
             self.button_export_log.setStyleSheet('background-color: #d8b6ec; color:black;')         
 
-            self.log.append("Generated UI components.")
+            self.log.append("UI components created.")
             
             self.log.append("Setting up splash screen...")
             # Set up the splash image with a different greeting every time the app is opened
             splash_image = os.path.join(current_path, os.path.join('images','bot.png'))
-            self.image = [splash_image, (255, 255, 255), 'center', 'bottom', -60, 0]
+            self.image = [splash_image, (255, 255, 255), 'justify', 'bottom', 0, 0]
             self.font = random.choice(self.font_collection)
             self.font[1] = 34
             self.quote = random.choice(word_collections.greetings)
@@ -225,30 +228,19 @@ if __name__ == "__main__":
             settingsContainer.setStyleSheet('background-color: #b1b1b1')
             settingsContainer.setLayout(settingsLayout)
 
-            # Arrange all settings elements in a grid
-            layoutGrid = QGridLayout()       
-            layoutGrid.addWidget(self.negative_toggle, 0, 0)
-            layoutGrid.addWidget(self.nsfw_toggle, 1, 0) 
-            layoutGrid.addWidget(self.button_export_log, 1, 1)
-            layoutGrid.addWidget(self.button_export_quotes, 0, 1)
-            layoutGrid.addWidget(self.text_field, 2, 0, 1, 2)
-
-            vert_container = QWidget()
-            vert_container.setLayout(layoutGrid)
-
             # Add quotes and navigation to their own container
             quoteLayout = QVBoxLayout()
             quoteLayout.addWidget(settingsContainer)  
             quoteLayout.addWidget(self.quote_area)
             quoteLayout.addWidget(nav_container)
             quoteLayout.addWidget(self.button_generate_quote)
+            quoteLayout.addWidget(self.text_field)
 
             quote_container = QWidget()
             quote_container.setLayout(quoteLayout)
 
             # Combine everything into one layout
             layoutApp = QVBoxLayout()
-            layoutApp.addWidget(vert_container)
             layoutApp.addWidget(quote_container)
 
             # Add the layout to an overall widget and add to main window
@@ -257,6 +249,62 @@ if __name__ == "__main__":
             container.setLayout(layoutApp)
 
             self.setCentralWidget(container) 
+            self.log.append("Layout arranged.")
+
+        def add_toolbar(self):
+            self.log.append("Adding toolbar...")
+            toolbar = QToolBar("Toolbar")
+            toolbar.setIconSize(QSize(16, 16))
+            self.addToolBar(toolbar)
+
+            self.button_nsfw_action = QAction(QIcon(os.path.join(icon_path, 'notification-counter-18.png')), "Include NSFW words", self)
+            self.button_nsfw_action.setStatusTip("Include NSFW words")
+            self.button_nsfw_action.triggered.connect(self.settings_changed)
+            self.button_nsfw_action.setCheckable(True)
+            toolbar.addAction(self.button_nsfw_action)
+
+            self.button_negative_action = QAction(QIcon(os.path.join(icon_path, 'dummy-sad.png')), "Include negative words (tricky!)", self)
+            self.button_negative_action.setStatusTip("Include negative words (tricky!)")
+            self.button_negative_action.triggered.connect(self.settings_changed)
+            self.button_negative_action.setCheckable(True)
+            toolbar.addAction(self.button_negative_action)
+
+            toolbar.addSeparator()
+
+            button_generate_action = QAction(QIcon(os.path.join(icon_path, 'arrow-circle-225.png')), "Generate quote", self)
+            button_generate_action.setStatusTip("Generate a new quote image")
+            button_generate_action.triggered.connect(self.generate_quote)
+            toolbar.addAction(button_generate_action)
+
+            button_previous_action = QAction(QIcon(os.path.join(icon_path, 'arrow-180.png')), "Go back to the previous quote", self)
+            button_previous_action.setStatusTip("Go back to the previous quote")
+            button_previous_action.triggered.connect(self.previous_quote)
+            toolbar.addAction(button_previous_action)
+
+            button_next_action = QAction(QIcon(os.path.join(icon_path, 'arrow.png')), "Go to the next quote", self)
+            button_next_action.setStatusTip("Go to the next quote")
+            button_next_action.triggered.connect(self.previous_quote)
+            toolbar.addAction(button_next_action)
+
+            button_save_quote_action = QAction(QIcon(os.path.join(icon_path, 'disk.png')), "Save quote", self)
+            button_save_quote_action.setStatusTip("Save the current quote image")
+            button_save_quote_action.triggered.connect(self.save_quote)
+            toolbar.addAction(button_save_quote_action)
+
+            toolbar.addSeparator()
+
+            button_export_quotes_action = QAction(QIcon(os.path.join(icon_path, 'blue-folder-export.png')), "Export the quotes so far (text only)", self)
+            button_export_quotes_action.setStatusTip("Export the quotes so far (text only)")
+            button_export_quotes_action.triggered.connect(self.export_quotes)
+            toolbar.addAction(button_export_quotes_action)
+
+            button_export_log_action = QAction(QIcon(os.path.join(icon_path, 'document-export.png')), "Export the log file", self)
+            button_export_log_action.setStatusTip("Export the log file")
+            button_export_log_action.triggered.connect(self.export_log)
+            toolbar.addAction(button_export_log_action)
+
+            self.setStatusBar(QStatusBar(self))
+            self.log.append("Toolbar added.")
 
         # Read font info from file
         def import_font_collection(self):
@@ -546,7 +594,7 @@ if __name__ == "__main__":
             word_collections.people_plural = word_collections.people_plural_sfw
             word_collections.cliches = word_collections.cliches_sfw
             # Add NSFW
-            if self.nsfw_toggle.isChecked():
+            if self.button_nsfw_action.isChecked():
                 self.log.append("\tAdding NSFW words...")
                 word_collections.nouns_singular = word_collections.nouns_singular + word_collections.nouns_singular_nsfw + word_collections.animals_singular + word_collections.verbs_active_sfw + word_collections.verbs_active_nsfw
                 word_collections.nouns_plural = word_collections.nouns_plural + word_collections.nouns_plural_nsfw
@@ -563,14 +611,14 @@ if __name__ == "__main__":
                 word_collections.situations_active = word_collections.situations_active + word_collections.situations_active_nsfw
                 word_collections.cliches = word_collections.cliches + word_collections.cliches_nsfw
             # Add negative stuff
-            if self.negative_toggle.isChecked() == True:
+            if self.button_negative_action.isChecked() == True:
                 self.log.append("\tAdding negative words...")
                 word_collections.adjectives = word_collections.adjectives + word_collections.adjectives_negative
                 word_collections.concepts = word_collections.concepts + word_collections.concepts_negative
                 word_collections.people_singular = word_collections.people_singular + word_collections.people_singular_neg
                 word_collections.people_plural = word_collections.people_plural + word_collections.people_plural_neg
             # Remove anything but positive
-            if self.negative_toggle.isChecked() == False:
+            if self.button_negative_action.isChecked() == False:
                 self.log.append("\tRestricting to positive words only...")
                 word_collections.adjectives = word_collections.adjectives_positive  
             self.log.append("Word collection updated.")             
