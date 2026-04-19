@@ -108,10 +108,10 @@ if __name__ == "__main__":
 
             # CREATE UI COMPONENTS
             # Button to generate quotes
-            self.button = QPushButton("Give me some wisdom.")
-            self.button.setCheckable(True)
-            self.button.clicked.connect(self.generate_quote)
-            self.button.setStyleSheet('height: 100px; background-color: #b0cceb; color: black; text-align: center;')
+            self.button_generate_quote = QPushButton("Give me some wisdom.")
+            self.button_generate_quote.setCheckable(True)
+            self.button_generate_quote.clicked.connect(self.generate_quote)
+            self.button_generate_quote.setStyleSheet('height: 50px; background-color: #b0cceb; color: black; text-align: center;')
 
             # Label that displays the generated quote image
             self.quote_area = QLabel()
@@ -188,7 +188,7 @@ if __name__ == "__main__":
             self.log.append("Setting up splash screen...")
             # Set up the splash image with a different greeting every time the app is opened
             splash_image = os.path.join(current_path, os.path.join('images','bot.png'))
-            self.image = [splash_image, (255, 255, 255), 'center', 'bottom', -40, 0]
+            self.image = [splash_image, (255, 255, 255), 'center', 'bottom', -60, 0]
             self.font = random.choice(self.font_collection)
             self.font[1] = 34
             self.quote = random.choice(word_collections.greetings)
@@ -241,7 +241,7 @@ if __name__ == "__main__":
             quoteLayout.addWidget(settingsContainer)  
             quoteLayout.addWidget(self.quote_area)
             quoteLayout.addWidget(nav_container)
-            quoteLayout.addWidget(self.button)
+            quoteLayout.addWidget(self.button_generate_quote)
 
             quote_container = QWidget()
             quote_container.setLayout(quoteLayout)
@@ -324,7 +324,7 @@ if __name__ == "__main__":
             self.log.append("\tUpdated font colour to RGB" + str(self.image[1]) + ".")
             index_font = self.change_font.findText(self.font[2])
             if index_font >= 0:
-                self.log.append("\tUpdating the font name and size...")
+                self.log.append("\tSelecting new font and font size...")
                 self.change_font.setCurrentIndex(index_font)
                 self.change_font_size.setCurrentIndex(self.change_font_size.findText(str(self.font[1])))
                 self.log.append("\tFont name and size updated.")
@@ -395,43 +395,43 @@ if __name__ == "__main__":
             self.quote_area.setPixmap(pixmap)
 
         def change_selected_font(self):
-            self.log.append("Changing selected font...")
+            self.log.append("\tChanging selected font...")
             # A new font has been selected, so pick up the selected item's text
             new_font = self.change_font.currentText()
             # If somehow no font is selected
             if new_font == "":
-                self.log.append("No valid font selected.")
+                self.log.append("\tNo valid font selected.")
                 return
             # Find this font in the collection
             for font in self.font_collection:
                 if font[2] == new_font:
                     self.font = font
+            self.log.append("\tNew font applied: " + new_font + ".")
             # Re-create the image with the new font setting
             if not self.generate:
                 self.create_quote_image()
-            self.log.append("New font applied: " + new_font + ".")
 
         def change_selected_font_size(self):
-            self.log.append("Changing selected font size...")
-            if self.font == []:
+            self.log.append("\tChanging selected font size...")
+            if self.font != []:
                 new_size = self.change_font_size.currentText()
                 if new_size == "":
                     return
                 self.font[1] = int(new_size)
+                self.log.append("\tNew font size applied: " + new_size + ".")
                 if not self.generate:
                     self.create_quote_image()
-                self.log.append("New font size applied: " + str(new_size) + ".")
 
         def change_selected_colour(self):
-            self.log.append("Changing selected font colour...")
+            self.log.append("\tChanging selected font colour...")
             # A new colour has been selected, so get the new colour name and save it
-            if self.image == None:
+            if self.image != None:
                 # Convert to RGB and store 
                 self.image[1] = ImageColor.getcolor(self.change_colour.color(), "RGB")
+                self.log.append("\tNew font colour applied: RGB" + str(self.image[1]) + ".")
                 # Re-create the image
                 if not self.generate:
                     self.create_quote_image()
-                self.log.append("New font colour applied: RGB" + str(self.image[1]) + ".")
 
         def save_quote(self):
             # Check if there's a generated image present
