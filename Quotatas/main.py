@@ -73,6 +73,7 @@ if __name__ == "__main__":
             self.font_collection = [] # FONT NAME - FONT SIZE
             self.image_collection = [] # IMAGE NAME - TEXT COLOUR (RGB) - ALIGNMENT - POSITION - X OFFSET - Y OFFSET            
             self.log = []
+            self.generate = False # Whether a quote is being actively generated.
  
             self.log.append("Importing files...")
             # Import the files containing the words, fonts, and images that are used
@@ -91,7 +92,7 @@ if __name__ == "__main__":
             # Update the selected words based on the UI settings
             self.log.append("Updating initial settings...")
             self.settings_changed()
-            self.log.append("UI is up and running!")
+            self.log.append("UI is up and running!\n------------------------")
             
             self.text_field.setText("Starting UI... Loading wisdom nuggets... done! Press the button and I will share some wisdom with you!\n\nIf a quote is hard to read, you can use the font settings to improve it.\nSelect whether I should play nice and whether I should unleash my naughtiness with the toggles.\n\nEnjoy my infinite wisdom that has been maturing ever since the Big Splash!")
 
@@ -191,8 +192,10 @@ if __name__ == "__main__":
             self.font = random.choice(self.font_collection)
             self.font[1] = 34
             self.quote = random.choice(word_collections.greetings)
+            self.generate = True
             self.update_ui_elements()
             self.create_quote_image()
+            self.generate = False
             pixmap = QPixmap('temp.png')
             self.quote_area.resize(pixmap.width(), pixmap.height())
             self.quote_area.setPixmap(pixmap)
@@ -287,39 +290,44 @@ if __name__ == "__main__":
             # Adding new quote, so exporting makes sense again
             self.button_export_quotes.setText("Export session quotes")
             # Select the random parameters
+            self.log.append("Setting basic paramenters and updating UI...")
             self.create_basics()
+            self.generate = True
             self.update_ui_elements()
             # Create the image
+            self.log.append("Creating quote image...")
             self.create_quote_image()
+            self.generate = False
+            self.log.append("New quote image created.")
             
         def create_basics(self):
         	# Select the random parameters of the quote
-            self.log.append("Selecting image...")
+            self.log.append("\tSelecting image...")
             self.image = random.choice(self.image_collection)
-            self.log.append("Image selected!")
-            self.log.append("Selecting font...")
+            self.log.append("\tImage selected!")
+            self.log.append("\tSelecting font...")
             self.font = random.choice(self.font_collection)
-            self.log.append("Font selected!")
-            self.log.append("Generating quote text...")
+            self.log.append("\tFont selected!")
+            self.log.append("\tGenerating quote text...")
             self.quote = random.choice(template_collection.template_list)()
-            self.log.append("Quote text generated!")
+            self.log.append("\tQuote text generated!")
 
             # Add and set the selected parameters to the list of quotes
-            self.log.append("Adding quote to history...")
+            self.log.append("\tAdding quote to history...")
             self.full_history.append([self.quote, self.image, self.font])
             self.selected_quote = len(self.full_history) - 1
 
         def update_ui_elements(self):      
             # Update other variables and UI elements 
-            self.log.append("Updating the font colour...")                 
+            self.log.append("\tUpdating the font colour...")                 
             self.change_colour.setColor('#' + hexify_tuple(self.image[1]))
-            self.log.append("Updated font colour to RGB" + str(self.image[1]) + ".")
+            self.log.append("\tUpdated font colour to RGB" + str(self.image[1]) + ".")
             index_font = self.change_font.findText(self.font[2])
             if index_font >= 0:
-                self.log.append("Updating the font selector...")
+                self.log.append("\tUpdating the font selector...")
                 self.change_font.setCurrentIndex(index_font)
                 self.change_font_size.setCurrentIndex(self.change_font_size.findText(str(self.font[1])))
-                self.log.append("Font selected.")
+                self.log.append("\tFont selected.")
 
         def create_quote_image(self):
             # Can't create an image without parameters
@@ -328,7 +336,7 @@ if __name__ == "__main__":
                 return
 
             # Prepare the image
-            self.log.append("Drawing text on image...")         
+            self.log.append("\tDrawing text on image...")         
             image_path = os.path.join(current_path, 'images', self.image[0])
             image = Image.open(image_path)
 
@@ -339,10 +347,12 @@ if __name__ == "__main__":
             font_name = os.path.join(current_path, 'fonts', self.font[0])
             font_custom_size = self.font[1]
             line_height = font_custom_size + 8
+            self.log.append("\tSetting line height to " + str(line_height) + ".")
             img = ImageText(image, background=(255, 255, 255, 200)) # 200 = alpha
             
             # Determine number of lines
             nr_of_lines = text.count("\n") + 1
+            self.log.append("\tQuote has " + str(nr_of_lines) + " lines.")
             # Add the separate lines to a list
             lines = text.splitlines()
             x_val = 20 # default indentation
@@ -367,6 +377,7 @@ if __name__ == "__main__":
             x = x_val
             y = y_val
 
+            self.log.append("\tDrawing...")
             # Now draw each line onto the image
             for line in lines:
                 img.write_text_box((x, y), line, box_width=180, font_filename=font_name,
@@ -374,52 +385,68 @@ if __name__ == "__main__":
                 y += line_height
 
             # Save in temporary location
+            self.log.append("\tSaving temp file...")
             img.save('temp.png')
 
             # Display the modified image
+            self.log.append("\tDisplaying image in UI...")
             pixmap = QPixmap('temp.png')
             self.quote_area.resize(pixmap.width(), pixmap.height())
             self.quote_area.setPixmap(pixmap)
 
         def change_selected_font(self):
+            self.log.append("Changing selected font...")
             # A new font has been selected, so pick up the selected item's text
             new_font = self.change_font.currentText()
             # If somehow no font is selected
             if new_font == "":
+                self.log.append("No valid font selected.")
                 return
             # Find this font in the collection
             for font in self.font_collection:
                 if font[2] == new_font:
                     self.font = font
             # Re-create the image with the new font setting
-            self.create_quote_image()
+            if not self.generate:
+                self.create_quote_image()
+            self.log.append("New font applied.")
 
         def change_selected_font_size(self):
+            self.log.append("Changing selected font size...")
             if self.font != []:
                 new_size = self.change_font_size.currentText()
                 if new_size == "":
                     return
                 self.font[1] = int(new_size)
-                self.create_quote_image()
+                if not self.generate:
+                    self.create_quote_image()
+                self.log.append("New font size applied.")
 
         def change_selected_colour(self):
+            self.log.append("Changing selected font colour...")
             # A new colour has been selected, so get the new colour name and save it
             if self.image != None:
                 # Convert to RGB and store 
                 self.image[1] = ImageColor.getcolor(self.change_colour.color(), "RGB")
                 # Re-create the image
-                self.create_quote_image()
+                if not self.generate:
+                    self.create_quote_image()
+                self.log.append("New font colour applied.")
 
         def save_quote(self):
             # Check if there's a generated image present
+            self.log.append("Saving quote...")
             try:
                 if os.path.isfile('temp.png'):
+                    self.log.append("\tCreating save dialog...")
                     # Create a dialog in which to select a name and location
                     self.save_dialog = QFileDialog()
                     save_file_name = self.save_dialog.getSaveFileName(self, 'Save quote', '', filter='Image files (.png)', selectedFilter='*.png')
                     save_file = save_file_name[0] + '.png'
+                    self.log.append("\tSaving file as " + save_file + ".")
                     # Check if the filename already exists
                     if os.path.isfile(save_file):
+                        self.log.append("\tFilename already exists.")
                         dlg = QMessageBox(self)
                         dlg.setStyleSheet('background-color: #b1b1b1; border:1px solid black;')
                         dlg.setWindowTitle("File exists")
@@ -431,15 +458,20 @@ if __name__ == "__main__":
                         selected = dlg.exec()
 
                         if selected == QMessageBox.StandardButton.Yes:
+                            self.log.append("\tOverwriting existing file...")
                             shutil.copyfile('temp.png', save_file)
+                            self.log.append("\tFile saved.")
                         else:
                             pass                    
                     else:
+                        self.log.append("\tFile saved.")
                         shutil.copyfile('temp.png', save_file)
             # If no generated image is present, there's nothing to save
                 else:
+                    self.log.append("No image file available to save.")
                     self.text_field.setText("No image available to save.")
             except FileNotFoundError:
+                self.log.append("No image file available to save.")
                 self.text_field.setText("No image available to save.")
 
         # What happens when the "Previous" button is clicked
@@ -515,7 +547,7 @@ if __name__ == "__main__":
             word_collections.cliches = word_collections.cliches_sfw
             # Add NSFW
             if self.nsfw_toggle.isChecked():
-                self.log.append("Adding NSFW words...")
+                self.log.append("\tAdding NSFW words...")
                 word_collections.nouns_singular = word_collections.nouns_singular + word_collections.nouns_singular_nsfw + word_collections.animals_singular + word_collections.verbs_active_sfw + word_collections.verbs_active_nsfw
                 word_collections.nouns_plural = word_collections.nouns_plural + word_collections.nouns_plural_nsfw
                 word_collections.adjectives = word_collections.adjectives + word_collections.adjectives_nsfw
@@ -532,14 +564,14 @@ if __name__ == "__main__":
                 word_collections.cliches = word_collections.cliches + word_collections.cliches_nsfw
             # Add negative stuff
             if self.negative_toggle.isChecked() == True:
-                self.log.append("Adding negative words...")
+                self.log.append("\tAdding negative words...")
                 word_collections.adjectives = word_collections.adjectives + word_collections.adjectives_negative
                 word_collections.concepts = word_collections.concepts + word_collections.concepts_negative
                 word_collections.people_singular = word_collections.people_singular + word_collections.people_singular_neg
                 word_collections.people_plural = word_collections.people_plural + word_collections.people_plural_neg
             # Remove anything but positive
             if self.negative_toggle.isChecked() == False:
-                self.log.append("Restricting to positive words only...")
+                self.log.append("\tRestricting to positive words only...")
                 word_collections.adjectives = word_collections.adjectives_positive  
             self.log.append("Word collection updated.")             
         
