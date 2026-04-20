@@ -15,11 +15,6 @@ QWidget#app_container {
     padding: 4px;
 }
 
-QWidget#quote_area_container {
-    background-color: #808080; 
-    color:black; 
-}
-
 QPushButton {
     background-color: #b0cceb; 
     color: black; 
@@ -45,8 +40,8 @@ QPushButton#button_generate_quote:hover
     border: 2px solid #28217a;
 }
 
-QPushButton#change_colour:hover {
-    border: 2px solid #aac5ff; 
+ColorButton:hover {
+    border: 2px solid #a4d4ff; 
 }
 
 QTextEdit {
@@ -61,7 +56,7 @@ QComboBox {
 QComboBox:hover
 {
     background-color: #9ac3fe;
-    order: 2px solid #000;
+    border: 2px solid #000;
 }
 
 QLabel {

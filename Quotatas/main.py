@@ -121,7 +121,7 @@ class MainWindow(QMainWindow):
         self.button_generate_quote = QPushButton("Give me some wisdom!")
         self.button_generate_quote.setCheckable(True)
         self.button_generate_quote.clicked.connect(self.generate_quote)
-        self.button_generate_quote.setMinimumHeight(50)
+        self.button_generate_quote.setMinimumHeight(100)
         self.button_generate_quote.setObjectName('button_generate_quote')
         self.button_generate_quote.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
@@ -149,7 +149,7 @@ class MainWindow(QMainWindow):
         
         # Font settings - colour
         self.change_colour = ColorButton(color="#fff") 
-        self.change_colour.setObjectName('set_colour')
+        self.change_colour.setObjectName('change_colour')
         self.change_colour.colorChanged.connect(self.change_selected_colour)
         # Font settings - size
         self.change_font_size = QComboBox()
@@ -198,25 +198,16 @@ class MainWindow(QMainWindow):
         self.font_settings_container.setLayout(self.font_settings_layout)
 
         # Add quotes and navigation to their own container
-        self.quote_area_layout = QVBoxLayout()
-        self.quote_area_layout.addWidget(self.font_settings_container)  
-        self.quote_area_layout.addWidget(self.quote_area)
-        self.quote_area_layout.addWidget(self.button_generate_quote)
-        #self.quoteLayout.addWidget(self.text_field)
-
-        self.quote_area_container = QWidget()
-        self.quote_area_container.setObjectName('quote_area_container')
-        self.quote_area_container.setLayout(self.quote_area_layout)
-
-        # Combine everything into one layout
         self.app_layout = QVBoxLayout()
-        self.app_layout.addWidget(self.quote_area_container)
-
-        # Add the layout to an overall widget and add to main window
+        self.app_layout.addWidget(self.quote_area)
+        self.app_layout.addWidget(self.font_settings_container)  
+        self.app_layout.addWidget(self.button_generate_quote)
+        #self.quoteLayout.addWidget(self.text_field)
         self.app_container = QWidget()
-        self.app_container.setObjectName('app_container')
+        self.app_container.setObjectName('quote_area_container')
         self.app_container.setLayout(self.app_layout)
 
+        # Add the layout to an overall widget and add to main window
         self.setCentralWidget(self.app_container) 
         self.logit("Layout arranged.")
 
