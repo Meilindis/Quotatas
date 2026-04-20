@@ -41,8 +41,12 @@ QPushButton#button_save {
 
 QPushButton#button_generate_quote:hover
 {
-  background-color: #9ac3fe;
-  border: 2px solid #28217a;
+    background-color: #9ac3fe;
+    border: 2px solid #28217a;
+}
+
+QPushButton#change_colour:hover {
+    border: 2px solid #aac5ff; 
 }
 
 QTextEdit {
@@ -56,8 +60,8 @@ QComboBox {
 
 QComboBox:hover
 {
-  background-color: #9ac3fe;
-  border: 2px solid #000;
+    background-color: #9ac3fe;
+    order: 2px solid #000;
 }
 
 QLabel {

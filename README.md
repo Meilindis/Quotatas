@@ -13,7 +13,3 @@ If you'd like to customise Quotatas:
 * Add your own templates to `template_collection.py`.
 
 ![Screenshot of Quotatas](screenshot.png)
-
-Some icons by [Yusuke Kamiyamane](http://p.yusukekamiyamane.com/).
-Licensed under a [Creative Commons Attribution 3.0 License](http://creativecommons.org/licenses/by/3.0/).
-

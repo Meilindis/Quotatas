@@ -111,7 +111,7 @@ class MainWindow(QMainWindow):
     def create_ui_components(self):
         self.setWindowTitle("Quotatas")
         my_icon = QIcon()
-        my_icon.addFile(os.path.join(current_path, os.path.join('images','meilindis.png')))
+        my_icon.addFile(os.path.join(current_path, os.path.join('icons','quotatas.ico')))
         self.setWindowIcon(my_icon)
         self.logit("\tAdded window icon.")
 
@@ -123,6 +123,7 @@ class MainWindow(QMainWindow):
         self.button_generate_quote.clicked.connect(self.generate_quote)
         self.button_generate_quote.setMinimumHeight(50)
         self.button_generate_quote.setObjectName('button_generate_quote')
+        self.button_generate_quote.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
         # Label that displays the generated quote image
         self.quote_area = QLabel()
@@ -225,13 +226,13 @@ class MainWindow(QMainWindow):
         self.toolbar.setIconSize(QSize(32, 32))
         self.addToolBar(self.toolbar)
 
-        self.button_nsfw_action = QAction(QIcon(os.path.join(icon_path, 'notification-counter-18.png')), "Include NSFW words", self)
+        self.button_nsfw_action = QAction(QIcon(os.path.join(icon_path, 'nsfw.ico')), "Include NSFW words", self)
         self.button_nsfw_action.setStatusTip("Include NSFW words")
         self.button_nsfw_action.triggered.connect(self.settings_changed)
         self.button_nsfw_action.setCheckable(True)
         self.toolbar.addAction(self.button_nsfw_action)
 
-        self.button_negative_action = QAction(QIcon(os.path.join(icon_path, 'dummy-sad.png')), "Include negative words (tricky!)", self)
+        self.button_negative_action = QAction(QIcon(os.path.join(icon_path, 'negative.ico')), "Include negative words (tricky!)", self)
         self.button_negative_action.setStatusTip("Include negative words (tricky!)")
         self.button_negative_action.triggered.connect(self.settings_changed)
         self.button_negative_action.setCheckable(True)
@@ -239,12 +240,12 @@ class MainWindow(QMainWindow):
 
         self.toolbar.addSeparator()
 
-        self.button_generate_action = QAction(QIcon(os.path.join(icon_path, 'arrow-circle-225.png')), "Generate quote", self)
+        self.button_generate_action = QAction(QIcon(os.path.join(icon_path, 'quotatas.ico')), "Generate quote", self)
         self.button_generate_action.setStatusTip("Generate a new quote image")
         self.button_generate_action.triggered.connect(self.generate_quote)
         self.toolbar.addAction(self.button_generate_action)
 
-        self.button_previous_action = QAction(QIcon(os.path.join(icon_path, 'arrow-180.png')), "Go back to the previous quote", self)
+        self.button_previous_action = QAction(QIcon(os.path.join(icon_path, 'previous.ico')), "Go back to the previous quote", self)
         self.button_previous_action.setStatusTip("Go back to the previous quote")
         self.button_previous_action.triggered.connect(self.previous_quote)
         self.toolbar.addAction(self.button_previous_action)
@@ -254,13 +255,13 @@ class MainWindow(QMainWindow):
         self.label_position.setStatusTip("The quote index within your current quote collection")
         self.toolbar.addWidget(self.label_position)
 
-        self.button_next_action = QAction(QIcon(os.path.join(icon_path, 'arrow.png')), "Go to the next quote", self)
+        self.button_next_action = QAction(QIcon(os.path.join(icon_path, 'next.ico')), "Go to the next quote", self)
         self.button_next_action.setStatusTip("Go to the next quote")
         self.button_next_action.triggered.connect(self.next_quote)
         self.toolbar.addAction(self.button_next_action)
         self.button_next_action.setEnabled(False) # no next quote yet
 
-        self.button_save_quote_action = QAction(QIcon(os.path.join(icon_path, 'disk.png')), "Save quote", self)
+        self.button_save_quote_action = QAction(QIcon(os.path.join(icon_path, 'save.ico')), "Save quote", self)
         self.button_save_quote_action.setStatusTip("Save the current quote image")
         self.button_save_quote_action.triggered.connect(self.save_quote)
         self.toolbar.addAction(self.button_save_quote_action)
@@ -268,13 +269,13 @@ class MainWindow(QMainWindow):
 
         self.toolbar.addSeparator()
 
-        self.button_export_quotes_action = QAction(QIcon(os.path.join(icon_path, 'blue-folder-export.png')), "Export the quotes so far (text only)", self)
+        self.button_export_quotes_action = QAction(QIcon(os.path.join(icon_path, 'export-quotes.ico')), "Export the quotes so far (text only)", self)
         self.button_export_quotes_action.setStatusTip("Export the quotes so far (text only)")
         self.button_export_quotes_action.triggered.connect(self.export_quotes)
         self.toolbar.addAction(self.button_export_quotes_action)
         self.button_export_quotes_action.setEnabled(False) # nothing to export yet
 
-        self.button_export_log_action = QAction(QIcon(os.path.join(icon_path, 'document-export.png')), "Export the log file", self)
+        self.button_export_log_action = QAction(QIcon(os.path.join(icon_path, 'export-log.ico')), "Export the log file", self)
         self.button_export_log_action.setStatusTip("Export the log file")
         self.button_export_log_action.triggered.connect(self.export_log)
         self.toolbar.addAction(self.button_export_log_action)
