@@ -30,7 +30,10 @@ from colorbutton import ColorButton
 # Generic Qt elements needed for the UI
 from PySide6.QtCore import QSize, Qt, Signal
 from PySide6.QtGui import QPixmap, QImage, QColor, QIcon, QAction, QIcon, QKeySequence
-from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QTextEdit, QVBoxLayout, QWidget, QLabel, QCheckBox, QHBoxLayout, QFileDialog, QMessageBox, QComboBox, QGridLayout, QSpacerItem, QSizePolicy, QListWidget, QStatusBar, QToolBar
+from PySide6.QtWidgets import (QApplication, QMainWindow, QPushButton, QTextEdit, QVBoxLayout,
+                              QWidget, QLabel, QCheckBox, QHBoxLayout, QFileDialog, QMessageBox, 
+                              QComboBox, QGridLayout, QSpacerItem, QSizePolicy, QListWidget, 
+                              QStatusBar, QToolBar)
 
 # ---------------------------------------------------------------------------------------------------------------------------------------------
 # RESOURCES
