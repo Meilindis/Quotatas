@@ -58,705 +58,716 @@ def hexify_tuple(tup):
 # ----------------------------------------------------------------------------------------------------------------------
 # MAIN PROGRAM
 
-if __name__ == "__main__":
-    class MainWindow(QMainWindow):
-        def __init__(self):
-            super().__init__()
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
 
-            # CREATE CONTAINERS TO STORE THE SELECTED QUOTES, IMAGES, AND FONTS
+        # CREATE CONTAINERS TO STORE THE SELECTED QUOTES, IMAGES, AND FONTS
 
-            # Store the quote here later:
-            self.quote = ""
-            self.image = []
-            self.font = []
-            self.full_history = [] # QUOTE - IMAGE - FONT
-            self.selected_quote = 0
-            self.font_collection = [] # FONT NAME - FONT SIZE
-            self.image_collection = [] # IMAGE NAME - TEXT COLOUR (RGB) - ALIGNMENT - POSITION - X OFFSET - Y OFFSET            
-            self.log = []
-            self.generate = False # Whether a quote is being actively generated.
- 
-            self.log.append("Importing files...")
-            # Import the files containing the words, fonts, and images that are used
-            self.import_word_lists()
-            self.import_font_collection()
-            self.import_image_collection()
+        # Store the quote here later:
+        self._quote = ""
+        self._image = []
+        self._font = []
+        self._full_history = [] # QUOTE - IMAGE - FONT
+        self._selected_quote = 0
+        self._font_collection = [] # FONT NAME - FONT SIZE
+        self._image_collection = [] # IMAGE NAME - TEXT COLOUR (RGB) - ALIGNMENT - POSITION - X OFFSET - Y OFFSET            
+        self._log = []
+        self._generating_quote = False # Whether a quote is being actively generated.
 
-            # Create the UI components
-            self.log.append("Creating UI components...")
-            self.create_ui_components()
-            
-            # Create layouts to arrange the UI components
-            self.log.append("Setting up UI layout...")
-            self.arrange_layouts()
-            self.add_toolbar()
-                        
-            # Update the selected words based on the UI settings
-            self.log.append("Updating initial settings...")
-            self.settings_changed()
-            self.log.append("UI is up and running.\n------------------------")
-            
-            self.text_field.setText("Starting UI... Loading wisdom nuggets... done! Press the button and I will share some wisdom with you.\n\nIf a quote is hard to read, you can use the font settings to improve it.\nSelect whether I should play nice and whether I should unleash my naughtiness with the toggles.\n\nEnjoy my infinite wisdom that has been maturing ever since the Big Splash!")
+        self.logit("Importing files...")
 
-        # -----------------------------------------------------------------------------------------------------------------------------
-        # MEMBER FUNCTIONS
+        # Import the files containing the words, fonts, and images that are used
+        self.import_word_lists()
+        self.import_font_collection()
+        self.import_image_collection()
 
-        def create_ui_components(self):
-            self.setWindowTitle("Quotatas")
-            my_icon = QIcon()
-            my_icon.addFile(os.path.join(current_path, os.path.join('images','meilindis.png')))
-            self.setWindowIcon(my_icon)
-            self.log.append("Added window icon.")
+        # Create the UI components
+        self.logit("Creating UI components...")
+        self.create_ui_components()
 
-            # CREATE UI COMPONENTS
-            self.log.append("Creating UI components...")
-            # Button to generate quotes
-            self.button_generate_quote = QPushButton("Give me some wisdom.")
-            self.button_generate_quote.setCheckable(True)
-            self.button_generate_quote.clicked.connect(self.generate_quote)
-            self.button_generate_quote.setStyleSheet('height: 50px; background-color: #b0cceb; color: black; text-align: center;')
-
-            # Label that displays the generated quote image
-            self.quote_area = QLabel()
-            self.quote_area.setStyleSheet('background-color: black; color: white;')
-            self.quote_area.resize(500, 500)            
-
-            # Field that displays the generated quote in text only
-            self.text_field = QTextEdit()
-            self.text_field.setStyleSheet('background-color: #2e2e2e; color: #9e9e9e;')
-            self.text_field.setReadOnly(True)
-
-            # Back and forward buttons
-            self.button_back = QPushButton("Previous")
-            self.button_back.clicked.connect(self.previous_quote)
-            self.button_back.setStyleSheet('background-color: orange; color:black;')
-
-            self.button_forward = QPushButton("Next")
-            self.button_forward.clicked.connect(self.next_quote)
-            self.button_forward.setStyleSheet('background-color: orange; color:black;')
-
-            # Saving quotes
-            self.button_save = QPushButton("Save")
-            self.button_save.clicked.connect(self.save_quote)
-            self.button_save.setStyleSheet('background-color: #a3d3a7;')     
-
-            # Settings toggles
-            self.nsfw_toggle = QCheckBox(text="Include NSFW words")
-            self.nsfw_toggle.stateChanged.connect(self.settings_changed)
-            self.nsfw_toggle.setStyleSheet('background-color: #ffbcf1;')
-
-            self.negative_toggle = QCheckBox(text="Include negative stuff")
-            self.negative_toggle.stateChanged.connect(self.settings_changed)
-            self.negative_toggle.setStyleSheet('background-color: #ffe8a6;')            
-
-            # Font settings - name
-            self.change_font_label = QLabel("Change font:")
-            self.change_font_label.setStyleSheet('border: 0px solid black;')
-            self.change_font = QComboBox()
-            self.change_font.currentTextChanged.connect(self.change_selected_font)
-            self.change_font.setStyleSheet('background-color: #dfdfdf;')
-            # Temporarily add empty item until first font name is selected 
-            self.change_font.addItem("")
-            self.change_font.setCurrentIndex(self.change_font.findText(""))
-            # Add the font names
-            for font in self.font_collection:
-                self.change_font.addItem(font[2])
-            
-            # Font settings - colour
-            self.change_colour = ColorButton(color="#fff") 
-            self.change_colour.colorChanged.connect(self.change_selected_colour)
-            # Font settings - size
-            self.change_font_size = QComboBox()
-            self.change_font_size.currentTextChanged.connect(self.change_selected_font_size)
-            self.change_font_size.setStyleSheet('background-color: #dfdfdf;')
-            # Temporarily add empty item until first font size is selected
-            self.change_font_size.addItem("")
-            self.change_font_size.setCurrentIndex(self.change_font_size.findText(""))
-            # Add the font sizes
-            for i in (range(16, 42, 2)):
-                self.change_font_size.addItem(str(i))
-            
-            # Export the created quotes so far (text only)
-            self.button_export_quotes = QPushButton("Export session quotes")
-            self.button_export_quotes.clicked.connect(self.export_quotes)
-            self.button_export_quotes.setStyleSheet('background-color: orange; color:black;')
-
-            # Export the log file
-            self.button_export_log = QPushButton("Export log")
-            self.button_export_log.clicked.connect(self.export_log)   
-            self.button_export_log.setStyleSheet('background-color: #d8b6ec; color:black;')         
-
-            self.log.append("UI components created.")
-            
-            self.log.append("Setting up splash screen...")
-            # Set up the splash image with a different greeting every time the app is opened
-            splash_image = os.path.join(current_path, os.path.join('images','bot.png'))
-            self.image = [splash_image, (255, 255, 255), 'justify', 'bottom', 0, 0]
-            self.font = random.choice(self.font_collection)
-            self.font[1] = 34
-            self.quote = random.choice(word_collections.greetings)
-            self.generate = True
-            self.update_ui_elements()
-            self.create_quote_image()
-            self.generate = False
-            pixmap = QPixmap('temp.png')
-            self.quote_area.resize(pixmap.width(), pixmap.height())
-            self.quote_area.setPixmap(pixmap)
-            self.log.append("Splash screen created.")
-            
-            # Remove empty entries that are now redundant
-            self.change_font.removeItem(self.change_font.findText(""))
-            self.change_font_size.removeItem(self.change_font_size.findText(""))
-
-        def arrange_layouts(self):
-            self.log.append("Setting up UI layout...")
-            # Arrange the back/forward buttons horizontally
-            layoutH = QHBoxLayout()
-            layoutH.addWidget(self.button_back)
-            layoutH.addWidget(self.button_save)
-            layoutH.addWidget(self.button_forward)
-            nav_container = QWidget()
-            nav_container.setLayout(layoutH)
-
-            # Line out the settings in a grid
-            settingsLayout = QHBoxLayout()
-            settingsLayout.addWidget(self.change_font_label)
-            settingsLayout.addWidget(self.change_font)
-            settingsLayout.addWidget(self.change_colour)
-            settingsLayout.addWidget(self.change_font_size)
-            settingsContainer = QWidget()
-            settingsContainer.setStyleSheet('background-color: #b1b1b1')
-            settingsContainer.setLayout(settingsLayout)
-
-            # Add quotes and navigation to their own container
-            quoteLayout = QVBoxLayout()
-            quoteLayout.addWidget(settingsContainer)  
-            quoteLayout.addWidget(self.quote_area)
-            quoteLayout.addWidget(nav_container)
-            quoteLayout.addWidget(self.button_generate_quote)
-            quoteLayout.addWidget(self.text_field)
-
-            quote_container = QWidget()
-            quote_container.setLayout(quoteLayout)
-
-            # Combine everything into one layout
-            layoutApp = QVBoxLayout()
-            layoutApp.addWidget(quote_container)
-
-            # Add the layout to an overall widget and add to main window
-            container = QWidget()
-            container.setStyleSheet('background-color: #808080; color:black; border: 2px solid black; font-size: 20px; padding: 4px;')
-            container.setLayout(layoutApp)
-
-            self.setCentralWidget(container) 
-            self.log.append("Layout arranged.")
-
-        def add_toolbar(self):
-            self.log.append("Adding toolbar...")
-            toolbar = QToolBar("Toolbar")
-            toolbar.setIconSize(QSize(16, 16))
-            self.addToolBar(toolbar)
-
-            self.button_nsfw_action = QAction(QIcon(os.path.join(icon_path, 'notification-counter-18.png')), "Include NSFW words", self)
-            self.button_nsfw_action.setStatusTip("Include NSFW words")
-            self.button_nsfw_action.triggered.connect(self.settings_changed)
-            self.button_nsfw_action.setCheckable(True)
-            toolbar.addAction(self.button_nsfw_action)
-
-            self.button_negative_action = QAction(QIcon(os.path.join(icon_path, 'dummy-sad.png')), "Include negative words (tricky!)", self)
-            self.button_negative_action.setStatusTip("Include negative words (tricky!)")
-            self.button_negative_action.triggered.connect(self.settings_changed)
-            self.button_negative_action.setCheckable(True)
-            toolbar.addAction(self.button_negative_action)
-
-            toolbar.addSeparator()
-
-            button_generate_action = QAction(QIcon(os.path.join(icon_path, 'arrow-circle-225.png')), "Generate quote", self)
-            button_generate_action.setStatusTip("Generate a new quote image")
-            button_generate_action.triggered.connect(self.generate_quote)
-            toolbar.addAction(button_generate_action)
-
-            button_previous_action = QAction(QIcon(os.path.join(icon_path, 'arrow-180.png')), "Go back to the previous quote", self)
-            button_previous_action.setStatusTip("Go back to the previous quote")
-            button_previous_action.triggered.connect(self.previous_quote)
-            toolbar.addAction(button_previous_action)
-
-            button_next_action = QAction(QIcon(os.path.join(icon_path, 'arrow.png')), "Go to the next quote", self)
-            button_next_action.setStatusTip("Go to the next quote")
-            button_next_action.triggered.connect(self.next_quote)
-            toolbar.addAction(button_next_action)
-
-            button_save_quote_action = QAction(QIcon(os.path.join(icon_path, 'disk.png')), "Save quote", self)
-            button_save_quote_action.setStatusTip("Save the current quote image")
-            button_save_quote_action.triggered.connect(self.save_quote)
-            toolbar.addAction(button_save_quote_action)
-
-            toolbar.addSeparator()
-
-            button_export_quotes_action = QAction(QIcon(os.path.join(icon_path, 'blue-folder-export.png')), "Export the quotes so far (text only)", self)
-            button_export_quotes_action.setStatusTip("Export the quotes so far (text only)")
-            button_export_quotes_action.triggered.connect(self.export_quotes)
-            toolbar.addAction(button_export_quotes_action)
-
-            button_export_log_action = QAction(QIcon(os.path.join(icon_path, 'document-export.png')), "Export the log file", self)
-            button_export_log_action.setStatusTip("Export the log file")
-            button_export_log_action.triggered.connect(self.export_log)
-            toolbar.addAction(button_export_log_action)
-
-            self.setStatusBar(QStatusBar(self))
-            self.log.append("Toolbar added.")
-
-        # Read font info from file
-        def import_font_collection(self):
-            self.log.append("Importing font collection...")
-            font_location = os.path.join(current_path, 'resources', 'font_collection.csv')
-            with open(font_location, newline='') as csvfile:
-                fontreader = csv.reader(csvfile, delimiter=';', quotechar='|')
-                parsed = (list(evaluate(field) for field in row) for row in fontreader)
-                for row in parsed:
-                    self.font_collection.append(row)
-            self.log.append("Font collection imported.")
-
-         # Read image info from file
-        def import_image_collection(self):
-            self.log.append("Importing image collection...")
-            image_location = os.path.join(current_path, 'resources', 'image_collection.csv')
-            with open(image_location, newline='') as csvfile:
-                imagereader = csv.reader(csvfile, delimiter=';', quotechar='|')
-                parsed = (list(evaluate(field) for field in row) for row in imagereader)
-                for row in parsed:
-                    self.image_collection.append(row)
-            self.log.append("Image collection imported.")
-
-        # Define what happens when the button is pressed
-        def generate_quote(self):
-            self.log.append("Generating quote...")
-            self.text_field.setText("")
-            # Set the selected quote to the last one (in case the user was looking at an earlier quote)
-            if len(self.full_history) > 1:
-                self.selected_quote = len(self.full_history) - 1
-            # Adding new quote, so exporting makes sense again
-            self.button_export_quotes.setText("Export session quotes")
-            # Select the random parameters
-            self.log.append("Setting basic paramenters and updating UI...")
-            self.create_basics()
-            self.generate = True
-            self.update_ui_elements()
-            # Create the image
-            self.log.append("Creating quote image...")
-            self.create_quote_image()
-            self.generate = False
-            self.log.append("New quote image created.")
-            
-        def create_basics(self):
-        	# Select the random parameters of the quote
-            self.log.append("\tSelecting image...")
-            self.image = random.choice(self.image_collection)
-            self.log.append("\tImage selected: " + self.image[0] + ".")
-            self.log.append("\tSelecting font...")
-            self.font = random.choice(self.font_collection)
-            self.log.append("\tFont selected: " + self.font[2] + ".")
-            self.log.append("\tGenerating quote text...")
-            self.quote = random.choice(template_collection.template_list)()
-            self.log.append("\tQuote text generated:\n\t\t" + self.quote)
-
-            # Add and set the selected parameters to the list of quotes
-            self.log.append("\tAdding quote to history...")
-            self.full_history.append([self.quote, self.image, self.font])
-            self.selected_quote = len(self.full_history) - 1
-
-        def update_ui_elements(self):      
-            # Update other variables and UI elements 
-            self.log.append("\tUpdating the font colour...")                 
-            self.change_colour.setColor('#' + hexify_tuple(self.image[1]))
-            self.log.append("\tUpdated font colour to RGB" + str(self.image[1]) + ".")
-            index_font = self.change_font.findText(self.font[2])
-            if index_font >= 0:
-                self.log.append("\tSelecting new font and font size...")
-                self.change_font.setCurrentIndex(index_font)
-                self.change_font_size.setCurrentIndex(self.change_font_size.findText(str(self.font[1])))
-                self.log.append("\tFont name and size updated.")
-
-        def create_quote_image(self):
-            # Can't create an image without parameters
-            if self.image == [] or self.font == [] or self.selected_quote == -1:
-                self.log.append("Error. Could not generate quote, insufficient paramenters.")
-                return
-
-            # Prepare the image
-            self.log.append("\tOpening image...")         
-            image_path = os.path.join(current_path, 'images', self.image[0])
-            image = Image.open(image_path)
-
-            color = self.image[1]
-            location = self.image[2]
-
-            text = self.quote
-            font_name = os.path.join(current_path, 'fonts', self.font[0])
-            font_custom_size = self.font[1]
-            line_height = font_custom_size + 8
-            self.log.append("\tSetting line height to " + str(line_height) + ".")
-            img = ImageText(image, background=(255, 255, 255, 200)) # 200 = alpha
-            
-            # Determine number of lines
-            nr_of_lines = text.count("\n") + 1
-            self.log.append("\tQuote has " + str(nr_of_lines) + " lines.")
-            # Add the separate lines to a list
-            lines = text.splitlines()
-            x_val = 20 # default indentation
-            y_val = 0
-
-            if self.image[3] == 'top':
-                x_val += self.image[4]
-                y_val = 30 + self.image[5]                
-            elif self.image[3] == 'middle':
-                x_val += self.image[4]
-                y_val = 225 + self.image[5]
-                # Make sure the text is centered around the given y value
-                y_val -= (nr_of_lines * 35)/2
-            elif self.image[3] == 'bottom':
-                x_val += self.image[4]
-                y_val = 450 + self.image[5]
-                # Make sure the text starts high enough
-                y_val -= (nr_of_lines * 35)
-            else:
-                return
-            # Assign the resulting offset to x/y
-            x = x_val
-            y = y_val
-
-            self.log.append("\tDrawing quote text...")
-            # Now draw each line onto the image
-            for line in lines:
-                img.write_text_box((x, y), line, box_width=180, font_filename=font_name,
-                        font_size=font_custom_size, color=color, place=location)
-                y += line_height
-
-            # Save in temporary location
-            self.log.append("\tSaving temp file...")
-            img.save('temp.png')
-
-            # Display the modified image
-            self.log.append("\tDisplaying image in UI...")
-            pixmap = QPixmap('temp.png')
-            self.quote_area.resize(pixmap.width(), pixmap.height())
-            self.quote_area.setPixmap(pixmap)
-
-        def change_selected_font(self):
-            self.log.append("\tChanging selected font...")
-            # A new font has been selected, so pick up the selected item's text
-            new_font = self.change_font.currentText()
-            # If somehow no font is selected
-            if new_font == "":
-                self.log.append("\tNo valid font selected.")
-                return
-            # Find this font in the collection
-            for font in self.font_collection:
-                if font[2] == new_font:
-                    self.font = font
-            self.log.append("\tNew font applied: " + new_font + ".")
-            # Re-create the image with the new font setting
-            if not self.generate:
-                self.create_quote_image()
-
-        def change_selected_font_size(self):
-            self.log.append("\tChanging selected font size...")
-            if self.font != []:
-                new_size = self.change_font_size.currentText()
-                if new_size == "":
-                    return
-                self.font[1] = int(new_size)
-                self.log.append("\tNew font size applied: " + new_size + ".")
-                if not self.generate:
-                    self.create_quote_image()
-
-        def change_selected_colour(self):
-            self.log.append("\tChanging selected font colour...")
-            # A new colour has been selected, so get the new colour name and save it
-            if self.image != None:
-                # Convert to RGB and store 
-                self.image[1] = ImageColor.getcolor(self.change_colour.color(), "RGB")
-                self.log.append("\tNew font colour applied: RGB" + str(self.image[1]) + ".")
-                # Re-create the image
-                if not self.generate:
-                    self.create_quote_image()
-
-        def save_quote(self):
-            # Check if there's a generated image present
-            self.log.append("Saving quote...")
-            try:
-                if os.path.isfile('temp.png'):
-                    self.log.append("\tCreating save dialog...")
-                    # Create a dialog in which to select a name and location
-                    self.save_dialog = QFileDialog()
-                    save_file_name = self.save_dialog.getSaveFileName(self, 'Save quote', '', filter='Image files (.png)', selectedFilter='*.png')
-                    save_file = save_file_name[0] + '.png'
-                    self.log.append("\tSaving file as " + save_file + ".")
-                    # Check if the filename already exists
-                    if os.path.isfile(save_file):
-                        self.log.append("\tFilename already exists.")
-                        dlg = QMessageBox(self)
-                        dlg.setStyleSheet('background-color: #b1b1b1; border:1px solid black;')
-                        dlg.setWindowTitle("File exists")
-                        dlg.setText("The selected filename is already in use. Save anyway?")
-                        dlg.setStandardButtons(
-                            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.Cancel
-                        )
-                        dlg.setIcon(QMessageBox.Icon.Question)
-                        selected = dlg.exec()
-
-                        if selected == QMessageBox.StandardButton.Yes:
-                            self.log.append("\tOverwriting existing file...")
-                            shutil.copyfile('temp.png', save_file)
-                            self.log.append("\tFile saved.")
-                        else:
-                            pass                    
-                    else:
-                        self.log.append("\tFile saved.")
-                        shutil.copyfile('temp.png', save_file)
-            # If no generated image is present, there's nothing to save
-                else:
-                    self.log.append("No image file available to save.")
-                    self.text_field.setText("No image available to save.")
-            except FileNotFoundError:
-                self.log.append("No image file available to save.")
-                self.text_field.setText("No image available to save.")
-
-        # What happens when the "Previous" button is clicked
-        def previous_quote(self):
-            self.log.append("Selecting previous quote...")
-            # If there's more than one quote and you're not looking at the first quote, you can go back
-            if len(self.full_history) > 1 and self.selected_quote >= 1:
-                self.selected_quote = self.selected_quote - 1
-                self.quote = self.full_history[self.selected_quote][0]
-                self.image = self.full_history[self.selected_quote][1]
-                self.font = self.full_history[self.selected_quote][2]
-                self.change_colour.setColor('#' + hexify_tuple(self.image[1]))
-                
-                self.create_quote_image()
-                self.log.append("Previous quote selected.")
-            else:
-                self.log.append("No previous quote available.")
-                return
-
-        # What happens when the "Next" button is clicked
-        def next_quote(self):
-            self.log.append("Selecting next quote...")
-            # If you are not looking at the most recent quote, you can go forward
-            if self.selected_quote < len(self.full_history) - 1:
-                self.selected_quote = self.selected_quote + 1
-                self.quote = self.full_history[self.selected_quote][0]
-                self.image = self.full_history[self.selected_quote][1]
-                self.font = self.full_history[self.selected_quote][2]
-                self.change_colour.setColor('#' + hexify_tuple(self.image[1]))
-
-                self.create_quote_image()
-                self.log.append("Next quote selected.")
-            else:
-                self.log.append("No next quote available.")
-                return
-
-        # Export the quote history to a txt file in the current directory - will overwrite without warning.
-        def export_quotes(self):
-            self.log.append("Exporting quote history...")
-            with open('dutch_wisdom_quote_collection.txt', 'w') as f:
-                for quote in self.full_history:
-                    f.write(f"{quote[0]}\n\n---\n\n")
-
-            self.button_export_quotes.setText("Exported.")
-            self.log.append("Quote history exported to file.")
-
-        # Export the log to log.txt (will overwrite without warning)
-        def export_log(self):
-            self.log.append("Exporting log.")
-            with open('log.txt', 'w') as f:
-                for line in self.log:
-                    f.write(f"{line}\n")
-            self.log.append("Log exported to file.")
-
-        # Determine the available word collection depending on the toggles (NSFW/negative on or off)
-        def settings_changed(self):
-            self.log.append("Updating used word collection...")
-            # Set all word collections to neutral
-            word_collections.nouns_singular = word_collections.nouns_singular_sfw + word_collections.people_singular + word_collections.animals_singular + word_collections.verbs_active_sfw + word_collections.food_singular
-            word_collections.nouns_plural = word_collections.animals_plural + word_collections.people_plural + word_collections.nouns_plural_sfw + word_collections.food_plural
-            word_collections.adjectives = word_collections.adjectives_positive + word_collections.adjectives_neutral + word_collections.colours
-            word_collections.verbs = word_collections.verbs_sfw
-            word_collections.verbs_third_person = word_collections.verbs_third_person_sfw
-            word_collections.verbs_ing = word_collections.verbs_ing_sfw
-            word_collections.verbs_intransitive = word_collections.verbs_intransitive_sfw
-            word_collections.concepts = word_collections.concepts_neutral + word_collections.concepts_positive + word_collections.food_concepts
-            word_collections.comparatives = word_collections.comparatives_sfw
-            word_collections.superlatives = word_collections.superlatives_sfw
-            word_collections.situations = word_collections.situations_sfw
-            word_collections.situations_active = word_collections.situations_active_sfw
-            word_collections.people_singular = word_collections.people_singular_sfw
-            word_collections.people_plural = word_collections.people_plural_sfw
-            word_collections.cliches = word_collections.cliches_sfw
-            # Add NSFW
-            if self.button_nsfw_action.isChecked():
-                self.log.append("\tAdding NSFW words...")
-                word_collections.nouns_singular = word_collections.nouns_singular + word_collections.nouns_singular_nsfw + word_collections.animals_singular + word_collections.verbs_active_sfw + word_collections.verbs_active_nsfw
-                word_collections.nouns_plural = word_collections.nouns_plural + word_collections.nouns_plural_nsfw
-                word_collections.adjectives = word_collections.adjectives + word_collections.adjectives_nsfw
-                word_collections.verbs = word_collections.verbs + word_collections.verbs_nsfw
-                word_collections.verbs_third_person = word_collections.verbs_third_person + word_collections.verbs_third_person_nsfw
-                word_collections.verbs_ing = word_collections.verbs_ing + word_collections.verbs_ing_nsfw
-                word_collections.verbs_intransitive = word_collections.verbs_intransitive_sfw + word_collections.verbs_intransitive_nsfw
-                word_collections.concepts = word_collections.concepts + word_collections.concepts_nsfw
-                word_collections.adjectives = word_collections.adjectives + word_collections.adjectives_nsfw
-                word_collections.comparatives = word_collections.comparatives + word_collections.comparatives_nsfw
-                word_collections.superlatives = word_collections.superlatives + word_collections.superlatives_nsfw
-                word_collections.situations = word_collections.situations + word_collections.situations_nsfw
-                word_collections.situations_active = word_collections.situations_active + word_collections.situations_active_nsfw
-                word_collections.cliches = word_collections.cliches + word_collections.cliches_nsfw
-            # Add negative stuff
-            if self.button_negative_action.isChecked() == True:
-                self.log.append("\tAdding negative words...")
-                word_collections.adjectives = word_collections.adjectives + word_collections.adjectives_negative
-                word_collections.concepts = word_collections.concepts + word_collections.concepts_negative
-                word_collections.people_singular = word_collections.people_singular + word_collections.people_singular_neg
-                word_collections.people_plural = word_collections.people_plural + word_collections.people_plural_neg
-            # Remove anything but positive
-            if self.button_negative_action.isChecked() == False:
-                self.log.append("\tRestricting to positive words only...")
-                word_collections.adjectives = word_collections.adjectives_positive  
-            self.log.append("Word collection updated.")             
+        # Set up splash screen
+        self.logit("Creating splash screen...")
+        self.generate_splash_screen()
         
-        # Import the word collection from the files in the folder word_collections
-        def import_word_lists(self):
-            self.log.append("Importing word lists...")
-            word_collections.adjectives_positive = word_collections.import_list("adjectives_positive.txt")
-            word_collections.adjectives_negative = word_collections.import_list("adjectives_negative.txt")
-            word_collections.adjectives_neutral = word_collections.import_list("adjectives_neutral.txt")
-            word_collections.colours = word_collections.import_list("colours.txt")
-            word_collections.nouns_singular_sfw = word_collections.import_list("nouns_singular_sfw.txt")
-            word_collections.nouns_plural_sfw = word_collections.import_list("nouns_plural_sfw.txt")
-            word_collections.people_singular_sfw = word_collections.import_list("people_singular_sfw.txt")
-            word_collections.people_plural_sfw = word_collections.import_list("people_plural_sfw.txt")
-            word_collections.animals_singular = word_collections.import_list("animals_singular.txt")
-            word_collections.animals_plural = word_collections.import_list("animals_plural.txt")
-            word_collections.food_singular = word_collections.import_list("food_singular.txt")
-            word_collections.food_plural = word_collections.import_list("food_plural.txt")
-            word_collections.verbs_sfw = word_collections.import_list("verbs_sfw.txt")
-            word_collections.verbs_intransitive_sfw = word_collections.import_list("verbs_intransitive_sfw.txt")
-            word_collections.verbs_third_person_sfw = word_collections.import_list("verbs_third_person_sfw.txt")
-            word_collections.verbs_active_sfw = word_collections.import_list("verbs_active_sfw.txt")
-            word_collections.verbs_ing_sfw = word_collections.import_list("verbs_ing_sfw.txt")
-            word_collections.verbs_mandatory_sfw = word_collections.import_list("verbs_mandatory_sfw.txt")
-            word_collections.times = word_collections.import_list("times.txt")
-            word_collections.audiences = word_collections.import_list("audiences.txt")
-            word_collections.adverbs = word_collections.import_list("adverbs.txt")
-            word_collections.concepts_positive = word_collections.import_list("concepts_positive.txt")
-            word_collections.concepts_neutral = word_collections.import_list("concepts_neutral.txt")
-            word_collections.concepts_negative = word_collections.import_list("concepts_negative.txt")
-            word_collections.concepts_nsfw = word_collections.import_list("concepts_nsfw.txt")
-            word_collections.verbs_active_sfw = word_collections.import_list("verbs_active_sfw.txt")
-            word_collections.nouns_singular_nsfw = word_collections.import_list("nouns_singular_nsfw.txt")
-            word_collections.nouns_plural_nsfw = word_collections.import_list("nouns_plural_nsfw.txt")
-            word_collections.adjectives_nsfw = word_collections.import_list("adjectives_nsfw.txt")
-            word_collections.verbs_nsfw = word_collections.import_list("verbs_nsfw.txt")
-            word_collections.verbs_intransitive_nsfw = word_collections.import_list("verbs_intransitive_nsfw.txt")
-            word_collections.verbs_third_person_nsfw = word_collections.import_list("verbs_third_person_nsfw.txt")
-            word_collections.verbs_active_nsfw = word_collections.import_list("verbs_active_nsfw.txt")
-            word_collections.verbs_ing_nsfw = word_collections.import_list("verbs_ing_nsfw.txt")
-            word_collections.comparatives_sfw = word_collections.import_list("comparatives_sfw.txt")
-            word_collections.comparatives_nsfw = word_collections.import_list("comparatives_nsfw.txt")
-            word_collections.superlatives_sfw = word_collections.import_list("superlatives_sfw.txt")
-            word_collections.superlatives_nsfw = word_collections.import_list("superlatives_nsfw.txt")
-            word_collections.situations_sfw = word_collections.import_list("situations_sfw.txt")
-            word_collections.situations_nsfw = word_collections.import_list("situations_nsfw.txt")
-            word_collections.situations_active_sfw = word_collections.import_list("situations_active_sfw.txt")
-            word_collections.situations_active_nsfw = word_collections.import_list("situations_active_nsfw.txt")
-            word_collections.prepositions = word_collections.import_list("prepositions.txt")
-            word_collections.people_singular_neg = word_collections.import_list("people_singular_neg.txt")
-            word_collections.people_plural_neg = word_collections.import_list("people_plural_neg.txt")
-            word_collections.zodiac = word_collections.import_list("zodiac.txt")
-            word_collections.sometimes = word_collections.import_list("sometimes.txt")
-            word_collections.cliches_sfw = word_collections.import_list("cliches_sfw.txt")
-            word_collections.cliches_nsfw = word_collections.import_list("cliches_nsfw.txt")
-            word_collections.food_concepts = word_collections.import_list("food_concepts.txt")
-            self.log.append("Word lists imported.")
+        # Create layouts to arrange the UI components
+        self.logit("Setting up UI layout...")
+        self.arrange_layouts()
+        self.add_toolbar()
+                    
+        # Update the selected words based on the UI settings
+        self.logit("Updating initial settings...")
+        self.settings_changed()
+        self.logit("UI is up and running.\n------------------------")
+        
+        self.text_field.setText("Starting UI... Loading wisdom nuggets... done! Press the button and I will share some wisdom with you.\n\nIf a quote is hard to read, you can use the font settings to improve it.\nSelect whether I should play nice and whether I should unleash my naughtiness with the toggles.\n\nEnjoy my infinite wisdom that has been maturing ever since the Big Splash!")
 
-        # Export every word list and make sure the words are in alphabetical order.
-        # This function is not used by default and is only there as a convenience.
-        def export_word_lists(self):
-            self.log.append("Exporting word lists...")
-            word_collections.export_list(word_collections.adjectives_positive, "adjectives_positive")
-            word_collections.export_list(word_collections.adjectives_negative, "adjectives_negative")
-            word_collections.export_list(word_collections.adjectives_neutral, "adjectives_neutral")
-            word_collections.export_list(word_collections.colours, "colours")
-            word_collections.export_list(word_collections.nouns_singular_sfw, "nouns_singular_sfw")
-            word_collections.export_list(word_collections.nouns_plural_sfw, "nouns_plural_sfw")
-            word_collections.export_list(word_collections.people_singular_sfw, "people_singular_sfw")
-            word_collections.export_list(word_collections.people_plural_sfw, "people_plural_sfw")
-            word_collections.export_list(word_collections.animals_singular, "animals_singular")
-            word_collections.export_list(word_collections.animals_plural, "animals_plural")
-            word_collections.export_list(word_collections.food_singular, "food_singular")
-            word_collections.export_list(word_collections.food_plural, "food_plural")
-            word_collections.export_list(word_collections.verbs_sfw, "verbs_sfw")
-            word_collections.export_list(word_collections.verbs_intransitive_sfw, "verbs_intransitive_sfw")
-            word_collections.export_list(word_collections.verbs_third_person_sfw, "verbs_third_person_sfw")
-            word_collections.export_list(word_collections.verbs_active_sfw, "verbs_active_sfw")
-            word_collections.export_list(word_collections.verbs_ing_sfw, "verbs_ing_sfw")
-            word_collections.export_list(word_collections.verbs_mandatory_sfw, "verbs_mandatory_sfw")
-            word_collections.export_list(word_collections.times, "times")
-            word_collections.export_list(word_collections.audiences, "audiences")
-            word_collections.export_list(word_collections.adverbs, "adverbs")
-            word_collections.export_list(word_collections.concepts_positive, "concepts_positive")
-            word_collections.export_list(word_collections.concepts_neutral, "concepts_neutral")
-            word_collections.export_list(word_collections.concepts_negative, "concepts_negative")
-            word_collections.export_list(word_collections.concepts_nsfw, "concepts_nsfw")
-            word_collections.export_list(word_collections.verbs_active_sfw, "verbs_active_sfw")
-            word_collections.export_list(word_collections.nouns_singular_nsfw, "nouns_singular_nsfw")
-            word_collections.export_list(word_collections.nouns_plural_nsfw, "nouns_plural_nsfw")
-            word_collections.export_list(word_collections.adjectives_nsfw, "adjectives_nsfw")
-            word_collections.export_list(word_collections.verbs_nsfw, "verbs_nsfw")
-            word_collections.export_list(word_collections.verbs_intransitive_nsfw, "verbs_intransitive_nsfw")
-            word_collections.export_list(word_collections.verbs_third_person_nsfw, "verbs_third_person_nsfw")
-            word_collections.export_list(word_collections.verbs_active_nsfw, "verbs_active_nsfw")
-            word_collections.export_list(word_collections.verbs_ing_nsfw, "verbs_ing_nsfw")
-            word_collections.export_list(word_collections.comparatives_sfw, "comparatives_sfw")
-            word_collections.export_list(word_collections.comparatives_nsfw, "comparatives_nsfw")
-            word_collections.export_list(word_collections.superlatives_sfw, "superlatives_sfw")
-            word_collections.export_list(word_collections.superlatives_nsfw, "superlatives_nsfw")
-            word_collections.export_list(word_collections.situations_sfw, "situations_sfw")
-            word_collections.export_list(word_collections.situations_nsfw, "situations_nsfw")
-            word_collections.export_list(word_collections.situations_active_sfw, "situations_active_sfw")
-            word_collections.export_list(word_collections.situations_active_nsfw, "situations_active_nsfw")
-            word_collections.export_list(word_collections.prepositions, "prepositions")
-            word_collections.export_list(word_collections.people_singular_neg, "people_singular_neg")
-            word_collections.export_list(word_collections.people_plural_neg, "people_plural_neg")
-            word_collections.export_list(word_collections.zodiac, "zodiac")
-            word_collections.export_list(word_collections.sometimes, "sometimes")
-            word_collections.export_list(word_collections.cliches_sfw, "cliches_sfw")
-            word_collections.export_list(word_collections.cliches_nsfw, "cliches_nsfw")
-            word_collections.export_list(word_collections.food_concepts, "food_concepts.txt")
-            self.log.append("Word lists exported.")
+    # -----------------------------------------------------------------------------------------------------------------------------
+    # MEMBER FUNCTIONS
 
-        def export_font_collection(self):
-            self.log.append("Exporting font collection...")
-            font_location = os.path.join(current_path, 'resources')
-            font_location = os.path.join(font_location, 'font_collection.csv')
-            with open(font_location, 'w', newline='') as csvfile:
-                fontwriter = csv.writer(csvfile, delimiter=';',
-                                        quotechar='|', quoting=csv.QUOTE_MINIMAL)
-                for line in self.font_collection:
-                    fontwriter.writerow(line)
-            self.log.append("Fonts exported.")
+    def logit(self, entry):
+        self._log.append(entry)
 
-        def export_image_collection(self):
-            self.log.append("Exporting image collection...")
-            image_location = os.path.join(current_path, 'resources')
-            image_location = os.path.join(image_location, 'image_collection.csv')
-            with open(image_location, 'w', newline='') as csvfile:
-                imagewriter = csv.writer(csvfile, delimiter=';',
-                                        quotechar='|', quoting=csv.QUOTE_MINIMAL)
-                for line in self.image_collection:
-                    imagewriter.writerow(line)
-            self.log.append("Image collection exported.")
+    def create_ui_components(self):
+        self.setWindowTitle("Quotatas")
+        my_icon = QIcon()
+        my_icon.addFile(os.path.join(current_path, os.path.join('images','meilindis.png')))
+        self.setWindowIcon(my_icon)
+        self.logit("\tAdded window icon.")
 
+        # CREATE UI COMPONENTS
+        self.logit("\tGenerating components...")
+        # Button to generate quotes
+        self.button_generate_quote = QPushButton("Give me some wisdom!")
+        self.button_generate_quote.setCheckable(True)
+        self.button_generate_quote.clicked.connect(self.generate_quote)
+        self.button_generate_quote.setMinimumHeight(50)
+        self.button_generate_quote.setObjectName('button_generate_quote')
+
+        # Label that displays the generated quote image
+        self.quote_area = QLabel()
+        self.quote_area.resize(500, 500)  
+        self.quote_area.setObjectName('quote_area')          
+
+        # Field that displays the generated quote in text only
+        self.text_field = QTextEdit()
+        self.text_field.setReadOnly(True)
+
+        # Font settings - name
+        self.change_font_label = QLabel("Change font:")
+        self.change_font_label.setObjectName('change_font_label')
+        self.change_font = QComboBox()
+        self.change_font.setObjectName('change_font')
+        self.change_font.currentTextChanged.connect(self.change_selected_font)
+        # Temporarily add empty item until first font name is selected 
+        self.change_font.addItem("")
+        self.change_font.setCurrentIndex(self.change_font.findText(""))
+        # Add the font names
+        for font in self._font_collection:
+            self.change_font.addItem(font[2])
+        
+        # Font settings - colour
+        self.change_colour = ColorButton(color="#fff") 
+        self.change_colour.setObjectName('set_colour')
+        self.change_colour.colorChanged.connect(self.change_selected_colour)
+        # Font settings - size
+        self.change_font_size = QComboBox()
+        self.change_font_size.setObjectName('change_font_size')
+        self.change_font_size.currentTextChanged.connect(self.change_selected_font_size)
+        # Temporarily add empty item until first font size is selected
+        self.change_font_size.addItem("")
+        self.change_font_size.setCurrentIndex(self.change_font_size.findText(""))
+        # Add the font sizes
+        for i in (range(16, 42, 2)):
+            self.change_font_size.addItem(str(i))
+        
+        self.logit("UI components created.")
+
+    def generate_splash_screen(self):
+        # Set up the splash image with a different greeting every time the app is opened
+        splash_image = os.path.join(current_path, os.path.join('images','bot.png'))
+        self._image = [splash_image, (255, 255, 255), 'justify', 'bottom', 0, 0]
+        self._font = random.choice(self._font_collection)
+        self._font[1] = 34
+        self._quote = random.choice(word_collections.greetings)
+        self._generating_quote = True
+        self.update_ui_elements()
+        self.create_quote_image()
+        self._generating_quote = False
+        pixmap = QPixmap('temp.png')
+        self.quote_area.resize(pixmap.width(), pixmap.height())
+        self.quote_area.setPixmap(pixmap)
+        self.logit("Splash screen created.")
+        
+        # Remove empty entries that are now redundant
+        self.change_font.removeItem(self.change_font.findText(""))
+        self.change_font_size.removeItem(self.change_font_size.findText(""))
+
+    def arrange_layouts(self):
+        self.logit("Setting up UI layout...")
+
+        # Line out the settings in a grid
+        self.font_settings_layout = QHBoxLayout()
+        self.font_settings_layout.addWidget(self.change_font_label)
+        self.font_settings_layout.addWidget(self.change_font)
+        self.font_settings_layout.addWidget(self.change_colour)
+        self.font_settings_layout.addWidget(self.change_font_size)
+        self.font_settings_container = QWidget()
+        self.font_settings_container.setObjectName('font_settings_container')
+        self.font_settings_container.setLayout(self.font_settings_layout)
+
+        # Add quotes and navigation to their own container
+        self.quote_area_layout = QVBoxLayout()
+        self.quote_area_layout.addWidget(self.font_settings_container)  
+        self.quote_area_layout.addWidget(self.quote_area)
+        self.quote_area_layout.addWidget(self.button_generate_quote)
+        #self.quoteLayout.addWidget(self.text_field)
+
+        self.quote_area_container = QWidget()
+        self.quote_area_container.setObjectName('quote_area_container')
+        self.quote_area_container.setLayout(self.quote_area_layout)
+
+        # Combine everything into one layout
+        self.app_layout = QVBoxLayout()
+        self.app_layout.addWidget(self.quote_area_container)
+
+        # Add the layout to an overall widget and add to main window
+        self.app_container = QWidget()
+        self.app_container.setObjectName('app_container')
+        self.app_container.setLayout(self.app_layout)
+
+        self.setCentralWidget(self.app_container) 
+        self.logit("Layout arranged.")
+
+    def add_toolbar(self):
+        self.logit("Adding toolbar...")
+        self.toolbar = QToolBar("Toolbar")
+        self.toolbar.setIconSize(QSize(32, 32))
+        self.addToolBar(self.toolbar)
+
+        self.button_nsfw_action = QAction(QIcon(os.path.join(icon_path, 'notification-counter-18.png')), "Include NSFW words", self)
+        self.button_nsfw_action.setStatusTip("Include NSFW words")
+        self.button_nsfw_action.triggered.connect(self.settings_changed)
+        self.button_nsfw_action.setCheckable(True)
+        self.toolbar.addAction(self.button_nsfw_action)
+
+        self.button_negative_action = QAction(QIcon(os.path.join(icon_path, 'dummy-sad.png')), "Include negative words (tricky!)", self)
+        self.button_negative_action.setStatusTip("Include negative words (tricky!)")
+        self.button_negative_action.triggered.connect(self.settings_changed)
+        self.button_negative_action.setCheckable(True)
+        self.toolbar.addAction(self.button_negative_action)
+
+        self.toolbar.addSeparator()
+
+        self.button_generate_action = QAction(QIcon(os.path.join(icon_path, 'arrow-circle-225.png')), "Generate quote", self)
+        self.button_generate_action.setStatusTip("Generate a new quote image")
+        self.button_generate_action.triggered.connect(self.generate_quote)
+        self.toolbar.addAction(self.button_generate_action)
+
+        self.button_previous_action = QAction(QIcon(os.path.join(icon_path, 'arrow-180.png')), "Go back to the previous quote", self)
+        self.button_previous_action.setStatusTip("Go back to the previous quote")
+        self.button_previous_action.triggered.connect(self.previous_quote)
+        self.toolbar.addAction(self.button_previous_action)
+        self.button_previous_action.setEnabled(False) # no previous quote yet
+
+        self.label_position = QLabel("0/0")
+        self.label_position.setStatusTip("The quote index within your current quote collection")
+        self.toolbar.addWidget(self.label_position)
+
+        self.button_next_action = QAction(QIcon(os.path.join(icon_path, 'arrow.png')), "Go to the next quote", self)
+        self.button_next_action.setStatusTip("Go to the next quote")
+        self.button_next_action.triggered.connect(self.next_quote)
+        self.toolbar.addAction(self.button_next_action)
+        self.button_next_action.setEnabled(False) # no next quote yet
+
+        self.button_save_quote_action = QAction(QIcon(os.path.join(icon_path, 'disk.png')), "Save quote", self)
+        self.button_save_quote_action.setStatusTip("Save the current quote image")
+        self.button_save_quote_action.triggered.connect(self.save_quote)
+        self.toolbar.addAction(self.button_save_quote_action)
+        self.button_save_quote_action.setEnabled(False) # no image to save yet
+
+        self.toolbar.addSeparator()
+
+        self.button_export_quotes_action = QAction(QIcon(os.path.join(icon_path, 'blue-folder-export.png')), "Export the quotes so far (text only)", self)
+        self.button_export_quotes_action.setStatusTip("Export the quotes so far (text only)")
+        self.button_export_quotes_action.triggered.connect(self.export_quotes)
+        self.toolbar.addAction(self.button_export_quotes_action)
+        self.button_export_quotes_action.setEnabled(False) # nothing to export yet
+
+        self.button_export_log_action = QAction(QIcon(os.path.join(icon_path, 'document-export.png')), "Export the log file", self)
+        self.button_export_log_action.setStatusTip("Export the log file")
+        self.button_export_log_action.triggered.connect(self.export_log)
+        self.toolbar.addAction(self.button_export_log_action)
+
+        #self.setStatusBar(QStatusBar(self))
+        self.logit("Toolbar added.")
+
+    # Read font info from file
+    def import_font_collection(self):
+        self.logit("\tImporting font collection...")
+        font_location = os.path.join(current_path, 'resources', 'font_collection.csv')
+        with open(font_location, newline='') as csvfile:
+            fontreader = csv.reader(csvfile, delimiter=';', quotechar='|')
+            parsed = (list(evaluate(field) for field in row) for row in fontreader)
+            for row in parsed:
+                self._font_collection.append(row)
+        self.logit("\tFont collection imported.")
+
+        # Read image info from file
+    def import_image_collection(self):
+        self.logit("\tImporting image collection...")
+        image_location = os.path.join(current_path, 'resources', 'image_collection.csv')
+        with open(image_location, newline='') as csvfile:
+            imagereader = csv.reader(csvfile, delimiter=';', quotechar='|')
+            parsed = (list(evaluate(field) for field in row) for row in imagereader)
+            for row in parsed:
+                self._image_collection.append(row)
+        self.logit("\tImage collection imported.")
+
+    # Define what happens when the button is pressed
+    def generate_quote(self):
+        self.logit("Generating quote...")
+        # Set the selected quote to the last one (in case the user was looking at an earlier quote)
+        if len(self._full_history) > 1:
+            self._selected_quote = len(self._full_history) - 1
+        # Select the random parameters
+        self.logit("Setting basic paramenters and updating UI...")
+        self.create_basics()
+        self._generating_quote = True
+        self.update_ui_elements()
+        # Create the image
+        self.logit("Creating quote image...")
+        self.create_quote_image()
+        self._generating_quote = False
+        self.update_quote_counter()
+        # Enable/disable buttons depending on context
+        self.update_toolbar_buttons()
+        self.logit("New quote image created.")
+        
+    def create_basics(self):
+        # Select the random parameters of the quote
+        self.logit("\tSelecting image...")
+        self._image = random.choice(self._image_collection)
+        self.logit("\tImage selected: " + self._image[0] + ".")
+        self.logit("\tSelecting font...")
+        self._font = random.choice(self._font_collection)
+        self.logit("\tFont selected: " + self._font[2] + ".")
+        self.logit("\tGenerating quote text...")
+        self._quote = random.choice(template_collection.template_list)()
+        self.logit("\tQuote text generated:\n\t\t" + self._quote)
+
+        # Add and set the selected parameters to the list of quotes
+        self.logit("\tAdding quote to history...")
+        self._full_history.append([self._quote, self._image, self._font])
+        self._selected_quote = len(self._full_history) - 1
+
+    def update_ui_elements(self):  
+    # Make sure that the UI is updated without generating a new image    
+        self._generating_quote = True
+        # Update other variables and UI elements 
+        self.logit("\tUpdating the font colour...")                 
+        self.change_colour.setColor('#' + hexify_tuple(self._image[1]))
+        self.logit("\tUpdated font colour to RGB" + str(self._image[1]) + ".")
+        index_font = self.change_font.findText(self._font[2])
+        if index_font >= 0:
+            self.logit("\tSelecting new font and font size...")
+            self.change_font.setCurrentIndex(index_font)
+            self.change_font_size.setCurrentIndex(self.change_font_size.findText(str(self._font[1])))
+            self.logit("\tFont name and size updated.")
+        self._generating_quote = False
+
+    def create_quote_image(self):
+        # Can't create an image without parameters
+        if self._image == [] or self._font == [] or self._selected_quote == -1:
+            self.logit("Error. Could not generate quote, insufficient paramenters.")
+            return
+
+        # Prepare the image
+        self.logit("\tOpening image...")         
+        image_path = os.path.join(current_path, 'images', self._image[0])
+        image = Image.open(image_path)
+
+        color = self._image[1]
+        location = self._image[2]
+
+        text = self._quote
+        font_name = os.path.join(current_path, 'fonts', self._font[0])
+        font_custom_size = self._font[1]
+        line_height = font_custom_size + 8
+        self.logit("\tSetting line height to " + str(line_height) + ".")
+        img = ImageText(image, background=(255, 255, 255, 200)) # 200 = alpha
+        
+        # Determine number of lines
+        nr_of_lines = text.count("\n") + 1
+        self.logit("\tQuote has " + str(nr_of_lines) + " lines.")
+        # Add the separate lines to a list
+        lines = text.splitlines()
+        x_val = 20 # default indentation
+        y_val = 0
+
+        if self._image[3] == 'top':
+            x_val += self._image[4]
+            y_val = 30 + self._image[5]                
+        elif self._image[3] == 'middle':
+            x_val += self._image[4]
+            y_val = 225 + self._image[5]
+            # Make sure the text is centered around the given y value
+            y_val -= (nr_of_lines * 35)/2
+        elif self._image[3] == 'bottom':
+            x_val += self._image[4]
+            y_val = 450 + self._image[5]
+            # Make sure the text starts high enough
+            y_val -= (nr_of_lines * 35)
+        else:
+            return
+        # Assign the resulting offset to x/y
+        x = x_val
+        y = y_val
+
+        self.logit("\tDrawing quote text...")
+        # Now draw each line onto the image
+        for line in lines:
+            img.write_text_box((x, y), line, box_width=180, font_filename=font_name,
+                    font_size=font_custom_size, color=color, place=location)
+            y += line_height
+
+        # Save in temporary location
+        self.logit("\tSaving temp file...")
+        img.save('temp.png')
+
+        # Display the modified image
+        self.logit("\tDisplaying image in UI...")
+        pixmap = QPixmap('temp.png')
+        self.quote_area.resize(pixmap.width(), pixmap.height())
+        self.quote_area.setPixmap(pixmap)
+
+    def change_selected_font(self):
+        self.logit("\tChanging selected font...")
+        # A new font has been selected, so pick up the selected item's text
+        new_font = self.change_font.currentText()
+        # If somehow no font is selected
+        if new_font == "":
+            self.logit("\tNo valid font selected.")
+            return
+        # Find this font in the collection
+        for font in self._font_collection:
+            if font[2] == new_font:
+                self._font = font
+        self.logit("\tNew font applied: " + new_font + ".")
+        # Re-create the image with the new font setting
+        if not self._generating_quote:
+            self.create_quote_image()
+
+    def change_selected_font_size(self):
+        self.logit("\tChanging selected font size...")
+        if self._font != []:
+            new_size = self.change_font_size.currentText()
+            if new_size == "":
+                return
+            self._font[1] = int(new_size)
+            self.logit("\tNew font size applied: " + new_size + ".")
+            if not self._generating_quote:
+                self.create_quote_image()
+
+    def change_selected_colour(self):
+        self.logit("\tChanging selected font colour...")
+        # A new colour has been selected, so get the new colour name and save it
+        if self._image != None:
+            # Convert to RGB and store 
+            self._image[1] = ImageColor.getcolor(self.change_colour.color(), "RGB")
+            self.logit("\tNew font colour applied: RGB" + str(self._image[1]) + ".")
+            # Re-create the image
+            if not self._generating_quote:
+                self.create_quote_image()
+
+    def save_quote(self):
+        # Check if there's a generated image present
+        self.logit("Saving quote...")
+        try:
+            if os.path.isfile('temp.png'):
+                self.logit("\tCreating save dialog...")
+                # Create a dialog in which to select a name and location
+                self.save_dialog = QFileDialog()
+                save_file_name = self.save_dialog.getSaveFileName(self, 'Save quote', '', filter='Image files (.png)', selectedFilter='*.png')
+                save_file = save_file_name[0] + '.png'
+                self.logit("\tSaving file as " + save_file + ".")
+                # Check if the filename already exists
+                if os.path.isfile(save_file):
+                    self.logit("\tFilename already exists.")
+                    dlg = QMessageBox(self)
+                    dlg.setStyleSheet('background-color: #b1b1b1; border:1px solid black;')
+                    dlg.setWindowTitle("File exists")
+                    dlg.setText("The selected filename is already in use. Save anyway?")
+                    dlg.setStandardButtons(
+                        QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.Cancel
+                    )
+                    dlg.setIcon(QMessageBox.Icon.Question)
+                    selected = dlg.exec()
+
+                    if selected == QMessageBox.StandardButton.Yes:
+                        self.logit("\tOverwriting existing file...")
+                        shutil.copyfile('temp.png', save_file)
+                        self.logit("\tFile saved.")
+                    else:
+                        pass                    
+                else:
+                    self.logit("\tFile saved.")
+                    shutil.copyfile('temp.png', save_file)
+        # If no generated image is present, there's nothing to save
+            else:
+                self.logit("No image file available to save.")
+                self.text_field.setText("No image available to save.")
+        except FileNotFoundError:
+            self.logit("No image file available to save.")
+            self.text_field.setText("No image available to save.")
+
+    # Return whether a 'next' quote is available
+    def next_available(self):
+        return (len(self._full_history) > 1 and self._selected_quote < len(self._full_history) - 1)
+
+    # Return whether a 'previous' quote is available
+    def previous_available(self):
+        return (len(self._full_history) > 1 and self._selected_quote > 0)
+
+    # Can only save/export if at least one image has been generated
+    def history_available(self):
+        return (len(self._full_history) > 0)
+
+    # Update the status of the toolbar buttons (enabled based on context)
+    def update_toolbar_buttons(self):
+        self.button_next_action.setEnabled(self.next_available())
+        self.button_previous_action.setEnabled(self.previous_available())
+        self.button_export_quotes_action.setEnabled(self.history_available())
+        self.button_save_quote_action.setEnabled(self.history_available())
+
+    # What happens when the "Previous" button is clicked
+    def previous_quote(self):
+        self.logit("Selecting previous quote...")
+        # If there's more than one quote and you're not looking at the first quote, you can go back
+        if len(self._full_history) > 1 and self._selected_quote >= 1:
+            self._selected_quote = self._selected_quote - 1
+            self._quote = self._full_history[self._selected_quote][0]
+            self._image = self._full_history[self._selected_quote][1]
+            self._font = self._full_history[self._selected_quote][2]
+            self.change_colour.setColor('#' + hexify_tuple(self._image[1]))
+            self.update_ui_elements()
+            self.create_quote_image()
+            self.update_quote_counter()
+            self.update_toolbar_buttons()
+            self.logit("Previous quote selected.")
+        else:
+            self.logit("No previous quote available.")
+            return
+
+    # What happens when the "Next" button is clicked
+    def next_quote(self):
+        self.logit("Selecting next quote...")
+        # If you are not looking at the most recent quote, you can go forward
+        if self._selected_quote < len(self._full_history) - 1:
+            self._selected_quote = self._selected_quote + 1
+            self._quote = self._full_history[self._selected_quote][0]
+            self._image = self._full_history[self._selected_quote][1]
+            self._font = self._full_history[self._selected_quote][2]
+            self.change_colour.setColor('#' + hexify_tuple(self._image[1]))              
+            self.update_ui_elements()               
+            self.create_quote_image()
+            self.update_quote_counter()
+            self.update_toolbar_buttons()
+            self.logit("Next quote selected.")
+        else:
+            self.logit("No next quote available.")
+            return
+            
+    def update_quote_counter(self):
+            self.label_position.setText(str(self._selected_quote + 1) + "/" + str(len(self._full_history)))
+
+    # Export the quote history to a txt file in the current directory - will overwrite without warning.
+    def export_quotes(self):
+        self.logit("Exporting quote history...")
+        with open('dutch_wisdom_quote_collection.txt', 'w') as f:
+            for quote in self._full_history:
+                f.write(f"{quote[0]}\n\n---\n\n")
+
+        self.button_export_quotes.setText("Exported.")
+        self.logit("Quote history exported to file.")
+
+    # Export the log to log.txt (will overwrite without warning)
+    def export_log(self):
+        self.logit("Exporting log.")
+        with open('log.txt', 'w') as f:
+            for line in self._log:
+                f.write(f"{line}\n")
+        self.logit("Log exported to file.")
+
+    # Determine the available word collection depending on the toggles (NSFW/negative on or off)
+    def settings_changed(self):
+        self.logit("Updating used word collection...")
+        # Set all word collections to neutral
+        word_collections.nouns_singular = word_collections.nouns_singular_sfw + word_collections.people_singular + word_collections.animals_singular + word_collections.verbs_active_sfw + word_collections.food_singular
+        word_collections.nouns_plural = word_collections.animals_plural + word_collections.people_plural + word_collections.nouns_plural_sfw + word_collections.food_plural
+        word_collections.adjectives = word_collections.adjectives_positive + word_collections.adjectives_neutral + word_collections.colours
+        word_collections.verbs = word_collections.verbs_sfw
+        word_collections.verbs_third_person = word_collections.verbs_third_person_sfw
+        word_collections.verbs_ing = word_collections.verbs_ing_sfw
+        word_collections.verbs_intransitive = word_collections.verbs_intransitive_sfw
+        word_collections.concepts = word_collections.concepts_neutral + word_collections.concepts_positive + word_collections.food_concepts
+        word_collections.comparatives = word_collections.comparatives_sfw
+        word_collections.superlatives = word_collections.superlatives_sfw
+        word_collections.situations = word_collections.situations_sfw
+        word_collections.situations_active = word_collections.situations_active_sfw
+        word_collections.people_singular = word_collections.people_singular_sfw
+        word_collections.people_plural = word_collections.people_plural_sfw
+        word_collections.cliches = word_collections.cliches_sfw
+        # Add NSFW
+        if self.button_nsfw_action.isChecked():
+            self.logit("\tAdding NSFW words...")
+            word_collections.nouns_singular = word_collections.nouns_singular + word_collections.nouns_singular_nsfw + word_collections.animals_singular + word_collections.verbs_active_sfw + word_collections.verbs_active_nsfw
+            word_collections.nouns_plural = word_collections.nouns_plural + word_collections.nouns_plural_nsfw
+            word_collections.adjectives = word_collections.adjectives + word_collections.adjectives_nsfw
+            word_collections.verbs = word_collections.verbs + word_collections.verbs_nsfw
+            word_collections.verbs_third_person = word_collections.verbs_third_person + word_collections.verbs_third_person_nsfw
+            word_collections.verbs_ing = word_collections.verbs_ing + word_collections.verbs_ing_nsfw
+            word_collections.verbs_intransitive = word_collections.verbs_intransitive_sfw + word_collections.verbs_intransitive_nsfw
+            word_collections.concepts = word_collections.concepts + word_collections.concepts_nsfw
+            word_collections.adjectives = word_collections.adjectives + word_collections.adjectives_nsfw
+            word_collections.comparatives = word_collections.comparatives + word_collections.comparatives_nsfw
+            word_collections.superlatives = word_collections.superlatives + word_collections.superlatives_nsfw
+            word_collections.situations = word_collections.situations + word_collections.situations_nsfw
+            word_collections.situations_active = word_collections.situations_active + word_collections.situations_active_nsfw
+            word_collections.cliches = word_collections.cliches + word_collections.cliches_nsfw
+        # Add negative stuff
+        if self.button_negative_action.isChecked() == True:
+            self.logit("\tAdding negative words...")
+            word_collections.adjectives = word_collections.adjectives + word_collections.adjectives_negative
+            word_collections.concepts = word_collections.concepts + word_collections.concepts_negative
+            word_collections.people_singular = word_collections.people_singular + word_collections.people_singular_neg
+            word_collections.people_plural = word_collections.people_plural + word_collections.people_plural_neg
+        # Remove anything but positive
+        if self.button_negative_action.isChecked() == False:
+            self.logit("\tRestricting to positive words only...")
+            word_collections.adjectives = word_collections.adjectives_positive  
+        self.logit("Word collection updated.")             
+    
+    # Import the word collection from the files in the folder word_collections
+    def import_word_lists(self):
+        self.logit("\tImporting word lists...")
+        word_collections.adjectives_positive = word_collections.import_list("adjectives_positive.txt")
+        word_collections.adjectives_negative = word_collections.import_list("adjectives_negative.txt")
+        word_collections.adjectives_neutral = word_collections.import_list("adjectives_neutral.txt")
+        word_collections.colours = word_collections.import_list("colours.txt")
+        word_collections.nouns_singular_sfw = word_collections.import_list("nouns_singular_sfw.txt")
+        word_collections.nouns_plural_sfw = word_collections.import_list("nouns_plural_sfw.txt")
+        word_collections.people_singular_sfw = word_collections.import_list("people_singular_sfw.txt")
+        word_collections.people_plural_sfw = word_collections.import_list("people_plural_sfw.txt")
+        word_collections.animals_singular = word_collections.import_list("animals_singular.txt")
+        word_collections.animals_plural = word_collections.import_list("animals_plural.txt")
+        word_collections.food_singular = word_collections.import_list("food_singular.txt")
+        word_collections.food_plural = word_collections.import_list("food_plural.txt")
+        word_collections.verbs_sfw = word_collections.import_list("verbs_sfw.txt")
+        word_collections.verbs_intransitive_sfw = word_collections.import_list("verbs_intransitive_sfw.txt")
+        word_collections.verbs_third_person_sfw = word_collections.import_list("verbs_third_person_sfw.txt")
+        word_collections.verbs_active_sfw = word_collections.import_list("verbs_active_sfw.txt")
+        word_collections.verbs_ing_sfw = word_collections.import_list("verbs_ing_sfw.txt")
+        word_collections.verbs_mandatory_sfw = word_collections.import_list("verbs_mandatory_sfw.txt")
+        word_collections.times = word_collections.import_list("times.txt")
+        word_collections.audiences = word_collections.import_list("audiences.txt")
+        word_collections.adverbs = word_collections.import_list("adverbs.txt")
+        word_collections.concepts_positive = word_collections.import_list("concepts_positive.txt")
+        word_collections.concepts_neutral = word_collections.import_list("concepts_neutral.txt")
+        word_collections.concepts_negative = word_collections.import_list("concepts_negative.txt")
+        word_collections.concepts_nsfw = word_collections.import_list("concepts_nsfw.txt")
+        word_collections.verbs_active_sfw = word_collections.import_list("verbs_active_sfw.txt")
+        word_collections.nouns_singular_nsfw = word_collections.import_list("nouns_singular_nsfw.txt")
+        word_collections.nouns_plural_nsfw = word_collections.import_list("nouns_plural_nsfw.txt")
+        word_collections.adjectives_nsfw = word_collections.import_list("adjectives_nsfw.txt")
+        word_collections.verbs_nsfw = word_collections.import_list("verbs_nsfw.txt")
+        word_collections.verbs_intransitive_nsfw = word_collections.import_list("verbs_intransitive_nsfw.txt")
+        word_collections.verbs_third_person_nsfw = word_collections.import_list("verbs_third_person_nsfw.txt")
+        word_collections.verbs_active_nsfw = word_collections.import_list("verbs_active_nsfw.txt")
+        word_collections.verbs_ing_nsfw = word_collections.import_list("verbs_ing_nsfw.txt")
+        word_collections.comparatives_sfw = word_collections.import_list("comparatives_sfw.txt")
+        word_collections.comparatives_nsfw = word_collections.import_list("comparatives_nsfw.txt")
+        word_collections.superlatives_sfw = word_collections.import_list("superlatives_sfw.txt")
+        word_collections.superlatives_nsfw = word_collections.import_list("superlatives_nsfw.txt")
+        word_collections.situations_sfw = word_collections.import_list("situations_sfw.txt")
+        word_collections.situations_nsfw = word_collections.import_list("situations_nsfw.txt")
+        word_collections.situations_active_sfw = word_collections.import_list("situations_active_sfw.txt")
+        word_collections.situations_active_nsfw = word_collections.import_list("situations_active_nsfw.txt")
+        word_collections.prepositions = word_collections.import_list("prepositions.txt")
+        word_collections.people_singular_neg = word_collections.import_list("people_singular_neg.txt")
+        word_collections.people_plural_neg = word_collections.import_list("people_plural_neg.txt")
+        word_collections.zodiac = word_collections.import_list("zodiac.txt")
+        word_collections.sometimes = word_collections.import_list("sometimes.txt")
+        word_collections.cliches_sfw = word_collections.import_list("cliches_sfw.txt")
+        word_collections.cliches_nsfw = word_collections.import_list("cliches_nsfw.txt")
+        word_collections.food_concepts = word_collections.import_list("food_concepts.txt")
+        self.logit("\tWord lists imported.")
+
+    # Export every word list and make sure the words are in alphabetical order.
+    # This function is not used by default and is only there as a convenience.
+    def export_word_lists(self):
+        self.logit("\tExporting word lists...")
+        word_collections.export_list(word_collections.adjectives_positive, "adjectives_positive")
+        word_collections.export_list(word_collections.adjectives_negative, "adjectives_negative")
+        word_collections.export_list(word_collections.adjectives_neutral, "adjectives_neutral")
+        word_collections.export_list(word_collections.colours, "colours")
+        word_collections.export_list(word_collections.nouns_singular_sfw, "nouns_singular_sfw")
+        word_collections.export_list(word_collections.nouns_plural_sfw, "nouns_plural_sfw")
+        word_collections.export_list(word_collections.people_singular_sfw, "people_singular_sfw")
+        word_collections.export_list(word_collections.people_plural_sfw, "people_plural_sfw")
+        word_collections.export_list(word_collections.animals_singular, "animals_singular")
+        word_collections.export_list(word_collections.animals_plural, "animals_plural")
+        word_collections.export_list(word_collections.food_singular, "food_singular")
+        word_collections.export_list(word_collections.food_plural, "food_plural")
+        word_collections.export_list(word_collections.verbs_sfw, "verbs_sfw")
+        word_collections.export_list(word_collections.verbs_intransitive_sfw, "verbs_intransitive_sfw")
+        word_collections.export_list(word_collections.verbs_third_person_sfw, "verbs_third_person_sfw")
+        word_collections.export_list(word_collections.verbs_active_sfw, "verbs_active_sfw")
+        word_collections.export_list(word_collections.verbs_ing_sfw, "verbs_ing_sfw")
+        word_collections.export_list(word_collections.verbs_mandatory_sfw, "verbs_mandatory_sfw")
+        word_collections.export_list(word_collections.times, "times")
+        word_collections.export_list(word_collections.audiences, "audiences")
+        word_collections.export_list(word_collections.adverbs, "adverbs")
+        word_collections.export_list(word_collections.concepts_positive, "concepts_positive")
+        word_collections.export_list(word_collections.concepts_neutral, "concepts_neutral")
+        word_collections.export_list(word_collections.concepts_negative, "concepts_negative")
+        word_collections.export_list(word_collections.concepts_nsfw, "concepts_nsfw")
+        word_collections.export_list(word_collections.verbs_active_sfw, "verbs_active_sfw")
+        word_collections.export_list(word_collections.nouns_singular_nsfw, "nouns_singular_nsfw")
+        word_collections.export_list(word_collections.nouns_plural_nsfw, "nouns_plural_nsfw")
+        word_collections.export_list(word_collections.adjectives_nsfw, "adjectives_nsfw")
+        word_collections.export_list(word_collections.verbs_nsfw, "verbs_nsfw")
+        word_collections.export_list(word_collections.verbs_intransitive_nsfw, "verbs_intransitive_nsfw")
+        word_collections.export_list(word_collections.verbs_third_person_nsfw, "verbs_third_person_nsfw")
+        word_collections.export_list(word_collections.verbs_active_nsfw, "verbs_active_nsfw")
+        word_collections.export_list(word_collections.verbs_ing_nsfw, "verbs_ing_nsfw")
+        word_collections.export_list(word_collections.comparatives_sfw, "comparatives_sfw")
+        word_collections.export_list(word_collections.comparatives_nsfw, "comparatives_nsfw")
+        word_collections.export_list(word_collections.superlatives_sfw, "superlatives_sfw")
+        word_collections.export_list(word_collections.superlatives_nsfw, "superlatives_nsfw")
+        word_collections.export_list(word_collections.situations_sfw, "situations_sfw")
+        word_collections.export_list(word_collections.situations_nsfw, "situations_nsfw")
+        word_collections.export_list(word_collections.situations_active_sfw, "situations_active_sfw")
+        word_collections.export_list(word_collections.situations_active_nsfw, "situations_active_nsfw")
+        word_collections.export_list(word_collections.prepositions, "prepositions")
+        word_collections.export_list(word_collections.people_singular_neg, "people_singular_neg")
+        word_collections.export_list(word_collections.people_plural_neg, "people_plural_neg")
+        word_collections.export_list(word_collections.zodiac, "zodiac")
+        word_collections.export_list(word_collections.sometimes, "sometimes")
+        word_collections.export_list(word_collections.cliches_sfw, "cliches_sfw")
+        word_collections.export_list(word_collections.cliches_nsfw, "cliches_nsfw")
+        word_collections.export_list(word_collections.food_concepts, "food_concepts.txt")
+        self.logit("\tWord lists exported.")
+
+    def export_font_collection(self):
+        self.logit("Exporting font collection...")
+        font_location = os.path.join(current_path, 'resources')
+        font_location = os.path.join(font_location, 'font_collection.csv')
+        with open(font_location, 'w', newline='') as csvfile:
+            fontwriter = csv.writer(csvfile, delimiter=';',
+                                    quotechar='|', quoting=csv.QUOTE_MINIMAL)
+            for line in self._font_collection:
+                fontwriter.writerow(line)
+        self.logit("Fonts exported.")
+
+    def export_image_collection(self):
+        self.logit("Exporting image collection...")
+        image_location = os.path.join(current_path, 'resources')
+        image_location = os.path.join(image_location, 'image_collection.csv')
+        with open(image_location, 'w', newline='') as csvfile:
+            imagewriter = csv.writer(csvfile, delimiter=';',
+                                    quotechar='|', quoting=csv.QUOTE_MINIMAL)
+            for line in self._image_collection:
+                imagewriter.writerow(line)
+        self.logit("Image collection exported.")
+
+    
+
+if __name__ == '__main__':
     app = QApplication(sys.argv)
+
+    stylesheet_path = os.path.join(current_path, 'resources', 'style.qss')
+    app.setStyleSheet(Path(stylesheet_path).read_text())
 
     window = MainWindow()
     window.show()
