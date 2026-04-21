@@ -168,8 +168,8 @@ class MainWindow(QMainWindow):
 
     def generate_splash_screen(self):
         # Set up the splash image with a different greeting every time the app is opened
-        splash_image = os.path.join(current_path, os.path.join('images','bot.png'))
-        self._image = [splash_image, (255, 255, 255), 'justify', 'bottom', 0, 0]
+        splash_image = os.path.join(current_path, os.path.join('images','quotatas-500px-inverted.png'))
+        self._image = [splash_image, (255, 255, 255), 'justify', 'bottom', 0, 20]
         self._font = random.choice(self._font_collection)
         self._font[1] = 34
         self._quote = random.choice(word_collections.greetings)
