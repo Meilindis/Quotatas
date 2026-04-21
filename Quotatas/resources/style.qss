@@ -1,5 +1,5 @@
 QWidget {
-    background-color: #dedede;
+    background-color: #acacac;
 }
 
 QWidget#font_settings_container {
@@ -8,7 +8,7 @@ QWidget#font_settings_container {
 }
 
 QWidget#app_container {
-    background-color: #808080; 
+    background-color: #acacac; 
     color:black; 
     border: 2px solid black; 
     font-size: 20px; 
@@ -51,16 +51,23 @@ QTextEdit {
 
 QComboBox {
     background-color: #dfdfdf;
+    color: #000000;
+}
+
+QLineEdit {
+    background-color: #dfdfdf;
+    color: #000000;
 }
 
 QComboBox:hover
 {
     background-color: #9ac3fe;
-    border: 2px solid #000;
+    border: 1px solid #000000;
 }
 
 QLabel {
-    border: 01x solid black;
+    border: 0px solid black;
+    color: #000000;
 }
 
 QLabel#change_font_label {

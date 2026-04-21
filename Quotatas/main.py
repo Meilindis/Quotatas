@@ -124,7 +124,7 @@ class MainWindow(QMainWindow):
         self.button_generate_quote = QPushButton("Give me some wisdom!")
         self.button_generate_quote.setCheckable(True)
         self.button_generate_quote.clicked.connect(self.generate_quote)
-        self.button_generate_quote.setMinimumHeight(100)
+        self.button_generate_quote.setMinimumHeight(150)
         self.button_generate_quote.setObjectName('button_generate_quote')
         self.button_generate_quote.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
