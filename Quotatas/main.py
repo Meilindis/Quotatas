@@ -30,10 +30,7 @@ from colorbutton import ColorButton
 # Generic Qt elements needed for the UI
 from PySide6.QtCore import QSize, Qt, Signal
 from PySide6.QtGui import QPixmap, QImage, QColor, QIcon, QAction, QIcon, QKeySequence
-from PySide6.QtWidgets import (QApplication, QMainWindow, QPushButton, QTextEdit, QVBoxLayout,
-                              QWidget, QLabel, QCheckBox, QHBoxLayout, QFileDialog, QMessageBox, 
-                              QComboBox, QGridLayout, QSpacerItem, QSizePolicy, QListWidget, 
-                              QStatusBar, QToolBar)
+from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QTextEdit, QVBoxLayout, QWidget, QLabel, QCheckBox, QHBoxLayout, QFileDialog, QMessageBox, QComboBox, QGridLayout, QSpacerItem, QSizePolicy, QListWidget, QStatusBar, QToolBar
 
 # ---------------------------------------------------------------------------------------------------------------------------------------------
 # RESOURCES
@@ -121,12 +118,14 @@ class MainWindow(QMainWindow):
         # CREATE UI COMPONENTS
         self.logit("\tGenerating components...")
         # Button to generate quotes
-        self.button_generate_quote = QPushButton("Give me some wisdom!")
+        self.button_generate_quote = QPushButton(QIcon(os.path.join(icon_path, 'quotatas.ico')),"Give me some wisdom!")
+        self.button_generate_quote.setIconSize(QSize(32, 32))
         self.button_generate_quote.setCheckable(True)
         self.button_generate_quote.clicked.connect(self.generate_quote)
-        self.button_generate_quote.setMinimumHeight(150)
+        self.button_generate_quote.setMinimumHeight(120)
         self.button_generate_quote.setObjectName('button_generate_quote')
         self.button_generate_quote.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        self.button_generate_quote.setIconSize(QSize(32, 32))
 
         # Label that displays the generated quote image
         self.quote_area = QLabel()
@@ -152,7 +151,7 @@ class MainWindow(QMainWindow):
         
         # Font settings - colour
         self.change_colour = ColorButton(color="#fff") 
-        self.change_colour.setObjectName('change_colour')
+        self.change_colour.setObjectName('set_colour')
         self.change_colour.colorChanged.connect(self.change_selected_colour)
         # Font settings - size
         self.change_font_size = QComboBox()
@@ -201,16 +200,25 @@ class MainWindow(QMainWindow):
         self.font_settings_container.setLayout(self.font_settings_layout)
 
         # Add quotes and navigation to their own container
-        self.app_layout = QVBoxLayout()
-        self.app_layout.addWidget(self.quote_area)
-        self.app_layout.addWidget(self.font_settings_container)  
-        self.app_layout.addWidget(self.button_generate_quote)
+        self.quote_area_layout = QVBoxLayout()
+        self.quote_area_layout.addWidget(self.quote_area)
+        self.quote_area_layout.addWidget(self.font_settings_container)  
+        self.quote_area_layout.addWidget(self.button_generate_quote)
         #self.quoteLayout.addWidget(self.text_field)
-        self.app_container = QWidget()
-        self.app_container.setObjectName('quote_area_container')
-        self.app_container.setLayout(self.app_layout)
+
+        self.quote_area_container = QWidget()
+        self.quote_area_container.setObjectName('quote_area_container')
+        self.quote_area_container.setLayout(self.quote_area_layout)
+
+        # Combine everything into one layout
+        self.app_layout = QVBoxLayout()
+        self.app_layout.addWidget(self.quote_area_container)
 
         # Add the layout to an overall widget and add to main window
+        self.app_container = QWidget()
+        self.app_container.setObjectName('app_container')
+        self.app_container.setLayout(self.app_layout)
+
         self.setCentralWidget(self.app_container) 
         self.logit("Layout arranged.")
 
@@ -329,7 +337,7 @@ class MainWindow(QMainWindow):
         self.logit("\tFont selected: " + self._font[2] + ".")
         self.logit("\tGenerating quote text...")
         self._quote = random.choice(template_collection.template_list)()
-        self.logit("\tQuote text generated:\n\t\t" + self._quote)
+        self.logit("\tQuote text generated:\n\n " + self._quote + "\n\n")
 
         # Add and set the selected parameters to the list of quotes
         self.logit("\tAdding quote to history...")
@@ -561,9 +569,7 @@ class MainWindow(QMainWindow):
         self.logit("Exporting quote history...")
         with open('dutch_wisdom_quote_collection.txt', 'w') as f:
             for quote in self._full_history:
-                f.write(f"{quote[0]}\n\n---\n\n")
-
-        self.button_export_quotes.setText("Exported.")
+                f.write(f"{quote[0]}\n\n---\n\n")        
         self.logit("Quote history exported to file.")
 
     # Export the log to log.txt (will overwrite without warning)
