@@ -24,6 +24,9 @@ import template_collection
 # Script that helps with putting text on images
 from image_utils import ImageText
 
+# Logging
+import logging
+
 # Script that adds a button with a colour picker for the font colour
 from colorbutton import ColorButton
 
@@ -38,6 +41,7 @@ from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QTextEdit,
 # Store current path for convenience
 current_path = Path(__file__).parent.absolute()
 icon_path = os.path.join(current_path, 'icons')
+logger = logging.getLogger(__name__)
 
 # Helper function to check expression type
 def evaluate(expression):
@@ -72,10 +76,9 @@ class MainWindow(QMainWindow):
         self._selected_quote = 0
         self._font_collection = [] # FONT NAME - FONT SIZE
         self._image_collection = [] # IMAGE NAME - TEXT COLOUR (RGB) - ALIGNMENT - POSITION - X OFFSET - Y OFFSET            
-        self._log = []
         self._generating_quote = False # Whether a quote is being actively generated.
 
-        self.logit("Importing files...")
+        logger.info("Importing files...")
 
         # Import the files containing the words, fonts, and images that are used
         self.import_word_lists()
@@ -83,42 +86,39 @@ class MainWindow(QMainWindow):
         self.import_image_collection()
 
         # Create the UI components
-        self.logit("Creating UI components...")
+        logger.info("Creating UI components...")
         self.create_ui_components()
 
         # Set up splash screen
-        self.logit("Creating splash screen...")
+        logger.info("Creating splash screen...")
         self.generate_splash_screen()
         
         # Create layouts to arrange the UI components
-        self.logit("Setting up UI layout...")
+        logger.info("Setting up UI layout...")
         self.arrange_layouts()
         self.add_toolbar()
                     
         # Update the selected words based on the UI settings
-        self.logit("Updating initial settings...")
+        logger.info("Updating initial settings...")
         self.settings_changed()
-        self.logit("UI is up and running.\n------------------------")
+        logger.info("UI is up and running.\n------------------------")
         
         self.text_field.setText("Starting UI... Loading wisdom nuggets... done! Press the button and I will share some wisdom with you.\n\nIf a quote is hard to read, you can use the font settings to improve it.\nSelect whether I should play nice and whether I should unleash my naughtiness with the toggles.\n\nEnjoy my infinite wisdom that has been maturing ever since the Big Splash!")
 
     # -----------------------------------------------------------------------------------------------------------------------------
     # MEMBER FUNCTIONS
 
-    def logit(self, entry):
-        self._log.append(entry)
-
     def create_ui_components(self):
         self.setWindowTitle("Quotatas")
         my_icon = QIcon()
         my_icon.addFile(os.path.join(current_path, os.path.join('icons','quotatas.ico')))
         self.setWindowIcon(my_icon)
-        self.logit("\tAdded window icon.")
+        logger.info("\tAdded window icon.")
 
         # CREATE UI COMPONENTS
-        self.logit("\tGenerating components...")
+        logger.info("\tGenerating components...")
         # Button to generate quotes
-        self.button_generate_quote = QPushButton(QIcon(os.path.join(icon_path, 'quotatas.ico')),"Give me some wisdom!")
+        self.button_generate_quote = QPushButton(QIcon(os.path.join(icon_path, 'quotatas-refresh.ico')),"Give me some wisdom!")
         self.button_generate_quote.setIconSize(QSize(32, 32))
         self.button_generate_quote.setCheckable(True)
         self.button_generate_quote.clicked.connect(self.generate_quote)
@@ -164,30 +164,32 @@ class MainWindow(QMainWindow):
         for i in (range(16, 42, 2)):
             self.change_font_size.addItem(str(i))
         
-        self.logit("UI components created.")
+        logger.info("UI components created.")
 
     def generate_splash_screen(self):
         # Set up the splash image with a different greeting every time the app is opened
         splash_image = os.path.join(current_path, os.path.join('images','quotatas-500px-inverted.png'))
         self._image = [splash_image, (255, 255, 255), 'justify', 'bottom', 0, 20]
         self._font = random.choice(self._font_collection)
+        # Store original font size because the reference is updated
+        font_size = self._font[1]
         self._font[1] = 34
         self._quote = random.choice(word_collections.greetings)
-        self._generating_quote = True
         self.update_ui_elements()
         self.create_quote_image()
-        self._generating_quote = False
+        # Restore the original font size of the font
+        self._font[1] = font_size
         pixmap = QPixmap('temp.png')
         self.quote_area.resize(pixmap.width(), pixmap.height())
         self.quote_area.setPixmap(pixmap)
-        self.logit("Splash screen created.")
+        logger.info("Splash screen created.")
         
         # Remove empty entries that are now redundant
         self.change_font.removeItem(self.change_font.findText(""))
         self.change_font_size.removeItem(self.change_font_size.findText(""))
 
     def arrange_layouts(self):
-        self.logit("Setting up UI layout...")
+        logger.info("Setting up UI layout...")
 
         # Line out the settings in a grid
         self.font_settings_layout = QHBoxLayout()
@@ -220,10 +222,10 @@ class MainWindow(QMainWindow):
         self.app_container.setLayout(self.app_layout)
 
         self.setCentralWidget(self.app_container) 
-        self.logit("Layout arranged.")
+        logger.info("Layout arranged.")
 
     def add_toolbar(self):
-        self.logit("Adding toolbar...")
+        logger.info("Adding toolbar...")
         self.toolbar = QToolBar("Toolbar")
         self.toolbar.setIconSize(QSize(32, 32))
         self.addToolBar(self.toolbar)
@@ -242,7 +244,7 @@ class MainWindow(QMainWindow):
 
         self.toolbar.addSeparator()
 
-        self.button_generate_action = QAction(QIcon(os.path.join(icon_path, 'quotatas.ico')), "Generate quote", self)
+        self.button_generate_action = QAction(QIcon(os.path.join(icon_path, 'quotatas-refresh.ico')), "Generate quote", self)
         self.button_generate_action.setStatusTip("Generate a new quote image")
         self.button_generate_action.triggered.connect(self.generate_quote)
         self.toolbar.addAction(self.button_generate_action)
@@ -277,70 +279,65 @@ class MainWindow(QMainWindow):
         self.toolbar.addAction(self.button_export_quotes_action)
         self.button_export_quotes_action.setEnabled(False) # nothing to export yet
 
-        self.button_export_log_action = QAction(QIcon(os.path.join(icon_path, 'export-log.ico')), "Export the log file", self)
-        self.button_export_log_action.setStatusTip("Export the log file")
-        self.button_export_log_action.triggered.connect(self.export_log)
-        self.toolbar.addAction(self.button_export_log_action)
-
         #self.setStatusBar(QStatusBar(self))
-        self.logit("Toolbar added.")
+        logger.info("Toolbar added.")
 
     # Read font info from file
     def import_font_collection(self):
-        self.logit("\tImporting font collection...")
+        logger.info("\tImporting font collection...")
         font_location = os.path.join(current_path, 'resources', 'font_collection.csv')
         with open(font_location, newline='') as csvfile:
             fontreader = csv.reader(csvfile, delimiter=';', quotechar='|')
             parsed = (list(evaluate(field) for field in row) for row in fontreader)
             for row in parsed:
                 self._font_collection.append(row)
-        self.logit("\tFont collection imported.")
+        logger.info("\tFont collection imported.")
 
         # Read image info from file
     def import_image_collection(self):
-        self.logit("\tImporting image collection...")
+        logger.info("\tImporting image collection...")
         image_location = os.path.join(current_path, 'resources', 'image_collection.csv')
         with open(image_location, newline='') as csvfile:
             imagereader = csv.reader(csvfile, delimiter=';', quotechar='|')
             parsed = (list(evaluate(field) for field in row) for row in imagereader)
             for row in parsed:
                 self._image_collection.append(row)
-        self.logit("\tImage collection imported.")
+        logger.info("\tImage collection imported.")
 
     # Define what happens when the button is pressed
     def generate_quote(self):
-        self.logit("Generating quote...")
+        logger.info("Generating quote...")
         # Set the selected quote to the last one (in case the user was looking at an earlier quote)
         if len(self._full_history) > 1:
             self._selected_quote = len(self._full_history) - 1
         # Select the random parameters
-        self.logit("Setting basic paramenters and updating UI...")
+        logger.info("Setting basic paramenters and updating UI...")
         self.create_basics()
         self._generating_quote = True
         self.update_ui_elements()
         # Create the image
-        self.logit("Creating quote image...")
+        logger.info("Creating quote image...")
         self.create_quote_image()
         self._generating_quote = False
         self.update_quote_counter()
         # Enable/disable buttons depending on context
         self.update_toolbar_buttons()
-        self.logit("New quote image created.")
+        logger.info("New quote image created.")
         
     def create_basics(self):
         # Select the random parameters of the quote
-        self.logit("\tSelecting image...")
+        logger.info("\tSelecting image...")
         self._image = random.choice(self._image_collection)
-        self.logit("\tImage selected: " + self._image[0] + ".")
-        self.logit("\tSelecting font...")
+        logger.info("\tImage selected: " + self._image[0] + ".")
+        logger.info("\tSelecting font...")
         self._font = random.choice(self._font_collection)
-        self.logit("\tFont selected: " + self._font[2] + ".")
-        self.logit("\tGenerating quote text...")
+        logger.info("\tFont selected: " + self._font[2] + ".")
+        logger.info("\tGenerating quote text...")
         self._quote = random.choice(template_collection.template_list)()
-        self.logit("\tQuote text generated:\n\n " + self._quote + "\n\n")
+        logger.info("\tQuote text generated:\n\n " + self._quote + "\n\n")
 
         # Add and set the selected parameters to the list of quotes
-        self.logit("\tAdding quote to history...")
+        logger.info("\tAdding quote to history...")
         self._full_history.append([self._quote, self._image, self._font])
         self._selected_quote = len(self._full_history) - 1
 
@@ -348,25 +345,25 @@ class MainWindow(QMainWindow):
     # Make sure that the UI is updated without generating a new image    
         self._generating_quote = True
         # Update other variables and UI elements 
-        self.logit("\tUpdating the font colour...")                 
+        logger.info("\tUpdating the font colour...")                 
         self.change_colour.setColor('#' + hexify_tuple(self._image[1]))
-        self.logit("\tUpdated font colour to RGB" + str(self._image[1]) + ".")
+        logger.info("\tUpdated font colour to RGB" + str(self._image[1]) + ".")
         index_font = self.change_font.findText(self._font[2])
         if index_font >= 0:
-            self.logit("\tSelecting new font and font size...")
+            logger.info("\tSelecting new font and font size...")
             self.change_font.setCurrentIndex(index_font)
             self.change_font_size.setCurrentIndex(self.change_font_size.findText(str(self._font[1])))
-            self.logit("\tFont name and size updated.")
+            logger.info("\tFont name and size updated.")
         self._generating_quote = False
 
     def create_quote_image(self):
         # Can't create an image without parameters
         if self._image == [] or self._font == [] or self._selected_quote == -1:
-            self.logit("Error. Could not generate quote, insufficient paramenters.")
+            logger.info("Error. Could not generate quote, insufficient parameters.")
             return
 
         # Prepare the image
-        self.logit("\tOpening image...")         
+        logger.info("\tOpening image...")         
         image_path = os.path.join(current_path, 'images', self._image[0])
         image = Image.open(image_path)
 
@@ -377,12 +374,12 @@ class MainWindow(QMainWindow):
         font_name = os.path.join(current_path, 'fonts', self._font[0])
         font_custom_size = self._font[1]
         line_height = font_custom_size + 8
-        self.logit("\tSetting line height to " + str(line_height) + ".")
+        logger.info("\tSetting line height to " + str(line_height) + ".")
         img = ImageText(image, background=(255, 255, 255, 200)) # 200 = alpha
         
         # Determine number of lines
         nr_of_lines = text.count("\n") + 1
-        self.logit("\tQuote has " + str(nr_of_lines) + " lines.")
+        logger.info("\tQuote has " + str(nr_of_lines) + " lines.")
         # Add the separate lines to a list
         lines = text.splitlines()
         x_val = 20 # default indentation
@@ -407,7 +404,7 @@ class MainWindow(QMainWindow):
         x = x_val
         y = y_val
 
-        self.logit("\tDrawing quote text...")
+        logger.info("\tDrawing quote text...")
         # Now draw each line onto the image
         for line in lines:
             img.write_text_box((x, y), line, box_width=180, font_filename=font_name,
@@ -415,68 +412,66 @@ class MainWindow(QMainWindow):
             y += line_height
 
         # Save in temporary location
-        self.logit("\tSaving temp file...")
+        logger.info("\tSaving temp file...")
         img.save('temp.png')
 
         # Display the modified image
-        self.logit("\tDisplaying image in UI...")
+        logger.info("\tDisplaying image in UI...")
         pixmap = QPixmap('temp.png')
         self.quote_area.resize(pixmap.width(), pixmap.height())
         self.quote_area.setPixmap(pixmap)
 
     def change_selected_font(self):
-        self.logit("\tChanging selected font...")
-        # A new font has been selected, so pick up the selected item's text
-        new_font = self.change_font.currentText()
-        # If somehow no font is selected
-        if new_font == "":
-            self.logit("\tNo valid font selected.")
-            return
-        # Find this font in the collection
-        for font in self._font_collection:
-            if font[2] == new_font:
-                self._font = font
-        self.logit("\tNew font applied: " + new_font + ".")
-        # Re-create the image with the new font setting
+        # Only update if triggered by a UI event, not when generating a quote
         if not self._generating_quote:
+            logger.info("\tChanging selected font...")
+        	# A new font has been selected, so pick up the selected item's text
+            new_font = self.change_font.currentText()
+        	# Find this font in the collection
+            for font in self._font_collection:
+            	if font[2] == new_font:
+                	self._font = font
+            logger.info("\tNew font applied: " + new_font + ".")
+        	# Re-create the image with the new font setting
+        
             self.create_quote_image()
 
     def change_selected_font_size(self):
-        self.logit("\tChanging selected font size...")
-        if self._font != []:
-            new_size = self.change_font_size.currentText()
-            if new_size == "":
-                return
-            self._font[1] = int(new_size)
-            self.logit("\tNew font size applied: " + new_size + ".")
-            if not self._generating_quote:
+        # Only update if triggered by a UI event, not when generating a quote
+        if not self._generating_quote:
+            logger.info("\tChanging selected font size...")
+            if self._font != []:
+                new_size = self.change_font_size.currentText()
+                self._font[1] = int(new_size)
+                logger.info("\tNew font size applied: " + new_size + ".")            
                 self.create_quote_image()
 
     def change_selected_colour(self):
-        self.logit("\tChanging selected font colour...")
-        # A new colour has been selected, so get the new colour name and save it
-        if self._image != None:
-            # Convert to RGB and store 
-            self._image[1] = ImageColor.getcolor(self.change_colour.color(), "RGB")
-            self.logit("\tNew font colour applied: RGB" + str(self._image[1]) + ".")
-            # Re-create the image
-            if not self._generating_quote:
-                self.create_quote_image()
+        # Only update if triggered by a UI event, not when generating a quote
+        if not self._generating_quote:
+            logger.info("\tChanging selected font colour...")
+        	# A new colour has been selected, so get the new colour name and save it
+            if self._image != None:
+            	# Convert to RGB and store 
+                self._image[1] = ImageColor.getcolor(self.change_colour.color(), "RGB")
+                logger.info("\tNew font colour applied: RGB" + str(self._image[1]) + ".")
+            # Re-create the image            
+            self.create_quote_image()
 
     def save_quote(self):
         # Check if there's a generated image present
-        self.logit("Saving quote...")
+        logger.info("Saving quote...")
         try:
             if os.path.isfile('temp.png'):
-                self.logit("\tCreating save dialog...")
+                logger.info("\tCreating save dialog...")
                 # Create a dialog in which to select a name and location
                 self.save_dialog = QFileDialog()
                 save_file_name = self.save_dialog.getSaveFileName(self, 'Save quote', '', filter='Image files (.png)', selectedFilter='*.png')
                 save_file = save_file_name[0] + '.png'
-                self.logit("\tSaving file as " + save_file + ".")
+                logger.info("\tSaving file as " + save_file + ".")
                 # Check if the filename already exists
                 if os.path.isfile(save_file):
-                    self.logit("\tFilename already exists.")
+                    logger.info("\tFilename already exists.")
                     dlg = QMessageBox(self)
                     dlg.setStyleSheet('background-color: #b1b1b1; border:1px solid black;')
                     dlg.setWindowTitle("File exists")
@@ -488,20 +483,20 @@ class MainWindow(QMainWindow):
                     selected = dlg.exec()
 
                     if selected == QMessageBox.StandardButton.Yes:
-                        self.logit("\tOverwriting existing file...")
+                        logger.info("\tOverwriting existing file...")
                         shutil.copyfile('temp.png', save_file)
-                        self.logit("\tFile saved.")
+                        logger.info("\tFile saved.")
                     else:
                         pass                    
                 else:
-                    self.logit("\tFile saved.")
+                    logger.info("\tFile saved.")
                     shutil.copyfile('temp.png', save_file)
         # If no generated image is present, there's nothing to save
             else:
-                self.logit("No image file available to save.")
+                logger.info("No image file available to save.")
                 self.text_field.setText("No image available to save.")
         except FileNotFoundError:
-            self.logit("No image file available to save.")
+            logger.info("No image file available to save.")
             self.text_field.setText("No image available to save.")
 
     # Return whether a 'next' quote is available
@@ -525,7 +520,7 @@ class MainWindow(QMainWindow):
 
     # What happens when the "Previous" button is clicked
     def previous_quote(self):
-        self.logit("Selecting previous quote...")
+        logger.info("Selecting previous quote...")
         # If there's more than one quote and you're not looking at the first quote, you can go back
         if len(self._full_history) > 1 and self._selected_quote >= 1:
             self._selected_quote = self._selected_quote - 1
@@ -537,14 +532,14 @@ class MainWindow(QMainWindow):
             self.create_quote_image()
             self.update_quote_counter()
             self.update_toolbar_buttons()
-            self.logit("Previous quote selected.")
+            logger.info("Previous quote selected.")
         else:
-            self.logit("No previous quote available.")
+            logger.info("No previous quote available.")
             return
 
     # What happens when the "Next" button is clicked
     def next_quote(self):
-        self.logit("Selecting next quote...")
+        logger.info("Selecting next quote...")
         # If you are not looking at the most recent quote, you can go forward
         if self._selected_quote < len(self._full_history) - 1:
             self._selected_quote = self._selected_quote + 1
@@ -556,9 +551,9 @@ class MainWindow(QMainWindow):
             self.create_quote_image()
             self.update_quote_counter()
             self.update_toolbar_buttons()
-            self.logit("Next quote selected.")
+            logger.info("Next quote selected.")
         else:
-            self.logit("No next quote available.")
+            logger.info("No next quote available.")
             return
             
     def update_quote_counter(self):
@@ -566,23 +561,15 @@ class MainWindow(QMainWindow):
 
     # Export the quote history to a txt file in the current directory - will overwrite without warning.
     def export_quotes(self):
-        self.logit("Exporting quote history...")
+        logger.info("Exporting quote history...")
         with open('dutch_wisdom_quote_collection.txt', 'w') as f:
             for quote in self._full_history:
                 f.write(f"{quote[0]}\n\n---\n\n")        
-        self.logit("Quote history exported to file.")
-
-    # Export the log to log.txt (will overwrite without warning)
-    def export_log(self):
-        self.logit("Exporting log.")
-        with open('log.txt', 'w') as f:
-            for line in self._log:
-                f.write(f"{line}\n")
-        self.logit("Log exported to file.")
+        logger.info("Quote history exported to file.")
 
     # Determine the available word collection depending on the toggles (NSFW/negative on or off)
     def settings_changed(self):
-        self.logit("Updating used word collection...")
+        logger.info("Updating used word collection...")
         # Set all word collections to neutral
         word_collections.nouns_singular = word_collections.nouns_singular_sfw + word_collections.people_singular + word_collections.animals_singular + word_collections.verbs_active_sfw + word_collections.food_singular
         word_collections.nouns_plural = word_collections.animals_plural + word_collections.people_plural + word_collections.nouns_plural_sfw + word_collections.food_plural
@@ -601,7 +588,7 @@ class MainWindow(QMainWindow):
         word_collections.cliches = word_collections.cliches_sfw
         # Add NSFW
         if self.button_nsfw_action.isChecked():
-            self.logit("\tAdding NSFW words...")
+            logger.info("\tAdding NSFW words...")
             word_collections.nouns_singular = word_collections.nouns_singular + word_collections.nouns_singular_nsfw + word_collections.animals_singular + word_collections.verbs_active_sfw + word_collections.verbs_active_nsfw
             word_collections.nouns_plural = word_collections.nouns_plural + word_collections.nouns_plural_nsfw
             word_collections.adjectives = word_collections.adjectives + word_collections.adjectives_nsfw
@@ -618,20 +605,20 @@ class MainWindow(QMainWindow):
             word_collections.cliches = word_collections.cliches + word_collections.cliches_nsfw
         # Add negative stuff
         if self.button_negative_action.isChecked() == True:
-            self.logit("\tAdding negative words...")
+            logger.info("\tAdding negative words...")
             word_collections.adjectives = word_collections.adjectives + word_collections.adjectives_negative
             word_collections.concepts = word_collections.concepts + word_collections.concepts_negative
             word_collections.people_singular = word_collections.people_singular + word_collections.people_singular_neg
             word_collections.people_plural = word_collections.people_plural + word_collections.people_plural_neg
         # Remove anything but positive
         if self.button_negative_action.isChecked() == False:
-            self.logit("\tRestricting to positive words only...")
+            logger.info("\tRestricting to positive words only...")
             word_collections.adjectives = word_collections.adjectives_positive  
-        self.logit("Word collection updated.")             
+        logger.info("Word collection updated.")             
     
     # Import the word collection from the files in the folder word_collections
     def import_word_lists(self):
-        self.logit("\tImporting word lists...")
+        logger.info("\tImporting word lists...")
         word_collections.adjectives_positive = word_collections.import_list("adjectives_positive.txt")
         word_collections.adjectives_negative = word_collections.import_list("adjectives_negative.txt")
         word_collections.adjectives_neutral = word_collections.import_list("adjectives_neutral.txt")
@@ -682,12 +669,12 @@ class MainWindow(QMainWindow):
         word_collections.cliches_sfw = word_collections.import_list("cliches_sfw.txt")
         word_collections.cliches_nsfw = word_collections.import_list("cliches_nsfw.txt")
         word_collections.food_concepts = word_collections.import_list("food_concepts.txt")
-        self.logit("\tWord lists imported.")
+        logger.info("\tWord lists imported.")
 
     # Export every word list and make sure the words are in alphabetical order.
     # This function is not used by default and is only there as a convenience.
     def export_word_lists(self):
-        self.logit("\tExporting word lists...")
+        logger.info("\tExporting word lists...")
         word_collections.export_list(word_collections.adjectives_positive, "adjectives_positive")
         word_collections.export_list(word_collections.adjectives_negative, "adjectives_negative")
         word_collections.export_list(word_collections.adjectives_neutral, "adjectives_neutral")
@@ -738,10 +725,10 @@ class MainWindow(QMainWindow):
         word_collections.export_list(word_collections.cliches_sfw, "cliches_sfw")
         word_collections.export_list(word_collections.cliches_nsfw, "cliches_nsfw")
         word_collections.export_list(word_collections.food_concepts, "food_concepts.txt")
-        self.logit("\tWord lists exported.")
+        logger.info("\tWord lists exported.")
 
     def export_font_collection(self):
-        self.logit("Exporting font collection...")
+        logger.info("Exporting font collection...")
         font_location = os.path.join(current_path, 'resources')
         font_location = os.path.join(font_location, 'font_collection.csv')
         with open(font_location, 'w', newline='') as csvfile:
@@ -749,10 +736,10 @@ class MainWindow(QMainWindow):
                                     quotechar='|', quoting=csv.QUOTE_MINIMAL)
             for line in self._font_collection:
                 fontwriter.writerow(line)
-        self.logit("Fonts exported.")
+        logger.info("Fonts exported.")
 
     def export_image_collection(self):
-        self.logit("Exporting image collection...")
+        logger.info("Exporting image collection...")
         image_location = os.path.join(current_path, 'resources')
         image_location = os.path.join(image_location, 'image_collection.csv')
         with open(image_location, 'w', newline='') as csvfile:
@@ -760,8 +747,7 @@ class MainWindow(QMainWindow):
                                     quotechar='|', quoting=csv.QUOTE_MINIMAL)
             for line in self._image_collection:
                 imagewriter.writerow(line)
-        self.logit("Image collection exported.")
-
+        logger.info("Image collection exported.")
     
 
 if __name__ == '__main__':
@@ -769,6 +755,7 @@ if __name__ == '__main__':
 
     stylesheet_path = os.path.join(current_path, 'resources', 'style.qss')
     app.setStyleSheet(Path(stylesheet_path).read_text())
+    logging.basicConfig(filename='quotatas.log', level=logging.INFO)
 
     window = MainWindow()
     window.show()

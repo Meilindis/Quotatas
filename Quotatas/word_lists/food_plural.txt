@@ -7,7 +7,6 @@ burgers
 burritos
 cakes
 carrots
-cheeseritos
 cherries
 chips
 chocolates
@@ -44,6 +43,7 @@ pistachios
 pizzas
 potatoes
 prunes
+quesarito
 raisins
 salads
 sandwiches

@@ -1,5 +1,5 @@
 QWidget {
-    background-color: #acacac;
+    background-color: #dedede;
 }
 
 QWidget#font_settings_container {
@@ -8,11 +8,16 @@ QWidget#font_settings_container {
 }
 
 QWidget#app_container {
-    background-color: #acacac; 
+    background-color: #808080; 
     color:black; 
     border: 2px solid black; 
     font-size: 20px; 
     padding: 4px;
+}
+
+QWidget#quote_area_container {
+    background-color: #808080; 
+    color:black; 
 }
 
 QPushButton {
@@ -25,7 +30,7 @@ QPushButton#button_generate_quote {
     background-color: #b0cceb; 
     color: black; 
     text-align: center;
-    font-size: 20px; 
+    font-size: 26px; 
     border: 2px solid black;
 }
 
@@ -36,12 +41,8 @@ QPushButton#button_save {
 
 QPushButton#button_generate_quote:hover
 {
-    background-color: #9ac3fe;
-    border: 2px solid #28217a;
-}
-
-ColorButton:hover {
-    border: 2px solid #a4d4ff; 
+  background-color: #9ac3fe;
+  border: 2px solid #28217a;
 }
 
 QTextEdit {
@@ -51,23 +52,16 @@ QTextEdit {
 
 QComboBox {
     background-color: #dfdfdf;
-    color: #000000;
-}
-
-QLineEdit {
-    background-color: #dfdfdf;
-    color: #000000;
 }
 
 QComboBox:hover
 {
-    background-color: #9ac3fe;
-    border: 1px solid #000000;
+  background-color: #9ac3fe;
+  border: 2px solid #000;
 }
 
 QLabel {
-    border: 0px solid black;
-    color: #000000;
+    border: 01x solid black;
 }
 
 QLabel#change_font_label {
