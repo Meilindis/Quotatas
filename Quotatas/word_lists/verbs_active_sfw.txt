@@ -43,11 +43,9 @@ teaser
 tickler
 toppler
 toucher
-treater
 watcher
 weaver
 wielder
 worker
 worshipper
 writer
-yielder
