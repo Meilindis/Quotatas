@@ -284,23 +284,29 @@ class MainWindow(QMainWindow):
     def import_font_collection(self):
         logger.info("\tImporting font collection...")
         font_location = os.path.join(current_path, 'resources', 'font_collection.csv')
-        with open(font_location, newline='') as csvfile:
-            fontreader = csv.reader(csvfile, delimiter=';', quotechar='|')
-            parsed = (list(evaluate(field) for field in row) for row in fontreader)
-            for row in parsed:
-                self._font_collection.append(row)
-        logger.info("\tFont collection imported.")
+        if os.path.isfile(font_location):
+            with open(font_location, newline='') as csvfile:
+                fontreader = csv.reader(csvfile, delimiter=';', quotechar='|')
+                parsed = (list(evaluate(field) for field in row) for row in fontreader)
+                for row in parsed:
+                    self._font_collection.append(row)
+            logger.info("\tFont collection imported.")
+        else:
+            logger.info("Font collection file not found.")
 
         # Read image info from file
     def import_image_collection(self):
         logger.info("\tImporting image collection...")
         image_location = os.path.join(current_path, 'resources', 'image_collection.csv')
-        with open(image_location, newline='') as csvfile:
-            imagereader = csv.reader(csvfile, delimiter=';', quotechar='|')
-            parsed = (list(evaluate(field) for field in row) for row in imagereader)
-            for row in parsed:
-                self._image_collection.append(row)
-        logger.info("\tImage collection imported.")
+        if os.path.isfile(image_location):
+            with open(image_location, newline='') as csvfile:
+                imagereader = csv.reader(csvfile, delimiter=';', quotechar='|')
+                parsed = (list(evaluate(field) for field in row) for row in imagereader)
+                for row in parsed:
+                    self._image_collection.append(row)
+            logger.info("\tImage collection imported.")
+        else:
+            logger.info("Image collection file not found.")
 
     # Define what happens when the button is pressed
     def generate_quote(self):
@@ -415,7 +421,10 @@ class MainWindow(QMainWindow):
 
         # Display the modified image
         logger.info("\tDisplaying image in UI...")
-        pixmap = QPixmap('temp.png')
+        if os.path.isfile('temp.png'):
+            pixmap = QPixmap('temp.png')
+        else:
+            logger.info("Temporary image quote file not found.")
         self.quote_area.resize(pixmap.width(), pixmap.height())
         self.quote_area.setPixmap(pixmap)
 
@@ -599,6 +608,8 @@ class MainWindow(QMainWindow):
             word_collections.situations = word_collections.situations + word_collections.situations_nsfw
             word_collections.situations_active = word_collections.situations_active + word_collections.situations_active_nsfw
             word_collections.cliches = word_collections.cliches + word_collections.cliches_nsfw
+            word_collections.people_singular = word_collections.people_singular + word_collections.people_singular_nsfw
+            word_collections.people_plural = word_collections.people_plural + word_collections.people_plural_nsfw
         # Add negative stuff
         if self.button_negative_action.isChecked() == True:
             logger.info("\tAdding negative words...")
@@ -663,6 +674,8 @@ class MainWindow(QMainWindow):
         word_collections.prepositions = word_collections.import_list("prepositions.txt")
         word_collections.people_singular_neg = word_collections.import_list("people_singular_neg.txt")
         word_collections.people_plural_neg = word_collections.import_list("people_plural_neg.txt")
+        word_collections.people_singular_nsfw = word_collections.import_list("people_singular_nsfw.txt")
+        word_collections.people_plural_nsfw = word_collections.import_list("people_plural_nsfw.txt")
         word_collections.zodiac = word_collections.import_list("zodiac.txt")
         word_collections.sometimes = word_collections.import_list("sometimes.txt")
         word_collections.cliches_sfw = word_collections.import_list("cliches_sfw.txt")
@@ -719,6 +732,8 @@ class MainWindow(QMainWindow):
         word_collections.export_list(word_collections.prepositions, "prepositions")
         word_collections.export_list(word_collections.people_singular_neg, "people_singular_neg")
         word_collections.export_list(word_collections.people_plural_neg, "people_plural_neg")
+        word_collections.export_list(word_collections.people_singular_nsfw, "people_singular_nsfw")
+        word_collections.export_list(word_collections.people_plural_nsfw, "people_plural_nsfw")
         word_collections.export_list(word_collections.zodiac, "zodiac")
         word_collections.export_list(word_collections.sometimes, "sometimes")
         word_collections.export_list(word_collections.cliches_sfw, "cliches_sfw")
@@ -749,30 +764,33 @@ class MainWindow(QMainWindow):
     def import_settings(self):
         # Read the settings from file
         settings_location = os.path.join(current_path, 'resources', 'settings.txt')
-        settings = []
-        settingsinput = open(settings_location,'r')
-        for entry in settingsinput:
-            settings.append(entry.rstrip())
-        settingsinput.close()
-        
-        # Check validity (only two entries expected)
-        if len(settings) == 2:
-            nsfw_setting = settings[0]
-            negative_setting = settings[1]
-            if nsfw_setting == "True":
-                self.button_nsfw_action.setChecked(True)
-            elif nsfw_setting == "False":
-                self.button_nsfw_action.setChecked(False)
+        if os.path.isfile(settings_location):
+            settings = []
+            settingsinput = open(settings_location,'r')
+            for entry in settingsinput:
+                settings.append(entry.rstrip())
+            settingsinput.close()
+            
+            # Check validity (only two entries expected)
+            if len(settings) == 2:
+                nsfw_setting = settings[0]
+                negative_setting = settings[1]
+                if nsfw_setting == "True":
+                    self.button_nsfw_action.setChecked(True)
+                elif nsfw_setting == "False":
+                    self.button_nsfw_action.setChecked(False)
+                else:
+                    logger.info("Could not import NSFW setting.")
+                if negative_setting == "True":
+                    self.button_negative_action.setChecked(True)
+                elif negative_setting == "False":
+                    self.button_negative_action.setChecked(False)
+                else:
+                    logger.info("Could not import Negative setting.")
             else:
-                logger.info("Could not import NSFW setting.")
-            if negative_setting == "True":
-                self.button_negative_action.setChecked(True)
-            elif negative_setting == "False":
-                self.button_negative_action.setChecked(False)
-            else:
-                logger.info("Could not import Negative setting.")
+                logger.info("Unexpected file content. Could not import settings.")
         else:
-            logger.info("Unexpected file content. Could not import settings.")
+            logger.info("Settings file does not exist.")
 
 
     def export_settings(self):

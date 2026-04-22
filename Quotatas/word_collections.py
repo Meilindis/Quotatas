@@ -11,6 +11,8 @@ people_singular_sfw = []
 people_plural_sfw = []
 people_singular_neg = []
 people_plural_neg = []
+people_singular_nsfw = []
+people_plural_nsfw = []
 animals_singular = []
 animals_plural = []
 food_singular = []
@@ -79,12 +81,16 @@ def import_list(filename):
     word_list = []
     path = Path(__file__).parent.absolute()
     location = os.path.join(path, 'word_lists', filename)
-    infile = open(location,'r')
-    for word in infile:
-        word_list.append(word.rstrip())
+    if os.path.isfile(location):
+        infile = open(location,'r')
+        for word in infile:
+            word_list.append(word.rstrip())
 
-    infile.close()
-    return word_list
+        infile.close()
+        return word_list
+        logger.info("Imported word list " + filename + ".")
+    else:
+        logger.info("Word list " + filename + " not found.")
 
 
 # Exports the list with the name list_name to the subfolder word_lists of the project alphabetically
