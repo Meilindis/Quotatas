@@ -97,14 +97,17 @@ class MainWindow(QMainWindow):
         logger.info("Setting up UI layout...")
         self.arrange_layouts()
         self.add_toolbar()
-                    
-        # Update the selected words based on the UI settings
-        logger.info("Updating initial settings...")
-        self.settings_changed()
-        logger.info("UI is up and running.\n------------------------")
         
-        self.text_field.setText("Starting UI... Loading wisdom nuggets... done! Press the button and I will share some wisdom with you.\n\nIf a quote is hard to read, you can use the font settings to improve it.\nSelect whether I should play nice and whether I should unleash my naughtiness with the toggles.\n\nEnjoy my infinite wisdom that has been maturing ever since the Big Splash!")
+        # Import the previous settings (if they exist)
+        logger.info("Importing settings...")
+        self.import_settings()
 
+        # Update the selected words based on the UI settings
+        logger.info("Updating word collections...")
+        self.settings_changed()
+
+        logger.info("UI is up and running. Ready to start generating quotes!\n------------------------")
+        
     # -----------------------------------------------------------------------------------------------------------------------------
     # MEMBER FUNCTIONS
 
@@ -118,7 +121,7 @@ class MainWindow(QMainWindow):
         # CREATE UI COMPONENTS
         logger.info("\tGenerating components...")
         # Button to generate quotes
-        self.button_generate_quote = QPushButton(QIcon(os.path.join(icon_path, 'quotatas-refresh.ico')),"Give me some wisdom!")
+        self.button_generate_quote = QPushButton(QIcon(os.path.join(icon_path, 'quotatas.ico')),"Give me some wisdom!")
         self.button_generate_quote.setIconSize(QSize(32, 32))
         self.button_generate_quote.setCheckable(True)
         self.button_generate_quote.clicked.connect(self.generate_quote)
@@ -131,10 +134,6 @@ class MainWindow(QMainWindow):
         self.quote_area = QLabel()
         self.quote_area.resize(500, 500)  
         self.quote_area.setObjectName('quote_area')          
-
-        # Field that displays the generated quote in text only
-        self.text_field = QTextEdit()
-        self.text_field.setReadOnly(True)
 
         # Font settings - name
         self.change_font_label = QLabel("Change font:")
@@ -206,7 +205,6 @@ class MainWindow(QMainWindow):
         self.quote_area_layout.addWidget(self.quote_area)
         self.quote_area_layout.addWidget(self.font_settings_container)  
         self.quote_area_layout.addWidget(self.button_generate_quote)
-        #self.quoteLayout.addWidget(self.text_field)
 
         self.quote_area_container = QWidget()
         self.quote_area_container.setObjectName('quote_area_container')
@@ -494,10 +492,8 @@ class MainWindow(QMainWindow):
         # If no generated image is present, there's nothing to save
             else:
                 logger.info("No image file available to save.")
-                self.text_field.setText("No image available to save.")
         except FileNotFoundError:
             logger.info("No image file available to save.")
-            self.text_field.setText("No image available to save.")
 
     # Return whether a 'next' quote is available
     def next_available(self):
@@ -614,7 +610,10 @@ class MainWindow(QMainWindow):
         if self.button_negative_action.isChecked() == False:
             logger.info("\tRestricting to positive words only...")
             word_collections.adjectives = word_collections.adjectives_positive  
-        logger.info("Word collection updated.")             
+        logger.info("Word collection updated.")  
+        logger.info("Exporting current settings to file...")   
+        self.export_settings()        
+        logger.info("Settings exported.")
     
     # Import the word collection from the files in the folder word_collections
     def import_word_lists(self):
@@ -729,8 +728,7 @@ class MainWindow(QMainWindow):
 
     def export_font_collection(self):
         logger.info("Exporting font collection...")
-        font_location = os.path.join(current_path, 'resources')
-        font_location = os.path.join(font_location, 'font_collection.csv')
+        font_location = os.path.join(current_path, 'resources', 'font_collection.csv')
         with open(font_location, 'w', newline='') as csvfile:
             fontwriter = csv.writer(csvfile, delimiter=';',
                                     quotechar='|', quoting=csv.QUOTE_MINIMAL)
@@ -740,15 +738,50 @@ class MainWindow(QMainWindow):
 
     def export_image_collection(self):
         logger.info("Exporting image collection...")
-        image_location = os.path.join(current_path, 'resources')
-        image_location = os.path.join(image_location, 'image_collection.csv')
+        image_location = os.path.join(current_path, 'resources', 'image_collection.csv')
         with open(image_location, 'w', newline='') as csvfile:
             imagewriter = csv.writer(csvfile, delimiter=';',
                                     quotechar='|', quoting=csv.QUOTE_MINIMAL)
             for line in self._image_collection:
                 imagewriter.writerow(line)
         logger.info("Image collection exported.")
-    
+
+    def import_settings(self):
+        # Read the settings from file
+        settings_location = os.path.join(current_path, 'resources', 'settings.txt')
+        settings = []
+        settingsinput = open(settings_location,'r')
+        for entry in settingsinput:
+            settings.append(entry.rstrip())
+        settingsinput.close()
+        
+        # Check validity (only two entries expected)
+        if len(settings) == 2:
+            nsfw_setting = settings[0]
+            negative_setting = settings[1]
+            if nsfw_setting == "True":
+                self.button_nsfw_action.setChecked(True)
+            elif nsfw_setting == "False":
+                self.button_nsfw_action.setChecked(False)
+            else:
+                logger.info("Could not import NSFW setting.")
+            if negative_setting == "True":
+                self.button_negative_action.setChecked(True)
+            elif negative_setting == "False":
+                self.button_negative_action.setChecked(False)
+            else:
+                logger.info("Could not import Negative setting.")
+        else:
+            logger.info("Unexpected file content. Could not import settings.")
+
+
+    def export_settings(self):
+        # Write the settings to file
+        settings_location = os.path.join(current_path, 'resources', 'settings.txt')
+        with open(settings_location, 'w', newline='') as settingsfile:
+            settingsfile.write(str(self.button_nsfw_action.isChecked()))
+            settingsfile.write("\n")
+            settingsfile.write(str(self.button_negative_action.isChecked()))
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
