@@ -27,6 +27,9 @@ from image_utils import ImageText
 # Logging
 import logging
 
+# Dark/light theme (mostly to fix it in Windows)
+import qdarktheme
+
 # Script that adds a button with a colour picker for the font colour
 from colorbutton import ColorButton
 
@@ -133,7 +136,8 @@ class MainWindow(QMainWindow):
         # Label that displays the generated quote image
         self.quote_area = QLabel()
         self.quote_area.resize(500, 500)  
-        self.quote_area.setObjectName('quote_area')          
+        self.quote_area.setObjectName('quote_area')   
+        self.quote_area.setStyleSheet('background-color: #2a4648;')       
 
         # Font settings - name
         self.change_font_label = QLabel("Change font:")
@@ -242,7 +246,7 @@ class MainWindow(QMainWindow):
 
         self.toolbar.addSeparator()
 
-        self.button_generate_action = QAction(QIcon(os.path.join(icon_path, 'quotatas-refresh.ico')), "Generate quote", self)
+        self.button_generate_action = QAction(QIcon(os.path.join(icon_path, 'quotatas-teal.ico')), "Generate quote", self)
         self.button_generate_action.setStatusTip("Generate a new quote image")
         self.button_generate_action.triggered.connect(self.generate_quote)
         self.toolbar.addAction(self.button_generate_action)
@@ -276,6 +280,18 @@ class MainWindow(QMainWindow):
         self.button_export_quotes_action.triggered.connect(self.export_quotes)
         self.toolbar.addAction(self.button_export_quotes_action)
         self.button_export_quotes_action.setEnabled(False) # nothing to export yet
+
+        self.toolbar.addSeparator()
+
+        self.label_theme = QLabel("UI theme: ")
+        self.toolbar.addWidget(self.label_theme)
+
+        self.combo_theme = QComboBox()
+        self.combo_theme.setStatusTip("Change the UI theme (dark/light)")
+        self.combo_theme.addItems(qdarktheme.get_themes())
+        self.combo_theme.setCurrentIndex(self.combo_theme.findText("auto"))
+        self.combo_theme.currentTextChanged.connect(qdarktheme.setup_theme)
+        self.toolbar.addWidget(self.combo_theme)
 
         #self.setStatusBar(QStatusBar(self))
         logger.info("Toolbar added.")
@@ -804,8 +820,9 @@ class MainWindow(QMainWindow):
 if __name__ == '__main__':
     app = QApplication(sys.argv)
 
-    stylesheet_path = os.path.join(current_path, 'resources', 'style.qss')
-    app.setStyleSheet(Path(stylesheet_path).read_text())
+    qdarktheme.setup_theme("auto", custom_colors={"primary": "#2b8d94"})
+    app.setStyle('fusion')
+
     logging.basicConfig(filename='quotatas.log', level=logging.INFO)
 
     window = MainWindow()
