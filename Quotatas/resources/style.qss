@@ -1,0 +1,27 @@
+QPushButton#button_generate_quote {
+    background-color: #2b8d94; 
+    color: black; 
+    font-size: 26px;
+}
+
+QPushButton#button_generate_quote:hover
+{
+    background-color: #5b9397;
+}
+
+QComboBox:hover
+{
+    background-color: #5b9397;
+    border: 2px solid #000;
+}
+
+QComboBox::drop-down
+{
+    text-align: left;
+}
+
+QLabel#quote_area {
+    background-color: #292929; 
+    color:black; 
+    border: 2px solid black;
+}

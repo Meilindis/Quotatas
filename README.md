@@ -5,7 +5,7 @@ Quotatas provides toggles for including NSFW and 'negative' content, so that you
 The images used are royalty-free stock photos or my own photos, and the fonts used are free for commercial use. My gratitude goes out to the creative people who made them available.
 Quotatas is free for personal use and is not intended for commercial use.
 
-You need Pyside6 and Pillow to be installed on your machine to make Quotatas work.
+You need Pyside6, Pillow, and PyQtDarktheme (2.1.0) to be installed on your machine to make Quotatas work.
 
 If you'd like to customise Quotatas:
 * Add your own words to the files in word_lists. One item per line. 

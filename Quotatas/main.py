@@ -117,7 +117,7 @@ class MainWindow(QMainWindow):
     def create_ui_components(self):
         self.setWindowTitle("Quotatas")
         my_icon = QIcon()
-        my_icon.addFile(os.path.join(current_path, os.path.join('icons','quotatas.ico')))
+        my_icon.addFile(os.path.join(current_path, os.path.join('icons','quotatas-teal.ico')))
         self.setWindowIcon(my_icon)
         logger.info("\tAdded window icon.")
 
@@ -283,7 +283,7 @@ class MainWindow(QMainWindow):
 
         self.toolbar.addSeparator()
 
-        self.label_theme = QLabel("UI theme: ")
+        self.label_theme = QLabel("Theme: ")
         self.toolbar.addWidget(self.label_theme)
 
         self.combo_theme = QComboBox()
@@ -820,10 +820,15 @@ class MainWindow(QMainWindow):
 if __name__ == '__main__':
     app = QApplication(sys.argv)
 
-    qdarktheme.setup_theme("auto", custom_colors={"primary": "#2b8d94"})
+    stylesheet_path = os.path.join(current_path, 'resources', 'style.qss')
+    qss = Path(stylesheet_path).read_text()
+
+    qdarktheme.setup_theme("auto", custom_colors={"primary": "#2b8d94"}, additional_qss=qss)
     app.setStyle('fusion')
 
     logging.basicConfig(filename='quotatas.log', level=logging.INFO)
+
+    logging.info("\n\n-------------------\nStarting application!-------------------\n\n")
 
     window = MainWindow()
     window.show()
