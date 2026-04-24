@@ -289,12 +289,16 @@ class MainWindow(QMainWindow):
         self.combo_theme = QComboBox()
         self.combo_theme.setStatusTip("Change the UI theme (dark/light)")
         self.combo_theme.addItems(qdarktheme.get_themes())
-        self.combo_theme.setCurrentIndex(self.combo_theme.findText("auto"))
+        self.combo_theme.setCurrentIndex(self.combo_theme.findText("dark"))
         self.combo_theme.currentTextChanged.connect(qdarktheme.setup_theme)
+        self.combo_theme.currentTextChanged.connect(self.update_stylesheet)
         self.toolbar.addWidget(self.combo_theme)
 
         #self.setStatusBar(QStatusBar(self))
         logger.info("Toolbar added.")
+
+    def update_stylesheet(self):
+        qdarktheme.setup_theme(self.combo_theme.currentText(), custom_colors={"primary": "#2b8d94"}, additional_qss=qss)
 
     # Read font info from file
     def import_font_collection(self):
@@ -823,7 +827,7 @@ if __name__ == '__main__':
     stylesheet_path = os.path.join(current_path, 'resources', 'style.qss')
     qss = Path(stylesheet_path).read_text()
 
-    qdarktheme.setup_theme("auto", custom_colors={"primary": "#2b8d94"}, additional_qss=qss)
+    qdarktheme.setup_theme("dark", custom_colors={"primary": "#2b8d94"}, additional_qss=qss)
     app.setStyle('fusion')
 
     logging.basicConfig(filename='quotatas.log', level=logging.INFO)

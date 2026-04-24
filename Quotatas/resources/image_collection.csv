@@ -1,5 +1,5 @@
 a_fetters_recto_b_several_figures_verso.png;(145, 0, 140);justify;bottom;0;0
-a_luncheon_party_.png;(255, 245, 185);justify;bottom;0;
+a_luncheon_party_.png;(255, 245, 185);justify;bottom;0;0
 alarm.png;(255, 255, 255);justify;top;0;0
 amsterdam.png;(255, 255, 255);justify;top;0;0
 angel.png;(255, 255, 255);justify;top;0;0
@@ -31,7 +31,7 @@ clock.png;(255, 255, 255);justify;top;0;0
 clogs.png;(255, 255, 255);justify;top;0;0
 clown.png;(255, 255, 255);justify;top;0;0
 clownfish.png;(255, 255, 255);justify;top;0;0
-clownkit.png;(255, 255, 255);justify;top;0;0
+clownkit.png;(255, 255, 255);justify;bottom;0;0
 coffee.png;(255, 245, 185);justify;bottom;0;0
 couple_mountains.png;(29, 37, 82);justify;top;0;0
 crow.png;(255, 245, 185);justify;top;0;0
@@ -87,10 +87,10 @@ megaphone.png;(29, 37, 82);justify;top;40;0
 milky_way.png;(255, 245, 185);justify;top;0;0
 mime.png;(255, 255, 255);justify;top;0;0
 monkey.png;(255, 255, 255);justify;top;0;0
-monster.png;(255, 255, 255);justify;top;10;20
+monster.png;(255, 255, 255);justify;top;0;0
 newspaper.png;(199, 17, 234);justify;bottom;0;0
 pancakes.png;(255, 255, 255);justify;top;0;0
-peacock.png;(255, 255, 255);justify;top;0;0
+peacock.png;(29, 37, 82);justify;top;0;0
 pear.png;(255, 255, 255);justify;top;0;0
 pepper.png;(255, 255, 255);justify;top;0;0
 problem.png;(29, 37, 82);justify;top;0;0
@@ -138,4 +138,4 @@ woman.png;(255, 245, 185);justify;top;0;0
 woman_flowers.png;(29, 37, 82);justify;top;0;0
 world.png;(29, 37, 82);justify;top;0;0
 yarn.png;(29, 37, 82);justify;top;0;0
-yawners.png;(255, 255, 255);justify;bottom;0;0
+yawners.png;(29, 37, 82);justify;bottom;0;0

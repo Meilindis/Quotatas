@@ -132,11 +132,13 @@ stone
 sun
 super soaker
 swimming pool
+swing
 table
 table leg
 tablet
 tavern
 tea
+teeter-totter
 telescope
 thunderstorm
 time machine
