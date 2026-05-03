@@ -589,6 +589,11 @@ def template_dont():
     passive = verb()
     active = verb() + " " + noun_plural()
     return (capitalize_first_letter(random.choice([passive, active])) + ".\n\nOr don't.")
+    
+# They do
+def template_theydo():
+	they = capitalize_first_letter(adjective()) + " " + people_plural()
+	return (they + " " + verb_intransitive() + "\n" + they + " " + verb_intransitive() + "\n" + they + " really " + verb_intransitive() )
 
 # List of defined templates (don't forget to add new templates here or they won't be used!)
 template_list = [template_times_three, 
@@ -692,5 +697,6 @@ template_list = [template_times_three,
                  template_lingo,
                  template_noi,
                  template_dont,
+                 template_theydo,
                  ]
 

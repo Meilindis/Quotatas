@@ -87,6 +87,7 @@ lens
 litter box
 loom
 meadow
+microfiche
 microscope
 mind
 monster

@@ -1,7 +1,4 @@
 age
-be
-be creative
-be quiet
 blend in
 cohabitate
 cycle
@@ -26,6 +23,8 @@ prosper
 rain
 rest
 retreat
+scream
+shout
 sleep
 smile
 snow
@@ -39,3 +38,5 @@ touch grass
 travel
 wake up
 walk
+whisper
+yell
