@@ -104,22 +104,22 @@ def rule():
     if result !=1:
         return ""
     else:
-        return ("Rule " + str(random.randrange(1, 12, 1)) + ":\n\n")
+        return f"Rule {str(random.randrange(1, 12, 1))}:\n"
 
 def horoscope():
     result = (random.randrange(1, 8, 1))
     if result !=1:
         return ""
     else:
-        return ("Today's horoscope - " + capitalize_first_letter(random.choice(word_collections.zodiac)) + ":\n\n")
+        return f"Today's horoscope - {capitalize_first_letter(random.choice(word_collections.zodiac))}:\n"
 
 vowels = ['a', 'e', 'i', 'o', 'u']
 
 def a_or_an(text):
     if text[0] in vowels:
-        article = "an "
+        article = "an"
     else:
-        article = "a "
+        article = "a"
     return article
 
 # --------------------------------------------------------------------------------------------------------------------
@@ -129,122 +129,173 @@ def a_or_an(text):
 # Repeat a random verb three times
 def template_times_three():
     current_verb = verb()
-    return (current_verb.capitalize() + ", " + current_verb + ", " + current_verb)
+    return f"{current_verb.capitalize()}, {current_verb}, {current_verb}"
 
 # Produce 3 random verbs
 def template_three_verbs():
-    return (capitalize_first_letter(verb()) + "\n" + verb().capitalize() + "\n" + verb().capitalize())
+    return f'''{capitalize_first_letter(verb())}
+    {verb().capitalize()}
+    {verb().capitalize()}'''
     
 # Row, row, row your boat
 def template_row():
     current_verb = verb()
-    return (capitalize_first_letter(current_verb) + ", " + current_verb + ", " + current_verb) + "\nyour " + random.choice([noun_singular(), noun_plural()])
+    return f'''{capitalize_first_letter(current_verb)}, {current_verb}, {current_verb}
+    your {random.choice([noun_singular(), noun_plural()])}'''
 
 # Give three random compliments
 def template_three_compliments():
-    return (horoscope() + "You are " + adjective_positive() + "\nYou are " + adjective_positive() + "\nYou are " + adjective_positive())
+    return f'''{horoscope()}
+    You are {adjective_positive()}
+    You are {adjective_positive()}
+    You are {adjective_positive()}'''
 
 # Give three random characteristics:
 def template_three_characteristics():
-    return (horoscope() + "You are " + adjective() + "\nYou are " + adjective() + "\nYou are " + adjective())
+    return f'''{horoscope()}
+    You are {adjective()}
+    You are {adjective()}
+    You are {adjective()}'''
 
 # Give one random compliment
 def template_one_compliment():
-    return (horoscope() + capitalize_first_letter(random.choice([times(), sometimes()])) + " forget that \nyou are " + adjective_positive())
+    return f'''{horoscope()}
+    {capitalize_first_letter(random.choice([times(), sometimes()]))} forget that
+    you are {adjective_positive()}'''
 
 # General statement
 def template_general():
-    return (rule() + "Being " + adjective() + "\nis " + adjective())
+    return f'''{rule()}
+    Being {adjective()}
+    is {adjective()}'''
 
 # Surprise
 def template_surprise_singular():
-    return ("Here comes the " + people_singular() + "!")
+    return f"Here comes the {people_singular()}!"
     
 # Surprise 2
 def template_surprise_plural():
-    return ("Here come the " + people_plural() + "!")
+    return f"Here come the {people_plural()}!"
 
 # Call to action
 def template_call_to_action():
-    return (capitalize_first_letter(people_plural()) + ", rise up!")
+    return f"{capitalize_first_letter(people_plural())}, rise up!"
 
 # Spread the word
 def template_spread_the_word():
-    return (horoscope() + capitalize_first_letter(audiences()) + "\nthat you are " + adjective() + ".\nStay " + adjective() + ".")
+    return f'''{horoscope()}
+    {capitalize_first_letter(audiences())}
+    that you are {adjective()}.
+    Stay {adjective()}.'''
 
 # Definition
 def template_it_does():
-    return (horoscope() + capitalize_first_letter(noun_plural()) + " will " + verb() + " you")
+    return f'''{horoscope()}
+    {capitalize_first_letter(noun_plural())} will {verb()} you.'''
 
 # Sharing is caring
 def template_share():
-    return (rule() + capitalize_first_letter(audiences()) + "\nthat you are " + adjective() + "\nand " + adjective())
+    return f'''{rule()}
+    {capitalize_first_letter(audiences())}
+    that you are {adjective()}
+    and {adjective()}'''
 
 # Oh you
 def template_you():
-    return (horoscope() + "You " + noun_singular())
+    return f'''{horoscope()}
+    You {noun_singular()}'''
 
 # Oh adjective you
 def template_you_adjective():
-    return (horoscope() + "You " + adjective() + " " + noun_singular())
+    return f'''{horoscope()}
+    You {adjective()} {noun_singular()}'''
 
 # It can be
 def template_can_be():
-    return (capitalize_first_letter(noun_plural()) + " can be so\n" + adverb() + " " + adjective())
+    return f'''{capitalize_first_letter(noun_plural())} can be so
+    {adverb()} {adjective()}'''
 
 # No sorry
 def template_no_sorry():
-    return (rule() + "Don't apologise \nfor being " + adjective())
+    return f'''{rule()}
+    Don't apologise
+    for being {adjective()}'''
 
 # Reasons
 def template_reasons():
     temp = adjective()
-    return ("The fact that you are\n" + a_or_an(temp) + temp + " " + noun_singular() + "\nmakes you " + adjective())
+    return f'''The fact that you are
+    {a_or_an(temp)} {temp} {noun_singular()}
+    makes you {adjective()}'''
 
 # Deserved
 def template_deserved():
-    return (capitalize_first_letter(verb()) + ".\nBecause you deserve it.")
+    return f'''{capitalize_first_letter(verb())}.
+    Because you deserve it.'''
 
 # Truth
 def template_truth():
-    return (capitalize_first_letter(noun_plural()) + " tell it like it is")
+    return f'''{capitalize_first_letter(noun_plural()) }
+    tell it like it is'''
 
 # Change
 def template_change():
     current_noun = noun_singular()
     temp1 = adjective()
     temp2 = adjective()
-    return (rule() + "Don't be " + a_or_an(temp1) + "\n" + temp1 + " " + current_noun + ".\nBe " + a_or_an(temp2) + "\n" +  temp2 + " " + current_noun + ".")
+
+    return f'''{rule()}
+    Don't be {a_or_an(temp1)}
+    {temp1} {current_noun}.
+    Be {a_or_an(temp2)}
+    {temp2} {current_noun}.'''
     
 # Possibilities
 def template_possible():
-	return (rule() + "If we can " + verb() + " " + noun_plural() + ",\nwe can " + verb() + " " + noun_plural())
+	return f'''{rule()}
+    If we can {verb()} {noun_plural()},
+    we can {verb()} {noun_plural()}'''
 
 # Effect
 def template_effect():
-	return (capitalize_first_letter(prepositions()) + " " + noun_plural() + ",\nwe " + verb() + " " + noun_plural() + ".")
+	return f'''{capitalize_first_letter(prepositions())} {noun_plural()},
+    we {verb()} {noun_plural()}.'''
 
 # Encouragement
 def template_encouragement():
-	return (rule() + "Challenge " + random.choice([noun_plural(), people_plural()]) + "\nand act " + adverb() + ".")
+	return f'''{rule()}
+    Challenge {random.choice([noun_plural(), people_plural()])}
+    and act {adverb()}.'''
 
 # Strangely true
 def template_strangely_true():
     temp1 = noun_singular()
     temp2 = noun_singular()
-    return (rule() + "Just because you're\n" + a_or_an(temp1) + temp1 + "\nit doesn't mean you're\n" + a_or_an(temp2) + temp2)
+    return f'''{rule()}
+    Just because you're
+    {a_or_an(temp1)} {temp1}
+    it doesn't mean you're
+    {a_or_an(temp2)} {temp2}'''
 
 # Really
 def template_really():
-    return (rule() + capitalize_first_letter(random.choice([noun_plural(), concept()])) + ".\nActually good\nfor " + random.choice([noun_plural(), concept()]) + ".")
+    return f'''{rule()}
+    {capitalize_first_letter(random.choice([noun_plural(), concept()]))}.
+    Actually good
+    for {random.choice([noun_plural(), concept()])}.'''
 
 # Explanation
 def template_explanation():
-    return (capitalize_first_letter(noun_plural()) + " are not trying\nto " + verb_intransitive() + ",\nthey are just trying\nto " + verb() + " " + concept())
+    return f'''{capitalize_first_letter(noun_plural())} are not trying
+    to {verb_intransitive()},
+    they are just trying
+    to {verb()} {concept()}'''
 
 # No need
 def template_no_need():
-    return (rule() + "You don't need " + random.choice([noun_plural(), concept()]) + "\nto " + verb() + " " + noun_plural())
+    return f'''{rule()}
+    You don't need {random.choice([noun_plural(), concept()])}
+    to {verb()} {noun_plural()}'''
 
 # Potential
 def template_potential():
@@ -253,63 +304,94 @@ def template_potential():
     choice = random.randrange(0, 1, 1)
     phrase = ""
     if choice == 0:
-        phrase = "\nSeriously.\n" + capitalize_first_letter(a_or_an(adj)) + adj + " " + noun + "."
+        phrase = "Seriously.\n" + capitalize_first_letter(a_or_an(adj)) + adj + " " + noun + "."
     else:
         phrase =  ""
-    return (horoscope() + "You have the potential\nto become " + a_or_an(noun) + " " + noun + "." + phrase)
+    return f'''{horoscope()}
+    You have the potential
+    to become {a_or_an(noun)} {noun}.
+    {phrase}'''
 
 # Results
 def template_results():
-    return (capitalize_first_letter(concept()) + "\ncan end in " + concept())
+    return f'''{capitalize_first_letter(concept())}
+    can end in {concept()}'''
 
 # Causation
 def template_causation():
-    return ("Being " + adjective() + "\ncan cause " + random.choice([noun_plural(), concept()]))
+    return f'''Being {adjective()}
+    can cause {random.choice([noun_plural(), concept()])}'''
 
 # Two needs
 def template_two_needs():
-    return (horoscope() + "The two things you need\nin order to live " + adverb() + "\nare " + random.choice([noun_plural(), concept()]) + " and " + random.choice([noun_plural(), concept()]))
+    return f'''{horoscope()}
+    The two things you need
+    in order to live {adverb()}
+    are {random.choice([noun_plural(), concept()])} and {random.choice([noun_plural(), concept()])}'''
 
 # Maybe?
 def template_maybe():
-    return ("Maybe " + random.choice([noun_plural(), concept()]) + "\ncan turn into " + random.choice([noun_plural(), concept()]) + "\nwhen you get older?")
+    return f'''Maybe {random.choice([noun_plural(), concept()])}
+    can turn into {random.choice([noun_plural(), concept()])}
+    when you get older?'''
 
 # Orders
 def template_orders():
-    return (rule() + "They can order you\nto " + verb() + " " + noun_plural() + ",\nbut they can't order you\nto " + verb() + " " + noun_plural())
+    return f'''{rule()}
+    They can order you
+    to {verb()} {noun_plural()},
+    but they can't order you
+    to {verb()} {noun_plural()}'''
 
 # Family
 def template_family():
-    return (capitalize_first_letter(situation()) + "\nis pretty much like\n" + verb_ing() + " your " + random.choice([noun_singular(), concept()]))
+    return f'''{capitalize_first_letter(situation())}
+    is pretty much like
+    {verb_ing()} your {random.choice([noun_singular(), concept()])}'''
 
 # Truth
 def template_true():
-    return (capitalize_first_letter(noun_plural()) + " are the " + concept() + "\nof all that is " + adjective())
+    return f'''{capitalize_first_letter(noun_plural())} are the {concept()}
+    of all that is {adjective()}'''
 
 # Right
 def template_right():
-    return (rule() + "Pursue what is " + adjective() + "\ninstead of what is\nmaking you " + adjective())
+    return f'''{rule()}
+    Pursue what is {adjective()}
+    instead of what is
+    making you {adjective()}'''
     
 # Personality
 def template_personality():
     temp = noun_singular()
-    return (horoscope() + "You are\n" + a_or_an(temp) + temp + " " + people_singular())
+
+    return f'''{horoscope()}
+    You are
+    {a_or_an(temp)} {temp} {people_singular()}'''
 
 # The best
 def function_the_best():
     selected_word = noun_singular()
     temp = adjective()
-    return (rule() + "The best " + selected_word + "\nis " + a_or_an(temp) + temp + " " + selected_word)
+
+    return f'''{rule()}
+    The best {selected_word}
+    is {a_or_an(temp)} {temp} {selected_word}'''
 
 # Just be
 def template_be():
     temp1 = noun_singular()
     temp2 = adjective()
-    return ("Be " + a_or_an(temp1) + temp1 + "\nBe " + adjective() + "\nBe " + a_or_an(temp2) + temp2 + " " + noun_singular())
+
+    return f'''Be {a_or_an(temp1)} {temp1}
+    Be {adjective()}
+    Be {a_or_an(temp2)} {temp2} {noun_singular()}'''
     
 # Judgement
 def template_judgement():
-	return (horoscope() + capitalize_first_letter(noun_plural()) + " are\n" + times() + " " + adjective())
+	return f'''{horoscope}
+    {capitalize_first_letter(noun_plural())} are
+    {times()} {adjective()}'''
 
 # Watch out!
 def template_watch_out():
