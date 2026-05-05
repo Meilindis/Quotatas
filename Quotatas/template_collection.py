@@ -304,7 +304,8 @@ def template_potential():
     choice = random.randrange(0, 1, 1)
     phrase = ""
     if choice == 0:
-        phrase = "Seriously.\n" + capitalize_first_letter(a_or_an(adj)) + adj + " " + noun + "."
+        phrase = f'''Seriously.
+        {capitalize_first_letter(a_or_an(adj))} {adj} {noun}.'''
     else:
         phrase =  ""
     return f'''{horoscope()}
@@ -578,7 +579,7 @@ def template_you_can():
 def template_like():
     noun1 = noun_singular()
     noun2 = noun_singular()
-    end = random.choice([capitalize_first_letter(a_or_an(noun2) + noun2), capitalize_first_letter(concept())])
+    end = random.choice([capitalize_first_letter(f"{a_or_an(noun2)} {noun2}"), capitalize_first_letter(concept())])
 
     return f'''{capitalize_first_letter(concept())} is often
     like {a_or_an(noun1)} {noun1}:
