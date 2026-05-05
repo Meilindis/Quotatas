@@ -390,7 +390,7 @@ def template_be():
     
 # Judgement
 def template_judgement():
-	return f'''{horoscope}
+	return f'''{horoscope()}
     {capitalize_first_letter(noun_plural())} are
     {times()} {adjective()}'''
 
