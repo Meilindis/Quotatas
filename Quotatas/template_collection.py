@@ -104,14 +104,14 @@ def rule():
     if result !=1:
         return ""
     else:
-        return f"Rule {str(random.randrange(1, 12, 1))}:\n"
+        return f"Rule {str(random.randrange(1, 12, 1))}:\n\n"
 
 def horoscope():
     result = (random.randrange(1, 8, 1))
     if result !=1:
         return ""
     else:
-        return f"Today's horoscope - {capitalize_first_letter(random.choice(word_collections.zodiac))}:\n"
+        return f"Today's horoscope - {capitalize_first_letter(random.choice(word_collections.zodiac))}:\n\n"
 
 vowels = ['a', 'e', 'i', 'o', 'u']
 
@@ -145,28 +145,24 @@ def template_row():
 
 # Give three random compliments
 def template_three_compliments():
-    return f'''{horoscope()}
-    You are {adjective_positive()}
+    return f'''{horoscope()}You are {adjective_positive()}
     You are {adjective_positive()}
     You are {adjective_positive()}'''
 
 # Give three random characteristics:
 def template_three_characteristics():
-    return f'''{horoscope()}
-    You are {adjective()}
+    return f'''{horoscope()}You are {adjective()}
     You are {adjective()}
     You are {adjective()}'''
 
 # Give one random compliment
 def template_one_compliment():
-    return f'''{horoscope()}
-    {capitalize_first_letter(random.choice([times(), sometimes()]))} forget that
+    return f'''{horoscope()}{capitalize_first_letter(random.choice([times(), sometimes()]))} forget that
     you are {adjective_positive()}'''
 
 # General statement
 def template_general():
-    return f'''{rule()}
-    Being {adjective()}
+    return f'''{rule()}Being {adjective()}
     is {adjective()}'''
 
 # Surprise
@@ -183,20 +179,17 @@ def template_call_to_action():
 
 # Spread the word
 def template_spread_the_word():
-    return f'''{horoscope()}
-    {capitalize_first_letter(audiences())}
+    return f'''{horoscope()}{capitalize_first_letter(audiences())}
     that you are {adjective()}.
     Stay {adjective()}.'''
 
 # Definition
 def template_it_does():
-    return f'''{horoscope()}
-    {capitalize_first_letter(noun_plural())} will {verb()} you.'''
+    return f'''{horoscope()}{capitalize_first_letter(noun_plural())} will {verb()} you.'''
 
 # Sharing is caring
 def template_share():
-    return f'''{rule()}
-    {capitalize_first_letter(audiences())}
+    return f'''{rule()}{capitalize_first_letter(audiences())}
     that you are {adjective()}
     and {adjective()}'''
 
@@ -244,16 +237,14 @@ def template_change():
     temp1 = adjective()
     temp2 = adjective()
 
-    return f'''{rule()}
-    Don't be {a_or_an(temp1)}
+    return f'''{rule()}Don't be {a_or_an(temp1)}
     {temp1} {current_noun}.
     Be {a_or_an(temp2)}
     {temp2} {current_noun}.'''
     
 # Possibilities
 def template_possible():
-	return f'''{rule()}
-    If we can {verb()} {noun_plural()},
+	return f'''{rule()}If we can {verb()} {noun_plural()},
     we can {verb()} {noun_plural()}'''
 
 # Effect
@@ -263,24 +254,22 @@ def template_effect():
 
 # Encouragement
 def template_encouragement():
-	return f'''{rule()}
-    Challenge {random.choice([noun_plural(), people_plural()])}
+	return f'''{rule()}Challenge {random.choice([noun_plural(), people_plural()])}
     and act {adverb()}.'''
 
 # Strangely true
 def template_strangely_true():
     temp1 = noun_singular()
     temp2 = noun_singular()
-    return f'''{rule()}
-    Just because you're
+
+    return f'''{rule()}Just because you're
     {a_or_an(temp1)} {temp1}
     it doesn't mean you're
     {a_or_an(temp2)} {temp2}'''
 
 # Really
 def template_really():
-    return f'''{rule()}
-    {capitalize_first_letter(random.choice([noun_plural(), concept()]))}.
+    return f'''{rule()}{capitalize_first_letter(random.choice([noun_plural(), concept()]))}.
     Actually good
     for {random.choice([noun_plural(), concept()])}.'''
 
@@ -293,8 +282,7 @@ def template_explanation():
 
 # No need
 def template_no_need():
-    return f'''{rule()}
-    You don't need {random.choice([noun_plural(), concept()])}
+    return f'''{rule()}You don't need {random.choice([noun_plural(), concept()])}
     to {verb()} {noun_plural()}'''
 
 # Potential
@@ -308,8 +296,8 @@ def template_potential():
         {capitalize_first_letter(a_or_an(adj))} {adj} {noun}.'''
     else:
         phrase =  ""
-    return f'''{horoscope()}
-    You have the potential
+
+    return f'''{horoscope()}You have the potential
     to become {a_or_an(noun)} {noun}.
     {phrase}'''
 
@@ -338,8 +326,7 @@ def template_maybe():
 
 # Orders
 def template_orders():
-    return f'''{rule()}
-    They can order you
+    return f'''{rule()}They can order you
     to {verb()} {noun_plural()},
     but they can't order you
     to {verb()} {noun_plural()}'''
@@ -357,8 +344,7 @@ def template_true():
 
 # Right
 def template_right():
-    return f'''{rule()}
-    Pursue what is {adjective()}
+    return f'''{rule()}Pursue what is {adjective()}
     instead of what is
     making you {adjective()}'''
     
@@ -366,8 +352,7 @@ def template_right():
 def template_personality():
     temp = noun_singular()
 
-    return f'''{horoscope()}
-    You are
+    return f'''{horoscope()}You are
     {a_or_an(temp)} {temp} {people_singular()}'''
 
 # The best
@@ -375,8 +360,7 @@ def function_the_best():
     selected_word = noun_singular()
     temp = adjective()
 
-    return f'''{rule()}
-    The best {selected_word}
+    return f'''{rule()}The best {selected_word}
     is {a_or_an(temp)} {temp} {selected_word}'''
 
 # Just be
@@ -390,44 +374,37 @@ def template_be():
     
 # Judgement
 def template_judgement():
-	return f'''{horoscope()}
-    {capitalize_first_letter(noun_plural())} are
+	return f'''{horoscope()}{capitalize_first_letter(noun_plural())} are
     {times()} {adjective()}'''
 
 # Watch out!
 def template_watch_out():
-	return f'''{horoscope()}
-    {capitalize_first_letter(noun_plural())}
+	return f'''{horoscope()}{capitalize_first_letter(noun_plural())}
     are coming for you!'''
 
 # The higher, the fewer
 def template_higher():
-    return f'''{rule()}
-    The {comparative()}, the {comparative()}'''
+    return f"{rule()}The {comparative()}, the {comparative()}"
 
 # More you
 def template_you_superlative():
-    return f'''{horoscope()}
-    You can be
+    return f'''{horoscope()}You can be
     the {superlative()} {noun_singular()}'''
 
 # Never
 def template_never():
-    return f'''{rule()}
-    {capitalize_first_letter(times())} stop
+    return f'''{rule()}{capitalize_first_letter(times())} stop
     {situation()}'''
 
 # Needs
 def template_need():
     temp = adjective()
-    return f'''{rule()}
-    You just need
+    return f'''{rule()}You just need
     {a_or_an(temp)} {temp} {noun_singular()}'''
 
 # You must
 def template_must():
-    return f'''{rule()}
-    If you are the {superlative()} at
+    return f'''{rule()}If you are the {superlative()} at
     {situation()},
     you {verb_mandatory()}
     {verb()} {noun_plural()}'''
@@ -439,8 +416,7 @@ def template_day():
 
 # LLAP
 def template_llap():
-    return f'''{rule()}
-    {capitalize_first_letter(verb())} {adverb()}
+    return f'''{rule()}{capitalize_first_letter(verb())} {adverb()}
     and {random.choice([verb(), verb_intransitive()])}'''
 
 # Why?
@@ -450,8 +426,7 @@ def template_why():
 
 # Never
 def template_never_again():
-    return f'''{rule()}
-    Never {verb_intransitive()}
+    return f'''{rule()}Never {verb_intransitive()}
     unless you're willing
     to {random.choice([verb(), verb_intransitive()])}'''
 
@@ -459,34 +434,31 @@ def template_never_again():
 def template_excuse():
     temp1 = people_singular()
     temp2 = noun_singular()
+
     return f'''Excuse me
     What does {a_or_an(temp1)} {temp1} want
     with {a_or_an(temp2)} {temp2}?'''
 
 # Outweigh
 def template_outweigh():
-    return f'''{rule()}
-    The {noun_plural()}
+    return f'''{rule()}The {noun_plural()}
     of the {noun_plural()}
     outweigh the {noun_plural()}
     of the {noun_plural()}'''
 
 # Today
 def template_today():
-    return f'''{horoscope()}
-    {capitalize_first_letter(sometimes())},
+    return f'''{horoscope()}{capitalize_first_letter(sometimes())},
     you will encounter {random.choice([noun_plural(), concept()])}'''
 
 # Do it
 def template_do_it():
-    return f'''{horoscope()}
-    Start {verb_ing()}
+    return f'''{horoscope()}Start {verb_ing()}
     {sometimes()}'''
 
 # They're gonna
 def template_gonna():
-	return f'''{horoscope()}
-    {capitalize_first_letter(noun_plural())} are gonna
+	return f'''{horoscope()}{capitalize_first_letter(noun_plural())} are gonna
     {verb()} you!'''
 
 # There's coffee...
@@ -504,8 +476,7 @@ def template_coffee():
 
 # The world
 def template_world():
-    return f'''{horoscope()}
-    {capitalize_first_letter(adjective())} {noun_plural()} are going
+    return f'''{horoscope()}{capitalize_first_letter(adjective())} {noun_plural()} are going
     to rule the world.'''
     
 # Taskmaster
@@ -570,8 +541,7 @@ def template_somebody():
 # You can
 def template_you_can():
     temp = verb()
-    return f'''{rule()}
-    You can {temp}
+    return f'''{rule()}You can {temp}
     whom you want to {temp}.
     {capitalize_first_letter(people_plural())} love you.'''
 
@@ -608,8 +578,7 @@ def template_yes():
 
 # Less and more
 def template_less_more():
-    return f'''{rule()}
-    The less {adjective()},
+    return f'''{rule()}The less {adjective()},
     the more {adjective()}.'''
 
 # Almost the same
@@ -649,8 +618,7 @@ def template_percent():
 
 # Becoming
 def template_become():
-    return f'''{horoscope()}
-    Make {random.choice([concept(), noun_plural()])}
+    return f'''{horoscope()}Make {random.choice([concept(), noun_plural()])}
     become {random.choice([concept(), noun_plural()])}'''
 
 # Not just
@@ -781,7 +749,7 @@ def template_noi():
 # Or don't
 def template_dont():
     passive = verb()
-    active = verb() + " " + noun_plural()
+    active = f"{verb()} {noun_plural()}"
 
     return f'''{capitalize_first_letter(random.choice([passive, active]))}.
     
@@ -789,7 +757,8 @@ def template_dont():
     
 # They do
 def template_theydo():
-	they = capitalize_first_letter(adjective()) + " " + people_plural()
+	they = f"{capitalize_first_letter(adjective())} {people_plural()}"
+
 	return f'''{they} {verb_intransitive()}
     {they} {verb_intransitive()}
     {they} really {verb_intransitive()}'''
