@@ -140,7 +140,7 @@ class MainWindow(QMainWindow):
         self.quote_area.setStyleSheet('background-color: #2a4648;')       
 
         # Font settings - name
-        self.change_font_label = QLabel("Change font:")
+        self.change_font_label = QLabel("Font:")
         self.change_font_label.setObjectName('change_font_label')
         self.change_font = QComboBox()
         self.change_font.setObjectName('change_font')
@@ -166,6 +166,18 @@ class MainWindow(QMainWindow):
         # Add the font sizes
         for i in (range(16, 42, 2)):
             self.change_font_size.addItem(str(i))
+        self.position_label = QLabel("Align:")
+        self.position_label.setObjectName('position_label')
+        # Font settings - position
+        self.change_position = QComboBox()
+        self.change_position.setObjectName('change_position')
+        self.change_position.currentTextChanged.connect(self.change_text_position)
+        self.change_position.addItem("")
+        self.change_position.setCurrentIndex(self.change_position.findText(""))
+        # Add the position options
+        self.change_position.addItem("Top")
+        self.change_position.addItem("Middle")
+        self.change_position.addItem("Bottom")
         
         logger.info("UI components created.")
 
@@ -190,6 +202,7 @@ class MainWindow(QMainWindow):
         # Remove empty entries that are now redundant
         self.change_font.removeItem(self.change_font.findText(""))
         self.change_font_size.removeItem(self.change_font_size.findText(""))
+        self.change_position.removeItem(self.change_position.findText(""))
 
     def arrange_layouts(self):
         logger.info("Setting up UI layout...")
@@ -200,6 +213,8 @@ class MainWindow(QMainWindow):
         self.font_settings_layout.addWidget(self.change_font)
         self.font_settings_layout.addWidget(self.change_colour)
         self.font_settings_layout.addWidget(self.change_font_size)
+        self.font_settings_layout.addWidget(self.position_label)
+        self.font_settings_layout.addWidget(self.change_position)
         self.font_settings_container = QWidget()
         self.font_settings_container.setObjectName('font_settings_container')
         self.font_settings_container.setLayout(self.font_settings_layout)
@@ -377,6 +392,7 @@ class MainWindow(QMainWindow):
             logger.info("\tSelecting new font and font size...")
             self.change_font.setCurrentIndex(index_font)
             self.change_font_size.setCurrentIndex(self.change_font_size.findText(str(self._font[1])))
+            self.change_position.setCurrentIndex(self.change_position.findText(str(self._image[3].capitalize())))
             logger.info("\tFont name and size updated.")
         self._generating_quote = False
 
@@ -484,6 +500,18 @@ class MainWindow(QMainWindow):
                 logger.info("\tNew font colour applied: RGB" + str(self._image[1]) + ".")
             # Re-create the image            
             self.create_quote_image()
+
+    def change_text_position(self):
+        # Only update if triggered by a UI event, not when generating a quote
+        if not self._generating_quote:
+            logger.info("\tChanging text position...")
+            if self._image != None:
+                new_position = self.change_position.currentText().lower()
+                self._image[3] = new_position
+                logger.info("\tNew position applied: " + new_position + ".") 
+            # Re-create the image            
+            self.create_quote_image()
+
 
     def save_quote(self):
         # Check if there's a generated image present
