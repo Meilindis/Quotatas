@@ -832,6 +832,11 @@ def template_supposed():
     It's not supposed
     to be {adjective()}.'''
 
+# Tick tock
+def template_clock():
+    return f'''Tick tock
+    {random.choice([concept(), noun_singular()])} o'clock'''
+
 # List of defined templates (don't forget to add new templates here or they won't be used!)
 template_list = [template_times_three, 
                  template_three_compliments, 
@@ -947,5 +952,6 @@ template_list = [template_times_three,
 				 template_thatsme, 
 				 template_whyisit, 
 				 template_supposed, 
+				 template_clock, 
                  ]
 
