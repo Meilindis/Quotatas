@@ -762,7 +762,7 @@ def template_theydo():
 
 # Complicated
 def template_complicated():
-    return f'''{horoscope()}{situation_active()}
+    return f'''{horoscope()}{situation()}
     complicates things'''
 
 # Of course
