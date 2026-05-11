@@ -776,21 +776,18 @@ def template_attempt():
     return f'''{concept()}
     is actually our attempt
     at solving the {concept()}
-    of {concept()}
-    '''
+    of {concept()}'''
 
 # Memes
 def template_memes():
     return f'''{rule()}Share memes
-    about {concept()}
-    '''
+    about {concept()}'''
 
 # Spread
 def template_spread():
     return f'''{horoscope()}Make
     {concept()}
-    spread.
-    '''
+    spread.'''
 
 # Better
 def template_better():
@@ -799,21 +796,41 @@ def template_better():
     return f'''{rule()}It's better to be
     {a_or_an(adj1)} {adj1} {noun_singular()}
     than
-    {a_or_an(adj2)} {adj2} {noun_singular()}
-    '''
+    {a_or_an(adj2)} {adj2} {noun_singular()}'''
 
 # A thing
 def template_athing():
-	return f'''Is {random.choice([adjective(), noun_singular()])} {noun_singular()}
-	a thing?
-	'''
+    return f'''Is {random.choice([adjective(), noun_singular()])} {noun_singular()}
+    a thing?'''
 
 # Odd
 def template_odd():
-	return f'''It's {quantifier()}
-	that my {noun_plural()}
-	aren't my {noun_plural()}
-	'''
+    return f'''It's {quantifier()} 
+    that my {noun_plural()}
+    aren't my {noun_plural()}'''
+
+# Will you?
+def template_willyou():
+    return f'''Will you {verb()}
+    my {noun_singular()}?'''
+
+# That's me
+def template_thatsme():
+    return f'''{noun_plural()},
+    {adjective()},
+    that's me.'''
+	
+# Why is it?
+def template_whyisit():
+    adj = adjective()
+    return f'''It's {adj}!
+    Why is it {adj}!''' 
+
+# Supposed
+def template_supposed():
+    return f'''It's {concept()}.
+    It's not supposed
+    to be {adjective()}.'''
 
 # List of defined templates (don't forget to add new templates here or they won't be used!)
 template_list = [template_times_three, 
@@ -926,5 +943,9 @@ template_list = [template_times_three,
                  template_better,
 				 template_athing,
 				 template_odd, 
+				 template_willyou, 
+				 template_thatsme, 
+				 template_whyisit, 
+				 template_supposed, 
                  ]
 
