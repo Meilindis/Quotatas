@@ -140,7 +140,7 @@ class MainWindow(QMainWindow):
         self.quote_area.setStyleSheet('background-color: #2a4648;')       
 
         # Font settings - name
-        self.change_font_label = QLabel("Font:")
+        self.change_font_label = QLabel("Text:")
         self.change_font_label.setObjectName('change_font_label')
         self.change_font = QComboBox()
         self.change_font.setObjectName('change_font')

@@ -195,13 +195,11 @@ def template_share():
 
 # Oh you
 def template_you():
-    return f'''{horoscope()}
-    You {noun_singular()}'''
+    return f'''{horoscope()}You {noun_singular()}'''
 
 # Oh adjective you
 def template_you_adjective():
-    return f'''{horoscope()}
-    You {adjective()} {noun_singular()}'''
+    return f'''{horoscope()}You {adjective()} {noun_singular()}'''
 
 # It can be
 def template_can_be():
@@ -210,8 +208,7 @@ def template_can_be():
 
 # No sorry
 def template_no_sorry():
-    return f'''{rule()}
-    Don't apologise
+    return f'''{rule()}Don't apologise
     for being {adjective()}'''
 
 # Reasons
@@ -313,8 +310,7 @@ def template_causation():
 
 # Two needs
 def template_two_needs():
-    return f'''{horoscope()}
-    The two things you need
+    return f'''{horoscope()}The two things you need
     in order to live {adverb()}
     are {random.choice([noun_plural(), concept()])} and {random.choice([noun_plural(), concept()])}'''
 
@@ -558,7 +554,7 @@ def template_like():
 # Effect
 def template_effect_again():
     noun = noun_singular()
-    end = random.choice([a_or_an(noun) + noun, concept()])
+    end = random.choice([f"{a_or_an(noun)} {noun}", concept()])
 
     return f'''{capitalize_first_letter(concept())}
     is usually followed
@@ -654,7 +650,6 @@ def template_recipe():
 	
 # Contents
 def template_contents():
-    food = food_singular()
     return f'''{capitalize_first_letter(concept())}?
     That's just {food_concept()},
     a tiny bit of {random.choice([food_singular(), concept()])}
@@ -669,8 +664,7 @@ def template_ingredients():
 # Necessity
 def template_necessity():
 	temp = noun_singular()
-	return f'''{rule()}
-    You need {random.choice([noun_plural(), f"{a_or_an(temp)} {temp}"])}
+	return f'''{rule()}You need {random.choice([noun_plural(), f"{a_or_an(temp)} {temp}"])}
     to {situation_active()}.'''
 	
 # Peanuts
@@ -762,6 +756,48 @@ def template_theydo():
 	return f'''{they} {verb_intransitive()}
     {they} {verb_intransitive()}
     {they} really {verb_intransitive()}'''
+
+# Complicated
+def template_complicated():
+    return f'''{horoscope()}{situation_active()}
+    complicates things'''
+
+# Of course
+def template_of_course():
+    return f'''Of course you are {adjective_positive()}
+    Of course you are {adjective_positive()}
+    Of course you are {adjective_positive()}'''
+
+# Attempt
+def template_attempt():
+    return f'''{concept()}
+    is actually our attempt
+    at solving the {concept()}
+    of {concept()}
+    '''
+
+# Memes
+def template_memes():
+    return f'''{rule()}Share memes
+    about {concept()}
+    '''
+
+# Spread
+def template_spread():
+    return f'''{horoscope()}Make
+    {concept()}
+    spread.
+    '''
+
+# Better
+def template_better():
+    adj1 = adjective()
+    adj2 = adjective()
+    return f'''{rule()}It's better to be
+    {a_or_an(adj1)} {adj1} {noun}
+    than
+    {a_or_an(adj2)} {adj2} {noun}
+    '''
 
 # List of defined templates (don't forget to add new templates here or they won't be used!)
 template_list = [template_times_three, 
@@ -866,5 +902,11 @@ template_list = [template_times_three,
                  template_noi,
                  template_dont,
                  template_theydo,
+                 template_complicated,
+                 template_of_course,
+                 template_attempt,
+                 template_memes,
+                 template_spread,
+                 template_better,
                  ]
 
