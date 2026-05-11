@@ -800,7 +800,7 @@ def template_better():
 
 # A thing
 def template_athing():
-    return f'''Is {random.choice([adjective(), noun_singular()])} {noun_singular()}
+    return f'''Is "{random.choice([adjective(), noun_singular()])} {noun_singular()}" 
     a thing?'''
 
 # Odd
