@@ -89,6 +89,9 @@ def meal():
 def time_unit():
     return random.choice(word_collections.time_units)
 
+def quantifier():
+	return random.choice(word_collections.quantifiers)
+
 # -------------------------------------------------------------------------------------------------------------------
 
 # HELPER FUNCTIONS
@@ -799,6 +802,19 @@ def template_better():
     {a_or_an(adj2)} {adj2} {noun_singular()}
     '''
 
+# A thing
+def template_athing():
+	return f'''Is {random.choice([adjective(), noun_singular()])} {noun_singular()}
+	a thing?
+	'''
+
+# Odd
+def template_odd():
+	return f'''It's {quantifier()}
+	that my {noun_plural()}
+	aren't my {noun_plural()}
+	'''
+
 # List of defined templates (don't forget to add new templates here or they won't be used!)
 template_list = [template_times_three, 
                  template_three_compliments, 
@@ -908,5 +924,7 @@ template_list = [template_times_three,
                  template_memes,
                  template_spread,
                  template_better,
+				 template_athing,
+				 template_odd, 
                  ]
 
