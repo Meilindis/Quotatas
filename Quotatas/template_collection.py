@@ -794,9 +794,9 @@ def template_better():
     adj1 = adjective()
     adj2 = adjective()
     return f'''{rule()}It's better to be
-    {a_or_an(adj1)} {adj1} {noun}
+    {a_or_an(adj1)} {adj1} {noun()}
     than
-    {a_or_an(adj2)} {adj2} {noun}
+    {a_or_an(adj2)} {adj2} {noun()}
     '''
 
 # List of defined templates (don't forget to add new templates here or they won't be used!)
