@@ -785,9 +785,7 @@ def template_memes():
 
 # Spread
 def template_spread():
-    return f'''{horoscope()}Make
-    {concept()}
-    spread.'''
+    return f"{horoscope()}Make {concept()} spread."
 
 # Better
 def template_better():
@@ -836,6 +834,25 @@ def template_supposed():
 def template_clock():
     return f'''Tick tock
     {random.choice([concept(), noun_singular()])} o'clock'''
+
+# Life
+def template_life():
+    return f'''{rule()}Sometimes, life
+    is all about
+    {situation()}'''
+
+# Impossible?
+def template_impossible():
+    temp = verb()
+    return f'''{capitalize_first_letter(concept())} is
+    to {temp}
+    the un{temp}able'''
+
+# Every time
+def template_every_time():
+    return f'''Every time you
+    {verb()} {random.choice([concept(), noun_plural()])},
+    you also {verb()} {concept()}'''
 
 # List of defined templates (don't forget to add new templates here or they won't be used!)
 template_list = [template_times_three, 
@@ -953,5 +970,8 @@ template_list = [template_times_three,
 				 template_whyisit, 
 				 template_supposed, 
 				 template_clock, 
+                 template_life,
+                 template_impossible,
+                 template_every_time,
                  ]
 
