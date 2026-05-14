@@ -6,13 +6,16 @@ be the best
 be technically correct
 brush your teeth
 build a scarecrow
+build a treehouse
 call your best friend
+cast a spell
 catch the train
 charge your phone
 chase a donkey
 climb a mountain
 cook a lasagna
 cough and sneeze
+create a wormhole
 create the universe
 dance in the dark
 do artisinal programming
@@ -31,13 +34,16 @@ get arrested
 go on vacation
 go out for drinks
 go to warp
+have breakfast
 have a cat
+have a cuppa
 have a dog
 have a romantic dinner
 help grandpa cross the street
 hem curtains
 hop on the train
 hover in the air
+juggle four balls
 lick a subway pole
 listen to the radio
 make a big splash
@@ -52,12 +58,14 @@ pick up a chicken
 pilot a shuttlecraft
 play a game
 play a sonata
+play with a kitten
 polish shoes
 print a document
 read a novel
 ride a horse
 rot in bed
 sail on a lake
+save the world
 set your alarm
 sharpen a pencil
 shave your head
@@ -67,10 +75,12 @@ switch energy providers
 take a walk
 take daily showers
 take your meds
+train a parrot
 travel at warp speed
 turn off the stove
 turn on the lights
 turn up the volume
+visit another planet
 visit the moon
 visit your parents
 visit a Star Trek convention
@@ -78,3 +88,4 @@ wake up in the morning
 watch the stars at night
 wear high heels
 write a book
+write a poem
