@@ -854,6 +854,41 @@ def template_every_time():
     {verb()} {random.choice([concept(), noun_plural()])},
     you also {verb()} {concept()}'''
 
+# Consider
+def template_consider():
+    return f'''Consider this:
+    {capitalize_first_letter(situation())} is {adjective()}.
+    That's why it's {adjective()}.'''
+
+# Go on
+def template_go_on():
+    return f'''Go on making
+    {adjective()} {people_plural()}
+    {adjective()}.'''
+
+# If
+def template_if():
+    temp = people_singular()
+    adj = adjective()
+    return f'''If you're gonna
+    be a {temp}
+    be {a_or_an(adj)} {adj} {temp}.'''
+
+# Some
+def template_some():
+    return f'''Some people 
+    become {people_plural()}
+    because they like
+    {situation()}.'''
+
+# All
+def template_all():
+    temp = noun_singular()
+    return f'''All you need
+    to {verb()} {concept()}
+    is {a_or_an(temp)} {temp} and {concept()}.
+    '''
+
 # List of defined templates (don't forget to add new templates here or they won't be used!)
 template_list = [template_times_three, 
                  template_three_compliments, 
@@ -973,5 +1008,10 @@ template_list = [template_times_three,
                  template_life,
                  template_impossible,
                  template_every_time,
+                 template_consider,
+                 template_go_on,
+                 template_if,
+                 template_some,
+                 template_all,
                  ]
 
