@@ -118,6 +118,7 @@ spatulas
 spirals
 spoons
 stamps
+staplers
 stars
 stones
 suns

@@ -128,6 +128,7 @@ spiral
 spoon
 staircase
 stamp
+stapler
 star
 stone
 sun

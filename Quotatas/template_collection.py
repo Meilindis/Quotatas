@@ -762,7 +762,7 @@ def template_theydo():
 
 # Complicated
 def template_complicated():
-    return f'''{horoscope()}{situation()}
+    return f'''{horoscope()}{capitalize_first_letter(situation())}
     complicates things'''
 
 # Of course
@@ -773,7 +773,7 @@ def template_of_course():
 
 # Attempt
 def template_attempt():
-    return f'''{concept()}
+    return f'''{capitalize_first_letter(concept())}
     is actually our attempt
     at solving the {concept()}
     of {concept()}'''
