@@ -1,6 +1,6 @@
 a_fetters_recto_b_several_figures_verso.png;(145, 0, 140);justify;bottom;0;0
 a_luncheon_party_.png;(255, 245, 185);justify;bottom;0;0
-adventure.png;(29, 37, 82);justify;bottom;0;0
+adventure.png;(0, 0, 0);justify;top;0;0
 alarm.png;(255, 255, 255);justify;top;0;0
 amsterdam.png;(255, 255, 255);justify;top;0;0
 angel.png;(255, 255, 255);justify;top;0;0
@@ -11,6 +11,7 @@ angry.png;(255, 255, 255);justify;top;0;0
 argument.png;(29, 37, 82);justify;top;0;0
 ascent.png;(255, 255, 255);justify;top;0;0
 babushka.png;(255, 255, 255);justify;top;0;0
+backgammon.png;(255, 255, 255);justify;bottom;0;0
 balloons.png;(65, 75, 139);justify;top;0;0
 bananas.png;(255, 255, 255);justify;top;0;0
 batflying.png;(255, 255, 255);justify;top;0;0
@@ -18,6 +19,8 @@ bathanging.png;(255, 245, 185);justify;bottom;0;-20
 bicycle.png;(171, 204, 255);justify;top;0;0
 bigsplash.png;(255, 255, 255);justify;top;0;0
 blossoms.png;(65, 75, 139);justify;top;0;0
+bluecrystal.png;(255, 255, 255);justify;bottom;0;0
+bluemarble.png;(255, 255, 255);justify;bottom;0;0
 bluetitfront.png;(29, 37, 82);justify;bottom;0;0
 bluetitside.png;(29, 37, 82);justify;top;0;0
 bot.png;(255, 255, 255);justify;bottom;0;0
@@ -31,6 +34,7 @@ chicken.png;(255, 255, 255);justify;top;0;0
 chocolate.png;(255, 255, 255);justify;top;0;0
 clock.png;(255, 255, 255);justify;top;0;0
 clogs.png;(255, 255, 255);justify;top;0;0
+clover.png;(255, 255, 255);justify;top;0;0
 clown.png;(255, 255, 255);justify;top;0;0
 clownfish.png;(255, 255, 255);justify;top;0;0
 clownkit.png;(255, 255, 255);justify;bottom;0;0
@@ -38,6 +42,7 @@ coffee.png;(255, 245, 185);justify;bottom;0;0
 corner.png;(255, 255, 255);justify;bottom;0;0
 couple_mountains.png;(29, 37, 82);justify;top;0;0
 crow.png;(255, 245, 185);justify;top;0;0
+crystal.png;(255, 255, 255);justify;top;0;0
 cucumber.png;(255, 255, 255);justify;bottom;0;0
 building_the_freidrich-strasse_station.png;(65, 75, 139);justify;top;0;0
 dancer.png;(255, 255, 255);justify;top;0;0
@@ -55,6 +60,7 @@ ducklings.png;(255, 255, 255);justify;bottom;0;-45
 earth.png;(255, 255, 255);justify;top;0;0
 face.png;(255, 255, 255);justify;bottom;0;0
 flysex.png;(255, 245, 185);justify;top;0;0
+fortune.png;(29, 37, 82);justify;bottom;0;0
 fountain.png;(0, 0, 0);justify;bottom;0;0
 frogheart.png;(199, 17, 234);justify;bottom;0;0
 frogs.png;(255, 255, 255);justify;bottom;0;-45
@@ -86,6 +92,7 @@ lightning.png;(255, 255, 255);justify;bottom;0;0
 lindisfarne.png;(255, 255, 255);justify;top;0;0
 lion.png;(255, 255, 255);justify;top;0;0
 llama.png;(255, 255, 255);justify;top;0;0
+locks.png;(255, 255, 255);justify;bottom;0;0
 lonelybot.png;(255, 255, 255);justify;top;0;0
 manager.png;(255, 255, 255);justify;bottom;0;0
 mannekenpis.png;(167, 255, 174);justify;bottom;0;0
@@ -97,13 +104,15 @@ megaphone.png;(29, 37, 82);justify;top;40;0
 milky_way.png;(255, 245, 185);justify;top;0;0
 mime.png;(255, 255, 255);justify;top;0;0
 monkey.png;(255, 255, 255);justify;top;0;0
+monopoly.png;(29, 37, 82);justify;bottom;0;0
 monster.png;(255, 255, 255);justify;top;0;0
 newspaper.png;(199, 17, 234);justify;bottom;0;0
 chess.png;(255, 255, 255);justify;top;0;0
-owl.png;(255, 255, 255);justify;bottom;0;0
+owl.png;(29, 37, 82);justify;bottom;0;0
+pawns.png;(255, 255, 255);justify;bottom;0;0
 peacock.png;(29, 37, 82);justify;top;0;0
 pear.png;(255, 255, 255);justify;top;0;0
-peek.png;(255, 255, 255);justify;bottom;0;0
+peek.png;(0, 0, 0);justify;top;0;0
 pepper.png;(255, 255, 255);justify;top;0;0
 pinocchio.png;(255, 255, 255);justify;bottom;0;0
 pony.png;(255, 255, 255);justify;top;0;0
@@ -123,6 +132,7 @@ robot.png;(199, 17, 234);justify;top;0;0
 rubberducks.png;(29, 37, 82);justify;top;0;0
 ruin.png;(255, 255, 255);justify;top;0;0
 salad.png;(255, 255, 255);justify;bottom;0;0
+scrabble.png;(255, 255, 255);justify;bottom;0;0
 sheep.png;(29, 37, 82);justify;top;0;0
 shocked.png;(29, 37, 82);justify;top;0;0
 silhouettes.png;(65, 75, 139);justify;top;0;0
@@ -141,6 +151,7 @@ tea.png;(255, 255, 255);justify;top;0;0
 the_tournament.png;(255, 245, 215);justify;top;0;0
 the_visit_.png;(142, 255, 221);justify;bottom;0;0
 three_girls_in_profile.png;(24, 0, 59);justify;bottom;0;0
+tictactoe.png;(255, 255, 255);justify;bottom;0;0
 tiles.png;(255, 255, 255);justify;top;0;0
 tits.png;(255, 245, 185);justify;top;0;0
 tolerable.png;(29, 37, 82);justify;top;0;0
@@ -158,4 +169,4 @@ woman_flowers.png;(29, 37, 82);justify;top;0;0
 world.png;(29, 37, 82);justify;top;0;0
 yarn.png;(29, 37, 82);justify;top;0;0
 yawners.png;(29, 37, 82);justify;bottom;0;0
-yougotthis.png;(255, 255, 255);justify;bottom;0;0
+yougotthis.png;(255, 245, 185);justify;bottom;0;0
