@@ -403,7 +403,7 @@ class MainWindow(QMainWindow):
             return
 
         # Prepare the image
-        logger.info("\tOpening image...")         
+        logger.info("\tOpening image: " + self._image[0] + "...")         
         image_path = os.path.join(current_path, 'images', self._image[0])
         image = Image.open(image_path)
 
@@ -415,7 +415,6 @@ class MainWindow(QMainWindow):
         font_custom_size = self._font[1]
         line_height = font_custom_size + 8
         logger.info("\tSetting line height to " + str(line_height) + ".")
-        img = ImageText(image, background=(255, 255, 255, 200)) # 200 = alpha
         
         # Determine number of lines
         nr_of_lines = text.count("\n") + 1
@@ -444,7 +443,33 @@ class MainWindow(QMainWindow):
         x = x_val
         y = y_val
 
+        logger.info("\tDrawing text background...")
+        TINT_COLOR = (0, 0, 0)  # Black
+        TRANSPARENCY = .25  # Degree of transparency, 0-100%
+        OPACITY = int(255 * TRANSPARENCY)
+        # Set up overlay image
+        overlay_w = 500
+        overlay_h = nr_of_lines * 35
+        overlay = Image.new('RGBA', image.size, TINT_COLOR+(0,))
+        #overlay.putalpha(128)
+
+        bg_w, bg_h = image.size
+        if self._image[3] == 'top':
+            offset_y = 0              
+        elif self._image[3] == 'middle':
+            offset_y = 250 - (overlay_h // 2)
+        elif self._image[3] == 'bottom':
+            offset_y = 500 - overlay_h
+        else:
+            return
+
+        draw = ImageDraw.Draw(overlay)  # Create a context for drawing things on it.
+        draw.rectangle(((0, y-15), (500, y+overlay_h+15)), fill=TINT_COLOR+(OPACITY,))
+
+        image = Image.alpha_composite(image, overlay)
+
         logger.info("\tDrawing quote text...")
+        img = ImageText(image, background=(255, 255, 255, 200)) # 200 = alpha
         # Now draw each line onto the image
         for line in lines:
             img.write_text_box((x, y), line, box_width=180, font_filename=font_name,
