@@ -444,24 +444,24 @@ class MainWindow(QMainWindow):
 
         logger.info("\tDrawing text background...")
         TINT_COLOR = (0, 0, 0)  # Black
-        TRANSPARENCY = .25  # Degree of transparency, 0-100%
+        TRANSPARENCY = .25  # Degree of transparency
         OPACITY = int(255 * TRANSPARENCY)
         # Set up overlay image
-        overlay_w = 500
-        overlay_h = nr_of_lines * line_height
+        overlay_width = 500
+        overlay_height = nr_of_lines * line_height
         overlay = Image.new('RGBA', image.size, TINT_COLOR+(0,))
 
         if self._image[3] == 'top':
             offset_y = 0              
         elif self._image[3] == 'middle':
-            offset_y = 250 - (overlay_h // 2)
+            offset_y = 250 - (overlay_height // 2)
         elif self._image[3] == 'bottom':
-            offset_y = 500 - overlay_h
+            offset_y = 500 - overlay_height
         else:
             return
 
         draw = ImageDraw.Draw(overlay)  # Create a context for drawing things on it.
-        draw.rectangle(((0, y-15), (500, y+overlay_h+15)), fill=TINT_COLOR+(OPACITY,))
+        draw.rectangle(((0, y-15), (500, y+overlay_height+15)), fill=TINT_COLOR+(OPACITY,))
 
         image = Image.alpha_composite(image, overlay)
 
