@@ -9,6 +9,7 @@ creepy
 cynical
 daft
 difficult
+dimwitted
 ditzy
 dodgy
 dominant
@@ -30,6 +31,8 @@ poor
 salty
 sarcastic
 selfish
+shameful
+shameless
 sour
 spiteful
 stupid

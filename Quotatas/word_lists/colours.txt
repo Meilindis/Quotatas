@@ -3,6 +3,7 @@ beige
 black
 blue
 brown
+chartreuse
 cyan
 green
 indigo
@@ -11,6 +12,7 @@ orange
 pink
 purple
 red
+scarlet
 tan
 teal
 turquoise

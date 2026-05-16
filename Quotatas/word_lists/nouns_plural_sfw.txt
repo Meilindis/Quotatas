@@ -92,6 +92,7 @@ objectives
 oceans
 peanuts
 pencils
+pens
 petals
 pets
 phasers
@@ -115,6 +116,7 @@ skirts
 spaceships
 spanners
 spatulas
+speakers
 spirals
 spoons
 stamps
@@ -137,6 +139,7 @@ time machines
 traffic cones
 transporters
 tricorders
+tripods
 trucks
 unicorns
 universes

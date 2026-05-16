@@ -12,6 +12,7 @@ capybaras
 cats
 cheetahs
 chickens
+coots
 cows
 crocodiles
 dogs

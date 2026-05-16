@@ -12,6 +12,7 @@ capybara
 cat
 cheetah
 chicken
+coot
 cow
 crocodile
 dog

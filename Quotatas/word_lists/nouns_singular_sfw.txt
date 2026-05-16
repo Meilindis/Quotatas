@@ -100,6 +100,7 @@ objective
 ocean
 pantry
 peanut
+pen
 pencil
 pet
 petal
@@ -124,6 +125,7 @@ slide
 spaceship
 spanner
 spatula
+speaker
 spiral
 spoon
 staircase
@@ -147,6 +149,7 @@ time machine
 traffic cone
 transporter
 tricorder
+tripod
 truck
 unicorn
 universe
