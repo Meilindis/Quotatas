@@ -6,7 +6,7 @@ amsterdam.png;(255, 255, 255);justify;top;0;0
 angel.png;(255, 255, 255);justify;top;0;0
 angel2.png;(255, 255, 255);justify;bottom;0;0
 annoyed.png;(65, 75, 139);justify;top;0;0
-angry_lady.png;(65, 75, 139);justify;top;0;0
+angry_lady.png;(255, 255, 255);justify;top;0;0
 angry.png;(255, 255, 255);justify;top;0;0
 argument.png;(29, 37, 82);justify;top;0;0
 ascent.png;(255, 255, 255);justify;top;0;0
@@ -77,13 +77,13 @@ heart_cloud.png;(29, 37, 82);justify;top;0;0
 hearts.png;(29, 37, 82);justify;top;0;0
 horse.png;(255, 255, 255);justify;middle;40;0
 horses.png;(255, 255, 255);justify;top;0;0
-invisible.png;(199, 17, 234);justify;top;0;0
+invisible.png;(255, 255, 255);justify;top;0;0
 jellyfish.png;(255, 255, 255);justify;top;0;0
 joy.png;(29, 37, 82);justify;top;0;0
 juggler.png;(29, 37, 82);justify;top;0;0
 kale.png;(255, 245, 185);justify;top;0;0
 kitten.png;(255, 255, 255);justify;bottom;0;0
-ladybug.png;(29, 37, 82);justify;top;0;0
+ladybug.png;(255, 255, 255);justify;top;0;0
 lamb.png;(255, 255, 255);justify;top;0;0
 legs.png;(255, 255, 255);justify;top;0;0
 lemur.png;(255, 255, 255);justify;bottom;0;0
@@ -95,7 +95,7 @@ llama.png;(255, 255, 255);justify;top;0;0
 locks.png;(255, 255, 255);justify;bottom;0;0
 lonelybot.png;(255, 255, 255);justify;top;0;0
 manager.png;(255, 255, 255);justify;bottom;0;0
-mannekenpis.png;(167, 255, 174);justify;bottom;0;0
+mannekenpis.png;(255, 255, 255);justify;bottom;0;0
 mantis.png;(255, 255, 255);justify;top;0;0
 marionette.png;(255, 255, 255);justify;top;0;0
 marx.png;(255, 255, 255);justify;bottom;0;0
@@ -132,7 +132,7 @@ robot.png;(255, 255, 255);justify;top;0;0
 rubberducks.png;(255, 255, 255);justify;top;0;0
 ruin.png;(255, 255, 255);justify;top;0;0
 salad.png;(255, 255, 255);justify;bottom;0;0
-scrabble.png;(255, 255, 255);justify;bottom;0;0
+scrabble.png;(255, 255, 255);justify;top;0;0
 sheep.png;(255, 255, 255);justify;top;0;0
 shocked.png;(29, 37, 82);justify;top;0;0
 silhouettes.png;(255, 255, 255);justify;top;0;0
