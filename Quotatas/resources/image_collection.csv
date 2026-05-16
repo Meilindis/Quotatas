@@ -115,7 +115,7 @@ pear.png;(255, 255, 255);justify;top;0;0
 peek.png;(255, 255, 255);justify;bottom;0;0
 pepper.png;(255, 255, 255);justify;top;0;0
 pinocchio.png;(255, 255, 255);justify;bottom;0;0
-pony.png;(255, 255, 255);justify;top;0;0
+pony.png;(255, 255, 255);justify;bottom;0;0
 problem.png;(29, 37, 82);justify;top;0;0
 psychic.png;(255, 255, 255);justify;bottom;0;-45
 puffin.png;(255, 255, 255);justify;top;0;0
@@ -142,14 +142,14 @@ spatulas.png;(29, 37, 82);justify;top;0;0
 spices.png;(255, 255, 255);justify;bottom;0;-45
 squirrel.png;(255, 255, 255);justify;bottom;0;0
 staircase.png;(255, 255, 255);justify;top;0;0
-stones.png;(29, 37, 82);justify;top;0;0
+stones.png;(255, 255, 255);justify;top;0;0
 stop.png;(65, 75, 139);justify;top;0;0
 sunset.png;(65, 75, 139);justify;top;0;0
 surprised.png;(29, 37, 82);justify;top;0;0
 tada.png;(255, 255, 255);justify;top;0;0
 tea.png;(255, 255, 255);justify;top;0;0
 the_tournament.png;(255, 245, 215);justify;top;0;0
-the_visit_.png;(142, 255, 221);justify;bottom;0;0
+the_visit_.png;(255, 245, 185);justify;bottom;0;0
 three_girls_in_profile.png;(24, 0, 59);justify;bottom;0;0
 tictactoe.png;(255, 255, 255);justify;bottom;0;0
 tiles.png;(255, 255, 255);justify;top;0;0
@@ -158,7 +158,7 @@ tolerable.png;(29, 37, 82);justify;top;0;0
 top.png;(65, 75, 139);justify;top;0;0
 treefrog.png;(255, 255, 255);justify;bottom;0;0
 tulips.png;(255, 255, 255);justify;top;0;0
-twelve_men_.png;(199, 17, 234);justify;top;10;0
+twelve_men_.png;(255, 255, 255);justify;top;10;0
 typewriter.png;(255, 255, 255);justify;bottom;0;0
 umbrella.png;(255, 255, 255);justify;top;0;0
 vampire.png;(225, 0, 0);justify;top;0;0

@@ -58,6 +58,8 @@ class ColorButton(QtWidgets.QPushButton):
 
         '''
         dlg = QtWidgets.QColorDialog(self)
+        dlg.setOption(QtWidgets.QColorDialog.DontUseNativeDialog, True)
+        dlg.setStyleSheet('background-color: #3f3f3f; color: white; border: 1px solid grey;')
 
         # Include all the default colours
         for i, color in enumerate(custom_colors):

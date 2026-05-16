@@ -416,11 +416,10 @@ class MainWindow(QMainWindow):
         line_height = font_custom_size + 8
         logger.info("\tSetting line height to " + str(line_height) + ".")
         
-        # Determine number of lines
-        nr_of_lines = text.count("\n") + 1
-        logger.info("\tQuote has " + str(nr_of_lines) + " lines.")
-        # Add the separate lines to a list
+        # Add the separate lines to a list and determine number of lines
         lines = text.splitlines()
+        nr_of_lines = len(lines)
+        logger.info("\tQuote has " + str(nr_of_lines) + " lines.")
         x_val = 20 # default indentation
         y_val = 0
 
@@ -449,11 +448,9 @@ class MainWindow(QMainWindow):
         OPACITY = int(255 * TRANSPARENCY)
         # Set up overlay image
         overlay_w = 500
-        overlay_h = nr_of_lines * 35
+        overlay_h = nr_of_lines * line_height
         overlay = Image.new('RGBA', image.size, TINT_COLOR+(0,))
-        #overlay.putalpha(128)
 
-        bg_w, bg_h = image.size
         if self._image[3] == 'top':
             offset_y = 0              
         elif self._image[3] == 'middle':
