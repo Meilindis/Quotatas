@@ -91,6 +91,9 @@ def time_unit():
 
 def quantifier():
 	return random.choice(word_collections.quantifiers)
+	
+def number():
+	return  random.choice(word_collections.numbers)
 
 # -------------------------------------------------------------------------------------------------------------------
 
@@ -814,7 +817,7 @@ def template_willyou():
 
 # That's me
 def template_thatsme():
-    return f'''{noun_plural()},
+    return f'''{capitalize_first_letter(noun_plural())},
     {adjective()},
     that's me.'''
 	
@@ -857,7 +860,8 @@ def template_every_time():
 # Consider
 def template_consider():
     return f'''Consider this:
-    {capitalize_first_letter(situation())} is {adjective()}.
+    {capitalize_first_letter(situation())}
+    is {adjective()}.
     That's why it's {adjective()}.'''
 
 # Go on
@@ -871,7 +875,7 @@ def template_if():
     temp = people_singular()
     adj = adjective()
     return f'''If you're gonna
-    be a {temp}
+    be {a_or_an(temp)} {temp}
     be {a_or_an(adj)} {adj} {temp}.'''
 
 # Some

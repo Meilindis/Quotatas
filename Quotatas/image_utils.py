@@ -137,3 +137,4 @@ class ImageText(object):
                 self.write_text((last_word_x, height), words[-1], font_filename,
                                 font_size, color)
         return (box_width, height - y)
+        
