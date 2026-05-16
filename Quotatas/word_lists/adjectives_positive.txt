@@ -1,3 +1,4 @@
+admirable
 amazing
 au-some
 awesome
@@ -8,6 +9,7 @@ caring
 chique
 clever
 colourful
+compassionate
 creative
 cute
 delightful
@@ -16,6 +18,7 @@ empathetic
 exciting
 friendly
 funny
+generous
 gorgeous
 graceful
 great
@@ -30,6 +33,7 @@ lithe
 lyrical
 miraculous
 multi-faceted
+nice
 outstanding
 playful
 practical
@@ -44,10 +48,13 @@ splendid
 stunning
 super
 superb
+supportive
 sweet
 talented
 trendy
 useful
+well-dressed
 whimsical
+wise
 witty
 wonderful
