@@ -438,7 +438,7 @@ class MainWindow(QMainWindow):
             x_val += self._picture.get_x_offset()
             y_val = 30 + self._picture.get_y_offset()                
         elif self._picture.get_location() == 'middle':
-            x_val += self._picture.get_x_offsett()
+            x_val += self._picture.get_x_offset()
             y_val = 225 + self._picture.get_y_offset()
             # Make sure the text is centered around the given y value
             y_val -= (nr_of_lines * 35)/2
