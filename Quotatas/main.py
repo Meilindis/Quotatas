@@ -300,14 +300,6 @@ class MainWindow(QMainWindow):
 
         self.toolbar.addSeparator()
 
-        #self.button_export_quotes_action = QAction(QIcon(os.path.join(icon_path, 'export-quotes.ico')), "Export the quotes so far (text only)", self)
-        #self.button_export_quotes_action.setStatusTip("Export the quotes so far (text only)")
-        #self.button_export_quotes_action.triggered.connect(self.export_quotes)
-        #self.toolbar.addAction(self.button_export_quotes_action)
-        #self.button_export_quotes_action.setEnabled(False) # nothing to export yet
-
-        self.toolbar.addSeparator()
-
         self.label_theme = QLabel("Theme: ")
         self.toolbar.addWidget(self.label_theme)
 
@@ -602,7 +594,6 @@ class MainWindow(QMainWindow):
     def update_toolbar_buttons(self):
         self.button_next_action.setEnabled(self.next_available())
         self.button_previous_action.setEnabled(self.previous_available())
-        #self.button_export_quotes_action.setEnabled(self.history_available())
         self.button_save_quote_action.setEnabled(self.history_available())
 
     # What happens when the "Previous" button is clicked
@@ -645,14 +636,6 @@ class MainWindow(QMainWindow):
             
     def update_quote_counter(self):
             self.label_position.setText(str(self._selected_quote + 1) + "/" + str(len(self._full_history)))
-
-    # Export the quote history to a txt file in the current directory - will overwrite without warning.
-    def export_quotes(self):
-        logger.info("Exporting quote history...")
-        with open('dutch_wisdom_quote_collection.txt', 'w') as f:
-            for quote in self._full_history:
-                f.write(f"{quote[0]}\n\n---\n\n")        
-        logger.info("Quote history exported to file.")
 
     def toggle_overlay(self):
         logger.info("Toggling dynamic text background...")
