@@ -466,7 +466,8 @@ class MainWindow(QMainWindow):
 
             draw = ImageDraw.Draw(overlay)  # Create a context for drawing things on it.
             draw.rectangle(((0, y-15), (500, y+overlay_height+15)), fill=TINT_COLOR+(OPACITY,))
-            color = (255, 255, 255) # Text colour is always white when using overlay
+            if self._generating_quote:
+                color = (255, 255, 255) # Text colour is always white when using overlay
             image = Image.alpha_composite(image, overlay)
 
         logger.info("\tDrawing quote text...")
