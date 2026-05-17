@@ -890,8 +890,16 @@ def template_all():
     temp = noun_singular()
     return f'''All you need
     to {verb()} {concept()}
-    is {a_or_an(temp)} {temp} and {concept()}.
-    '''
+    is {a_or_an(temp)} {temp} and {concept()}.'''
+
+def template_itis():
+    return f'''{capitalize_first_letter(concept())}
+    is {adjective()}'''
+
+def template_arethey():
+    return f'''Are {noun_plural()}
+    just {noun_plural()}
+    of {concept()}?'''
 
 # List of defined templates (don't forget to add new templates here or they won't be used!)
 template_list = [template_times_three, 
@@ -1017,5 +1025,7 @@ template_list = [template_times_three,
                  template_if,
                  template_some,
                  template_all,
+                 template_itis,
+                 template_arethey,
                  ]
 
