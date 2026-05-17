@@ -6,10 +6,12 @@ alchemists
 angels
 artists
 astronauts
+aunts
 bakers
 best friends
 bishops
 boyfriends
+boys
 captains
 changelings
 clowns
@@ -33,10 +35,13 @@ foodies
 friends
 geeks
 girlfriends
+girls
 gnomes
 goblins
 gods
 goddesses
+grandfathers
+grandmothers
 gurus
 halflings
 husbands
@@ -62,6 +67,7 @@ orcs
 painters
 pals
 paramours
+parents
 pawns
 philanthropists
 pilots
@@ -91,6 +97,7 @@ therapists
 time travellers
 tinkerers
 toilet inspectors
+uncles
 vampires
 vets
 weirdos

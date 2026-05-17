@@ -6,9 +6,11 @@ alchemist
 angel
 artist
 astronaut
+aunt
 baker
 best friend
 bishop
+boy
 boyfriend
 captain
 changeling
@@ -32,11 +34,14 @@ farmer
 foodie
 friend
 geek
+girl
 girlfriend
 gnome
 goblin
 god
 goddess
+grandfather
+grandmother
 guru
 halfling
 husband
@@ -62,6 +67,7 @@ orc
 painter
 pal
 paramour
+parent
 pawn
 philanthropist
 pilot
@@ -91,6 +97,7 @@ therapist
 time traveller
 tinkerer
 toilet inspector
+uncle
 vampire
 vet
 weirdo

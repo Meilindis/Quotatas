@@ -1,5 +1,6 @@
 absurd
 bland
+blank
 bright
 bumpy
 capable

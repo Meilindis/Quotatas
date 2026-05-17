@@ -1,10 +1,12 @@
 TARDIS
 ad blocker
 adventure
+airplane
 alarm clock
 android
 arm
 arm chair
+asteroid
 basket
 bath
 bathroom
@@ -12,24 +14,30 @@ beach
 bed
 bedroom
 besom
+bicycle
 big bang
 big splash
 blanket
 blindfold
 block
+board game
 book
-boy
+bowl
 brain
 bricks
 bubble
 bucket
+bush
 camera
 candle
 candy
 canoe
+canvas
 cappuccino
 cardboard box
+carpet
 castle
+cave
 cello
 chair
 champagne
@@ -38,11 +46,13 @@ chest
 chocolate
 cloud
 clown car
+club
 coat
 coffee
 colander
 comedy
 computer
+concept
 cup
 cutlery
 dress
@@ -56,22 +66,24 @@ flower
 flute
 footstool
 fork
+frame
 freezer
 fridge
 funnel
 galaxy
 game
 gherkin
-girl
 goosebump
 guitar
 guru
 gynoid
 handbag
 hard disk
+herb
 holodeck
 hug
 iceberg
+jar
 kettle
 keyboard
 kitchen
@@ -80,13 +92,17 @@ lady
 lake
 laminator
 lantern pole
+leaf
 legend
 leg
 lego brick
 lens
+light
 litter box
 loom
+mailbox
 meadow
+meteor
 microfiche
 microscope
 mind
@@ -110,18 +126,23 @@ piano
 pillow
 pixie
 planet
+plant
 plate
 plushie
+pouch
 pringle
+radio
 rainbow
 robot
 rocket
 rocking chair
 sea
 sewing machine
+shoe
 shuttle
 skirt
 slide
+sock
 spaceship
 spanner
 spatula
@@ -144,13 +165,17 @@ tavern
 tea
 teeter-totter
 telescope
+tennis racket
 thunderstorm
 time machine
+tower
 traffic cone
 transporter
+tree
 tricorder
 tripod
 truck
+umbrella
 unicorn
 universe
 vase
@@ -158,6 +183,7 @@ violin
 walkman
 wand
 want
+wardrobe
 warp nacelle
 wet blanket
 whisk
