@@ -80,6 +80,7 @@ class MainWindow(QMainWindow):
         self._font_collection = [] # FONT NAME - FONT SIZE
         self._image_collection = [] # IMAGE NAME - TEXT COLOUR (RGB) - ALIGNMENT - POSITION - X OFFSET - Y OFFSET            
         self._generating_quote = False # Whether a quote is being actively generated.
+        self._overlay = True
 
         logger.info("Importing files...")
 
@@ -259,6 +260,12 @@ class MainWindow(QMainWindow):
         self.button_negative_action.setCheckable(True)
         self.toolbar.addAction(self.button_negative_action)
 
+        self.button_overlay = QAction(QIcon(os.path.join(icon_path, 'overlay.ico')), "Toggle text background", self)
+        self.button_overlay.setStatusTip("Toggle the dynamic darker text background (may reduce readability)")
+        self.button_overlay.triggered.connect(self.toggle_overlay)
+        self.button_overlay.setCheckable(True)
+        self.toolbar.addAction(self.button_overlay)
+
         self.toolbar.addSeparator()
 
         self.button_generate_action = QAction(QIcon(os.path.join(icon_path, 'quotatas-teal.ico')), "Generate quote", self)
@@ -290,11 +297,11 @@ class MainWindow(QMainWindow):
 
         self.toolbar.addSeparator()
 
-        self.button_export_quotes_action = QAction(QIcon(os.path.join(icon_path, 'export-quotes.ico')), "Export the quotes so far (text only)", self)
-        self.button_export_quotes_action.setStatusTip("Export the quotes so far (text only)")
-        self.button_export_quotes_action.triggered.connect(self.export_quotes)
-        self.toolbar.addAction(self.button_export_quotes_action)
-        self.button_export_quotes_action.setEnabled(False) # nothing to export yet
+        #self.button_export_quotes_action = QAction(QIcon(os.path.join(icon_path, 'export-quotes.ico')), "Export the quotes so far (text only)", self)
+        #self.button_export_quotes_action.setStatusTip("Export the quotes so far (text only)")
+        #self.button_export_quotes_action.triggered.connect(self.export_quotes)
+        #self.toolbar.addAction(self.button_export_quotes_action)
+        #self.button_export_quotes_action.setEnabled(False) # nothing to export yet
 
         self.toolbar.addSeparator()
 
@@ -442,28 +449,29 @@ class MainWindow(QMainWindow):
         x = x_val
         y = y_val
 
-        logger.info("\tDrawing text background...")
-        TINT_COLOR = (0, 0, 0)  # Black
-        TRANSPARENCY = .25  # Degree of transparency
-        OPACITY = int(255 * TRANSPARENCY)
-        # Set up overlay image
-        overlay_width = 500
-        overlay_height = nr_of_lines * line_height
-        overlay = Image.new('RGBA', image.size, TINT_COLOR+(0,))
+        if self._overlay:
+            logger.info("\tDrawing text background...")
+            TINT_COLOR = (0, 0, 0)  # Black
+            TRANSPARENCY = .25  # Degree of transparency
+            OPACITY = int(255 * TRANSPARENCY)
+            # Set up overlay image
+            overlay_width = 500
+            overlay_height = nr_of_lines * line_height
+            overlay = Image.new('RGBA', image.size, TINT_COLOR+(0,))
 
-        if self._image[3] == 'top':
-            offset_y = 0              
-        elif self._image[3] == 'middle':
-            offset_y = 250 - (overlay_height // 2)
-        elif self._image[3] == 'bottom':
-            offset_y = 500 - overlay_height
-        else:
-            return
+            if self._image[3] == 'top':
+                offset_y = 0              
+            elif self._image[3] == 'middle':
+                offset_y = 250 - (overlay_height // 2)
+            elif self._image[3] == 'bottom':
+                offset_y = 500 - overlay_height
+            else:
+                return
 
-        draw = ImageDraw.Draw(overlay)  # Create a context for drawing things on it.
-        draw.rectangle(((0, y-15), (500, y+overlay_height+15)), fill=TINT_COLOR+(OPACITY,))
-
-        image = Image.alpha_composite(image, overlay)
+            draw = ImageDraw.Draw(overlay)  # Create a context for drawing things on it.
+            draw.rectangle(((0, y-15), (500, y+overlay_height+15)), fill=TINT_COLOR+(OPACITY,))
+            color = (255, 255, 255) # Text colour is always white when using overlay
+            image = Image.alpha_composite(image, overlay)
 
         logger.info("\tDrawing quote text...")
         img = ImageText(image, background=(255, 255, 255, 200)) # 200 = alpha
@@ -590,7 +598,7 @@ class MainWindow(QMainWindow):
     def update_toolbar_buttons(self):
         self.button_next_action.setEnabled(self.next_available())
         self.button_previous_action.setEnabled(self.previous_available())
-        self.button_export_quotes_action.setEnabled(self.history_available())
+        #self.button_export_quotes_action.setEnabled(self.history_available())
         self.button_save_quote_action.setEnabled(self.history_available())
 
     # What happens when the "Previous" button is clicked
@@ -641,6 +649,18 @@ class MainWindow(QMainWindow):
             for quote in self._full_history:
                 f.write(f"{quote[0]}\n\n---\n\n")        
         logger.info("Quote history exported to file.")
+
+    def toggle_overlay(self):
+        logger.info("Toggling dynamic text background...")
+        if self.button_overlay.isChecked():
+            self._overlay = True
+        else:
+            self._overlay = False
+        # Re-generate image with overlay
+        self.create_quote_image()
+        logger.info("Exporting current settings to file...")   
+        self.export_settings()        
+        logger.info("Settings exported.")  
 
     # Determine the available word collection depending on the toggles (NSFW/negative on or off)
     def settings_changed(self):
@@ -841,10 +861,11 @@ class MainWindow(QMainWindow):
                 settings.append(entry.rstrip())
             settingsinput.close()
             
-            # Check validity (only two entries expected)
-            if len(settings) == 2:
+            # Check validity (exactly three entries expected)
+            if len(settings) == 3:
                 nsfw_setting = settings[0]
                 negative_setting = settings[1]
+                overlay_setting = settings[2]
                 if nsfw_setting == "True":
                     self.button_nsfw_action.setChecked(True)
                 elif nsfw_setting == "False":
@@ -857,6 +878,12 @@ class MainWindow(QMainWindow):
                     self.button_negative_action.setChecked(False)
                 else:
                     logger.info("Could not import Negative setting.")
+                if overlay_setting == "True":
+                    self.button_overlay.setChecked(True)
+                elif overlay_setting == False:
+                    self.button_overlay.setChecked(False)
+                else:
+                    logger.info("Could not import Overlay setting.")
             else:
                 logger.info("Unexpected file content. Could not import settings.")
         else:
@@ -870,6 +897,8 @@ class MainWindow(QMainWindow):
             settingsfile.write(str(self.button_nsfw_action.isChecked()))
             settingsfile.write("\n")
             settingsfile.write(str(self.button_negative_action.isChecked()))
+            settingsfile.write("\n")
+            settingsfile.write(str(self.button_overlay.isChecked()))
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
