@@ -625,7 +625,7 @@ class MainWindow(QMainWindow):
             self._quote = self._full_history[self._selected_quote][0]
             self._picture = self._full_history[self._selected_quote][1]
             self._font = self._full_history[self._selected_quote][2]
-            self.change_colour.setColor('#' + hexify_tuple(self._picture[1]))              
+            self.change_colour.setColor('#' + hexify_tuple(self._picture.get_colour()))              
             self.update_ui_elements()               
             self.create_quote_image()
             self.update_quote_counter()
