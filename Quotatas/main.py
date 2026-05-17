@@ -378,7 +378,7 @@ class MainWindow(QMainWindow):
         # Select the random parameters of the quote
         logger.info("\tSelecting image...")
         self._picture = random.choice(self._image_collection)
-        logger.info("\tImage selected: " + self._picture._filename + ".")
+        logger.info("\tImage selected: " + self._picture.get_filename() + ".")
         logger.info("\tSelecting font...")
         self._font = random.choice(self._font_collection)
         logger.info("\tFont selected: " + self._font[2] + ".")
@@ -396,14 +396,14 @@ class MainWindow(QMainWindow):
         self._generating_quote = True
         # Update other variables and UI elements 
         logger.info("\tUpdating the font colour...")             
-        self.change_colour.setColor('#' + hexify_tuple(self._picture._colour))
-        logger.info("\tUpdated font colour to RGB" + str(self._picture._colour) + ".")
+        self.change_colour.setColor('#' + hexify_tuple(self._picture.get_colour()))
+        logger.info("\tUpdated font colour to RGB" + str(self._picture.get_colour()) + ".")
         index_font = self.change_font.findText(self._font[2])
         if index_font >= 0:
             logger.info("\tSelecting new font and font size...")
             self.change_font.setCurrentIndex(index_font)
             self.change_font_size.setCurrentIndex(self.change_font_size.findText(str(self._font[1])))
-            self.change_position.setCurrentIndex(self.change_position.findText(str(self._picture._location.capitalize())))
+            self.change_position.setCurrentIndex(self.change_position.findText(str(self._picture.get_location().capitalize())))
             logger.info("\tFont name and size updated.")
         self._generating_quote = False
 
@@ -414,12 +414,12 @@ class MainWindow(QMainWindow):
             return
 
         # Prepare the image
-        logger.info("\tOpening image: " + self._picture._filename + "...")         
-        image_path = os.path.join(current_path, 'images', self._picture._filename)
+        logger.info("\tOpening image: " + self._picture.get_filename() + "...")         
+        image_path = os.path.join(current_path, 'images', self._picture.get_filename())
         image = Image.open(image_path)
 
-        color = self._picture._colour
-        alignment = self._picture._alignment
+        color = self._picture.get_colour()
+        alignment = self._picture.get_alignment()
 
         text = self._quote
         font_name = os.path.join(current_path, 'fonts', self._font[0])
@@ -434,17 +434,17 @@ class MainWindow(QMainWindow):
         x_val = 20 # default indentation
         y_val = 0
 
-        if self._picture._location == 'top':
-            x_val += self._picture._x_offset
-            y_val = 30 + self._picture._y_offset                
-        elif self._picture._location == 'middle':
-            x_val += self._picture._x_offset
-            y_val = 225 + self._picture._y_offset
+        if self._picture.get_location() == 'top':
+            x_val += self._picture.get_x_offset()
+            y_val = 30 + self._picture.get_y_offset()                
+        elif self._picture.get_location() == 'middle':
+            x_val += self._picture.get_x_offsett()
+            y_val = 225 + self._picture.get_y_offset()
             # Make sure the text is centered around the given y value
             y_val -= (nr_of_lines * 35)/2
-        elif self._picture._location == 'bottom':
-            x_val += self._picture._x_offset
-            y_val = 450 + self._picture._y_offset
+        elif self._picture.get_location() == 'bottom':
+            x_val += self._picture.get_x_offset()
+            y_val = 450 + self._picture.get_y_offset()
             # Make sure the text starts high enough
             y_val -= (nr_of_lines * 35)
         else:
@@ -463,11 +463,11 @@ class MainWindow(QMainWindow):
             overlay_height = nr_of_lines * line_height
             overlay = Image.new('RGBA', image.size, TINT_COLOR+(0,))
 
-            if self._picture._location == 'top':
+            if self._picture.get_location() == 'top':
                 offset_y = 0              
-            elif self._picture._location == 'middle':
+            elif self._picture.get_location() == 'middle':
                 offset_y = 250 - (overlay_height // 2)
-            elif self._picture._location == 'bottom':
+            elif self._picture.get_location() == 'bottom':
                 offset_y = 500 - overlay_height
             else:
                 return
@@ -530,8 +530,8 @@ class MainWindow(QMainWindow):
         	# A new colour has been selected, so get the new colour name and save it
             if self._picture != None:
             	# Convert to RGB and store 
-                self._picture._colour = ImageColor.getcolor(self.change_colour.color(), "RGB")
-                logger.info("\tNew font colour applied: RGB" + str(self._picture._colour) + ".")
+                self._picture.set_colour(ImageColor.getcolor(self.change_colour.color(), "RGB"))
+                logger.info("\tNew font colour applied: RGB" + str(self._picture.get_colour()) + ".")
             # Re-create the image            
             self.create_quote_image()
 
@@ -541,7 +541,7 @@ class MainWindow(QMainWindow):
             logger.info("\tChanging text position...")
             if self._picture != None:
                 new_position = self.change_position.currentText().lower()
-                self._picture._location = new_position
+                self._picture.set_location(new_position)
                 logger.info("\tNew position applied: " + new_position + ".") 
             # Re-create the image            
             self.create_quote_image()
@@ -614,7 +614,7 @@ class MainWindow(QMainWindow):
             self._quote = self._full_history[self._selected_quote][0]
             self._picture = self._full_history[self._selected_quote][1]
             self._font = self._full_history[self._selected_quote][2]
-            self.change_colour.setColor('#' + hexify_tuple(self._picture._colour))
+            self.change_colour.setColor('#' + hexify_tuple(self._picture.get_colour()))
             self.update_ui_elements()
             self.create_quote_image()
             self.update_quote_counter()
