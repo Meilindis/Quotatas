@@ -30,3 +30,6 @@ class Picture:
 
     def get_y_offset(self):
         return self._y_offset
+
+    def print(self):
+        return f"{self._filename};{self._colour};{self._alignment};{self._location};{self._x_offset};{self._y_offset}\n"

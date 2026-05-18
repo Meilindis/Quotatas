@@ -24,6 +24,9 @@ import template_collection
 # Definition of the metadata of base images
 from picture import Picture
 
+# Definition of the metadata of used fonts
+from font import Font
+
 # Script that helps with putting text on images
 from image_utils import ImageText
 
@@ -77,10 +80,10 @@ class MainWindow(QMainWindow):
         # Store the quote here later:
         self._quote = ""
         self._picture = None
-        self._font = []
+        self._font = None
         self._full_history = [] # QUOTE - IMAGE - FONT
         self._selected_quote = 0
-        self._font_collection = [] # FONT NAME - FONT SIZE
+        self._font_collection = [] # Array of Font objects
         self._image_collection = [] # Array of Picture objects
         self._generating_quote = False # Whether a quote is being actively generated.
         self._overlay = True
@@ -158,7 +161,7 @@ class MainWindow(QMainWindow):
         self.change_font.setCurrentIndex(self.change_font.findText(""))
         # Add the font names
         for font in self._font_collection:
-            self.change_font.addItem(font[2])
+            self.change_font.addItem(font.get_ui_name())
         
         # Font settings - colour
         self.change_colour = ColorButton(color="#fff") 
@@ -195,13 +198,13 @@ class MainWindow(QMainWindow):
         self._picture = Picture(splash_image, (255, 255, 255), 'justify', 'bottom', 0, 20)
         self._font = random.choice(self._font_collection)
         # Store original font size because the reference is updated
-        font_size = self._font[1]
-        self._font[1] = 34
+        font_size = self._font.get_default_size()
+        self._font.set_default_size(34)
         self._quote = random.choice(word_collections.greetings)
         self.update_ui_elements()
         self.create_quote_image()
         # Restore the original font size of the font
-        self._font[1] = font_size
+        self._font.set_default_size(font_size)
         pixmap = QPixmap('temp.png')
         self.quote_area.resize(pixmap.width(), pixmap.height())
         self.quote_area.setPixmap(pixmap)
@@ -330,7 +333,8 @@ class MainWindow(QMainWindow):
                 fontreader = csv.reader(csvfile, delimiter=';', quotechar='|')
                 parsed = (list(evaluate(field) for field in row) for row in fontreader)
                 for row in parsed:
-                    self._font_collection.append(row)
+                    my_font = Font(row[0], row[1], row[2])
+                    self._font_collection.append(my_font)
             logger.info("\tFont collection imported.")
         else:
             logger.info("Font collection file not found.")
@@ -377,7 +381,7 @@ class MainWindow(QMainWindow):
         logger.info("\tImage selected: " + self._picture.get_filename() + ".")
         logger.info("\tSelecting font...")
         self._font = random.choice(self._font_collection)
-        logger.info("\tFont selected: " + self._font[2] + ".")
+        logger.info("\tFont selected: " + self._font.get_ui_name() + ".")
         logger.info("\tGenerating quote text...")
         self._quote = random.choice(template_collection.template_list)()
         logger.info("\tQuote text generated:\n\n " + self._quote + "\n\n")
@@ -394,11 +398,11 @@ class MainWindow(QMainWindow):
         logger.info("\tUpdating the font colour...")             
         self.change_colour.setColor('#' + hexify_tuple(self._picture.get_colour()))
         logger.info("\tUpdated font colour to RGB" + str(self._picture.get_colour()) + ".")
-        index_font = self.change_font.findText(self._font[2])
+        index_font = self.change_font.findText(self._font.get_ui_name())
         if index_font >= 0:
             logger.info("\tSelecting new font and font size...")
             self.change_font.setCurrentIndex(index_font)
-            self.change_font_size.setCurrentIndex(self.change_font_size.findText(str(self._font[1])))
+            self.change_font_size.setCurrentIndex(self.change_font_size.findText(str(self._font.get_default_size())))
             self.change_position.setCurrentIndex(self.change_position.findText(str(self._picture.get_location().capitalize())))
             logger.info("\tFont name and size updated.")
         self._generating_quote = False
@@ -423,8 +427,8 @@ class MainWindow(QMainWindow):
         alignment = self._picture.get_alignment()
 
         text = self._quote
-        font_name = os.path.join(current_path, 'fonts', self._font[0])
-        font_custom_size = self._font[1]
+        font_name = os.path.join(current_path, 'fonts', self._font.get_filename())
+        font_custom_size = self._font.get_default_size()
         line_height = font_custom_size + 8
         logger.info("\tSetting line height to " + str(line_height) + ".")
         
@@ -506,7 +510,7 @@ class MainWindow(QMainWindow):
             new_font = self.change_font.currentText()
         	# Find this font in the collection
             for font in self._font_collection:
-            	if font[2] == new_font:
+            	if font.get_ui_name() == new_font:
                 	self._font = font
             logger.info("\tNew font applied: " + new_font + ".")
         	# Re-create the image with the new font setting
@@ -519,7 +523,7 @@ class MainWindow(QMainWindow):
             logger.info("\tChanging selected font size...")
             if self._font != []:
                 new_size = self.change_font_size.currentText()
-                self._font[1] = int(new_size)
+                self._font.set_default_size(int(new_size))
                 logger.info("\tNew font size applied: " + new_size + ".")            
                 self.create_quote_image()
 
@@ -833,20 +837,16 @@ class MainWindow(QMainWindow):
         logger.info("Exporting font collection...")
         font_location = os.path.join(current_path, 'resources', 'font_collection.csv')
         with open(font_location, 'w', newline='') as csvfile:
-            fontwriter = csv.writer(csvfile, delimiter=';',
-                                    quotechar='|', quoting=csv.QUOTE_MINIMAL)
-            for line in self._font_collection:
-                fontwriter.writerow(line)
+            for font in self._font_collection:
+                csvfile.write(font.print())
         logger.info("Fonts exported.")
 
     def export_image_collection(self):
         logger.info("Exporting image collection...")
         image_location = os.path.join(current_path, 'resources', 'image_collection.csv')
         with open(image_location, 'w', newline='') as csvfile:
-            imagewriter = csv.writer(csvfile, delimiter=';',
-                                    quotechar='|', quoting=csv.QUOTE_MINIMAL)
-            for line in self._image_collection:
-                imagewriter.writerow(line)
+            for image in self._image_collection:
+                csvfile.write(image.print())
         logger.info("Image collection exported.")
 
     def import_settings(self):
