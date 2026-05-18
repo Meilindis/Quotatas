@@ -40,7 +40,8 @@ import qdarktheme
 from colorbutton import ColorButton
 
 # Generic Qt elements needed for the UI
-from PySide6.QtCore import QSize, Qt, Signal
+from PySide6 import QtCore
+from PySide6.QtCore import QSize, Qt, Signal, QObject
 from PySide6.QtGui import QPixmap, QImage, QColor, QIcon, QAction, QIcon, QKeySequence
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QTextEdit, QVBoxLayout, QWidget, QLabel, QCheckBox, QHBoxLayout, QFileDialog, QMessageBox, QComboBox, QGridLayout, QSpacerItem, QSizePolicy, QListWidget, QStatusBar, QToolBar
 
@@ -67,6 +68,20 @@ def hexify(num):
 
 def hexify_tuple(tup):
     return ''.join(hexify(value) for value in tup)
+
+class KeyPressFilter(QObject):
+    def eventFilter(self, widget, event):
+        if (event.type() == QtCore.QEvent.KeyPress):
+            key = event.key()
+            if key == QtCore.Qt.Key_Up:
+                widget.move_up()
+            elif key == QtCore.Qt.Key_Left:
+                widget.move_left()
+            elif key == QtCore.Qt.Key_Right:
+                widget.move_right()
+            elif key == QtCore.Qt.Key_Down:
+                widget.move_down()
+        return False
 
 # ----------------------------------------------------------------------------------------------------------------------
 # MAIN PROGRAM
@@ -190,17 +205,9 @@ class MainWindow(QMainWindow):
         self.change_position.addItem("Middle")
         self.change_position.addItem("Bottom")
 
-        # Buttons to change the offset
-        self.button_up = QPushButton("^")
-        self.button_up.clicked.connect(self.move_up)
-        self.button_left = QPushButton("<")
-        self.button_left.clicked.connect(self.move_left)
-        self.button_left.setFixedHeight(500)
-        self.button_right = QPushButton(">")
-        self.button_right.clicked.connect(self.move_right)
-        self.button_right.setFixedHeight(500)
-        self.button_down = QPushButton("v")
-        self.button_down.clicked.connect(self.move_down)
+        # Change the offset with the arrow keys
+        self.eventFilter = KeyPressFilter(parent=self)
+        self.installEventFilter(self.eventFilter)
 
         logger.info("UI components created.")
 
@@ -244,13 +251,9 @@ class MainWindow(QMainWindow):
 
         # Add quotes and navigation to their own container
         self.quote_area_layout = QGridLayout()
-        self.quote_area_layout.addWidget(self.button_up, 0, 1, 1, 1)
-        self.quote_area_layout.addWidget(self.button_left, 1, 0, 1, 1)
-        self.quote_area_layout.addWidget(self.quote_area, 1, 1, 1, 1)
-        self.quote_area_layout.addWidget(self.button_right, 1, 2, 1, 1)
-        self.quote_area_layout.addWidget(self.button_down, 2, 1, 1, 1)
-        self.quote_area_layout.addWidget(self.font_settings_container, 3, 0, 1, 3) 
-        self.quote_area_layout.addWidget(self.button_generate_quote, 4, 0, 1, 3)
+        self.quote_area_layout.addWidget(self.quote_area)
+        self.quote_area_layout.addWidget(self.font_settings_container) 
+        self.quote_area_layout.addWidget(self.button_generate_quote)
 
         self.quote_area_container = QWidget()
         self.quote_area_container.setObjectName('quote_area_container')
@@ -266,6 +269,7 @@ class MainWindow(QMainWindow):
         self.app_container.setLayout(self.app_layout)
 
         self.setCentralWidget(self.app_container) 
+        self.quote_area.setFocus()
         logger.info("Layout arranged.")
 
     def add_toolbar(self):
@@ -384,6 +388,7 @@ class MainWindow(QMainWindow):
         logger.info("Creating quote image...")
         self._generating_quote = True
         self.create_quote_image()
+        self.quote_area.setFocus()
         self._generating_quote = False
         self.update_quote_counter()
         # Enable/disable buttons depending on context
@@ -421,6 +426,7 @@ class MainWindow(QMainWindow):
             self.change_font_size.setCurrentIndex(self.change_font_size.findText(str(self._font.get_default_size())))
             self.change_position.setCurrentIndex(self.change_position.findText(str(self._picture.get_location().capitalize())))
             logger.info("\tFont name and size updated.")
+        self.quote_area.setFocus()
         self._generating_quote = False
 
     def create_quote_image(self):
@@ -537,6 +543,7 @@ class MainWindow(QMainWindow):
         	# Re-create the image with the new font setting
         
             self.create_quote_image()
+            self.quote_area.setFocus()
 
     def change_selected_font_size(self):
         # Only update if triggered by a UI event, not when generating a quote
@@ -547,6 +554,7 @@ class MainWindow(QMainWindow):
                 self._font.set_default_size(int(new_size))
                 logger.info("\tNew font size applied: " + new_size + ".")            
                 self.create_quote_image()
+                self.quote_area.setFocus()
 
     def change_selected_colour(self):
         # Only update if triggered by a UI event, not when generating a quote
@@ -559,6 +567,7 @@ class MainWindow(QMainWindow):
                 logger.info("\tNew font colour applied: RGB" + str(self._picture.get_colour()) + ".")
             # Re-create the image            
             self.create_quote_image()
+            self.quote_area.setFocus()
 
     def change_text_position(self):
         # Only update if triggered by a UI event, not when generating a quote
@@ -570,6 +579,7 @@ class MainWindow(QMainWindow):
                 logger.info("\tNew position applied: " + new_position + ".") 
             # Re-create the image            
             self.create_quote_image()
+            self.quote_area.setFocus()
     
     # Finetune the position of the text
     def move_up(self):

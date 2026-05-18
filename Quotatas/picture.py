@@ -60,7 +60,7 @@ class Picture:
             self._y_offset += 1
 
     def decrease_y(self):
-        if self._y > self._text_block_height:
+        if self._y > -12: # Take into account the default indentation and the extra space of the overlay
             self._y_offset -= 1
 
     def get_text_block_height(self):
