@@ -113,6 +113,10 @@ class MainWindow(QMainWindow):
         logger.info("Updating word collections...")
         self.settings_changed()
 
+        # Update the overlay setting
+        logger.info("Updating text background setting...")
+        self.toggle_overlay()
+
         logger.info("UI is up and running. Ready to start generating quotes!\n------------------------")
         
     # -----------------------------------------------------------------------------------------------------------------------------
@@ -355,10 +359,10 @@ class MainWindow(QMainWindow):
         # Select the random parameters
         logger.info("Setting basic paramenters and updating UI...")
         self.create_basics()
-        self._generating_quote = True
         self.update_ui_elements()
         # Create the image
         logger.info("Creating quote image...")
+        self._generating_quote = True
         self.create_quote_image()
         self._generating_quote = False
         self.update_quote_counter()
@@ -410,7 +414,12 @@ class MainWindow(QMainWindow):
         image_path = os.path.join(current_path, 'images', self._picture.get_filename())
         image = Image.open(image_path)
 
-        color = self._picture.get_colour()
+        if self._generating_quote and self._overlay:
+            color = (255, 255, 255) # Text colour is always white when using overlay
+        else:
+            color = self._picture.get_colour()
+        self.change_colour.setColor('#' + hexify_tuple(color))
+
         alignment = self._picture.get_alignment()
 
         text = self._quote
@@ -466,8 +475,6 @@ class MainWindow(QMainWindow):
 
             draw = ImageDraw.Draw(overlay)  # Create a context for drawing things on it.
             draw.rectangle(((0, y-15), (500, y+overlay_height+15)), fill=TINT_COLOR+(OPACITY,))
-            if self._generating_quote:
-                color = (255, 255, 255) # Text colour is always white when using overlay
             image = Image.alpha_composite(image, overlay)
 
         logger.info("\tDrawing quote text...")
@@ -587,7 +594,7 @@ class MainWindow(QMainWindow):
     def previous_available(self):
         return (len(self._full_history) > 1 and self._selected_quote > 0)
 
-    # Can only save/export if at least one image has been generated
+    # Can only save if at least one image has been generated
     def history_available(self):
         return (len(self._full_history) > 0)
 
@@ -642,10 +649,13 @@ class MainWindow(QMainWindow):
         logger.info("Toggling dynamic text background...")
         if self.button_overlay.isChecked():
             self._overlay = True
+            self._generating_quote = True
+            self.create_quote_image()
+            self._generating_quote = False
         else:
             self._overlay = False
+            self.create_quote_image()
         # Re-generate image with overlay
-        self.create_quote_image()
         logger.info("Exporting current settings to file...")   
         self.export_settings()        
         logger.info("Settings exported.")  
