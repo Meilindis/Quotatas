@@ -81,7 +81,7 @@ class MainWindow(QMainWindow):
         self._quote = ""
         self._picture = None
         self._font = None
-        self._full_history = [] # QUOTE - IMAGE - FONT
+        self._full_history = [] # Array of Quote - Picture - Font objects
         self._selected_quote = 0
         self._font_collection = [] # Array of Font objects
         self._image_collection = [] # Array of Picture objects
@@ -189,7 +189,19 @@ class MainWindow(QMainWindow):
         self.change_position.addItem("Top")
         self.change_position.addItem("Middle")
         self.change_position.addItem("Bottom")
-        
+
+        # Buttons to change the offset
+        self.button_up = QPushButton("^")
+        self.button_up.clicked.connect(self.move_up)
+        self.button_left = QPushButton("<")
+        self.button_left.clicked.connect(self.move_left)
+        self.button_left.setFixedHeight(500)
+        self.button_right = QPushButton(">")
+        self.button_right.clicked.connect(self.move_right)
+        self.button_right.setFixedHeight(500)
+        self.button_down = QPushButton("v")
+        self.button_down.clicked.connect(self.move_down)
+
         logger.info("UI components created.")
 
     def generate_splash_screen(self):
@@ -231,10 +243,14 @@ class MainWindow(QMainWindow):
         self.font_settings_container.setLayout(self.font_settings_layout)
 
         # Add quotes and navigation to their own container
-        self.quote_area_layout = QVBoxLayout()
-        self.quote_area_layout.addWidget(self.quote_area)
-        self.quote_area_layout.addWidget(self.font_settings_container)  
-        self.quote_area_layout.addWidget(self.button_generate_quote)
+        self.quote_area_layout = QGridLayout()
+        self.quote_area_layout.addWidget(self.button_up, 0, 1, 1, 1)
+        self.quote_area_layout.addWidget(self.button_left, 1, 0, 1, 1)
+        self.quote_area_layout.addWidget(self.quote_area, 1, 1, 1, 1)
+        self.quote_area_layout.addWidget(self.button_right, 1, 2, 1, 1)
+        self.quote_area_layout.addWidget(self.button_down, 2, 1, 1, 1)
+        self.quote_area_layout.addWidget(self.font_settings_container, 3, 0, 1, 3) 
+        self.quote_area_layout.addWidget(self.button_generate_quote, 4, 0, 1, 3)
 
         self.quote_area_container = QWidget()
         self.quote_area_container.setObjectName('quote_area_container')
@@ -420,6 +436,8 @@ class MainWindow(QMainWindow):
 
         if self._generating_quote and self._overlay:
             color = (255, 255, 255) # Text colour is always white when using overlay
+        elif self._overlay:
+            color = (255, 255, 255)
         else:
             color = self._picture.get_colour()
         self.change_colour.setColor('#' + hexify_tuple(color))
@@ -436,6 +454,7 @@ class MainWindow(QMainWindow):
         lines = text.splitlines()
         nr_of_lines = len(lines)
         logger.info("\tQuote has " + str(nr_of_lines) + " lines.")
+        self._picture.set_text_block_height(line_height * nr_of_lines)
         x_val = 20 # default indentation
         y_val = 0
 
@@ -457,6 +476,8 @@ class MainWindow(QMainWindow):
         # Assign the resulting offset to x/y
         x = x_val
         y = y_val
+        self._picture.set_x(x)
+        self._picture.set_y(y)
 
         if self._overlay:
             logger.info("\tDrawing text background...")
@@ -549,7 +570,23 @@ class MainWindow(QMainWindow):
                 logger.info("\tNew position applied: " + new_position + ".") 
             # Re-create the image            
             self.create_quote_image()
+    
+    # Finetune the position of the text
+    def move_up(self):
+        self._picture.decrease_y()
+        self.create_quote_image()
 
+    def move_left(self):
+        self._picture.decrease_x()
+        self.create_quote_image()
+
+    def move_right(self):
+        self._picture.increase_x()
+        self.create_quote_image()
+
+    def move_down(self):
+        self._picture.increase_y()
+        self.create_quote_image()
 
     def save_quote(self):
         # Check if there's a generated image present
