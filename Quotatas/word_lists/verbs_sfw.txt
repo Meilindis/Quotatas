@@ -10,10 +10,12 @@ comfort
 connect
 consume
 count
+date
 decrease
 draw
 drink
 eat
+embrace
 find
 hear
 hug

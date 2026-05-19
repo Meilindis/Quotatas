@@ -43,8 +43,7 @@ from colorbutton import ColorButton
 from PySide6 import QtCore
 from PySide6.QtCore import QSize, Qt, Signal, QObject
 from PySide6.QtGui import QPixmap, QImage, QColor, QIcon, QAction, QIcon, QKeySequence
-from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QTextEdit, QVBoxLayout, QWidget, QLabel, QCheckBox, QHBoxLayout, QFileDialog, QMessageBox, QComboBox, QGridLayout, QSpacerItem, QSizePolicy, QListWidget, QStatusBar, QToolBar
-
+from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QTextEdit, QVBoxLayout, QWidget, QLabel, QCheckBox, QHBoxLayout, QFileDialog, QMessageBox, QComboBox, QGridLayout, QSpacerItem, QSizePolicy, QListWidget, QStatusBar, QToolBar, QGroupBox
 # ---------------------------------------------------------------------------------------------------------------------------------------------
 # RESOURCES
 
@@ -166,8 +165,6 @@ class MainWindow(QMainWindow):
         self.quote_area.setStyleSheet('background-color: #2a4648;')       
 
         # Font settings - name
-        self.change_font_label = QLabel("Text:")
-        self.change_font_label.setObjectName('change_font_label')
         self.change_font = QComboBox()
         self.change_font.setObjectName('change_font')
         self.change_font.currentTextChanged.connect(self.change_selected_font)
@@ -192,8 +189,6 @@ class MainWindow(QMainWindow):
         # Add the font sizes
         for i in (range(16, 42, 2)):
             self.change_font_size.addItem(str(i))
-        self.position_label = QLabel("Align:")
-        self.position_label.setObjectName('position_label')
         # Font settings - position
         self.change_position = QComboBox()
         self.change_position.setObjectName('change_position')
@@ -204,6 +199,16 @@ class MainWindow(QMainWindow):
         self.change_position.addItem("Top")
         self.change_position.addItem("Middle")
         self.change_position.addItem("Bottom")
+
+        # Add offset spinners
+        self.button_left = QPushButton("◄")
+        self.button_left.clicked.connect(self.move_left)
+        self.button_up = QPushButton("▲")
+        self.button_up.clicked.connect(self.move_up)
+        self.button_right = QPushButton("►")
+        self.button_right.clicked.connect(self.move_right)
+        self.button_down = QPushButton("▼")
+        self.button_down.clicked.connect(self.move_down)
 
         # Change the offset with the arrow keys
         self.eventFilter = KeyPressFilter(parent=self)
@@ -237,14 +242,27 @@ class MainWindow(QMainWindow):
     def arrange_layouts(self):
         logger.info("Setting up UI layout...")
 
+        self.font_box = QGroupBox("Font settings")
+        self.font_name_layout = QGridLayout()
+        self.font_name_layout.addWidget(self.change_font, 0, 0, 1, 3)
+        self.font_name_layout.addWidget(self.change_colour, 1, 0, 1, 1)
+        self.font_name_layout.addWidget(self.change_font_size, 1, 1, 1, 1)
+        self.font_name_layout.addWidget(self.change_position, 1, 2, 1, 1)
+        self.font_box.setLayout(self.font_name_layout)
+
+        self.offset_layout = QGridLayout()
+        self.offset_layout.addWidget(self.button_left, 0, 0, 2, 1)
+        self.offset_layout.addWidget(self.button_up, 0, 1, 1, 1)
+        self.offset_layout.addWidget(self.button_down, 1, 1, 1, 1)
+        self.offset_layout.addWidget(self.button_right, 0, 2, 2, 1)
+        self.font_offset_box = QGroupBox("Text offset")
+        self.font_offset_box.setLayout(self.offset_layout)      
+
         # Line out the settings in a grid
-        self.font_settings_layout = QHBoxLayout()
-        self.font_settings_layout.addWidget(self.change_font_label)
-        self.font_settings_layout.addWidget(self.change_font)
-        self.font_settings_layout.addWidget(self.change_colour)
-        self.font_settings_layout.addWidget(self.change_font_size)
-        self.font_settings_layout.addWidget(self.position_label)
-        self.font_settings_layout.addWidget(self.change_position)
+        self.font_settings_layout = QGridLayout()
+        self.font_settings_layout.addWidget(self.font_box, 0, 0, 1, 2)
+        self.font_settings_layout.addWidget(self.font_offset_box, 0, 2, 1, 1)
+        
         self.font_settings_container = QWidget()
         self.font_settings_container.setObjectName('font_settings_container')
         self.font_settings_container.setLayout(self.font_settings_layout)
@@ -582,6 +600,18 @@ class MainWindow(QMainWindow):
             self.quote_area.setFocus()
     
     # Finetune the position of the text
+    def x_value_changed(self, value):
+        if value < self._picture.get_x_offset():
+            self.move_left()
+        else:
+            self.move_right()
+
+    def y_value_changed(self, value):
+        if value < self._picture.get_y_offset():
+            self.move_up()
+        else:
+            self.move_down()
+
     def move_up(self):
         self._picture.decrease_y()
         self.create_quote_image()

@@ -10,10 +10,12 @@ comforts
 connects
 consumes
 counts
+dates
 decreases
 draws
 drinks
 eats
+embraces
 finds
 hears
 hugs
