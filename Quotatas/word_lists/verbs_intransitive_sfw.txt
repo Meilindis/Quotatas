@@ -4,6 +4,8 @@ cohabitate
 cycle
 dive
 dream
+eat
+escape
 fall asleep
 fly
 fold origami
@@ -11,19 +13,38 @@ frown
 get dressed
 get drunk
 grin
+hide
+hurry
+ice-skate
+investigate
+jog
+joke
+jump
+knit
+know
 laugh
 leg it
 lick subway poles
 lie
 live
+maneuver
+mask
+negotiate
+nibble
+oblige
+obsess
+oink
 play the guitar
 play the piano
 play the violin
 prosper
+quit
 rain
+reiterate
 rest
 retreat
 scream
+shop
 shout
 sleep
 smile
@@ -36,7 +57,12 @@ take a shower
 take a walk
 touch grass
 travel
+unwind
+upgrade
+vanish
 wake up
 walk
 whisper
+xerox
 yell
+zigzag

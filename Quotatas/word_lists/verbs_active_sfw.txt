@@ -35,6 +35,7 @@ runner
 scratcher
 seer
 server
+smeller
 sniffer
 stimulator
 stroker

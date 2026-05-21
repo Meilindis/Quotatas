@@ -10,5 +10,6 @@ out of
 on
 opposite
 through
+toward
 under
 with
