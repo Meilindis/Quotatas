@@ -1,3 +1,4 @@
+annoying
 arrogant
 awful
 bad
@@ -27,6 +28,7 @@ ignorant
 lazy
 narcissistic
 nefarious
+persnickety
 poor
 salty
 sarcastic

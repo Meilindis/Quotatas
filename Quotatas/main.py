@@ -258,28 +258,12 @@ class MainWindow(QMainWindow):
         self.font_offset_box = QGroupBox("Text offset")
         self.font_offset_box.setLayout(self.offset_layout)      
 
-        # Line out the settings in a grid
-        self.font_settings_layout = QGridLayout()
-        self.font_settings_layout.addWidget(self.font_box, 0, 0, 1, 2)
-        self.font_settings_layout.addWidget(self.font_offset_box, 0, 2, 1, 1)
-        
-        self.font_settings_container = QWidget()
-        self.font_settings_container.setObjectName('font_settings_container')
-        self.font_settings_container.setLayout(self.font_settings_layout)
-
-        # Add quotes and navigation to their own container
-        self.quote_area_layout = QGridLayout()
-        self.quote_area_layout.addWidget(self.quote_area)
-        self.quote_area_layout.addWidget(self.font_settings_container) 
-        self.quote_area_layout.addWidget(self.button_generate_quote)
-
-        self.quote_area_container = QWidget()
-        self.quote_area_container.setObjectName('quote_area_container')
-        self.quote_area_container.setLayout(self.quote_area_layout)
-
         # Combine everything into one layout
-        self.app_layout = QVBoxLayout()
-        self.app_layout.addWidget(self.quote_area_container)
+        self.app_layout = QGridLayout()
+        self.app_layout.addWidget(self.quote_area, 0, 0, 1, 3)
+        self.app_layout.addWidget(self.font_box, 1, 0, 1, 2)
+        self.app_layout.addWidget(self.font_offset_box, 1, 2, 1, 1)
+        self.app_layout.addWidget(self.button_generate_quote, 2, 0, 1, 3)
 
         # Add the layout to an overall widget and add to main window
         self.app_container = QWidget()
