@@ -75,7 +75,7 @@ amplifiers = ["absolute", "right", "total", "proper", "utter", "complete"]
 meals = ["breakfast", "lunch", "dinner", "supper", "tea", "high tea", "brunch", "snack"]
 time_units = ["seconds", "minutes", "hours", "days", "weeks", "months", "years", "decades", "centuries", "millennia", "fortnights"]
 greetings = ["What ho!", "Hello, stranger!", "Greetings, human!", "Welcome, my friend!", "Good day, mate!", "It is agreeable\nto see you!", "Peace and long life!", "Howdy, brave earthling!"]
-quantifiers = ["a shame", "fortunate", "odd", "weird", "a pity", "unfortunate", "a miracle", "likely", "improbable", "a blessing", "strange", "a good thing", "so random", "swell", "mind-blowing"]
+quantifiers = ["a shame", "fortunate", "odd", "weird", "a pity", "unfortunate", "a miracle", "likely", "improbable", "a blessing", "strange", "a good thing", "so random", "swell", "mind-blowing", "madness", "crazy"]
 numbers = ["two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"]
 
 def import_list(filename):
