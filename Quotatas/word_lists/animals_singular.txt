@@ -22,7 +22,7 @@ dragonfly
 duck
 duckling
 elephant
-fledgeling
+fledgling
 fly
 frog
 gerbil
