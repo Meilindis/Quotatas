@@ -54,14 +54,17 @@ comedy
 computer
 concept
 cup
+cushion
 cutlery
 dress
 dungeon
+ear plug
 easter egg
 elixir
 event horizon
 fable
 fairy tale
+fire truck
 flower
 flute
 footstool
@@ -92,6 +95,7 @@ lady
 lake
 laminator
 lantern pole
+lawn chair
 leaf
 legend
 leg
@@ -114,6 +118,7 @@ needle
 novel
 objective
 ocean
+organ
 pantry
 peanut
 pen
@@ -139,6 +144,7 @@ rocking chair
 sea
 sewing machine
 shoe
+shrubbery
 shuttle
 skirt
 slide
@@ -147,6 +153,7 @@ spaceship
 spanner
 spatula
 speaker
+spectacle
 spiral
 spoon
 staircase

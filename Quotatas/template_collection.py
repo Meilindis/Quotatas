@@ -166,7 +166,7 @@ def template_three_characteristics():
 
 # Give one random compliment
 def template_one_compliment():
-    return f'''{horoscope()}{capitalize_first_letter(random.choice([times(), sometimes()]))} forget that
+    return f'''{horoscope()}{capitalize_first_letter(random.choice([times(), sometimes()]))} {random.choice([forget, remember])} that
     you are {adjective_positive()}'''
 
 # General statement

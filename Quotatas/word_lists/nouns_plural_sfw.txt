@@ -47,13 +47,16 @@ comedies
 computers
 concepts
 cups
+cushions
 dresses
 dungeons
+ear plugs
 easter eggs
 elixirs
 event horizons
 fables
 fairy tales
+fire trucks
 flowers
 flutes
 footstools
@@ -83,6 +86,7 @@ labyrinths
 lakes
 laminators
 lantern poles
+lawn chairs
 leaves
 legends
 lego bricks
@@ -106,6 +110,7 @@ novels
 numpties
 objectives
 oceans
+organs
 peanuts
 pencils
 pens
@@ -131,6 +136,7 @@ scissors
 seas
 sewing machines
 shoes
+shrubberies
 shuttles
 skirts
 socks
@@ -138,6 +144,7 @@ spaceships
 spanners
 spatulas
 speakers
+spectacles
 spirals
 spoons
 stamps
