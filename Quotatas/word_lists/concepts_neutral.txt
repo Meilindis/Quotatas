@@ -2,6 +2,7 @@ D&D
 agency
 anything
 art
+bin day
 breakfast
 bronze
 brouhaha
@@ -13,6 +14,7 @@ copper
 cybernetics
 dancing
 darkness
+defenestration
 dinner
 drawing
 earwax

@@ -1,11 +1,12 @@
 ad blockers
 adventures
-airplanes
+aeroplanes
 alarm clocks
 androids
 arm chairs
 arms
 asteroids
+balloons
 baskets
 bathrooms
 baths
@@ -18,6 +19,7 @@ blankets
 blindfolds
 blocks
 board games
+boats
 books
 bowls
 brains
@@ -86,6 +88,7 @@ labyrinths
 lakes
 laminators
 lantern poles
+lanterns
 lawn chairs
 leaves
 legends
@@ -111,6 +114,8 @@ numpties
 objectives
 oceans
 organs
+pantries
+PCs
 peanuts
 pencils
 pens
@@ -135,11 +140,13 @@ rocking chairs
 scissors
 seas
 sewing machines
+ships
 shoes
 shrubberies
 shuttles
 skirts
 socks
+sofas
 spaceships
 spanners
 spatulas
@@ -151,6 +158,7 @@ stamps
 staplers
 stars
 stones
+submarines
 suns
 super soakers
 sweets
@@ -182,6 +190,7 @@ wands
 wants
 wardrobes
 warp nacelles
+watches
 wet blankets
 whisks
 wombles

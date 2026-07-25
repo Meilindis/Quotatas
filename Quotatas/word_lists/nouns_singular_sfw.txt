@@ -1,12 +1,13 @@
 TARDIS
 ad blocker
 adventure
-airplane
+aeroplane
 alarm clock
 android
 arm
 arm chair
 asteroid
+balloon
 basket
 bath
 bathroom
@@ -21,6 +22,7 @@ blanket
 blindfold
 block
 board game
+boat
 book
 bowl
 brain
@@ -95,6 +97,7 @@ lady
 lake
 laminator
 lantern pole
+lantern
 lawn chair
 leaf
 legend
@@ -120,6 +123,7 @@ objective
 ocean
 organ
 pantry
+PC
 peanut
 pen
 pencil
@@ -143,12 +147,14 @@ rocket
 rocking chair
 sea
 sewing machine
+ship
 shoe
 shrubbery
 shuttle
 skirt
 slide
 sock
+sofa
 spaceship
 spanner
 spatula
@@ -161,6 +167,7 @@ stamp
 stapler
 star
 stone
+submarine
 sun
 super soaker
 swimming pool
@@ -192,5 +199,6 @@ wand
 want
 wardrobe
 warp nacelle
+watch
 wet blanket
 whisk

@@ -96,7 +96,10 @@ def quantifier():
 	return random.choice(word_collections.quantifiers)
 	
 def number():
-	return  random.choice(word_collections.numbers)
+	return random.choice(word_collections.numbers)
+
+def zodiac():
+    return random.choice(word_collections.zodiac)
 
 # -------------------------------------------------------------------------------------------------------------------
 
@@ -327,7 +330,7 @@ def template_two_needs():
 def template_maybe():
     return f'''Maybe {random.choice([noun_plural(), concept()])}
     can turn into {random.choice([noun_plural(), concept()])}
-    when you get older?'''
+    when you get {comparative()}?'''
 
 # Orders
 def template_orders():
@@ -660,9 +663,9 @@ def template_recipe():
 # Contents
 def template_contents():
     return f'''{capitalize_first_letter(concept())}?
-    That's just {food_concept()},
+    That's just {random.choice([food_concept(), concept()])},
     a tiny bit of {random.choice([food_singular(), concept()])}
-    and some {food_concept()}.'''
+    and some {random.choice([food_concept(), concept()])}.'''
 	
 # Ingredients
 def template_ingredients():
@@ -764,7 +767,7 @@ def template_theydo():
 
 	return f'''{they} {verb_intransitive()}
     {they} {verb_intransitive()}
-    {they} really {verb_intransitive()}'''
+    {they} {adverb} {verb_intransitive()}'''
 
 # Complicated
 def template_complicated():
@@ -774,8 +777,8 @@ def template_complicated():
 # Of course
 def template_of_course():
     return f'''Of course you are {adjective_positive()}
-    Of course you are {adjective_positive()}
-    Of course you are {adjective_positive()}'''
+    Believe that you are {adjective_positive()}
+    Yes, you are {adjective_positive()}'''
 
 # Attempt
 def template_attempt():
@@ -820,7 +823,7 @@ def template_willyou():
 
 # That's me
 def template_thatsme():
-    return f'''{capitalize_first_letter(noun_plural())},
+    return f'''{capitalize_first_letter(adjective())},
     {adjective()},
     that's me.'''
 	
@@ -942,6 +945,15 @@ def template_whatami():
 	and I {random.choice([verb(), verb_intransitive()])} in the evening.
 	
 	What am I?'''
+
+def template_zodiac():
+    return f'''{capitalize_first_letter(zodiac())}
+
+    {capitalize_first_letter(adjective()), adjective(), adjective()}'''
+
+def template_beit():
+    adj = adjective()
+    return f'''Be {a_or_an(adj)} {adj} {people_singular}'''
 
 # List of defined templates (don't forget to add new templates here or they won't be used!)
 template_list = [template_times_three, 
@@ -1076,6 +1088,8 @@ template_list = [template_times_three,
                  template_riddle,
                  template_sphinx,
                  template_whatami,
+                 template_zodiac,
+                 template_beit,
                  ]
 
 
