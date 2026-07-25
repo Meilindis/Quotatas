@@ -767,7 +767,7 @@ def template_theydo():
 
 	return f'''{they} {verb_intransitive()}
     {they} {verb_intransitive()}
-    {they} {adverb} {verb_intransitive()}'''
+    {they} {adverb()} {verb_intransitive()}'''
 
 # Complicated
 def template_complicated():
