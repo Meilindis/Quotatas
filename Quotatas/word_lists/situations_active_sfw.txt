@@ -21,11 +21,17 @@ create a wormhole
 create the universe
 dance in the dark
 do artisinal programming
+do gentle exercise
+do some yoga
 do the dishes
 draw a cartoon
+draw a stick figure
 drink a cup of tea
+drink enough water
 eat chocolate
 eat hot chips
+enjoy nature
+feed the hungry
 finish a novel
 flip a pancake
 follow a rainbow
@@ -38,15 +44,18 @@ go out for drinks
 go to warp
 have breakfast
 have a cat
+have a chocolate fondue
 have a cuppa
 have a dog
 have a romantic dinner
+have fun
 help grandpa cross the street
 hem curtains
 hop on the train
 hover in the air
 hug a tree
 juggle four balls
+jump over a fence
 learn a new language
 lick a subway pole
 lift weights
@@ -65,27 +74,34 @@ play a game
 play a sonata
 play with a kitten
 polish shoes
+practice parkour skills
+practice tai chi
 print a document
+protest in the streets
 read a novel
 ride a horse
 rot in bed
 sail on a lake
 save the world
 set your alarm
+share your wealth
 sharpen a pencil
 shave your head
 shoot stars
 simulate intelligence
 switch energy providers
 tag a friend
+take a hot shower
 take a photograph
 take a walk
 take daily showers
 take your meds
 throw a seed bomb
 throw out the rubbish
+tinkering with electronics
 train a parrot
 travel at warp speed
+travel the galaxy
 turn off the stove
 turn on the lights
 turn up the volume
@@ -94,7 +110,11 @@ visit the moon
 visit your parents
 visit a Star Trek convention
 wake up in the morning
+watch a film
+watch a show
 watch the stars at night
+wear earplugs
+wear headphones
 wear high heels
 write a book
 write a poem

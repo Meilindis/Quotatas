@@ -956,6 +956,17 @@ def template_beit():
     adj = adjective()
     return f'''Be {a_or_an(adj)} {adj} {people_singular()}'''
 
+def template_best():
+    return f'''The {superlative()} {noun_plural()}
+    in the world
+    are {adjective()}.'''
+
+def template_believe():
+    return f'''Believe me,
+    I'd be {situation()}
+    if only you would
+    {situation_active()}.'''
+
 # List of defined templates (don't forget to add new templates here or they won't be used!)
 template_list = [template_times_three, 
                  template_three_compliments, 
@@ -1091,6 +1102,8 @@ template_list = [template_times_three,
                  template_whatami,
                  template_zodiac,
                  template_beit,
+                 template_best,
+                 template_believe,
                  ]
 
 
