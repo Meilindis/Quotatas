@@ -1,4 +1,5 @@
 age
+bark
 blend in
 burp
 cohabitate
@@ -34,6 +35,8 @@ live
 lollygag
 maneuver
 mask
+meow
+moo
 negotiate
 nibble
 oblige
@@ -43,11 +46,13 @@ play the guitar
 play the piano
 play the violin
 prosper
+purr
 quit
 rain
 reiterate
 rest
 retreat
+roar
 scream
 shop
 shout

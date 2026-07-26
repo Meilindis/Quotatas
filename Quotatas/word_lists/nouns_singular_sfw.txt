@@ -58,6 +58,7 @@ concept
 cup
 cushion
 cutlery
+dream
 dress
 dungeon
 ear plug
@@ -66,6 +67,7 @@ elixir
 event horizon
 fable
 fairy tale
+fan
 fire truck
 flower
 flute
@@ -140,6 +142,7 @@ plate
 plushie
 pouch
 pringle
+puddle jumper
 radio
 rainbow
 robot
@@ -167,6 +170,7 @@ stamp
 stapler
 star
 stone
+story
 submarine
 sun
 super soaker

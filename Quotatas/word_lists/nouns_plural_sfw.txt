@@ -50,6 +50,7 @@ computers
 concepts
 cups
 cushions
+dreams
 dresses
 dungeons
 ear plugs
@@ -58,6 +59,7 @@ elixirs
 event horizons
 fables
 fairy tales
+fans
 fire trucks
 flowers
 flutes
@@ -132,6 +134,7 @@ plates
 plushies
 pouches
 pringles
+puddle jumpers
 radios
 rainbows
 robots
@@ -158,6 +161,7 @@ stamps
 staplers
 stars
 stones
+stories
 submarines
 suns
 super soakers
