@@ -941,7 +941,8 @@ def template_sphinx():
 	
 def template_whatami():
 	return f'''I {verb_intransitive()} in the morning,
-	I {verb()} {random.choice([noun_plural(), people_plural()])} in the afternoon,
+	I {verb()} {random.choice([noun_plural(), people_plural()])}
+    in the afternoon,
 	and I {random.choice([verb(), verb_intransitive()])} in the evening.
 	
 	What am I?'''
