@@ -1,5 +1,6 @@
 age
 blend in
+burp
 cohabitate
 cycle
 dive
@@ -7,6 +8,9 @@ dream
 eat
 escape
 fall asleep
+flee
+flick
+float
 fly
 fold origami
 frown

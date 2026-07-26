@@ -3,6 +3,7 @@ accompanies
 babysits
 brings
 bumfuzzles
+burps
 calculates
 caresses
 chases
@@ -21,6 +22,10 @@ eats
 embraces
 enjoys
 finds
+flees
+flicks
+floats
+flies
 gets
 hears
 hugs
@@ -57,6 +62,7 @@ runs
 scratches
 sees
 serves
+slurps
 smells
 sniffs
 stimulates

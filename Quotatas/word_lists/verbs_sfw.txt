@@ -21,6 +21,9 @@ eat
 embrace
 enjoy
 find
+flee
+flick
+float
 get
 hear
 hug
@@ -56,6 +59,7 @@ run
 scratch
 see
 serve
+slurp
 smell
 sniff
 stimulate
