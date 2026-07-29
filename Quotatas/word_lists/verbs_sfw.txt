@@ -20,6 +20,7 @@ drink
 eat
 embrace
 enjoy
+fail
 find
 flee
 flick

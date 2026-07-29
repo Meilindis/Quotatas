@@ -8,6 +8,7 @@ dive
 dream
 eat
 escape
+fail
 fall asleep
 flee
 flick

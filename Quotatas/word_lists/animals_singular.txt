@@ -21,6 +21,7 @@ dragon
 dragonfly
 duck
 duckling
+eel
 elephant
 fledgling
 fly

@@ -1,5 +1,6 @@
 D&D
 agency
+antimatter
 anything
 art
 bin day
@@ -15,6 +16,7 @@ cybernetics
 dancing
 darkness
 defenestration
+dilithium
 dinner
 drawing
 earwax
@@ -24,6 +26,7 @@ existence
 fairness
 fantasy
 fate
+Fisher Price
 gardening
 genetics
 glitter
@@ -51,6 +54,7 @@ memory
 monopoly
 moonlight
 music
+naquada
 nature
 nothing
 painting
@@ -85,4 +89,5 @@ victory
 wellness
 whimsy
 witchcraft
+work
 yahtzee

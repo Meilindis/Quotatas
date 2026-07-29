@@ -101,6 +101,9 @@ def number():
 def zodiac():
     return random.choice(word_collections.zodiac)
 
+def quantity():
+    return random.choice(word_collections.quantities)
+
 # -------------------------------------------------------------------------------------------------------------------
 
 # HELPER FUNCTIONS
@@ -967,6 +970,38 @@ def template_believe():
     if only you would
     {situation_active()}.'''
 
+def template_when():
+    return f'''{capitalize_first_letter(noun_singular())} when
+    the {noun_singular()} {verb_third_person()}'''
+
+def template_at():
+    return f'''{noun_plural()} at {concept()}'''
+
+def template_switch():
+    return f'''Main {noun_singular()} {verb_ing()},
+    switching to
+    auxiliary {noun_singular()}!'''
+
+def template_hovercraft():
+    return f'''My hovercraft is
+    full of {noun_plural()}!'''
+
+def template_eels():
+    return f'''My {noun_singular()} is
+    full of eels!'''
+
+def template_both():
+    return f'''My {noun_singular()} is
+    full of {noun_plural()}!'''
+
+def template_iota():
+    return f'''These days, {people_plural()}
+    don't have {quantity()} {concept()}.'''
+
+def template_spoon():
+    return f'''There is no {noun_singular()}'''
+
+
 # List of defined templates (don't forget to add new templates here or they won't be used!)
 template_list = [template_times_three, 
                  template_three_compliments, 
@@ -1104,6 +1139,14 @@ template_list = [template_times_three,
                  template_beit,
                  template_best,
                  template_believe,
+                 template_when,
+                 template_at,
+                 template_switch,
+                 template_hovercraft,
+                 template_eels,
+                 template_both,
+                 template_iota,
+                 template_spoon,
                  ]
 
 

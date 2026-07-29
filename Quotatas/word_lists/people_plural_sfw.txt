@@ -42,6 +42,7 @@ gods
 goddesses
 grandfathers
 grandmothers
+gremlins
 gurus
 halflings
 husbands
@@ -72,6 +73,7 @@ pawns
 philanthropists
 pilots
 pirates
+pixies
 popes
 priests
 princes
@@ -87,6 +89,7 @@ satyrs
 scammers
 shape shifters
 singers
+Smurfs
 sorcerers
 sorceresses
 supporters

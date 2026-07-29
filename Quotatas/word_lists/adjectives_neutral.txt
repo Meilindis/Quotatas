@@ -8,12 +8,14 @@ cattywampus
 certified
 cheeky
 delicate
+dilapidated
 direct
 domesticated
 dry
 easy
 eccentric
 elaborate
+enigmatic
 ephemeral
 erratic
 fast
@@ -29,6 +31,7 @@ golden
 high
 humble
 indestructible
+invisible
 knackered
 long
 low
@@ -40,6 +43,7 @@ neutral
 normal
 odd
 old
+omnipotent
 potential
 practical
 quaint
@@ -50,6 +54,7 @@ random
 reasonable
 rich
 rocky
+rustic
 self-contradictory
 sensible
 sensitive
@@ -60,14 +65,17 @@ slow
 smooth
 soft
 spicy
+spurious
 strange
 strong
+super sonic
 tender
 textured
 thick
 thin
 tough
 tricky
+verdant
 weak
 weird
 wet

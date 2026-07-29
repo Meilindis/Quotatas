@@ -1,3 +1,4 @@
+acorns
 ad blockers
 adventures
 aeroplanes
@@ -38,6 +39,7 @@ castles
 caves
 cellos
 chairs
+Chameleon Circuits
 chocolates
 clothes
 clouds
@@ -61,6 +63,7 @@ fables
 fairy tales
 fans
 fire trucks
+flanges
 flowers
 flutes
 footstools
@@ -78,14 +81,18 @@ gurus
 gynoids
 handbags
 hard disks
+Heisenberg compensators
+heliotropes
 herbs
 holodecks
+hovercrafts
 hugs
 icebergs
 jars
 kettles
 keyboards
 knives
+Kyber crystals
 labyrinths
 lakes
 laminators
@@ -115,6 +122,7 @@ novels
 numpties
 objectives
 oceans
+ODN couplers
 organs
 pantries
 PCs
@@ -127,7 +135,7 @@ phasers
 phones
 pianos
 pillows
-pixies
+pinecones
 planets
 plants
 plates
@@ -150,6 +158,8 @@ shuttles
 skirts
 socks
 sofas
+sonic booms
+space hoppers
 spaceships
 spanners
 spatulas
@@ -168,6 +178,7 @@ super soakers
 sweets
 swimming pools
 swings
+sycamores
 table legs
 tables
 tablets
@@ -175,6 +186,7 @@ taverns
 teeter-totters
 telescopes
 tennis rackets
+tesseracts
 thunderstorms
 time machines
 towers
@@ -195,6 +207,8 @@ wants
 wardrobes
 warp nacelles
 watches
+weeds
 wet blankets
 whisks
+wingnuts
 wombles

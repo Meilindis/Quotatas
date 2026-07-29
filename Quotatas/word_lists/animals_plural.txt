@@ -21,6 +21,7 @@ dragonflies
 dragons
 ducklings
 ducks
+eels
 elephants
 fledglings
 flies

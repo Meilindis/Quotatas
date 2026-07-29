@@ -1,4 +1,5 @@
 TARDIS
+acorn
 ad blocker
 adventure
 aeroplane
@@ -42,6 +43,7 @@ castle
 cave
 cello
 chair
+Chameleon Circuit
 champagne
 chess game
 chest
@@ -69,6 +71,7 @@ fable
 fairy tale
 fan
 fire truck
+flange
 flower
 flute
 footstool
@@ -86,8 +89,10 @@ guru
 gynoid
 handbag
 hard disk
+heliotrope
 herb
 holodeck
+hovercraft
 hug
 iceberg
 jar
@@ -95,6 +100,7 @@ kettle
 keyboard
 kitchen
 knife
+Kyber crystal
 lady
 lake
 laminator
@@ -122,6 +128,7 @@ need
 needle
 novel
 objective
+ODN coupler
 ocean
 organ
 pantry
@@ -135,7 +142,7 @@ phaser
 phone
 piano
 pillow
-pixie
+pinecone
 planet
 plant
 plate
@@ -158,6 +165,8 @@ skirt
 slide
 sock
 sofa
+sonic boom
+space hopper
 spaceship
 spanner
 spatula
@@ -176,6 +185,7 @@ sun
 super soaker
 swimming pool
 swing
+sycamore
 table
 table leg
 tablet
@@ -184,6 +194,7 @@ tea
 teeter-totter
 telescope
 tennis racket
+tesseract
 thunderstorm
 time machine
 tower
@@ -204,5 +215,7 @@ want
 wardrobe
 warp nacelle
 watch
+weed
 wet blanket
+wingnut
 whisk

@@ -42,6 +42,7 @@ god
 goddess
 grandfather
 grandmother
+gremlin
 guru
 halfling
 husband
@@ -58,6 +59,7 @@ man
 manager
 marionette
 mayor
+Mickey Mouse
 musician
 nemesis
 nerd
@@ -72,6 +74,7 @@ pawn
 philanthropist
 pilot
 pirate
+pixie
 pope
 priest
 prince
@@ -87,6 +90,7 @@ satyr
 scammer
 shape shifter
 singer
+Smurf
 sorcerer
 sorceress
 supporter

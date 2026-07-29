@@ -21,6 +21,7 @@ drinks
 eats
 embraces
 enjoys
+fails
 finds
 flees
 flicks
