@@ -978,9 +978,9 @@ def template_at():
     return f'''{noun_plural()} at {concept()}'''
 
 def template_switch():
-    return f'''Main {noun_singular()} {verb_ing()},
-    switching to
-    auxiliary {noun_singular()}!'''
+    return f'''Main {noun_singular()} {verb_ing()}!
+    Switching to
+    auxiliary {noun_singular()}.'''
 
 def template_hovercraft():
     return f'''My hovercraft is
@@ -1000,6 +1000,11 @@ def template_iota():
 
 def template_spoon():
     return f'''There is no {noun_singular()}'''
+
+def template_mean():
+    return f'''What do you mean,
+    you {times()} 
+    {verb()} {noun_plural()}?'''
 
 
 # List of defined templates (don't forget to add new templates here or they won't be used!)
@@ -1147,6 +1152,7 @@ template_list = [template_times_three,
                  template_both,
                  template_iota,
                  template_spoon,
+                 template_mean,
                  ]
 
 
