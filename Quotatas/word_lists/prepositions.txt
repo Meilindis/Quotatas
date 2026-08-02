@@ -1,15 +1,31 @@
+above
+across
+after
 against
+among
+around
 at
 before
 behind
+below
 beside
+between
+by
 for
+from
 in
+inside
+into
+near
 next to
 out of
 on
 opposite
+out
+over
 through
+to
 toward
 under
+up
 with

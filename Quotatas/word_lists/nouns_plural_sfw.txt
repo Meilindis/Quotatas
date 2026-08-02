@@ -8,6 +8,7 @@ arm chairs
 arms
 asteroids
 balloons
+balls
 baskets
 bathrooms
 baths
@@ -39,7 +40,7 @@ castles
 caves
 cellos
 chairs
-Chameleon Circuits
+chameleon circuits
 chocolates
 clothes
 clouds
@@ -64,6 +65,7 @@ fairy tales
 fans
 fire trucks
 flanges
+flasks
 flowers
 flutes
 footstools
@@ -113,6 +115,7 @@ meteors
 microfiches
 microscopes
 minds
+mittens
 monsters
 moons
 nebulas
@@ -145,6 +148,7 @@ pringles
 puddle jumpers
 radios
 rainbows
+replicators
 robots
 rockets
 rocking chairs

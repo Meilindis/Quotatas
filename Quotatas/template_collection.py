@@ -172,7 +172,7 @@ def template_three_characteristics():
 
 # Give one random compliment
 def template_one_compliment():
-    return f'''{horoscope()}{capitalize_first_letter(random.choice([times(), sometimes()]))} {random.choice([forget, remember])} that
+    return f'''{horoscope()}{capitalize_first_letter(random.choice([times(), sometimes()]))} {random.choice(["forget", "remember"])} that
     you are {adjective_positive()}'''
 
 # General statement
@@ -1006,6 +1006,16 @@ def template_mean():
     you {times()} 
     {verb()} {noun_plural()}?'''
 
+def template_cult():
+    return f'''You must join the
+    Cult of {capitalize_first_letter(adjective())} {capitalize_first_letter(people_plural())}!'''
+
+def template_whatis():
+    return f'''If you really
+    think about it,
+    what is {concept()}?
+    Maybe it's {concept()}?
+    Or just {adjective()}?'''
 
 # List of defined templates (don't forget to add new templates here or they won't be used!)
 template_list = [template_times_three, 
@@ -1153,6 +1163,8 @@ template_list = [template_times_three,
                  template_iota,
                  template_spoon,
                  template_mean,
+                 template_cult,
+                 template_whatis,
                  ]
 
 
