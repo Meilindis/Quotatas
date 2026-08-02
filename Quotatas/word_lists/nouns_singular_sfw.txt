@@ -43,7 +43,7 @@ castle
 cave
 cello
 chair
-Chameleon Circuit
+chameleon circuit
 champagne
 chess game
 chest

@@ -172,7 +172,7 @@ def template_three_characteristics():
 
 # Give one random compliment
 def template_one_compliment():
-    return f'''{horoscope()}{capitalize_first_letter(random.choice([times(), sometimes()]))} {random.choice([forget, remember])} that
+    return f'''{horoscope()}{capitalize_first_letter(random.choice([times(), sometimes()]))} {random.choice(["forget", "remember"])} that
     you are {adjective_positive()}'''
 
 # General statement
@@ -975,7 +975,7 @@ def template_when():
     the {noun_singular()} {verb_third_person()}'''
 
 def template_at():
-    return f'''{noun_plural()} at {concept()}'''
+    return f'''{capitalize_first_letter(noun_plural())} at {concept()}'''
 
 def template_switch():
     return f'''Main {noun_singular()} {verb_ing()}!

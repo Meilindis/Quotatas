@@ -39,7 +39,7 @@ castles
 caves
 cellos
 chairs
-Chameleon Circuits
+chameleon circuits
 chocolates
 clothes
 clouds
