@@ -1017,6 +1017,17 @@ def template_whatis():
     Maybe it's {concept()}?
     Or just {adjective()}?'''
 
+def template_origin():
+    return f'''In the beginning, 
+    there was {concept()}.
+    And it was {adjective()}
+    in the eyes of Bot.'''
+
+def template_thankbot():
+    return f'''Thank Bot
+    that {noun_plural()}
+    are {times()} {adjective()}.'''
+
 # List of defined templates (don't forget to add new templates here or they won't be used!)
 template_list = [template_times_three, 
                  template_three_compliments, 
@@ -1165,6 +1176,8 @@ template_list = [template_times_three,
                  template_mean,
                  template_cult,
                  template_whatis,
+                 template_origin,
+                 template_thankbot,
                  ]
 
 
