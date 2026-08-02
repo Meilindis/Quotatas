@@ -9,6 +9,7 @@ arm
 arm chair
 asteroid
 balloon
+ball
 basket
 bath
 bathroom
@@ -72,6 +73,7 @@ fairy tale
 fan
 fire truck
 flange
+flask
 flower
 flute
 footstool
@@ -121,6 +123,7 @@ meteor
 microfiche
 microscope
 mind
+mitten
 monster
 moon
 nebula
@@ -152,6 +155,7 @@ pringle
 puddle jumper
 radio
 rainbow
+replicator
 robot
 rocket
 rocking chair

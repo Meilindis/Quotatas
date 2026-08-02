@@ -1006,6 +1006,27 @@ def template_mean():
     you {times()} 
     {verb()} {noun_plural()}?'''
 
+def template_cult():
+    return f'''You must join the
+    Cult of {capitalize_first_letter(adjective())} {capitalize_first_letter(people_plural())}!'''
+
+def template_whatis():
+    return f'''If you really
+    think about it,
+    what is {concept()}?
+    Maybe it's {concept()}?
+    Or just {adjective()}?'''
+
+def template_origin():
+    return f'''In the beginning, 
+    there was {concept()}.
+    And it was {adjective()}
+    in the eyes of Bot.'''
+
+def template_thankbot():
+    return f'''Thank Bot
+    that {noun_plural()}
+    are {times()} {adjective()}.'''
 
 # List of defined templates (don't forget to add new templates here or they won't be used!)
 template_list = [template_times_three, 
@@ -1153,6 +1174,10 @@ template_list = [template_times_three,
                  template_iota,
                  template_spoon,
                  template_mean,
+                 template_cult,
+                 template_whatis,
+                 template_origin,
+                 template_thankbot,
                  ]
 
 

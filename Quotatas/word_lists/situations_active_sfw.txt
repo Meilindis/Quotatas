@@ -5,6 +5,7 @@ bake banana bread
 be part of a family
 be the best
 be technically correct
+bend the truth
 brush your teeth
 build a scarecrow
 build a treehouse
@@ -54,6 +55,7 @@ hem curtains
 hop on the train
 hover in the air
 hug a tree
+install Linux
 juggle four balls
 jump over a fence
 learn a new language
@@ -89,6 +91,7 @@ sharpen a pencil
 shave your head
 shoot stars
 simulate intelligence
+stretch your legs
 switch energy providers
 switch to auxiliary
 tag a friend
