@@ -4,6 +4,7 @@ blend in
 burp
 cohabitate
 cycle
+decide
 dive
 dream
 eat
@@ -36,6 +37,7 @@ live
 lollygag
 maneuver
 mask
+meditate
 meow
 moo
 negotiate
@@ -63,6 +65,7 @@ snow
 struggle
 stutter
 swim
+swing
 surf
 take a shower
 take a walk

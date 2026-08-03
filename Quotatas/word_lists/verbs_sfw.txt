@@ -1,6 +1,7 @@
 absquatulate
 accompany
 babysit
+balance
 bring
 bumfuzzle
 calculate
@@ -19,6 +20,7 @@ draw
 drink
 eat
 embrace
+encourage
 enjoy
 fail
 find
@@ -46,8 +48,11 @@ outweigh
 paint
 pamper
 pet
+pilot
 play
 pleasure
+plot
+pluck
 prepare
 program
 promote

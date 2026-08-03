@@ -1,6 +1,7 @@
 absquatulates
 accompanies
 babysits
+balances
 brings
 bumfuzzles
 burps
@@ -20,6 +21,7 @@ draws
 drinks
 eats
 embraces
+encourages
 enjoys
 fails
 finds
@@ -49,8 +51,11 @@ outweighs
 paints
 pampers
 pets
+pilots
 plays
 pleasures
+plots
+plucks
 prepares
 programs
 promotes
