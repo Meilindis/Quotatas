@@ -6,6 +6,7 @@ bumpy
 capable
 cattywampus
 certified
+challenging
 cheeky
 delicate
 dilapidated
@@ -15,11 +16,13 @@ dry
 easy
 eccentric
 elaborate
+embellished
 enigmatic
 ephemeral
 erratic
 fast
 fierce
+flexible
 floppy
 fluent
 fluffy
@@ -28,8 +31,11 @@ fuzzy
 gentle
 gold
 golden
+grown up
 high
+huge
 humble
+independent
 indestructible
 invisible
 knackered
@@ -44,6 +50,7 @@ normal
 odd
 old
 omnipotent
+ornate
 potential
 practical
 quaint
@@ -54,6 +61,7 @@ random
 reasonable
 rich
 rocky
+rubbery
 rustic
 self-contradictory
 sensible
@@ -65,6 +73,8 @@ slow
 smooth
 soft
 spicy
+spongy
+spontaneous
 spurious
 strange
 strong

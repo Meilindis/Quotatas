@@ -7,6 +7,7 @@ boring
 bossy
 bumfuzzled
 creepy
+cringy
 cynical
 daft
 difficult
@@ -16,6 +17,7 @@ dodgy
 dominant
 draining
 dumb
+fake
 filthy
 flaky
 gluttonous
@@ -25,11 +27,15 @@ heartless
 horrible
 idiotic
 ignorant
+impolite
+inflexible
 lazy
 narcissistic
 nefarious
 persnickety
 poor
+problematic
+rude
 salty
 sarcastic
 selfish
@@ -41,3 +47,4 @@ stupid
 terrible
 ugly
 uncaring
+unkind
