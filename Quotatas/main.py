@@ -748,6 +748,7 @@ class MainWindow(QMainWindow):
         word_collections.verbs_third_person = word_collections.verbs_third_person_sfw
         word_collections.verbs_ing = word_collections.verbs_ing_sfw
         word_collections.verbs_intransitive = word_collections.verbs_intransitive_sfw
+        word_collections.verbs_perfectum = word_collections.verbs_perfectum_sfw
         word_collections.concepts = word_collections.concepts_neutral + word_collections.concepts_positive + word_collections.food_concepts
         word_collections.comparatives = word_collections.comparatives_sfw
         word_collections.superlatives = word_collections.superlatives_sfw
@@ -766,6 +767,7 @@ class MainWindow(QMainWindow):
             word_collections.verbs_third_person = word_collections.verbs_third_person + word_collections.verbs_third_person_nsfw
             word_collections.verbs_ing = word_collections.verbs_ing + word_collections.verbs_ing_nsfw
             word_collections.verbs_intransitive = word_collections.verbs_intransitive_sfw + word_collections.verbs_intransitive_nsfw
+            word_collections.verbs_perfectum = word_collections.verbs_perfectum_sfw + word_collections.verbs_perfectum_nsfw
             word_collections.concepts = word_collections.concepts + word_collections.concepts_nsfw
             word_collections.adjectives = word_collections.adjectives + word_collections.adjectives_nsfw
             word_collections.comparatives = word_collections.comparatives + word_collections.comparatives_nsfw
@@ -828,6 +830,8 @@ class MainWindow(QMainWindow):
         word_collections.verbs_third_person_nsfw = word_collections.import_list("verbs_third_person_nsfw.txt")
         word_collections.verbs_active_nsfw = word_collections.import_list("verbs_active_nsfw.txt")
         word_collections.verbs_ing_nsfw = word_collections.import_list("verbs_ing_nsfw.txt")
+        word_collections.verbs_perfectum_sfw = word_collections.import_list("verbs_perfectum_sfw.txt")
+        word_collections.verbs_perfectum_nsfw = word_collections.import_list("verbs_perfectum_nsfw.txt")
         word_collections.comparatives_sfw = word_collections.import_list("comparatives_sfw.txt")
         word_collections.comparatives_nsfw = word_collections.import_list("comparatives_nsfw.txt")
         word_collections.superlatives_sfw = word_collections.import_list("superlatives_sfw.txt")
@@ -886,6 +890,8 @@ class MainWindow(QMainWindow):
         word_collections.export_list(word_collections.verbs_third_person_nsfw, "verbs_third_person_nsfw")
         word_collections.export_list(word_collections.verbs_active_nsfw, "verbs_active_nsfw")
         word_collections.export_list(word_collections.verbs_ing_nsfw, "verbs_ing_nsfw")
+        word_collections.export_list(word_collections.verbs_perfectum_sfw, "verbs_perfectum_sfw.txt")
+        word_collections.export_list(word_collections.verbs_perfectum_nsfw, "verbs_perfectum_nsfw.txt")
         word_collections.export_list(word_collections.comparatives_sfw, "comparatives_sfw")
         word_collections.export_list(word_collections.comparatives_nsfw, "comparatives_nsfw")
         word_collections.export_list(word_collections.superlatives_sfw, "superlatives_sfw")

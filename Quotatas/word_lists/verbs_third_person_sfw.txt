@@ -1,5 +1,7 @@
 absquatulates
 accompanies
+adores
+admires
 babysits
 balances
 brings
@@ -29,6 +31,7 @@ flees
 flicks
 floats
 flies
+forgets
 gets
 hears
 hugs
@@ -72,6 +75,7 @@ slurps
 smells
 sniffs
 stimulates
+straightens
 strokes
 tastes
 teases

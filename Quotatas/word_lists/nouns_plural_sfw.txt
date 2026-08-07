@@ -15,6 +15,7 @@ baths
 beaches
 bedrooms
 beds
+bells
 besoms
 bicycles
 blankets
@@ -83,6 +84,7 @@ gurus
 gynoids
 handbags
 hard disks
+heavens
 Heisenberg compensators
 heliotropes
 herbs
@@ -143,9 +145,13 @@ planets
 plants
 plates
 plushies
+potions
+portions
 pouches
 pringles
+proportions
 puddle jumpers
+quotes
 radios
 rainbows
 replicators

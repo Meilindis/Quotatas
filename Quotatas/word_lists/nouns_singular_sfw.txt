@@ -16,6 +16,7 @@ bathroom
 beach
 bed
 bedroom
+bell
 besom
 bicycle
 big bang
@@ -64,6 +65,7 @@ cutlery
 dream
 dress
 dungeon
+earth
 ear plug
 easter egg
 elixir
@@ -91,6 +93,7 @@ guru
 gynoid
 handbag
 hard disk
+heaven
 heliotrope
 herb
 holodeck
@@ -150,9 +153,12 @@ planet
 plant
 plate
 plushie
+portion
+potion
 pouch
 pringle
 puddle jumper
+quote
 radio
 rainbow
 replicator

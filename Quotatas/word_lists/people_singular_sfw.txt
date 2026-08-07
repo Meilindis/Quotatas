@@ -5,17 +5,22 @@ adult
 alchemist
 angel
 artist
+assistant
 astronaut
 aunt
 baker
+ballerina
 best friend
 bishop
+botanist
 boy
 boyfriend
 captain
 changeling
 clown
 coal miner
+conductor
+couturier
 cutie
 dentist
 detective
@@ -31,9 +36,11 @@ engineer
 expert
 explorer
 farmer
+fashionista
 foodie
 friend
 geek
+giant
 girl
 girlfriend
 gnome
@@ -46,11 +53,13 @@ gremlin
 guru
 halfling
 husband
+ice skater
 judge
 king
 knight
 lady
 landlubber
+lawyer
 leprechaun
 lord
 lover
@@ -59,6 +68,7 @@ man
 manager
 marionette
 mayor
+mechanic
 Mickey Mouse
 musician
 nemesis
@@ -89,12 +99,16 @@ saint
 satyr
 scammer
 shape shifter
+sidekick
 singer
 Smurf
+software engineer
+sommelier
 sorcerer
 sorceress
 supporter
 sweetheart
+taskmaster
 teacher
 technician
 therapist
@@ -105,6 +119,7 @@ uncle
 vampire
 vet
 weirdo
+werewolf
 whippersnapper
 whisperer
 wife

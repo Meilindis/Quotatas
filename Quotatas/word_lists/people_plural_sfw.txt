@@ -5,17 +5,22 @@ adults
 alchemists
 angels
 artists
+assistants
 astronauts
 aunts
 bakers
+ballerinas
 best friends
 bishops
+botanists
 boyfriends
 boys
 captains
 changelings
 clowns
 coal miners
+conducyors
+couturiers
 cuties
 dentists
 detectives
@@ -31,9 +36,11 @@ engineers
 experts
 explorers
 farmers
+fashionistas
 foodies
 friends
 geeks
+giants
 girlfriends
 girls
 gnomes
@@ -46,11 +53,13 @@ gremlins
 gurus
 halflings
 husbands
+ice skaters
 judges
 kings
 knights
 ladies
-landlubbers
+landlubber
+lawyers
 leprechauns
 lords
 lovers
@@ -58,6 +67,7 @@ lurklings
 managers
 marionettes
 mayors
+mechanics
 men
 musicians
 nemeses
@@ -88,12 +98,16 @@ saints
 satyrs
 scammers
 shape shifters
+sidekicks
 singers
 Smurfs
+software engineers
+sommeliers
 sorcerers
 sorceresses
 supporters
 sweethearts
+taskmasters
 teachers
 technicians
 therapists
@@ -104,6 +118,7 @@ uncles
 vampires
 vets
 weirdos
+werewolves
 whippersnappers
 whisperers
 witches

@@ -26,6 +26,9 @@ def verb_mandatory():
 def verb_third_person():
 	return random.choice(word_collections.verbs_third_person)
 
+def verb_perfectum():
+    return random.choice(word_collections.verbs_perfectum)
+
 def adjective():
     return random.choice(word_collections.adjectives)
 
@@ -770,7 +773,7 @@ def template_theydo():
 
 	return f'''{they} {verb_intransitive()}
     {they} {verb_intransitive()}
-    {they} {adverb()} {verb_intransitive()}'''
+    {they} {verb()} {noun_plural()}'''
 
 # Complicated
 def template_complicated():
@@ -948,7 +951,7 @@ def template_whatami():
     in the afternoon,
 	and I {random.choice([verb(), verb_intransitive()])} in the evening.
 	
-	What am I?'''
+	Who am I?'''
 
 def template_zodiac():
     return f'''{capitalize_first_letter(zodiac())}
@@ -1027,6 +1030,27 @@ def template_thankbot():
     return f'''Thank Bot
     that {noun_plural()}
     are {times()} {adjective()}.'''
+
+def template_beginning():
+    return f'''In the beginning,
+    Bot created the {noun_plural()}
+    and the {noun_singular()}.'''
+    
+def template_prettymuch():
+	person = people_singular()
+	adj = adjective()
+	return f'''{capitalize_first_letter(a_or_an(person))} {person} 
+	is pretty much just
+	{a_or_an(adj)} {adj} {people_singular()}'''
+
+def template_judged():
+    return f'''{capitalize_first_letter(verb_perfectum())} is
+    the {people_singular()} who
+    {verb_ing()} {random.choice(["his", "her", "their"])} {noun_plural()}.'''
+
+def template_youknow():
+    return f'''You know what is {adjective_positive()}?
+    {capitalize_first_letter(adjective_positive())} {noun_plural()}!'''
 
 # List of defined templates (don't forget to add new templates here or they won't be used!)
 template_list = [template_times_three, 
@@ -1178,6 +1202,10 @@ template_list = [template_times_three,
                  template_whatis,
                  template_origin,
                  template_thankbot,
+                 template_beginning,
+                 template_prettymuch,
+                 template_judged,
+                 template_youknow,
                  ]
 
 
