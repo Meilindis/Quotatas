@@ -984,8 +984,8 @@ def template_when():
     the {noun_singular()} {verb_third_person()}'''
 
 def template_at():
-    return f'''There are {noun_plural()}
-    at {concept()}.'''
+    return f'''There are {people_plural()}
+    at {adjective()} {noun_plural()}.'''
 
 def template_switch():
     return f'''Main {noun_singular()} {verb_ing()}!
