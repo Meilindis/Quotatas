@@ -77,7 +77,7 @@ time_units = ["seconds", "minutes", "hours", "days", "weeks", "months", "years",
 greetings = ["What ho!", "Hello, stranger!", "Greetings, human!", "Welcome, my friend!", "Good day, mate!", "It is agreeable\nto see you!", "Peace and long life!", "Howdy, brave earthling!"]
 quantifiers = ["a shame", "fortunate", "odd", "weird", "a pity", "unfortunate", "a miracle", "likely", "improbable", "a blessing", "strange", "a good thing", "so random", "swell", "mind-blowing", "madness", "crazy"]
 numbers = ["two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"]
-quantities = ["an iota of", "some", "many", "lots of", "a grain of", "quite a bit of", "a tiny amount of", "a huge amount of"]
+quantities = ["an iota of", "some", "any", "lots of", "a grain of", "quite a bit of", "a tiny amount of", "a huge amount of"]
 
 def import_list(filename):
     word_list = []

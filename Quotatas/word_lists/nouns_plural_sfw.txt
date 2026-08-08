@@ -4,6 +4,7 @@ adventures
 aeroplanes
 alarm clocks
 androids
+anthills
 arm chairs
 arms
 asteroids
@@ -52,6 +53,7 @@ colanders
 comedies
 computers
 concepts
+crystals
 cups
 cushions
 dreams
@@ -118,6 +120,7 @@ microfiches
 microscopes
 minds
 mittens
+molehills
 monsters
 moons
 nebulas
@@ -220,5 +223,6 @@ watches
 weeds
 wet blankets
 whisks
+windmills
 wingnuts
 wombles

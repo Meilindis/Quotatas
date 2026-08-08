@@ -1,5 +1,9 @@
 D&D
 agency
+America
+Antarctica
+Asia
+Australia
 antimatter
 anything
 art
@@ -22,6 +26,7 @@ drawing
 earwax
 education
 equality
+Europa
 existence
 fairness
 fantasy
@@ -81,6 +86,7 @@ success
 sunshine
 supper
 technology
+the Big Splash
 the singularity
 thunder
 time

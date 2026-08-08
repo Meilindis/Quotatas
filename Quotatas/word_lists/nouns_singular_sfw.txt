@@ -5,6 +5,7 @@ adventure
 aeroplane
 alarm clock
 android
+anthill
 arm
 arm chair
 asteroid
@@ -59,6 +60,7 @@ colander
 comedy
 computer
 concept
+crystal
 cup
 cushion
 cutlery
@@ -127,6 +129,7 @@ microfiche
 microscope
 mind
 mitten
+molehill
 monster
 moon
 nebula
@@ -227,5 +230,6 @@ warp nacelle
 watch
 weed
 wet blanket
+windmill
 wingnut
 whisk

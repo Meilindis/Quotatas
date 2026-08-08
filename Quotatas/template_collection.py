@@ -131,7 +131,7 @@ def horoscope():
     else:
         return f"Today's horoscope - {capitalize_first_letter(random.choice(word_collections.zodiac))}:\n\n"
 
-vowels = ['a', 'e', 'i', 'o', 'u']
+vowels = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']
 
 def a_or_an(text):
     if text[0] in vowels:
@@ -669,9 +669,10 @@ def template_recipe():
 # Contents
 def template_contents():
     return f'''{capitalize_first_letter(concept())}?
-    That's just {random.choice([food_concept(), concept()])},
-    a tiny bit of {random.choice([food_singular(), concept()])}
-    and some {random.choice([food_concept(), concept()])}.'''
+    That's a combination
+    of {random.choice([food_concept(), concept()])},
+    {random.choice([food_singular(), concept()])},
+    and {random.choice([food_concept(), concept()])}.'''
 	
 # Ingredients
 def template_ingredients():
@@ -771,9 +772,14 @@ def template_dont():
 def template_theydo():
 	they = f"{capitalize_first_letter(adjective())} {people_plural()}"
 
-	return f'''{they} {verb_intransitive()}
-    {they} {verb_intransitive()}
-    {they} {verb()} {noun_plural()}'''
+	return f'''{they}
+	{verb_intransitive()}
+	
+    {they}
+    {verb_intransitive()}
+    
+    {they}
+    {verb()} {noun_plural()}'''
 
 # Complicated
 def template_complicated():
@@ -978,7 +984,8 @@ def template_when():
     the {noun_singular()} {verb_third_person()}'''
 
 def template_at():
-    return f'''{capitalize_first_letter(noun_plural())} at {concept()}'''
+    return f'''There are {noun_plural()}
+    at {concept()}.'''
 
 def template_switch():
     return f'''Main {noun_singular()} {verb_ing()}!

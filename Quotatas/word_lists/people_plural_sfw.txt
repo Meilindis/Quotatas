@@ -19,7 +19,7 @@ captains
 changelings
 clowns
 coal miners
-conducyors
+conductors
 couturiers
 cuties
 dentists
@@ -58,7 +58,7 @@ judges
 kings
 knights
 ladies
-landlubber
+landlubbers
 lawyers
 leprechauns
 lords

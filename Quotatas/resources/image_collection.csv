@@ -62,7 +62,7 @@ face.png;(255, 255, 255);justify;bottom;0;0
 flysex.png;(255, 245, 185);justify;top;0;0
 fortune.png;(29, 37, 82);justify;bottom;0;0
 fountain.png;(0, 0, 0);justify;bottom;0;0
-frame.png;(0, 0, 0);justify;middle;0;0
+frame.png;(255, 255, 255);justify;middle;0;0
 frogheart.png;(199, 17, 234);justify;bottom;0;0
 frogs.png;(255, 255, 255);justify;bottom;0;-45
 frog.png;(255, 255, 255);justify;top;0;0
