@@ -1,4 +1,5 @@
 babysitter
+bearer
 bringer
 caresser
 chaser
@@ -13,6 +14,7 @@ drawer
 drinker
 eater
 finder
+fixer
 hugger
 knitter
 lifter
@@ -42,6 +44,7 @@ stroker
 taster
 teaser
 tickler
+titillater
 toppler
 toucher
 watcher

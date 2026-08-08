@@ -102,6 +102,7 @@ holodeck
 hovercraft
 hug
 iceberg
+illusion
 jar
 kettle
 keyboard
@@ -128,6 +129,7 @@ meteor
 microfiche
 microscope
 mind
+mirage
 mitten
 molehill
 monster

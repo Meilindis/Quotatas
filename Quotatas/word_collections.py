@@ -78,6 +78,7 @@ greetings = ["What ho!", "Hello, stranger!", "Greetings, human!", "Welcome, my f
 quantifiers = ["a shame", "fortunate", "odd", "weird", "a pity", "unfortunate", "a miracle", "likely", "improbable", "a blessing", "strange", "a good thing", "so random", "swell", "mind-blowing", "madness", "crazy"]
 numbers = ["two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"]
 quantities = ["an iota of", "some", "any", "lots of", "a grain of", "quite a bit of", "a tiny amount of", "a huge amount of"]
+emotions = ["angry at", "in love with", "happy about", "sad about", "shy about", "confused about", "disgusted by", "repulsed by", "having fun with", "jealous of", "envious of", "neutral about"]
 
 def import_list(filename):
     word_list = []

@@ -94,6 +94,7 @@ holodecks
 hovercrafts
 hugs
 icebergs
+illusions
 jars
 kettles
 keyboards
@@ -119,6 +120,7 @@ meteors
 microfiches
 microscopes
 minds
+mirages
 mittens
 molehills
 monsters

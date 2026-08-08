@@ -4,6 +4,8 @@ adore
 admire
 babysit
 balance
+bare
+bear
 bring
 bumfuzzle
 calculate
@@ -26,6 +28,7 @@ encourage
 enjoy
 fail
 find
+fix
 flee
 flick
 float

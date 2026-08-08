@@ -107,6 +107,9 @@ def zodiac():
 def quantity():
     return random.choice(word_collections.quantities)
 
+def emotion():
+    return random.choice(word_collections.emotions)
+
 # -------------------------------------------------------------------------------------------------------------------
 
 # HELPER FUNCTIONS
@@ -610,7 +613,7 @@ def template_answer():
 # Cliches
 def template_cliches():
     return f'''\"{capitalize_first_letter(cliche())}\"
-    is just another way to say
+    {random.choice("is just another way to say", "is how certain people say", "is another term for")}
     \"{capitalize_first_letter(cliche())}\".'''
 
 # Just say it
@@ -1059,6 +1062,67 @@ def template_youknow():
     return f'''You know what is {adjective_positive()}?
     {capitalize_first_letter(adjective_positive())} {noun_plural()}!'''
 
+def template_together():
+    adj = adjective()
+    return f'''With {adj} {noun_plural()}
+    come {adj} {noun_plural()}.'''
+
+def template_do_this():
+    return f'''{capitalize_first_letter(verb())} {random.choice([noun_plural(), people_plural()])}'''
+
+def template_fun():
+    return f'''{capitalize_first_letter(situation())}
+    is fun for everybody
+    except {people_plural()}'''
+
+def template_why_do():
+    return f'''Why {verb_intransitive()}
+    if you can {times()} {verb_intransitive()}?'''
+
+def template_want():
+    return f'''{capitalize_first_letter(people_plural())}
+
+    Some of them want
+    to {verb()} you.'''
+
+def template_sure():
+    person = people_singular()
+    return f'''How can you be sure that
+    your {people_singular()} is {a_or_an(person)} {person}?
+    {capitalize_first_letter(a_or_an(person))} {person} always wants 
+    to {verb_intransitive()}.'''
+
+def template_being():
+    return f'''Being {adjective()}
+    is {random.choice(["not ", ""])}{adjective()}!'''
+
+def template_perception():
+    return f'''{capitalize_first_letter(noun_plural())}
+    can radically alter
+    the way you
+    perceive {random.choice([noun_plural(), concept()])}.'''
+
+def template_understanding():
+    things = random.choice([noun_plural(), people_plural()])
+    return f'''If you are
+    {emotion()} {things},
+    you do not know what
+    {things} are about.'''
+
+def template_care():
+    return f'''{capitalize_first_letter(random.choice([noun_plural(), people_plural()]))}
+    only care about {random.choice([noun_plural(), concept()])}.'''
+
+def template_do_three():
+    return f'''{capitalize_first_letter(verb())} {concept()}.
+    {capitalize_first_letter(verb())} {adverb()}.
+    {capitalize_first_letter(verb())} {noun_plural()}.'''
+
+def template_no():
+    return f'''No {random.choice([concept(), people_plural(), noun_plural()])},
+    no {random.choice([concept(), people_plural(), noun_plural()])}.'''
+
+
 # List of defined templates (don't forget to add new templates here or they won't be used!)
 template_list = [template_times_three, 
                  template_three_compliments, 
@@ -1213,6 +1277,18 @@ template_list = [template_times_three,
                  template_prettymuch,
                  template_judged,
                  template_youknow,
+                 template_together,
+                 template_do_this,
+                 template_fun,
+                 template_why_do,
+                 template_want,
+                 template_sure,
+                 template_being,
+                 template_perception,
+                 template_understanding,
+                 template_care,
+                 template_do_three,
+                 template_no,
                  ]
 
 
