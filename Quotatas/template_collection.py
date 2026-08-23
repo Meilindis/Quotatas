@@ -985,7 +985,7 @@ def template_when():
 
 def template_switch():
     return f'''Main {noun_singular()}
-    are {verb_ing()}!
+    is {verb_ing()}!
     Switching to
     auxiliary {noun_singular()}.'''
 
