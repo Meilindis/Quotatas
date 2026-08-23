@@ -980,15 +980,12 @@ def template_believe():
     {situation_active()}.'''
 
 def template_when():
-    return f'''{capitalize_first_letter(noun_singular())} when
-    the {noun_singular()} {verb_third_person()}'''
-
-def template_at():
-    return f'''There are {people_plural()}
-    at {adjective()} {noun_plural()}.'''
+    return f'''{capitalize_first_letter(random.choice([noun_singular(), people_singular()]))} when
+    the {noun_plural()} {verb()}'''
 
 def template_switch():
-    return f'''Main {noun_singular()} {verb_ing()}!
+    return f'''Main {noun_singular()}
+    are {verb_ing()}!
     Switching to
     auxiliary {noun_singular()}.'''
 
@@ -1058,6 +1055,11 @@ def template_judged():
 def template_youknow():
     return f'''You know what is {adjective_positive()}?
     {capitalize_first_letter(adjective_positive())} {noun_plural()}!'''
+
+def template_if_you():
+    verb = verb()
+    return f'''If you {verb}, 
+    you {verb}.'''
 
 # List of defined templates (don't forget to add new templates here or they won't be used!)
 template_list = [template_times_three, 
@@ -1197,7 +1199,6 @@ template_list = [template_times_three,
                  template_best,
                  template_believe,
                  template_when,
-                 template_at,
                  template_switch,
                  template_hovercraft,
                  template_eels,
@@ -1213,6 +1214,7 @@ template_list = [template_times_three,
                  template_prettymuch,
                  template_judged,
                  template_youknow,
+                 template_if_you,
                  ]
 
 
