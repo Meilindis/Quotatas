@@ -1015,7 +1015,8 @@ def template_mean():
 
 def template_cult():
     return f'''You must join the
-    Cult of {capitalize_first_letter(adjective())} {capitalize_first_letter(people_plural())}!'''
+    {random.choice(["Cult", "Order", "Club", "Sect", "Fandom", "Religion"])} of
+    {capitalize_first_letter(adjective())} {capitalize_first_letter(people_plural())}!'''
 
 def template_whatis():
     return f'''If you really
