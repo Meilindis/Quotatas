@@ -69,7 +69,6 @@ marionettes
 mayors
 mechanics
 men
-mummers
 musicians
 nemeses
 nerds

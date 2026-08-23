@@ -99,6 +99,8 @@ class MainWindow(QMainWindow):
         self._selected_quote = 0
         self._font_collection = [] # Array of Font objects
         self._image_collection = [] # Array of Picture objects
+        self._image_collection_sfw = []
+        self._image_collection_nsfw = []
         self._generating_quote = False # Whether a quote is being actively generated.
         self._overlay = True
 
@@ -376,17 +378,32 @@ class MainWindow(QMainWindow):
         # Read image info from file
     def import_image_collection(self):
         logger.info("\tImporting image collection...")
-        image_location = os.path.join(current_path, 'resources', 'image_collection.csv')
+        # Importing SFW images
+        image_location = os.path.join(current_path, 'resources', 'image_collection_sfw.csv')
         if os.path.isfile(image_location):
             with open(image_location, newline='') as csvfile:
                 imagereader = csv.reader(csvfile, delimiter=';', quotechar='|')
                 parsed = (list(evaluate(field) for field in row) for row in imagereader)
                 for row in parsed:
                     my_picture = Picture(row[0], row[1], row[2], row[3], row[4], row[5])
-                    self._image_collection.append(my_picture)
+                    self._image_collection_sfw.append(my_picture)
             logger.info("\tImage collection imported.")
         else:
-            logger.info("Image collection file not found.")
+            logger.info("Image collection SFW file not found.")
+        # Importing NSFW images
+        image_location = os.path.join(current_path, 'resources', 'image_collection_nsfw.csv')
+        if os.path.isfile(image_location):
+            with open(image_location, newline='') as csvfile:
+                imagereader = csv.reader(csvfile, delimiter=';', quotechar='|')
+                parsed = (list(evaluate(field) for field in row) for row in imagereader)
+                for row in parsed:
+                    my_picture = Picture(row[0], row[1], row[2], row[3], row[4], row[5])
+                    self._image_collection_nsfw.append(my_picture)
+            logger.info("\tImage collection imported.")
+        else:
+            logger.info("Image collection NSFW file not found.")
+        # Load image collection with SFW by default
+        self._image_collection = self._image_collection_sfw
 
     # Define what happens when the button is pressed
     def generate_quote(self):
@@ -740,7 +757,7 @@ class MainWindow(QMainWindow):
     # Determine the available word collection depending on the toggles (NSFW/negative on or off)
     def settings_changed(self):
         logger.info("Updating used word collection...")
-        # Set all word collections to neutral
+        # Set all collections to neutral
         word_collections.nouns_singular = word_collections.nouns_singular_sfw + word_collections.people_singular + word_collections.animals_singular + word_collections.verbs_active_sfw + word_collections.food_singular
         word_collections.nouns_plural = word_collections.animals_plural + word_collections.people_plural + word_collections.nouns_plural_sfw + word_collections.food_plural
         word_collections.adjectives = word_collections.adjectives_positive + word_collections.adjectives_neutral + word_collections.colours
@@ -757,6 +774,7 @@ class MainWindow(QMainWindow):
         word_collections.people_singular = word_collections.people_singular_sfw
         word_collections.people_plural = word_collections.people_plural_sfw
         word_collections.cliches = word_collections.cliches_sfw
+        self._image_collection = self._image_collection_sfw
         # Add NSFW
         if self.button_nsfw_action.isChecked():
             logger.info("\tAdding NSFW words...")
@@ -777,6 +795,7 @@ class MainWindow(QMainWindow):
             word_collections.cliches = word_collections.cliches + word_collections.cliches_nsfw
             word_collections.people_singular = word_collections.people_singular + word_collections.people_singular_nsfw
             word_collections.people_plural = word_collections.people_plural + word_collections.people_plural_nsfw
+            self._image_collection = self._image_collection_sfw + self._image_collection_nsfw
         # Add negative stuff
         if self.button_negative_action.isChecked() == True:
             logger.info("\tAdding negative words...")

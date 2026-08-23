@@ -20,7 +20,6 @@ frown
 get dressed
 get drunk
 grin
-hesitate
 hide
 hurry
 ice-skate
@@ -40,7 +39,6 @@ maneuver
 mask
 meditate
 meow
-mime
 moo
 negotiate
 nibble

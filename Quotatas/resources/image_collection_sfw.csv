@@ -13,9 +13,9 @@ ascent.png;(255, 255, 255);justify;top;0;0
 babushka.png;(255, 255, 255);justify;top;0;0
 backgammon.png;(255, 255, 255);justify;bottom;0;0
 balloons.png;(65, 75, 139);justify;top;0;0
-bananas.png;(255, 255, 255);justify;top;0;0
 batflying.png;(255, 255, 255);justify;top;0;0
 bathanging.png;(255, 245, 185);justify;bottom;0;-20
+bellpepper.png;(255, 245, 185);justify;top;0;0
 bicycle.png;(171, 204, 255);justify;top;0;0
 bigsplash.png;(255, 255, 255);justify;top;0;0
 blossoms.png;(65, 75, 139);justify;top;0;0
@@ -24,6 +24,7 @@ bluemarble.png;(255, 255, 255);justify;bottom;0;0
 bluetitfront.png;(29, 37, 82);justify;bottom;0;0
 bluetitside.png;(29, 37, 82);justify;top;0;0
 bot.png;(255, 255, 255);justify;bottom;0;0
+building_the_freidrich-strasse_station.png;(65, 75, 139);justify;top;0;0
 butterfly.png;(29, 37, 82);justify;bottom;0;0
 candle.png;(29, 37, 82);justify;top;0;0
 cat_snow.png;(29, 37, 82);justify;top;0;0
@@ -44,7 +45,7 @@ couple_mountains.png;(29, 37, 82);justify;top;0;0
 crow.png;(255, 245, 185);justify;top;0;0
 crystal.png;(255, 255, 255);justify;top;0;0
 cucumber.png;(255, 255, 255);justify;bottom;0;0
-building_the_freidrich-strasse_station.png;(65, 75, 139);justify;top;0;0
+cynic.png;(0, 0, 0);justify;top;0;0
 dancer.png;(255, 255, 255);justify;top;0;0
 desert.png;(29, 37, 82);justify;top;0;0
 dice.png;(255, 255, 255);justify;top;0;0
@@ -59,12 +60,10 @@ duck.png;(29, 37, 82);justify;bottom;0;0
 ducklings.png;(255, 255, 255);justify;bottom;0;-45
 earth.png;(255, 255, 255);justify;top;0;0
 face.png;(255, 255, 255);justify;bottom;0;0
-flysex.png;(255, 245, 185);justify;top;0;0
 fortune.png;(29, 37, 82);justify;bottom;0;0
 fountain.png;(0, 0, 0);justify;bottom;0;0
 frame.png;(255, 255, 255);justify;middle;0;0
 frogheart.png;(199, 17, 234);justify;bottom;0;0
-frogs.png;(255, 255, 255);justify;bottom;0;-45
 frog.png;(255, 255, 255);justify;top;0;0
 galaxy.png;(255, 255, 255);justify;top;0;0
 giraffe.png;(29, 37, 82);justify;top;0;0
@@ -105,6 +104,7 @@ mechanic.png;(255, 255, 255);justify;bottom;0;0
 megaphone.png;(29, 37, 82);justify;top;40;0
 milky_way.png;(255, 245, 185);justify;top;0;0
 mime.png;(255, 255, 255);justify;top;0;0
+monalisa.png;(0, 0, 0);justify;bottom;0;0
 monkey.png;(255, 255, 255);justify;top;0;0
 monopoly.png;(29, 37, 82);justify;bottom;0;0
 monster.png;(255, 255, 255);justify;top;0;0
@@ -132,6 +132,7 @@ reading.png;(29, 37, 82);justify;top;0;0
 reflection.png;(255, 255, 255);justify;top;0;0
 rider.png;(255, 255, 255);justify;top;0;0
 robot.png;(199, 17, 234);justify;top;0;0
+roof.png;(0, 0, 0);justify;top;0;0
 rubberducks.png;(29, 37, 82);justify;top;0;0
 ruin.png;(255, 255, 255);justify;top;0;0
 salad.png;(255, 255, 255);justify;bottom;0;0
@@ -162,6 +163,7 @@ tiles.png;(255, 255, 255);justify;top;0;0
 tits.png;(255, 245, 185);justify;top;0;0
 tolerable.png;(29, 37, 82);justify;top;0;0
 top.png;(65, 75, 139);justify;top;0;0
+touch.png;(0, 0, 0);justify;top;0;0
 treefrog.png;(199, 17, 234);justify;bottom;0;0
 tulips.png;(255, 255, 255);justify;top;0;0
 twelve_men_.png;(199, 17, 234);justify;top;10;0

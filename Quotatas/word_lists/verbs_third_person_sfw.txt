@@ -4,8 +4,6 @@ adores
 admires
 babysits
 balances
-bares
-bears
 brings
 bumfuzzles
 burps
@@ -29,7 +27,6 @@ encourages
 enjoys
 fails
 finds
-fixes
 flees
 flicks
 floats
@@ -83,7 +80,6 @@ strokes
 tastes
 teases
 tickles
-titillates
 topples
 touches
 treats

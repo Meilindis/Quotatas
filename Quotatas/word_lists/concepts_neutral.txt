@@ -26,7 +26,7 @@ drawing
 earwax
 education
 equality
-Europa
+Europe
 existence
 fairness
 fantasy
@@ -72,7 +72,6 @@ randomness
 rest
 righteousness
 science fiction
-self-preservation
 serendipity
 silence
 socialism
