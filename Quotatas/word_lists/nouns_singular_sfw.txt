@@ -60,6 +60,7 @@ colander
 comedy
 computer
 concept
+conflict
 crystal
 cup
 cushion
@@ -96,12 +97,14 @@ gynoid
 handbag
 hard disk
 heaven
+hegemon
 heliotrope
 herb
 holodeck
 hovercraft
 hug
 iceberg
+iteration
 jar
 kettle
 keyboard
@@ -159,6 +162,7 @@ plushie
 portion
 potion
 pouch
+prequel
 pringle
 puddle jumper
 quote
@@ -169,6 +173,7 @@ robot
 rocket
 rocking chair
 sea
+sequel
 sewing machine
 ship
 shoe
@@ -220,6 +225,7 @@ truck
 umbrella
 unicorn
 universe
+utopia
 vase
 violin
 walkman

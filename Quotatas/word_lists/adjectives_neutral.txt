@@ -8,6 +8,7 @@ cattywampus
 certified
 challenging
 cheeky
+decent
 delicate
 dilapidated
 direct
@@ -42,6 +43,7 @@ knackered
 long
 low
 loud
+mechanical
 mediocre
 mischievous
 naughty
@@ -52,6 +54,8 @@ old
 omnipotent
 open
 ornate
+orthodox
+polite
 potential
 practical
 quaint
@@ -81,12 +85,15 @@ spurious
 strange
 strong
 supersonic
+technical
 tender
 textured
 thick
 thin
 tough
 tricky
+universal
+unorthodox
 verdant
 weak
 weird

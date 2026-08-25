@@ -1,4 +1,5 @@
 D&D
+aesthetic
 agency
 America
 Antarctica
@@ -14,8 +15,10 @@ brouhaha
 chaos
 checkmate
 chess
+chronology
 communism
 copper
+culture
 cybernetics
 dancing
 darkness
@@ -30,6 +33,7 @@ Europe
 existence
 fairness
 fantasy
+fashion
 fate
 Fisher Price
 gardening
@@ -38,7 +42,9 @@ glitter
 gratitude
 harmony
 history
+influence
 iron
+irony
 je ne sais quoi
 justice
 karma
@@ -59,13 +65,16 @@ memory
 monopoly
 moonlight
 music
-naquada
+naquadah
 nature
 nothing
+oblivion
+orthodoxy
 painting
 peace
 photography
 poker
+power
 progress
 rain
 randomness
@@ -90,6 +99,7 @@ the Big Splash
 the singularity
 thunder
 time
+time travel
 tiredness
 victory
 wellness

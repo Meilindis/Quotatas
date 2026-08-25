@@ -53,6 +53,7 @@ colanders
 comedies
 computers
 concepts
+conflicts
 crystals
 cups
 cushions
@@ -87,6 +88,7 @@ gynoids
 handbags
 hard disks
 heavens
+hegemons
 Heisenberg compensators
 heliotropes
 herbs
@@ -94,6 +96,7 @@ holodecks
 hovercrafts
 hugs
 icebergs
+iterations
 jars
 kettles
 keyboards
@@ -151,6 +154,7 @@ plushies
 potions
 portions
 pouches
+prequels
 pringles
 proportions
 puddle jumpers
@@ -163,6 +167,7 @@ rockets
 rocking chairs
 scissors
 seas
+sequels
 sewing machines
 ships
 shoes
@@ -212,6 +217,7 @@ trucks
 umbrellas
 unicorns
 universes
+utopias
 vases
 violins
 walkmans
