@@ -50,6 +50,7 @@ normal
 odd
 old
 omnipotent
+open
 ornate
 potential
 practical
@@ -72,6 +73,7 @@ slick
 slow
 smooth
 soft
+solid
 spicy
 spongy
 spontaneous
@@ -89,5 +91,6 @@ verdant
 weak
 weird
 wet
+wide
 wise
 wooden

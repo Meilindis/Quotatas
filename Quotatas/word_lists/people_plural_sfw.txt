@@ -30,6 +30,7 @@ doctors
 dragonborns
 dryads
 elves
+empaths
 emperors
 empresses
 engineers
@@ -110,6 +111,7 @@ sweethearts
 taskmasters
 teachers
 technicians
+telepaths
 therapists
 time travellers
 tinkerers

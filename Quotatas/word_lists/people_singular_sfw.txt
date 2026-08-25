@@ -30,6 +30,7 @@ doctor
 dragonborn
 dryad
 elf
+empath
 emperor
 empress
 engineer
@@ -111,6 +112,7 @@ sweetheart
 taskmaster
 teacher
 technician
+telepath
 therapist
 time traveller
 tinkerer

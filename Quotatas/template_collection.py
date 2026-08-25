@@ -1062,6 +1062,11 @@ def template_if_you():
     return f'''If you {verb}, 
     you {verb}.'''
 
+def template_shaka():
+    person = people_singular()
+    return f'''{a_or_an(person)} person,
+    {random.choice(["his", "her", "their"])} {noun_plural()} {adjective()}'''
+
 # List of defined templates (don't forget to add new templates here or they won't be used!)
 template_list = [template_times_three, 
                  template_three_compliments, 
@@ -1216,6 +1221,7 @@ template_list = [template_times_three,
                  template_judged,
                  template_youknow,
                  template_if_you,
+                 template_shaka,
                  ]
 
 
