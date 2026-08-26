@@ -1058,9 +1058,9 @@ def template_youknow():
     {capitalize_first_letter(adjective_positive())} {noun_plural()}!'''
 
 def template_if_you():
-    verby = verb()
-    return f'''If you {verby}, 
-    you {verby}.'''
+    selected_verb = verb()
+    return f'''If you {selected_verb}, 
+    you {selected_verb}.'''
 
 def template_shaka():
     person = people_singular()
