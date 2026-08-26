@@ -1058,13 +1058,13 @@ def template_youknow():
     {capitalize_first_letter(adjective_positive())} {noun_plural()}!'''
 
 def template_if_you():
-    verb = verb()
-    return f'''If you {verb}, 
-    you {verb}.'''
+    verby = verb()
+    return f'''If you {verby}, 
+    you {verby}.'''
 
 def template_shaka():
     person = people_singular()
-    return f'''{a_or_an(person)} {person},
+    return f'''{capitalize_first_letter(a_or_an(person))} {person},
     {random.choice(["his", "her", "their"])} {noun_plural()} {adjective()}'''
 
 # List of defined templates (don't forget to add new templates here or they won't be used!)

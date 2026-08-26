@@ -81,6 +81,7 @@ pals
 paramours
 parents
 pawns
+persons
 philanthropists
 pilots
 pirates

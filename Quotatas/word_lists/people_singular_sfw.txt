@@ -82,6 +82,7 @@ pal
 paramour
 parent
 pawn
+person
 philanthropist
 pilot
 pirate
