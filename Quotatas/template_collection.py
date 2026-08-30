@@ -107,6 +107,21 @@ def zodiac():
 def quantity():
     return random.choice(word_collections.quantities)
 
+def person_male():
+    return random.choice(word_collections.persons_male)
+
+def person_female():
+    return random.choice(word_collections.persons_female)
+
+def person():
+    return random.choice(word_collections.persons)
+
+def verb_past():
+    return random.choice(word_collections.verbs_past)
+
+def verb_intransitive_past():
+    return random.choice(word_collections.verbs_intransitive_past)
+
 # -------------------------------------------------------------------------------------------------------------------
 
 # HELPER FUNCTIONS
@@ -1062,10 +1077,23 @@ def template_if_you():
     return f'''If you {selected_verb}, 
     you {selected_verb}.'''
 
-def template_shaka():
+def template_temba1():
     person = people_singular()
     return f'''{capitalize_first_letter(a_or_an(person))} {person},
-    {random.choice(["his", "her", "their"])} {noun_plural()} {adjective()}'''
+    {random.choice(["his", "her", "their"])} {noun_singular()} {adjective()}'''
+
+def template_temba2():
+    gender = random.randint(1, 2)
+    if gender == 1:
+        return f'''{person_female()},
+        her {noun_plural()} {adjective()}'''
+    else:
+        return f'''{person_male()},
+        his {noun_plural()} {adjective()}'''
+
+def template_shaka():
+    return f'''{person()},
+    when the {noun_plural()} {verb_intransitive_past()}'''
 
 # List of defined templates (don't forget to add new templates here or they won't be used!)
 template_list = [template_times_three, 
@@ -1221,6 +1249,8 @@ template_list = [template_times_three,
                  template_judged,
                  template_youknow,
                  template_if_you,
+                 template_temba1,
+                 template_temba2,
                  template_shaka,
                  ]
 

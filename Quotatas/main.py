@@ -436,6 +436,9 @@ class MainWindow(QMainWindow):
         logger.info("\tFont selected: " + self._font.get_ui_name() + ".")
         logger.info("\tGenerating quote text...")
         self._quote = random.choice(template_collection.template_list)()
+        attributed = random.randint(1, 100)
+        if attributed < 11:
+            self._quote = self._quote + "\n\n- " + random.choice(word_collections.persons)
         logger.info("\tQuote text generated:\n\n " + self._quote + "\n\n")
 
         # Add and set the selected parameters to the list of quotes
@@ -762,9 +765,11 @@ class MainWindow(QMainWindow):
         word_collections.nouns_plural = word_collections.animals_plural + word_collections.people_plural + word_collections.nouns_plural_sfw + word_collections.food_plural
         word_collections.adjectives = word_collections.adjectives_positive + word_collections.adjectives_neutral + word_collections.colours
         word_collections.verbs = word_collections.verbs_sfw
+        word_collections.verbs_past = word_collections.verbs_past_sfw
         word_collections.verbs_third_person = word_collections.verbs_third_person_sfw
         word_collections.verbs_ing = word_collections.verbs_ing_sfw
         word_collections.verbs_intransitive = word_collections.verbs_intransitive_sfw
+        word_collections.verbs_intransitive_past = word_collections.verbs_intransitive_past_sfw
         word_collections.verbs_perfectum = word_collections.verbs_perfectum_sfw
         word_collections.concepts = word_collections.concepts_neutral + word_collections.concepts_positive + word_collections.food_concepts
         word_collections.comparatives = word_collections.comparatives_sfw
@@ -774,6 +779,7 @@ class MainWindow(QMainWindow):
         word_collections.people_singular = word_collections.people_singular_sfw
         word_collections.people_plural = word_collections.people_plural_sfw
         word_collections.cliches = word_collections.cliches_sfw
+        word_collections.persons = word_collections.persons_male + word_collections.persons_female
         self._image_collection = self._image_collection_sfw
         # Add NSFW
         if self.button_nsfw_action.isChecked():
@@ -782,9 +788,11 @@ class MainWindow(QMainWindow):
             word_collections.nouns_plural = word_collections.nouns_plural + word_collections.nouns_plural_nsfw
             word_collections.adjectives = word_collections.adjectives + word_collections.adjectives_nsfw
             word_collections.verbs = word_collections.verbs + word_collections.verbs_nsfw
+            word_collections.verbs_past = word_collections.verbs_past + word_collections.verbs_past_nsfw
             word_collections.verbs_third_person = word_collections.verbs_third_person + word_collections.verbs_third_person_nsfw
             word_collections.verbs_ing = word_collections.verbs_ing + word_collections.verbs_ing_nsfw
             word_collections.verbs_intransitive = word_collections.verbs_intransitive_sfw + word_collections.verbs_intransitive_nsfw
+            word_collections.verbs_intransitive_past = word_collections.verbs_intransitive_past_sfw + word_collections.verbs_intransitive_past_nsfw
             word_collections.verbs_perfectum = word_collections.verbs_perfectum_sfw + word_collections.verbs_perfectum_nsfw
             word_collections.concepts = word_collections.concepts + word_collections.concepts_nsfw
             word_collections.adjectives = word_collections.adjectives + word_collections.adjectives_nsfw
@@ -829,6 +837,8 @@ class MainWindow(QMainWindow):
         word_collections.food_plural = word_collections.import_list("food_plural.txt")
         word_collections.verbs_sfw = word_collections.import_list("verbs_sfw.txt")
         word_collections.verbs_intransitive_sfw = word_collections.import_list("verbs_intransitive_sfw.txt")
+        word_collections.verbs_past_sfw = word_collections.import_list("verbs_past_sfw.txt")
+        word_collections.verbs_intransitive_past_sfw = word_collections.import_list("verbs_intransitive_past_sfw.txt")
         word_collections.verbs_third_person_sfw = word_collections.import_list("verbs_third_person_sfw.txt")
         word_collections.verbs_active_sfw = word_collections.import_list("verbs_active_sfw.txt")
         word_collections.verbs_ing_sfw = word_collections.import_list("verbs_ing_sfw.txt")
@@ -846,6 +856,8 @@ class MainWindow(QMainWindow):
         word_collections.adjectives_nsfw = word_collections.import_list("adjectives_nsfw.txt")
         word_collections.verbs_nsfw = word_collections.import_list("verbs_nsfw.txt")
         word_collections.verbs_intransitive_nsfw = word_collections.import_list("verbs_intransitive_nsfw.txt")
+        word_collections.verbs_past_nsfw = word_collections.import_list("verbs_past_nsfw.txt")
+        word_collections.verbs_intransitive_past_nsfw = word_collections.import_list("verbs_intransitive_nsfw.txt")
         word_collections.verbs_third_person_nsfw = word_collections.import_list("verbs_third_person_nsfw.txt")
         word_collections.verbs_active_nsfw = word_collections.import_list("verbs_active_nsfw.txt")
         word_collections.verbs_ing_nsfw = word_collections.import_list("verbs_ing_nsfw.txt")
@@ -869,6 +881,8 @@ class MainWindow(QMainWindow):
         word_collections.cliches_sfw = word_collections.import_list("cliches_sfw.txt")
         word_collections.cliches_nsfw = word_collections.import_list("cliches_nsfw.txt")
         word_collections.food_concepts = word_collections.import_list("food_concepts.txt")
+        word_collections.persons_male = word_collections.import_list("persons_male.txt")
+        word_collections.persons_female = word_collections.import_list("persons_female.txt")
         logger.info("\tWord lists imported.")
 
     # Export every word list and make sure the words are in alphabetical order.
@@ -888,6 +902,8 @@ class MainWindow(QMainWindow):
         word_collections.export_list(word_collections.food_singular, "food_singular")
         word_collections.export_list(word_collections.food_plural, "food_plural")
         word_collections.export_list(word_collections.verbs_sfw, "verbs_sfw")
+        word_collections.export_list(word_collections.verbs_intransitive_sfw, "verbs_intransitive_past_sfw")
+        word_collections.export_list(word_collections.verbs_past_past_sfw, "verbs_past_sfw")
         word_collections.export_list(word_collections.verbs_intransitive_sfw, "verbs_intransitive_sfw")
         word_collections.export_list(word_collections.verbs_third_person_sfw, "verbs_third_person_sfw")
         word_collections.export_list(word_collections.verbs_active_sfw, "verbs_active_sfw")
@@ -906,6 +922,8 @@ class MainWindow(QMainWindow):
         word_collections.export_list(word_collections.adjectives_nsfw, "adjectives_nsfw")
         word_collections.export_list(word_collections.verbs_nsfw, "verbs_nsfw")
         word_collections.export_list(word_collections.verbs_intransitive_nsfw, "verbs_intransitive_nsfw")
+        word_collections.export_list(word_collections.verbs_past_nsfw, "verbs_past_nsfw")
+        word_collections.export_list(word_collections.verbs_intransitive_past_nsfw, "verbs_intransitive_past_nsfw")
         word_collections.export_list(word_collections.verbs_third_person_nsfw, "verbs_third_person_nsfw")
         word_collections.export_list(word_collections.verbs_active_nsfw, "verbs_active_nsfw")
         word_collections.export_list(word_collections.verbs_ing_nsfw, "verbs_ing_nsfw")
@@ -929,6 +947,8 @@ class MainWindow(QMainWindow):
         word_collections.export_list(word_collections.cliches_sfw, "cliches_sfw")
         word_collections.export_list(word_collections.cliches_nsfw, "cliches_nsfw")
         word_collections.export_list(word_collections.food_concepts, "food_concepts.txt")
+        word_collections.export_list(word_collections.persons_male, "persons_male")
+        word_collections.export_list(word_collections.persons_female, "persons_female")
         logger.info("\tWord lists exported.")
 
     def export_font_collection(self):
