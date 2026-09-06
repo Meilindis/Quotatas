@@ -7,6 +7,7 @@ Dorothy Gale
 Elphaba
 Freya
 Galadriel
+Goldilocks
 Guinevere
 Helen of Troy
 Hera
@@ -14,10 +15,12 @@ Hildegard von Bingen
 Jane Eyre
 Jeanne d'Arc
 Jo March
+Lilith
 Little Red Riding Hood
 Marie Curie
 Mary Poppins
 Masala
+Medusa
 Minnie Mouse
 Miss Marple
 Morgan le Fey
@@ -29,4 +32,5 @@ Sappho
 Scheherazade
 Snow White
 The Oracle of Delphi
+Titania
 Virginia Woolf
