@@ -79,6 +79,7 @@ quantifiers = ["a shame", "fortunate", "odd", "weird", "a pity", "unfortunate", 
 numbers = ["two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"]
 quantities = ["an iota of", "some", "any", "lots of", "a grain of", "quite a bit of", "a tiny amount of", "a huge amount of"]
 emotions = ["angry at", "in love with", "happy about", "sad about", "shy about", "confused about", "disgusted by", "repulsed by", "having fun with", "jealous of", "envious of", "neutral about"]
+places = ["river", "forest", "mountain", "city", "town", "village", "waterfall", "island", "ocean", "beach", "sea", "swamp", "glacier", "volcano", "lake"]
 
 def import_list(filename):
     word_list = []

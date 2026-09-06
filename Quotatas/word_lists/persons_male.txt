@@ -3,6 +3,8 @@ Alexander the Great
 Aslan
 Captain Nemo
 Count Dracula
+Darmok
+Dathon
 Diogenes of Sinope
 Don Quixote
 Galileo Galilei
@@ -13,6 +15,7 @@ Homeros
 James Bond
 Julius Caesar
 King Kong
+Korgano
 Leonardo Da Vinci
 Mickey Mouse
 Odin

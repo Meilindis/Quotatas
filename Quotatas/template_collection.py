@@ -122,6 +122,9 @@ def verb_past():
 def verb_intransitive_past():
     return random.choice(word_collections.verbs_intransitive_past)
 
+def place():
+    return random.choice(word_collections.places)
+
 # -------------------------------------------------------------------------------------------------------------------
 
 # HELPER FUNCTIONS
@@ -1095,6 +1098,10 @@ def template_shaka():
     return f'''{person()},
     when the {noun_plural()} {verb_intransitive_past()}'''
 
+def template_at():
+    return f'''{person()}, 
+    {prepositions()} the {adjective()} {place()}.'''
+
 # List of defined templates (don't forget to add new templates here or they won't be used!)
 template_list = [template_times_three, 
                  template_three_compliments, 
@@ -1252,6 +1259,7 @@ template_list = [template_times_three,
                  template_temba1,
                  template_temba2,
                  template_shaka,
+                 template_at,
                  ]
 
 
