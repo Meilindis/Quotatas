@@ -1,13 +1,16 @@
 Artemis
 Athena
 Baba Yaga
+Buffy Summers
 Cinderella
 Cleopatra
+Deanna Troi
 Dorothy Gale
 Elphaba
 Freya
 Galadriel
 Goldilocks
+Grilka
 Guinevere
 Helen of Troy
 Hera
@@ -15,8 +18,10 @@ Hildegard von Bingen
 Jane Eyre
 Jeanne d'Arc
 Jo March
+Kathryn Janeway
 Lilith
 Little Red Riding Hood
+Lwaxana Troi
 Marie Curie
 Mary Poppins
 Masala
@@ -28,6 +33,8 @@ Mother Earth
 Nancy Drew
 Pippi Longstocking
 Pollyanna
+Rose Tyler
+Samantha Carter
 Sappho
 Scheherazade
 Snow White

@@ -79,6 +79,7 @@ fan
 fire truck
 flange
 flask
+flavour
 flower
 flute
 footstool
@@ -138,6 +139,7 @@ moon
 nebula
 need
 needle
+nest
 novel
 objective
 ODN coupler
@@ -181,6 +183,7 @@ shrubbery
 shuttle
 skirt
 slide
+smell
 sock
 sofa
 sonic boom

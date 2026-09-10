@@ -70,6 +70,7 @@ fans
 fire trucks
 flanges
 flasks
+flavours
 flowers
 flutes
 footstools
@@ -129,6 +130,7 @@ moons
 nebulas
 needs
 needles
+nests
 novels
 numpties
 objectives
@@ -174,6 +176,7 @@ shoes
 shrubberies
 shuttles
 skirts
+smells
 socks
 sofas
 sonic booms

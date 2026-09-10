@@ -1102,6 +1102,12 @@ def template_at():
     return f'''{person()}, 
     {prepositions()} the {adjective()} {place()}.'''
 
+def template_likethis():
+    return f'''{capitalize_first_letter(concept())}
+    is actually a bit like
+    being {verb_perfectum()}
+    by {random.choice([concept(), noun_plural()])}'''
+
 # List of defined templates (don't forget to add new templates here or they won't be used!)
 template_list = [template_times_three, 
                  template_three_compliments, 
@@ -1260,6 +1266,7 @@ template_list = [template_times_three,
                  template_temba2,
                  template_shaka,
                  template_at,
+                 template_likethis,
                  ]
 
 
