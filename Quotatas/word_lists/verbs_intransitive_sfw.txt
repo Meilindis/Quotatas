@@ -69,6 +69,7 @@ swing
 surf
 take a shower
 take a walk
+tinker
 touch grass
 travel
 unwind
