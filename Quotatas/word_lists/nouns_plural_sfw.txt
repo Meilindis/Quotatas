@@ -4,6 +4,7 @@ adventures
 aeroplanes
 alarm clocks
 androids
+anecdotes
 anthills
 arm chairs
 arms
@@ -28,6 +29,7 @@ books
 bowls
 brains
 bricks
+brushes
 buckets
 bubbles
 bushes
@@ -50,6 +52,7 @@ clown cars
 clubs
 coats
 colanders
+combs
 comedies
 computers
 concepts
@@ -60,6 +63,7 @@ cushions
 dreams
 dresses
 dungeons
+duvets
 ear plugs
 easter eggs
 elixirs
@@ -75,6 +79,7 @@ flowers
 flutes
 footstools
 forks
+fountain pens
 frames
 freezers
 fridges
@@ -119,12 +124,14 @@ litter boxes
 looms
 mailboxes
 meadows
+memes
 meteors
 microfiches
 microscopes
 minds
 mittens
 molehills
+monitors
 monsters
 moons
 nebulas
@@ -137,6 +144,8 @@ objectives
 oceans
 ODN couplers
 organs
+palettes
+pantomimes
 pantries
 PCs
 peanuts
@@ -152,6 +161,7 @@ pinecones
 planets
 plants
 plates
+plugs
 plushies
 potions
 portions

@@ -48,6 +48,7 @@ irony
 je ne sais quoi
 justice
 karma
+ink
 laundry
 lego
 liberty
@@ -70,6 +71,7 @@ nature
 nothing
 oblivion
 orthodoxy
+paint
 painting
 peace
 photography

@@ -5,6 +5,7 @@ adventure
 aeroplane
 alarm clock
 android
+anecdote
 anthill
 arm
 arm chair
@@ -30,7 +31,8 @@ boat
 book
 bowl
 brain
-bricks
+brick
+brush
 bubble
 bucket
 bush
@@ -57,6 +59,7 @@ club
 coat
 coffee
 colander
+comb
 comedy
 computer
 concept
@@ -68,6 +71,7 @@ cutlery
 dream
 dress
 dungeon
+duvet
 earth
 ear plug
 easter egg
@@ -84,6 +88,7 @@ flower
 flute
 footstool
 fork
+fountain pen
 frame
 freezer
 fridge
@@ -128,12 +133,14 @@ litter box
 loom
 mailbox
 meadow
+meme
 meteor
 microfiche
 microscope
 mind
 mitten
 molehill
+monitor
 monster
 moon
 nebula
@@ -145,6 +152,8 @@ objective
 ODN coupler
 ocean
 organ
+palette
+pantomime
 pantry
 PC
 peanut
@@ -160,6 +169,7 @@ pinecone
 planet
 plant
 plate
+plug
 plushie
 portion
 potion
