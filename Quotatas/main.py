@@ -51,6 +51,7 @@ from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QTextEdit,
 current_path = Path(__file__).parent.absolute()
 icon_path = os.path.join(current_path, 'icons')
 logger = logging.getLogger(__name__)
+attribute = True
 
 # Helper function to check expression type
 def evaluate(expression):
@@ -312,12 +313,13 @@ class MainWindow(QMainWindow):
         self.button_overlay.setCheckable(True)
         self.toolbar.addAction(self.button_overlay)
 
-        self.toolbar.addSeparator()
+        self.button_quote = QAction(QIcon(os.path.join(icon_path, 'quote.ico')), "Include attributor", self)
+        self.button_quote.setStatusTip("Include the person who is being quoted, if known.")
+        self.button_quote.triggered.connect(self.toggle_quote)
+        self.button_quote.setCheckable(True)
+        self.toolbar.addAction(self.button_quote)
 
-        self.button_generate_action = QAction(QIcon(os.path.join(icon_path, 'quotatas-teal.ico')), "Generate quote", self)
-        self.button_generate_action.setStatusTip("Generate a new quote image")
-        self.button_generate_action.triggered.connect(self.generate_quote)
-        self.toolbar.addAction(self.button_generate_action)
+        self.toolbar.addSeparator()
 
         self.button_previous_action = QAction(QIcon(os.path.join(icon_path, 'previous.ico')), "Go back to the previous quote", self)
         self.button_previous_action.setStatusTip("Go back to the previous quote")
@@ -435,10 +437,7 @@ class MainWindow(QMainWindow):
         self._font = random.choice(self._font_collection)
         logger.info("\tFont selected: " + self._font.get_ui_name() + ".")
         logger.info("\tGenerating quote text...")
-        self._quote = random.choice(template_collection.template_list)()
-        attributed = random.randint(1, 100)
-        if attributed < 11:
-            self._quote = self._quote + "\n\n- " + random.choice(word_collections.persons)
+        self._quote = random.choice(template_collection.template_list)()        
         logger.info("\tQuote text generated:\n\n " + self._quote + "\n\n")
 
         # Add and set the selected parameters to the list of quotes
@@ -757,6 +756,20 @@ class MainWindow(QMainWindow):
         self.export_settings()        
         logger.info("Settings exported.")  
 
+    def toggle_quote(self):
+        logger.info("Toggling visibility of attributor...")
+        if self.button_quote.isChecked():
+            attribute = True
+            self._generating_quote = True
+            self.create_quote_image()
+            self._generating_quote = False
+        else:
+            attribute = False
+            self.create_quote_image()
+        logger.info("Exporting current settings to file...")   
+        self.export_settings()        
+        logger.info("Settings exported.")  
+
     # Determine the available word collection depending on the toggles (NSFW/negative on or off)
     def settings_changed(self):
         logger.info("Updating used word collection...")
@@ -978,10 +991,11 @@ class MainWindow(QMainWindow):
             settingsinput.close()
             
             # Check validity (exactly three entries expected)
-            if len(settings) == 3:
+            if len(settings) == 4:
                 nsfw_setting = settings[0]
                 negative_setting = settings[1]
                 overlay_setting = settings[2]
+                quote_setting = settings[3]
                 if nsfw_setting == "True":
                     self.button_nsfw_action.setChecked(True)
                 elif nsfw_setting == "False":
@@ -996,8 +1010,12 @@ class MainWindow(QMainWindow):
                     logger.info("Could not import Negative setting.")
                 if overlay_setting == "True":
                     self.button_overlay.setChecked(True)
-                elif overlay_setting == False:
+                elif overlay_setting == "False":
                     self.button_overlay.setChecked(False)
+                if quote_setting == "True":
+                    self.button_quote.setChecked(True)
+                elif quote_setting == "False":
+                    self.button_quote.setChecked(False)
                 else:
                     logger.info("Could not import Overlay setting.")
             else:
@@ -1015,6 +1033,8 @@ class MainWindow(QMainWindow):
             settingsfile.write(str(self.button_negative_action.isChecked()))
             settingsfile.write("\n")
             settingsfile.write(str(self.button_overlay.isChecked()))
+            settingsfile.write("\n")
+            settingsfile.write(str(self.button_quote.isChecked()))
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

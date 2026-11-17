@@ -149,6 +149,14 @@ def horoscope():
     else:
         return f"Today's horoscope - {capitalize_first_letter(random.choice(word_collections.zodiac))}:\n\n"
 
+def attribute():
+    if attribute:
+        result = random.randint(1, 100)
+        if result > 10:
+            return ""
+        else:
+            return f"\n\n- {person()}"
+
 vowels = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']
 
 def a_or_an(text):
@@ -165,13 +173,13 @@ def a_or_an(text):
 # Repeat a random verb three times
 def template_times_three():
     current_verb = verb()
-    return f"{current_verb.capitalize()}, {current_verb}, {current_verb}"
+    return f"{current_verb.capitalize()}, {current_verb}, {current_verb}{attribute()}"
 
 # Produce 3 random verbs
 def template_three_verbs():
     return f'''{capitalize_first_letter(verb())}
     {verb().capitalize()}
-    {verb().capitalize()}'''
+    {verb().capitalize()}{attribute()}'''
     
 # Row, row, row your boat
 def template_row():
@@ -211,7 +219,7 @@ def template_surprise_plural():
 
 # Call to action
 def template_call_to_action():
-    return f"{capitalize_first_letter(people_plural())}, rise up!"
+    return f"{capitalize_first_letter(people_plural())}, rise up!{attribute()}"
 
 # Spread the word
 def template_spread_the_word():
@@ -240,7 +248,7 @@ def template_you_adjective():
 # It can be
 def template_can_be():
     return f'''{capitalize_first_letter(noun_plural())} can be so
-    {adverb()} {adjective()}'''
+    {adverb()} {adjective()}{attribute()}'''
 
 # No sorry
 def template_no_sorry():
@@ -257,12 +265,12 @@ def template_reasons():
 # Deserved
 def template_deserved():
     return f'''{capitalize_first_letter(verb())}.
-    Because you deserve it.'''
+    Because you deserve it.{attribute()}'''
 
 # Truth
 def template_truth():
     return f'''{capitalize_first_letter(noun_plural()) }
-    tell it like it is'''
+    tell it like it is.{attribute()}'''
 
 # Change
 def template_change():
@@ -273,7 +281,7 @@ def template_change():
     return f'''{rule()}Don't be {a_or_an(temp1)}
     {temp1} {current_noun}.
     Be {a_or_an(temp2)}
-    {temp2} {current_noun}.'''
+    {temp2} {current_noun}.{attribute()}'''
     
 # Possibilities
 def template_possible():
@@ -283,7 +291,7 @@ def template_possible():
 # Effect
 def template_effect():
 	return f'''{capitalize_first_letter(prepositions())} {noun_plural()},
-    we {verb()} {noun_plural()}.'''
+    we {verb()} {noun_plural()}.{attribute()}'''
 
 # Encouragement
 def template_encouragement():
@@ -298,25 +306,25 @@ def template_strangely_true():
     return f'''{rule()}Just because you're
     {a_or_an(temp1)} {temp1}
     it doesn't mean you're
-    {a_or_an(temp2)} {temp2}'''
+    {a_or_an(temp2)} {temp2}.'''
 
 # Really
 def template_really():
     return f'''{rule()}{capitalize_first_letter(random.choice([noun_plural(), concept()]))}.
     Actually good
-    for {random.choice([noun_plural(), concept()])}.'''
+    for {random.choice([noun_plural(), concept()])}.{attribute()}'''
 
 # Explanation
 def template_explanation():
     return f'''{capitalize_first_letter(noun_plural())} are not trying
     to {verb_intransitive()},
     they are just trying
-    to {verb()} {concept()}'''
+    to {verb()} {concept()}.{attribute()}'''
 
 # No need
 def template_no_need():
     return f'''{rule()}You don't need {random.choice([noun_plural(), concept()])}
-    to {verb()} {noun_plural()}'''
+    to {verb()} {noun_plural()}.'''
 
 # Potential
 def template_potential():
@@ -337,18 +345,18 @@ def template_potential():
 # Results
 def template_results():
     return f'''{capitalize_first_letter(concept())}
-    can end in {concept()}'''
+    can end in {concept()}.{attribute()}'''
 
 # Causation
 def template_causation():
     return f'''Being {adjective()}
-    can cause {random.choice([noun_plural(), concept()])}'''
+    can cause {random.choice([noun_plural(), concept()])}.{attribute()}'''
 
 # Two needs
 def template_two_needs():
     return f'''{horoscope()}The two things you need
     in order to live {adverb()}
-    are {random.choice([noun_plural(), concept()])} and {random.choice([noun_plural(), concept()])}'''
+    are {random.choice([noun_plural(), concept()])} and {random.choice([noun_plural(), concept()])}.'''
 
 # Maybe?
 def template_maybe():
@@ -358,27 +366,27 @@ def template_maybe():
 
 # Orders
 def template_orders():
-    return f'''{rule()}They can order you
+    return f'''They can order you
     to {verb()} {noun_plural()},
     but they can't order you
-    to {verb()} {noun_plural()}'''
+    to {verb()} {noun_plural()}.{attribute()}'''
 
 # Family
 def template_family():
     return f'''{capitalize_first_letter(situation())}
     is pretty much like
-    {verb_ing()} your {random.choice([noun_singular(), concept()])}'''
+    {verb_ing()} your {random.choice([noun_singular(), concept()])}.{attribute()}'''
 
 # Truth
 def template_true():
     return f'''{capitalize_first_letter(noun_plural())} are the {concept()}
-    of all that is {adjective()}'''
+    of all that is {adjective()}.{attribute()}'''
 
 # Right
 def template_right():
     return f'''{rule()}Pursue what is {adjective()}
     instead of what is
-    making you {adjective()}'''
+    making you {adjective()}.'''
     
 # Personality
 def template_personality():
@@ -392,8 +400,8 @@ def function_the_best():
     selected_word = noun_singular()
     temp = adjective()
 
-    return f'''{rule()}The best {selected_word}
-    is {a_or_an(temp)} {temp} {selected_word}'''
+    return f'''The best {selected_word}
+    is {a_or_an(temp)} {temp} {selected_word}.{attribute()}'''
 
 # Just be
 def template_be():
@@ -432,7 +440,7 @@ def template_never():
 def template_need():
     temp = adjective()
     return f'''{rule()}You just need
-    {a_or_an(temp)} {temp} {noun_singular()}'''
+    {a_or_an(temp)} {temp} {noun_singular()}.'''
 
 # You must
 def template_must():
@@ -444,7 +452,7 @@ def template_must():
 # A good day
 def template_day():
     return f'''Today is a good day
-    to {verb()}'''
+    to {verb()}.{attribute()}'''
 
 # LLAP
 def template_llap():
@@ -473,10 +481,10 @@ def template_excuse():
 
 # Outweigh
 def template_outweigh():
-    return f'''{rule()}The {noun_plural()}
+    return f'''The {noun_plural()}
     of the {noun_plural()}
     outweigh the {noun_plural()}
-    of the {noun_plural()}'''
+    of the {noun_plural()}.{attribute()}'''
 
 # Today
 def template_today():
@@ -504,7 +512,7 @@ def template_coffee():
 		item =  concept()
 
 	return f'''There's {item}
-    in that {noun_singular()}'''
+    in that {noun_singular()}.{attribute()}'''
 
 # The world
 def template_world():
@@ -521,49 +529,49 @@ def template_taskmaster():
 def template_eufemism():
     return f'''\"{capitalize_first_letter(noun_singular())}\"
     is just a eufemism for
-    \"{noun_singular()}\"'''
+    \"{noun_singular()}\".{attribute()}'''
 
 # Embrace
 def template_embrace():
     temp = noun_singular()
-    return f'''Embrace {a_or_an(temp)} {temp}
-    Not {concept()}'''
+    return f'''Embrace {a_or_an(temp)} {temp},
+    not {concept()}.{attribute()}'''
 
 # Different people
 def template_diff_people():
     people = people_plural()
     return f'''{capitalize_first_letter(adjective())} {people} {verb()},
-    {capitalize_first_letter(adjective())} {people} {verb()}'''
+    {capitalize_first_letter(adjective())} {people} {verb()}.{attribute()}'''
 
 # Our part
 def template_our_part():
     return f'''If we all do our part
     we can make
-    {adjective()} {random.choice([noun_plural(), people_plural()])} {verb_intransitive()}'''
+    {adjective()} {random.choice([noun_plural(), people_plural()])} {verb_intransitive()}.{attribute()}'''
 
 # How to
 def template_how_to():
-    return f"{capitalize_first_letter(random.choice([verb(), verb_intransitive()]))} {adverb()}"
+    return f"{capitalize_first_letter(random.choice([verb(), verb_intransitive()]))} {adverb()}.{attribute()}"
 
 # You know it
 def template_you_know():
     return f'''If you know how to
     {verb()} it,
     you know how to
-    {verb()} it.'''
+    {verb()} it.{attribute()}'''
 
 # Don't avoid
 def template_avoid():
     return f'''Any {people_singular()}
     who avoids {random.choice([noun_plural(), concept()])}
-    avoids {random.choice([noun_plural(), concept()])}'''
+    avoids {random.choice([noun_plural(), concept()])}.{attribute()}'''
 
 # Behind
 def template_behind():
     adj = adjective()
     return f'''Behind every {people_singular()}
     stands
-    {a_or_an(adj)} {adj} {people_singular()}'''
+    {a_or_an(adj)} {adj} {people_singular()}.{attribute()}'''
 
 # Somebody
 def template_somebody():
@@ -585,7 +593,7 @@ def template_like():
 
     return f'''{capitalize_first_letter(concept())} is often
     like {a_or_an(noun1)} {noun1}:
-    {end}.'''
+    {end}.{attribute()}'''
 
 # Effect
 def template_effect_again():
@@ -594,7 +602,7 @@ def template_effect_again():
 
     return f'''{capitalize_first_letter(concept())}
     is usually followed
-    by {end}'''
+    by {end}.{attribute()}'''
 
 # Common
 def template_common():
@@ -610,20 +618,20 @@ def template_yes():
 
 # Less and more
 def template_less_more():
-    return f'''{rule()}The less {adjective()},
-    the more {adjective()}.'''
+    return f'''The less {adjective()},
+    the more {adjective()}.{attribute()}'''
 
 # Almost the same
 def template_almost():
     return f'''{capitalize_first_letter(situation())}
     can be quite similar to
-    {situation()}'''
+    {situation()}.{attribute()}'''
 
 # Answer
 def template_answer():
     return f'''The answer to
     {situation()}
-    is {concept()}'''
+    is {concept()}.{attribute()}'''
 
 # Cliches
 def template_cliches():
@@ -635,13 +643,13 @@ def template_cliches():
 def template_sayit():
     return f'''Sometimes,
     it just needs to be said:
-    {capitalize_first_letter(cliche())}'''
+    {capitalize_first_letter(cliche())}.{attribute()}'''
 
 # It's hard
 def template_hard():
     temp = noun_singular()
     return f'''{capitalize_first_letter(concept())} is hard,
-    {random.choice([concept(), f"{a_or_an(temp)} {temp}"])} makes it better.'''
+    {random.choice([concept(), f"{a_or_an(temp)} {temp}"])} makes it better.{attribute()}'''
 
 # Percent
 def template_percent():
@@ -670,12 +678,12 @@ def template_involvement():
     temp = verb_ing()
     return f'''{capitalize_first_letter(temp)} each other
     involves
-    {temp} ourselves.'''
+    {temp} ourselves.{attribute()}'''
 
 # Forms
 def template_form():
     return f'''{capitalize_first_letter(concept())} can be
-    a form of {concept()}.'''
+    a form of {concept()}.{attribute()}'''
     
 # Recipe
 def template_recipe():
@@ -707,7 +715,7 @@ def template_necessity():
 # Peanuts
 def template_peanuts():
 	return f'''Any {random.choice([people_singular(), noun_singular()])}
-    can {situation_active()}'''
+    can {situation_active()}.{attribute()}'''
 
 # Ready
 def template_ready():
@@ -717,11 +725,11 @@ def template_ready():
 def template_they_do():
     persons = people_plural()
     return f'''{capitalize_first_letter(adjective())} {persons} {verb()}
-    what {adjective()} {persons} {verb()}'''
+    what {adjective()} {persons} {verb()}.{attribute()}'''
 
 # Do both
 def template_do_both():
-    return f"{capitalize_first_letter(random.choice([verb(), verb_intransitive()]))} and {random.choice([verb(), verb_intransitive()])}"
+    return f"{capitalize_first_letter(random.choice([verb(), verb_intransitive()]))} and {random.choice([verb(), verb_intransitive()])}.{attribute()}"
 
 # Irish insult
 def template_irish_insult():
@@ -742,7 +750,7 @@ def template_ornate():
 # Utter
 def template_utter():
     return f'''{capitalize_first_letter(concept())} is
-    {amplifier()} {concept()}'''
+    {amplifier()} {concept()}.{attribute()}'''
 
 # What do you get
 def template_what():
@@ -759,12 +767,12 @@ def template_same():
     return f'''The {people} who
     {verbplural} {noun_plural()}
     are the same {people}
-    who {verbplural} {noun_plural()}'''
+    who {verbplural} {noun_plural()}.{attribute()}'''
 
 # Meaningless
 def template_meaning():
     return f'''{capitalize_first_letter(concept())} without {random.choice([concept(), noun_plural()])}
-    is meaningless.'''
+    is meaningless.{attribute()}'''
 
 # Lingo
 def template_lingo():
@@ -784,7 +792,7 @@ def template_dont():
 
     return f'''{capitalize_first_letter(random.choice([passive, active]))}.
     
-    Or don't.'''
+    Or don't.{attribute()}'''
     
 # They do
 def template_theydo():
@@ -815,7 +823,7 @@ def template_attempt():
     return f'''{capitalize_first_letter(concept())}
     is actually our attempt
     at solving the {concept()}
-    of {concept()}'''
+    of {concept()}.{attribute()}'''
 
 # Memes
 def template_memes():
@@ -833,7 +841,7 @@ def template_better():
     return f'''{rule()}It's better to be
     {a_or_an(adj1)} {adj1} {noun_singular()}
     than
-    {a_or_an(adj2)} {adj2} {noun_singular()}'''
+    {a_or_an(adj2)} {adj2} {noun_singular()}.{attribute()}'''
 
 # A thing
 def template_athing():
@@ -844,7 +852,7 @@ def template_athing():
 def template_odd():
     return f'''It's {quantifier()} 
     that {noun_plural()}
-    aren't {noun_plural()}'''
+    aren't {noun_plural()}.{attribute()}'''
 
 # Will you?
 def template_willyou():
@@ -855,7 +863,7 @@ def template_willyou():
 def template_thatsme():
     return f'''{capitalize_first_letter(adjective())},
     {adjective()},
-    that's me.'''
+    that's me.{attribute()}'''
 	
 # Why is it?
 def template_whyisit():
@@ -867,31 +875,31 @@ def template_whyisit():
 def template_supposed():
     return f'''It's {concept()}.
     It's not supposed
-    to be {adjective()}.'''
+    to be {adjective()}.{attribute()}'''
 
 # Tick tock
 def template_clock():
     return f'''Tick tock
-    {random.choice([concept(), noun_singular()])} o'clock'''
+    {random.choice([concept(), noun_singular()])} o'clock.{attribute()}'''
 
 # Life
 def template_life():
     return f'''{rule()}Sometimes, life
     is all about
-    {situation()}'''
+    {situation()}.{attribute()}'''
 
 # Impossible?
 def template_impossible():
     temp = verb()
     return f'''{capitalize_first_letter(concept())} is
     to {temp}
-    the un{temp}able'''
+    the un{temp}able.{attribute()}'''
 
 # Every time
 def template_every_time():
     return f'''Every time you
     {verb()} {random.choice([concept(), noun_plural()])},
-    you also {verb()} {concept()}'''
+    you also {verb()} {concept()}.{attribute()}'''
 
 # Consider
 def template_consider():
@@ -912,25 +920,25 @@ def template_if():
     adj = adjective()
     return f'''If you're gonna
     be {a_or_an(temp)} {temp}
-    be {a_or_an(adj)} {adj} {temp}.'''
+    be {a_or_an(adj)} {adj} {temp}.{attribute()}'''
 
 # Some
 def template_some():
     return f'''Some people 
     become {people_plural()}
     because they like
-    {situation()}.'''
+    {situation()}.{attribute()}'''
 
 # All
 def template_all():
     temp = noun_singular()
     return f'''All you need
     to {verb()} {concept()}
-    is {a_or_an(temp)} {temp} and {concept()}.'''
+    is {a_or_an(temp)} {temp} and {concept()}.{attribute()}'''
 
 def template_itis():
     return f'''{capitalize_first_letter(concept())}
-    is {adjective()}'''
+    is {adjective()}.{attribute()}'''
 
 def template_arethey():
     return f'''Are {noun_plural()}
@@ -943,16 +951,16 @@ def template_whois():
 
 def template_practical():
     return f'''Don't {verb()} {noun_plural()}!
-    They're just not {adjective()} enough.'''
+    They're just not {adjective()} enough.{attribute()}'''
 
 def template_listen():
     return f'''Listen to the {people_plural()}.
-    They know how to {verb()} {noun_plural()}.'''
+    They know how to {verb()} {noun_plural()}.{attribute()}'''
 
 def template_madness():
     return f'''Be {adjective()} around {random.choice([noun_plural(), people_plural()])}.
     {capitalize_first_letter(sometimes())}, they {verb_intransitive()}.
-    It's {quantifier()}.'''
+    It's {quantifier()}.{attribute()}'''
     
 def template_riddle():
 	temp = noun_singular()
@@ -989,7 +997,7 @@ def template_beit():
 def template_best():
     return f'''The {superlative()} {noun_plural()}
     in the world
-    are {adjective()}.'''
+    are {adjective()}.{attribute()}'''
 
 def template_believe():
     return f'''Believe me,
@@ -999,7 +1007,7 @@ def template_believe():
 
 def template_when():
     return f'''{capitalize_first_letter(random.choice([noun_singular(), people_singular()]))} when
-    the {noun_plural()} {verb()}'''
+    the {noun_plural()} {verb()}.{attribute()}'''
 
 def template_switch():
     return f'''Main {noun_singular()}
@@ -1007,24 +1015,16 @@ def template_switch():
     Switching to
     auxiliary {noun_singular()}.'''
 
-def template_hovercraft():
-    return f'''My hovercraft is
-    full of {noun_plural()}!'''
-
-def template_eels():
-    return f'''My {noun_singular()} is
-    full of eels!'''
-
 def template_both():
     return f'''My {noun_singular()} is
     full of {noun_plural()}!'''
 
 def template_iota():
     return f'''These days, {people_plural()}
-    don't have {quantity()} {concept()}.'''
+    don't have {quantity()} {concept()}.{attribute()}'''
 
 def template_spoon():
-    return f'''There is no {noun_singular()}'''
+    return f'''There is no {noun_singular()}.{attribute()}'''
 
 def template_mean():
     return f'''What do you mean,
@@ -1064,7 +1064,7 @@ def template_prettymuch():
 	adj = adjective()
 	return f'''{capitalize_first_letter(a_or_an(person))} {person} 
 	is pretty much just
-	{a_or_an(adj)} {adj} {people_singular()}'''
+	{a_or_an(adj)} {adj} {people_singular()}.{attribute()}'''
 
 def template_judged():
     return f'''{capitalize_first_letter(verb_perfectum())} is
@@ -1078,7 +1078,7 @@ def template_youknow():
 def template_if_you():
     selected_verb = verb()
     return f'''If you {selected_verb}, 
-    you {selected_verb}.'''
+    you {selected_verb}.{attribute()}'''
 
 def template_temba1():
     person = people_singular()
@@ -1106,7 +1106,7 @@ def template_likethis():
     return f'''{capitalize_first_letter(concept())}
     is actually a bit like
     being {verb_perfectum()}
-    by {random.choice([concept(), noun_plural()])}'''
+    by {random.choice([concept(), noun_plural()])}.{attribute()}'''
 
 # List of defined templates (don't forget to add new templates here or they won't be used!)
 template_list = [template_times_three, 
@@ -1247,8 +1247,6 @@ template_list = [template_times_three,
                  template_believe,
                  template_when,
                  template_switch,
-                 template_hovercraft,
-                 template_eels,
                  template_both,
                  template_iota,
                  template_spoon,
