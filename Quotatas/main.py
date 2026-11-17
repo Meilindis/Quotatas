@@ -51,7 +51,6 @@ from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QTextEdit,
 current_path = Path(__file__).parent.absolute()
 icon_path = os.path.join(current_path, 'icons')
 logger = logging.getLogger(__name__)
-attribute = True
 
 # Helper function to check expression type
 def evaluate(expression):
@@ -104,6 +103,8 @@ class MainWindow(QMainWindow):
         self._image_collection_nsfw = []
         self._generating_quote = False # Whether a quote is being actively generated.
         self._overlay = True
+        self._attribute = ""
+        self._attributor = True
 
         logger.info("Importing files...")
 
@@ -439,6 +440,13 @@ class MainWindow(QMainWindow):
         logger.info("\tGenerating quote text...")
         self._quote = random.choice(template_collection.template_list)()        
         logger.info("\tQuote text generated:\n\n " + self._quote + "\n\n")
+        if self._attributor:
+            result = random.randint(1, 100)
+            if result > 10:
+                self._attribute = ""
+            else:
+                self._attribute = "\n\n- " + random.choice(word_collections.persons)      
+        logger.info("\tAttributor generated:\n\n " + self._attribute + "\n\n")
 
         # Add and set the selected parameters to the list of quotes
         logger.info("\tAdding quote to history...")
@@ -483,7 +491,9 @@ class MainWindow(QMainWindow):
 
         alignment = self._picture.get_alignment()
 
-        text = self._quote
+        text = self._quote 
+        if self._attributor:
+            text += self._attribute
         font_name = os.path.join(current_path, 'fonts', self._font.get_filename())
         font_custom_size = self._font.get_default_size()
         line_height = font_custom_size + 8
@@ -759,12 +769,12 @@ class MainWindow(QMainWindow):
     def toggle_quote(self):
         logger.info("Toggling visibility of attributor...")
         if self.button_quote.isChecked():
-            attribute = True
+            self._attributor = True
             self._generating_quote = True
             self.create_quote_image()
             self._generating_quote = False
         else:
-            attribute = False
+            self._attributor = False
             self.create_quote_image()
         logger.info("Exporting current settings to file...")   
         self.export_settings()        
